@@ -1,10 +1,11 @@
-import { Manrope } from 'next/font/google'
+import { Manrope, Bebas_Neue } from 'next/font/google'
 import './globals.css'
 import Header from '@/app/components/Layout/Header'
 import Footer from '@/app/components/Layout/Footer'
 import ScrollToTop from '@/app/components/ScrollToTop'
 import Aoscompo from '@/utils/aos'
-const font = Manrope({ subsets: ['latin'] })
+const manrope = Manrope({ subsets: ['latin'] })
+const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 
 export default function RootLayout({
   children,
@@ -13,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <body className={`${font.className}`}>
+      <body className={`${manrope.className}`}>
         <Aoscompo>
           <Header />
           {children}

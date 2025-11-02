@@ -4,9 +4,11 @@ import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
+import { Bebas_Neue } from 'next/font/google'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 
 const Hero = () => {
   const headingRef = useRef(null)
@@ -78,13 +80,13 @@ const Hero = () => {
             <p ref={headingRef} className='text-black text-base font-bold mb-4' style={{ transform: 'translateZ(0)' }}>Box Weltmeisterin</p>
             <h1
               ref={paragraphRef}
-              className='text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-black'>
+              className={`text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-black ${bebasNeue.className}`}>
               Gemeinsam zu körperlicher Stärke und mentaler Resilienz – mit meiner Expertise zu Ihrem Erfolg!
             </h1>
             <Link href={'/kontakt'}>
-              <button ref={buttonRef} className='bg-black text-white text-lg font-semibold py-4 px-10 rounded-full hover:bg-gray-800 hover:cursor-pointer transition duration-300 ease-in-out'>
+              {/* <button ref={buttonRef} className='bg-black text-white text-lg font-semibold py-4 px-10 rounded-full hover:bg-gray-800 hover:cursor-pointer transition duration-300 ease-in-out'>
                 Get started
-              </button>
+              </button> */}
             </Link>
           </div>
           <div ref={imageRef} className='w-full flex justify-center relative h-[400px] md:h-[500px] lg:h-[600px] max-w-full lg:max-w-[900px]'>

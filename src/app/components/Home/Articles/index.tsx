@@ -7,6 +7,9 @@ import { useRouter } from 'next/navigation'
 import { articles } from '@/app/types/articles'
 import { motion } from 'framer-motion'
 import ArticlesSkeleton from '../../Skeleton/Articles'
+import { Bebas_Neue } from 'next/font/google'
+
+const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 
 const settings = {
   dots: true,
@@ -69,13 +72,14 @@ const Articles = () => {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className='text-red-500 text-xl font-normal tracking-widest'>
+            className={`text-red-500 text-xl font-normal tracking-widest ${bebasNeue.className}`}>
             NATALIE ZIMMERMANN
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}>Meine leistungen.</motion.h2>
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className={bebasNeue.className}>Meine leistungen.</motion.h2>
         </div>
 
         <Slider {...settings}>

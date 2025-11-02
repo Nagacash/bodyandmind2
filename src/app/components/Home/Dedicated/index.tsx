@@ -2,6 +2,9 @@
 import React from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { Bebas_Neue } from 'next/font/google'
+
+const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 
 const Dedicated = () => {
   return (
@@ -68,7 +71,7 @@ const Dedicated = () => {
                                                           className='w-full sm:w-1/3 h-auto rounded-lg'
                                                         />
                                                       </div>
-                                                      <h2 className='text-center -mr-1 text-3xl'>
+                                                      <h2 className={`text-center -mr-1 text-3xl ${bebasNeue.className}`}>
                                                         “Erlebe den fesselnden Werdegang von der Schäferstochter zur Weltmeisterin im Profiboxen.
                                                       </h2>            <p className='text-base font-medium text-black/55 mt-5 text-center'>
               Motivation, Strategie und Selbstbehauptung. Ich teile meinen Erfolg mit dir.

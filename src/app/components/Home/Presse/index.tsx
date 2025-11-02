@@ -1,14 +1,17 @@
 'use client'
 import React from 'react'
 import Image from 'next/image'
+import { Bebas_Neue } from 'next/font/google'
+
+const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 
 const Presse = () => {
   return (
     <section id='Presse' className='overflow-hidden scroll-mt-[100px] py-16'>
       <div className='container mx-auto max-w-7xl px-4'>
         <div className='text-center'>
-          <h2 className='my-6'>Presse</h2>
-          <p className='text-black/50 text-base font-normal max-w-3xl mx-auto'>
+          <h2 className={`my-6 ${bebasNeue.className}`}>Presse</h2>
+          <p className={`text-black/50 text-base font-normal max-w-3xl mx-auto ${bebasNeue.className}`}>
             Auf dieser Seite präsentiere ich euch meine Medienauftritte, sowohl im Fernsehen ( NDR), Internet (YouTube), Radio und Print wie etwa Bild, Hamburger Abendblatt usw. Viel Spaß beim Stöbern.
           </p>
         </div>

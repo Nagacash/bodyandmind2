@@ -2,6 +2,9 @@
 import React from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { Bebas_Neue } from 'next/font/google'
+
+const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 
 const Team = () => {
   return (
@@ -11,7 +14,7 @@ const Team = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className='text-center max-w-5xl mx-auto'>
+          className={`text-center max-w-5xl mx-auto ${bebasNeue.className}`}>
           Mit Leidenschaft zum Erfolg!
         </motion.h2>
         <motion.p

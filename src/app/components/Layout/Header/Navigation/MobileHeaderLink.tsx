@@ -2,6 +2,9 @@ import { useState } from "react";
 import Link from "next/link";
 import { HeaderItem } from "../../../../types/menu";
 import { usePathname, useRouter } from "next/navigation";
+import { Bebas_Neue } from 'next/font/google';
+
+const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' });
 
 const MobileHeaderLink: React.FC<{ item: HeaderItem, setNavbarOpen: (isOpen: boolean) => void }> = ({ item, setNavbarOpen }) => {
   const [submenuOpen, setSubmenuOpen] = useState(false);
@@ -32,7 +35,7 @@ const MobileHeaderLink: React.FC<{ item: HeaderItem, setNavbarOpen: (isOpen: boo
         href={item.href}
         target={item.target}
         onClick={handleClick}
-        className={`text-lg font-normal text-black hover:text-primary mb-6`}
+        className={`text-lg font-normal text-black hover:text-primary mb-6 ${bebasNeue.className}`}
         style={path === item.href ? activeStyle : {}}
       >
         {item.label}

@@ -3,6 +3,9 @@ import React from 'react'
 import { Icon } from '@iconify/react'
 import { DisclosurePanel, DisclosureButton, Disclosure } from '@headlessui/react'
 import { motion } from 'framer-motion'
+import { Bebas_Neue } from 'next/font/google'
+
+const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 
 const FAQ = () => {
   return (
@@ -20,7 +23,7 @@ const FAQ = () => {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className='text-white text-center max-w-3xl mx-auto'>
+            className={`text-white text-center max-w-3xl mx-auto ${bebasNeue.className}`}>
             Häufig gestellten Fragen
           </motion.h2>
           <div className='w-full px-4 pt-16'>
@@ -83,7 +86,7 @@ const FAQ = () => {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.0 }}
-              className='mx-auto w-full max-w-5xl rounded-2xl p-8 bg-white'>
+              className='mx-auto w-full max-w-5xl rounded-2xl p-8 bg-white mb-5'>
               <Disclosure as='div' className='mt-2'>
                 {({ open }) => (
                   <>

@@ -6,30 +6,14 @@ import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { motion } from 'framer-motion'
 import AboutSkeleton from '../../Skeleton/AboutUs'
-import Modal from '@/app/components/Modal'
+import { Bebas_Neue } from 'next/font/google'
+
+const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 
 const Aboutus = () => {
   // fetch about data
   const [about, setAbout] = useState<aboutdata[]>([])
   const [loading, setLoading] = useState(true)
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalContent, setModalContent] = useState('');
-  const [modalTitle, setModalTitle] = useState('');
-
-  const openModal = (content: string, title: string) => {
-    console.log('Opening modal with content:', content);
-    console.log('Title:', title);
-    const formattedContent = content.replace(/\n/g, '<br />');
-    setModalContent(formattedContent);
-    setModalTitle(title);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setModalContent('');
-    setModalTitle('');
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -62,22 +46,20 @@ const Aboutus = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className='text-center text-black-500 text-lg tracking-widest uppercase mt-10'>
+            className='text-center text-black-500 text-lg tracking-widest uppercase'>
             Über Mich
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className='text-center pb-12 text-black'>SPEAKERIN & MENTAL COACH</motion.h2>
+            className={`text-center pb-12 text-black ${bebasNeue.className}`}>SPEAKERIN & MENTAL COACH</motion.h2>
           <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 mt-10'>
             {loading
               ? Array.from({ length: 3 }).map((_, index) => (
                   <AboutSkeleton key={index} />
                 ))
               : about.map((item, i) => {
-                  console.log('Item Heading:', item.heading);
-                  console.log('Condition result:', item.heading.trim() === 'DER MENTAL-COACH:' || item.heading.trim() === 'Die Speakerin:');
                   return (
                   <motion.div
                     initial={{ opacity: 0, y: 50 }}
@@ -86,7 +68,7 @@ const Aboutus = () => {
                     key={i}
                     className='hover:bg-darkmode bg-white rounded-3xl p-8 shadow-xl group flex flex-col justify-between min-h-[500px]'>
                     <div className="flex-grow">
-                      <h5 className='group-hover:text-white mb-5'>
+                      <h5 className={`group-hover:text-white mb-5 ${bebasNeue.className}`}>
                         {item.heading}
                       </h5>
                     <div className="w-full h-64">
@@ -102,36 +84,20 @@ const Aboutus = () => {
                         {item.paragraph}
                       </p>
                     </div>
-                    {item.heading.trim() === 'Über Mich.' || item.heading.trim() === 'Die Speakerin' || item.heading.trim() === 'DER MENTAL-COACH:' ? (
-                      <button
-                        onClick={() => openModal(item.fullParagraph || '', item.heading)}
-                        className='text-18 font-semibold text-red-600 hover-underline flex items-center'>
-                        {item.link}
-                        <Icon
-                          icon='tabler:chevron-right'
-                          width='20'
-                          height='20'
-                        />
-                      </button>
-                    ) : (
-                      <Link
-                        href='#'
-                        className='text-18 font-semibold text-red-600 hover-underline flex items-center'>
-                        {item.link}
-                        <Icon
-                          icon='tabler:chevron-right'
-                          width='20'
-                          height='20'
-                        />
-                      </Link>
-                    )}
+                    <Link
+                      href='/#Presse'
+                      className={`text-18 font-semibold text-red-600 hover-underline flex items-center ${bebasNeue.className}`}>
+                      {item.link}
+                      <Icon
+                        icon='tabler:chevron-right'
+                        width='20'
+                        height='20'
+                      />
+                    </Link>
                   </motion.div>
                 )})}          </div>
         </div>
       </div>
-      <Modal isOpen={isModalOpen} onClose={closeModal} title={modalTitle}>
-        <p className="text-black" dangerouslySetInnerHTML={{ __html: modalContent }}></p>
-      </Modal>
     </section>
   )
 }

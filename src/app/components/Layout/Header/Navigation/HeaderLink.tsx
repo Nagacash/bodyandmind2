@@ -3,6 +3,9 @@ import { useState } from "react";
 import Link from "next/link";
 import { HeaderItem } from "../../../../types/menu";
 import { usePathname, useRouter } from "next/navigation";
+import { Bebas_Neue } from 'next/font/google';
+
+const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' });
 
 const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
   const [submenuOpen, setSubmenuOpen] = useState(false);
@@ -35,7 +38,7 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
         href={item.href}
         target={item.target}
         onClick={handleClick}
-        className={`text-lg flex hover:text-black/75 capitalized text-black ${
+        className={`text-lg flex hover:text-black/75 capitalized text-black ${bebasNeue.className} ${
           path === item.href ? "text-black/75" : ""
         }`}
       >

@@ -7,6 +7,9 @@ import Image from 'next/image'
 import { featureddata } from '@/app/types/featureddata'
 import { motion } from 'framer-motion'
 import FeaturedSkeleton from '../../Skeleton/Featured'
+import { Bebas_Neue } from 'next/font/google'
+
+const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 
 function SampleNextArrow(props: { className: any; style: any; onClick: any }) {
   const { className, style, onClick } = props
@@ -109,7 +112,7 @@ const Featured = () => {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className='my-5'>Featured works.</motion.h3>
+            className={`my-5 ${bebasNeue.className}`}>Featured works.</motion.h3>
         </div>
 
         <Slider {...settings}>

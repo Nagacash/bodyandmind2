@@ -4,8 +4,11 @@ import Link from 'next/link'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { motion } from 'framer-motion'
+import { Bebas_Neue } from 'next/font/google'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 
 const Beliefs = () => {
   const column1Ref = useRef(null);
@@ -54,7 +57,7 @@ const Beliefs = () => {
             <p className='text-lg font-normal text-white tracking-widest mb-5 text-center sm:text-start uppercase'>
               beliefs
             </p>
-            <h3 className='text-white mb-5 text-center sm:text-start'>
+            <h3 className={`text-white mb-5 text-center sm:text-start ${bebasNeue.className}`}>
             Massagen{' '}
               <span className='text-white/60'>
               Regeneration und Entspannung
@@ -84,7 +87,7 @@ const Beliefs = () => {
                 className='text-lg font-normal text-primary tracking-widest mb-5 text-center sm:text-start uppercase'>
                 Kickboxen
               </motion.p>
-              <h3 className='text-black mb-5 text-center sm:text-start'>
+              <h3 className={`text-black mb-5 text-center sm:text-start ${bebasNeue.className}`}>
                 <span className='text-primary'>Build</span> Dynamik und Präzision
               </h3>
               <p className='pt-2 mb-16 text-center sm:text-start text-black/75 text-lg'>

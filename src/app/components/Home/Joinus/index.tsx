@@ -2,6 +2,9 @@
 import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { Bebas_Neue } from 'next/font/google'
+
+const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 
 const Join = () => {
   return (
@@ -19,12 +22,12 @@ const Join = () => {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className='my-6'>Body & Mind Studio Hamburg</motion.h2>
+            className={`my-6 ${bebasNeue.className}`}>Body & Mind Studio Hamburg</motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            className='text-black/50 text-base font-normal max-w-3xl mx-auto pt-4'>
+            className={`text-black/50 text-base font-normal max-w-3xl mx-auto pt-4 ${bebasNeue.className}`}>
             Unsere Räumlichkeiten beﬁnden sich in einer wunderschönen Jugendstilvilla im attraktiven Stadtteil von Harvestehude. Hohe Decken, viele Fenster und mit französischen Eichendielen ausgelegter Fußboden vermitteln eine angenehme Wohlfühlatmosphäre.
 
 Personaltraining, Workshops, Seminare - Wir sind offen für eine Zusammenarbeit mit Ihnen in unseren Räumlichkeiten.

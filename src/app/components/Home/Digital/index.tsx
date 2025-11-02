@@ -3,6 +3,9 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { Bebas_Neue } from 'next/font/google'
+
+const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 
 const Digital = () => {
   return (
@@ -18,16 +21,16 @@ const Digital = () => {
               <p className='text-lg font-normal text-white mb-5 tracking-widest text-center lg:text-start uppercase mt-5'>
               Ihr Fitness Trainer
               </p>
-              <h2 className='text-white mb-8 leading-tight text-center lg:text-start lg:w-full'>
+              <h2 className={`text-white mb-8 leading-tight text-center lg:text-start lg:w-full ${bebasNeue.className}`}>
               
               Sind Sie bereit etwas zu ändern? <br></br>
               Starten Sie jetzt und erreichen gemeinsam mit unserem Experten Team, Ihre Gesundheits- und Fitnessziele.            </h2>
               <div className='text-center lg:text-start'>
-                <Link
+                {/* <Link
                   href='/kontakt'
                   className='text-xl font-semibold text-white bg-gray-500 hover:bg-gray-600 py-4 px-12 rounded-full'>
                   Get started
-                </Link>
+                </Link> */}
               </div>
             </motion.div>
           </div>

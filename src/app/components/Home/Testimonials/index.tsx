@@ -6,6 +6,9 @@ import { Icon } from '@iconify/react'
 import { testimonials } from '@/app/types/testimonials'
 import { motion } from 'framer-motion'
 import TestimonialSkeleton from '../../Skeleton/Testimonial'
+import { Bebas_Neue } from 'next/font/google'
+
+const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 
 interface TestimonialType {
   name: string
@@ -132,7 +135,7 @@ const Testimonial: React.FC = () => {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className='my-3'>Was andere sagen.</motion.h2>
+              className={`my-3 ${bebasNeue.className}`}>Was andere sagen.</motion.h2>
             <p className='text-sm text-gray-600 mt-2'>Basierend auf 57 Bewertungen</p>
           </div>
           <div className='mt-20'>
