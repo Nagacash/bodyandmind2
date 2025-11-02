@@ -36,7 +36,7 @@ const footer = () => {
             </div>
             <div className='flex items-center gap-4'>
               <div className='footer-icons relative w-[15px] h-[20px]'>
-                <Link href='https://www.facebook.com/natalie.zimmermann.94'>
+                <Link href='https://www.facebook.com/natalie.zimmermann.94' className='relative w-full h-full block'>
                   <Image
                     src={'/images/footer/vec.svg'}
                     alt='facebook'
@@ -46,7 +46,7 @@ const footer = () => {
                 </Link>
               </div>
               <div className='footer-icons relative w-[25px] h-[20px]'>
-                <Link href='https://tiktok.com'>
+                <Link href='https://tiktok.com' className='relative w-full h-full block'>
                   <Image
                     src={'/images/footer/tiktok.svg'}
                     alt='tiktok'
@@ -56,7 +56,7 @@ const footer = () => {
                 </Link>
               </div>
               <div className='footer-icons relative w-[25px] h-[20px]'>
-                <Link href='https://www.instagram.com/nataliezimmermann_ger/'>
+                <Link href='https://www.instagram.com/nataliezimmermann_ger/' className='relative w-full h-full block'>
                   <Image
                     src={'/images/footer/instagram.svg'}
                     alt='instagram'

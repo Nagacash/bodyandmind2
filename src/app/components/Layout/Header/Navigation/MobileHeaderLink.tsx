@@ -11,11 +11,18 @@ const MobileHeaderLink: React.FC<{ item: HeaderItem, setNavbarOpen: (isOpen: boo
   const router = useRouter();
   const path = usePathname();
 
+  const playAudio = () => {
+    const audio = new Audio('/sound/click.wav');
+    audio.volume = 0.5;
+    audio.play();
+  };
+
   const handleToggle = () => {
     setSubmenuOpen(!submenuOpen);
   };
 
   const handleClick = (e: React.MouseEvent) => {
+    playAudio();
     if (item.href.startsWith("#")) {
       e.preventDefault();
       router.push(item.href);
@@ -35,7 +42,7 @@ const MobileHeaderLink: React.FC<{ item: HeaderItem, setNavbarOpen: (isOpen: boo
         href={item.href}
         target={item.target}
         onClick={handleClick}
-        className={`text-lg font-normal text-black hover:text-primary mb-6 ${bebasNeue.className}`}
+        className={`text-lg font-normal text-black hover:text-[#89CFF0] hover:scale-105 hover:underline mb-6 ${bebasNeue.className} transform transition duration-300`}
         style={path === item.href ? activeStyle : {}}
       >
         {item.label}
@@ -63,7 +70,7 @@ const MobileHeaderLink: React.FC<{ item: HeaderItem, setNavbarOpen: (isOpen: boo
             <Link
               key={index}
               href={subItem.href}
-              className="block py-2 text-gray-500 hover:bg-gray-200"
+              className="block py-2 text-gray-500 hover:bg-gray-200 hover:text-black"
             >
               {subItem.label}
             </Link>

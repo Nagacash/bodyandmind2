@@ -8,6 +8,11 @@ import { Bebas_Neue } from 'next/font/google'
 const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 
 const FAQ = () => {
+  const playAudio = () => {
+    const audio = new Audio('/sound/click.wav');
+    audio.volume = 0.5;
+    audio.play();
+  };
   return (
     <section
       id='FAQ'
@@ -35,7 +40,7 @@ const FAQ = () => {
               <Disclosure>
                 {({ open }) => (
                   <div>
-                    <DisclosureButton className='flex w-full justify-between items-center text-left text-2xl font-medium focus:outline-hidden hover:cursor-pointer'>
+                    <DisclosureButton onClick={playAudio} className='flex w-full justify-between items-center text-left text-2xl font-medium focus:outline-hidden hover:cursor-pointer'>
                       <span className='text-black'>
                         Wie kann man uns erreichen?
                       </span>
@@ -63,7 +68,7 @@ const FAQ = () => {
               <Disclosure as='div' className='mt-2'>
                 {({ open }) => (
                   <>
-                    <DisclosureButton className='flex w-full justify-between items-center rounded-lg text-left text-2xl font-medium focus:outline-hidden hover:cursor-pointer'>
+                    <DisclosureButton onClick={playAudio} className='flex w-full justify-between items-center rounded-lg text-left text-2xl font-medium focus:outline-hidden hover:cursor-pointer'>
                       <span className='text-black'>Was kostet eine Stunde Personaltraining?</span>
                       <div
                         className={`h-5 w-5 transform transition-transform duration-300 ${
@@ -90,7 +95,7 @@ const FAQ = () => {
               <Disclosure as='div' className='mt-2'>
                 {({ open }) => (
                   <>
-                    <DisclosureButton className='flex w-full justify-between items-center rounded-lg text-left text-2xl font-medium focus:outline-hidden hover:cursor-pointer'>
+                    <DisclosureButton onClick={playAudio} className='flex w-full justify-between items-center rounded-lg text-left text-2xl font-medium focus:outline-hidden hover:cursor-pointer'>
                       <span className='text-black'>Wie verläuft die Terminvergabe?</span>
                       <div
                         className={`h-5 w-5 transform transition-transform duration-300 ${

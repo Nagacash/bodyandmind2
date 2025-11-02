@@ -42,6 +42,11 @@ const settings = {
 
 const Articles = () => {
   const router = useRouter();
+  const playAudio = () => {
+    const audio = new Audio('/sound/click.wav');
+    audio.volume = 0.5;
+    audio.play();
+  };
   // fetch data
 
   const [articles, setArticles] = useState<articles[]>([])
@@ -112,6 +117,7 @@ const Articles = () => {
                     </div>
                     <button
                       onClick={() => {
+                        playAudio();
                         router.push('/kontakt');
                       }}
                       className='mt-4 bg-black text-white text-lg font-semibold py-2 px-6 rounded-full hover:bg-gray-800 hover:cursor-pointer transition duration-300 ease-in-out'>

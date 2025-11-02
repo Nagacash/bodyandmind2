@@ -12,6 +12,12 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
   const path = usePathname();
   const router = useRouter();
 
+  const playAudio = () => {
+    const audio = new Audio('/sound/click.wav');
+    audio.volume = 0.5;
+    audio.play();
+  };
+
   const handleMouseEnter = () => {
     if (item.submenu) {
       setSubmenuOpen(true);
@@ -22,6 +28,7 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
   };
 
   const handleClick = (e: React.MouseEvent) => {
+    playAudio();
     if (item.href.startsWith("#")) {
       e.preventDefault();
       router.push(item.href);
@@ -38,9 +45,9 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
         href={item.href}
         target={item.target}
         onClick={handleClick}
-        className={`text-lg flex hover:text-black/75 capitalized text-black ${bebasNeue.className} ${
+        className={`text-lg flex hover:text-[#89CFF0] hover:scale-105 hover:underline capitalized text-black ${bebasNeue.className} ${
           path === item.href ? "text-black/75" : ""
-        }`}
+        } transform transition duration-300`}
       >
         {item.label}
         {item.submenu && (

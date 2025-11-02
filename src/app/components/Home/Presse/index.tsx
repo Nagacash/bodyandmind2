@@ -23,7 +23,7 @@ const Presse = () => {
           <p className='text-center text-black/70 mt-4 text-lg'>Scrollen Sie durch die Videos mit den Pfeiltasten!</p>
           <div className='flex justify-center mt-8'>
             {
-              <div className='aspect-w-16 aspect-h-9 rounded-lg overflow-hidden relative'>                          <a href='https://www.ndr.de/fernsehen/sendungen/hamburg_journal/Hamburgerin-Natalie-Zimmermann-boxt-um-WBO-WM-Titel,hamj157910.html' target='_blank' rel='noopener noreferrer' className='w-full h-full rounded-lg bg-black flex items-center justify-center text-center p-4'>
+              <div className='aspect-w-16 aspect-h-9 rounded-lg overflow-hidden relative'>                          <a href='https://www.ndr.de/fernsehen/sendungen/hamburg_journal/Hamburgerin-Natalie-Zimmermann-boxt-um-WBO-WM-Titel,hamj157910.html' target='_blank' rel='noopener noreferrer' className='w-full h-full rounded-lg bg-black flex items-center justify-center text-center p-4 relative'>
                             <Image
                               src='/images/articles/nat1.jpg' // Placeholder image
                               alt='Article cover'

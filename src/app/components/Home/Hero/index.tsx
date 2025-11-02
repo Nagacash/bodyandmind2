@@ -45,11 +45,7 @@ const Hero = () => {
       ease: 'back.out(1.7)',
     }, '-=0.3');
 
-    timeline.from(buttonRef.current, {
-      opacity: 0,
-      y: 100,
-      ease: 'power2.out',
-    }, '-=0.3');
+
 
     // Initial state for images
     gsap.set(image1Ref.current, { opacity: 1 });
@@ -83,10 +79,10 @@ const Hero = () => {
               className={`text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-black ${bebasNeue.className}`}>
               Gemeinsam zu körperlicher Stärke und mentaler Resilienz – mit meiner Expertise zu Ihrem Erfolg!
             </h1>
-            <Link href={'/kontakt'}>
-              {/* <button ref={buttonRef} className='bg-black text-white text-lg font-semibold py-4 px-10 rounded-full hover:bg-gray-800 hover:cursor-pointer transition duration-300 ease-in-out'>
-                Get started
-              </button> */}
+            <Link href={'https://www.amazon.de/-/en/Mens-Health-Womens-Erfolgsgeheimnisse-Box-Weltmeisterin/dp/3613509911/ref=sr_1_1?crid=2SE9AXYVFIL9S&dib=eyJ2IjoiMSJ9.1nanqQDcMcQOEAm1yex9hYgD8iEfspOrwJIxmz5BEixNe2pmHjbM3CTMtb87PgvQg2V8e6Qfu7m08ephWD-pZrB1PM4bgSdF9vcst88PgvQg2V8e6Qfu7m08ephWD-pZrB1PM4bgSdF9vcst88lHM7B6sc17wZ8Fr1M1bRUeylfRXBUTvVW2IxfcU5TO8hfmUtTe8eYe6KnjB9Qit6EoDVuACRqN6ybgVqY_I4oW2ET3Z-LAXYkgbAis9ST6CWM6mg7yPYpYf9HJYz6pAmCsY0.i6xWYFHqVEIkyMPtv-WUGjgftIhhD3mRo8_REVL0tg&dib_tag=se&keywords=natalie+zimmermann&qid=1761492965&sprefix=natalie+zim%2Caps%2C166&sr=8-1'} target="_blank" rel="noopener noreferrer">
+              <button ref={buttonRef} className='bg-black text-white text-lg font-semibold py-4 px-10 rounded-full hover:bg-gray-800 hover:cursor-pointer transition duration-300 ease-in-out'>
+                Jetzt im Shop erhältlich!
+              </button>
             </Link>
           </div>
           <div ref={imageRef} className='w-full flex justify-center relative h-[400px] md:h-[500px] lg:h-[600px] max-w-full lg:max-w-[900px]'>

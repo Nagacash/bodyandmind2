@@ -34,6 +34,11 @@ const variants = {
 };
 
 const VideoGallery: React.FC = () => {
+  const playAudio = () => {
+    const audio = new Audio('/sound/click.wav');
+    audio.volume = 0.5;
+    audio.play();
+  };
   const [[page, direction], setPage] = useState([0, 0]);
 
   const paginate = (newDirection: number) => {
@@ -72,7 +77,7 @@ const VideoGallery: React.FC = () => {
 
       <div className="absolute top-1/2 left-4 -translate-y-1/2 z-10">
         <button
-          onClick={() => paginate(-1)}
+          onClick={() => {playAudio(); paginate(-1);}}
           className="bg-white text-black p-2 rounded-full shadow-md hover:bg-gray-200 focus:outline-none"
         >
           {'<'}
@@ -80,7 +85,7 @@ const VideoGallery: React.FC = () => {
       </div>
       <div className="absolute top-1/2 right-4 -translate-y-1/2 z-10">
         <button
-          onClick={() => paginate(1)}
+          onClick={() => {playAudio(); paginate(1);}}
           className="bg-white text-black p-2 rounded-full shadow-md hover:bg-gray-200 focus:outline-none"
         >
           {'>'}

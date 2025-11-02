@@ -15,7 +15,7 @@ const Insta = () => {
           className='relative group mx-auto overflow-hidden rounded-3xl'>
           {/* Image */}
           <Image
-            src='/images/insta/insta1.png'
+            src='/images/insta/insta1.png' priority
             width={306}
             height={306}
             alt='instaOne'
@@ -43,7 +43,7 @@ const Insta = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
           className='relative group mx-auto overflow-hidden rounded-3xl'>
           <Image
-            src='/images/insta/insta2.png'
+            src='/images/insta/insta2.png' priority
             width={306}
             height={306}
             alt='instaTwo'
@@ -98,7 +98,7 @@ const Insta = () => {
           transition={{ duration: 0.5, delay: 0.8 }}
           className='relative group mx-auto overflow-hidden rounded-3xl'>
           <Image
-            src='/images/insta/insta4.png'
+            src='/images/insta/insta4.png' priority
             width={306}
             height={306}
             alt='instaFour'

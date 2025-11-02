@@ -14,11 +14,9 @@ const headerData: HeaderItem[] = [
   { label: 'Über Mich', href: '/#About' },
   { label: 'Team', href: '/#Team' },
   { label: 'FAQ', href: '/#FAQ' },
-  { label: 'Shop', href: '/shop' },
-
   { label: 'Featured', href: '/#Featured' },
   { label: 'Presse', href: '/#Presse' },
-
+  { label: 'Kontakt', href: '/kontakt' },
 
 
 ]
@@ -29,7 +27,6 @@ const mobileHeaderData: HeaderItem[] = [
   { label: 'Über Mich', href: '/#About' },
   { label: 'Team', href: '/#Team' },
   { label: 'FAQ', href: '/#FAQ' },
-  { label: 'Shop', href: '/shop' },
   { label: 'Featured', href: '/#Featured' },
   { label: 'Presse', href: '/#Presse' },
   { label: 'Blog', href: '/#Blog' },
