@@ -26,7 +26,7 @@ const footer = () => {
   }, [])
 
   return (
-    <div className='bg-black' id='first-section'>
+    <div className='bg-blue-800' id='first-section'>
       <div className='container mx-auto max-w-2xl pt-48 pb-16 px-4 sm:px-6 lg:max-w-7xl lg:px-8'>
         <div className='grid grid-cols-1 gap-y-10 gap-x-16 sm:grid-cols-2 lg:grid-cols-12 xl:gap-x-8'>
           {/* COLUMN-1 */}
@@ -36,7 +36,7 @@ const footer = () => {
             </div>
             <div className='flex items-center gap-4'>
               <div className='footer-icons relative w-[15px] h-[20px]'>
-                <Link href='https://facebook.com'>
+                <Link href='https://www.facebook.com/natalie.zimmermann.94'>
                   <Image
                     src={'/images/footer/vec.svg'}
                     alt='facebook'
@@ -46,17 +46,17 @@ const footer = () => {
                 </Link>
               </div>
               <div className='footer-icons relative w-[25px] h-[20px]'>
-                <Link href='https://twitter.com'>
+                <Link href='https://tiktok.com'>
                   <Image
-                    src={'/images/footer/twitter.svg'}
-                    alt='twitter'
+                    src={'/images/footer/tiktok.svg'}
+                    alt='tiktok'
                     fill
                     className="object-contain"
                   />
                 </Link>
               </div>
               <div className='footer-icons relative w-[25px] h-[20px]'>
-                <Link href='https://instagram.com'>
+                <Link href='https://www.instagram.com/nataliezimmermann_ger/'>
                   <Image
                     src={'/images/footer/instagram.svg'}
                     alt='instagram'

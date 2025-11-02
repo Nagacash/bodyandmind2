@@ -59,7 +59,7 @@ Personaltraining, Workshops, Seminare - Wir sind offen für eine Zusammenarbeit 
             <div className='sm:mr-3'>
               <Link
                 href='#'
-                className='w-full sm:w-auto text-xl text-white font-semibold text-center rounded-xl sm:rounded-full bg-black py-5 px-12 hover:bg-darkmode duration-300'>
+                className='w-full sm:w-auto text-xl text-white font-semibold text-center rounded-xl sm:rounded-full bg-blue-600 py-5 px-12 hover:bg-blue-800 duration-300'>
                 Join!
               </Link>
             </div>

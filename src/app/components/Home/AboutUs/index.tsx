@@ -42,6 +42,17 @@ const Aboutus = () => {
             alt='dots-image'
             className='absolute bottom-1 -left-20 w-auto h-auto'
           />
+          {/* Call to Action for Book */}
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="text-center bg-red-600 text-white p-4 rounded-lg mb-10 shadow-lg">
+            <p className="text-xl font-bold mb-2">Mein neues Buch ist da!</p>
+            <Link href="/shop" className="text-lg underline hover:no-underline">
+              Jetzt im Shop erhältlich!
+            </Link>
+          </motion.div>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -66,9 +77,9 @@ const Aboutus = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: i * 0.2 }}
                     key={i}
-                    className='hover:bg-white bg-black rounded-3xl p-8 shadow-xl group flex flex-col justify-between min-h-[500px]'>
+                    className='hover:bg-blue-600 bg-blue-800 rounded-3xl p-8 shadow-xl group flex flex-col justify-between min-h-[500px]'>
                     <div className="flex-grow">
-                      <h5 className={`group-hover:text-black mb-5 ${bebasNeue.className}`}>
+                      <h5 className={`group-hover:text-white mb-5 ${bebasNeue.className}`}>
                         {item.heading}
                       </h5>
                     <div className="w-full h-64">
@@ -80,7 +91,7 @@ const Aboutus = () => {
                         className='w-full h-full object-cover'
                       />
                     </div>
-                      <p className='text-lg font-normal text-white group-hover:text-black mb-5 mt-8 whitespace-pre-line'>
+                      <p className='text-white group-hover:text-white mb-5 mt-8 whitespace-pre-line'>
                         {item.paragraph}
                       </p>
                     </div>
