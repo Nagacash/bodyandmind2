@@ -103,12 +103,12 @@ html {
   overflow-x: hidden;
 }
 
-.bg-joinus {
+/* .bg-joinus {
   background-image: url('/images/joinus/horn.svg'),
     url('/images/joinus/paint.svg');
   background-repeat: no-repeat, no-repeat;
   background-position: 90% 100%, 2% 18%;
-}
+} */
 
 .menu {
     height: 100vh;
