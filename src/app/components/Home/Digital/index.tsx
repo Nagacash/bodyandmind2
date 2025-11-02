@@ -23,8 +23,8 @@ const Digital = () => {
               </p>
               <h2 className={`text-white mb-8 leading-tight text-center lg:text-start lg:w-full ${bebasNeue.className}`}>
               
-              Sind Sie bereit etwas zu ändern? <br></br>
-              Starten Sie jetzt und erreichen gemeinsam mit unserem Experten Team, Ihre Gesundheits- und Fitnessziele.            </h2>
+              Sind Sie bereit <span className='text-black'>etwas zu Ändern?</span> <br></br>
+              Starten Sie jetzt und erreichen gemeinsam mit <span className='text-black'>unserem Experten Team</span>, Ihre Gesundheits- und Fitnessziele.            </h2>
               <div className='text-center lg:text-start'>
                 {/* <Link
                   href='/kontakt'

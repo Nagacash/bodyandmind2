@@ -22,10 +22,8 @@ const Presse = () => {
             {
               <div className='aspect-w-20 h-[600px] rounded-lg overflow-hidden'>
                 <iframe
-                  src='https://www.youtube.com/embed/Jwbx5gjUos8?si=KYbhBA76P9xBQbX0'
-                  title='YouTube video player'
-                  frameBorder='0'
                   allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                  referrerPolicy='strict-origin-when-cross-origin'
                   allowFullScreen
                   className='w-full h-full rounded-lg'
                 ></iframe>
@@ -38,6 +36,7 @@ const Presse = () => {
                   title='YouTube video player'
                   frameBorder='0'
                   allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                  referrerPolicy='strict-origin-when-cross-origin'
                   allowFullScreen
                   className='w-full h-full rounded-lg'
                 ></iframe>
