@@ -55,7 +55,7 @@ const Aboutus = () => {
             className="text-center bg-red-600 text-white p-4 rounded-lg mb-10 shadow-lg">
             <p className="text-xl font-bold mb-2">Mein neues Buch ist da!</p>
             <Link href="https://www.amazon.de/-/en/Mens-Health-Womens-Erfolgsgeheimnisse-Box-Weltmeisterin/dp/3613509911/ref=sr_1_1?crid=2SE9AXYVFIL9S&dib=eyJ2IjoiMSJ9.1nanqQDcMcQOEAm1yex9hYgD8iEfspOrwJIxmz5BEixNe2pmHjbM3CTMtb87PgvQg2V8e6Qfu7m08ephWD-pZrB1PM4bgSdF9vcst88PgvQg2V8e6Qfu7m08ephWD-pZrB1PM4bgSdF9vcst88lHM7B6sc17wZ8Fr1M1bRUeylfRXBUTvVW2IxfcU5TO8hfmUtTe8eYe6KnjB9Qit6EoDVuACRqN6ybgVqY_I4oW2ET3Z-LAXYkgbAis9ST6CWM6mg7yPYpYf9HJYz6pAmCsY0.i6xWYFHqVEIkyMPtv-WUGjgftIhhD3mRo8_REVL0tg&dib_tag=se&keywords=natalie+zimmermann&qid=1761492965&sprefix=natalie+zim%2Caps%2C166&sr=8-1" target="_blank" rel="noopener noreferrer" className="text-lg underline hover:no-underline">
-              Jetzt im Shop erhältlich!
+              Jetzt im Amazon Store erhältlich!
             </Link>
           </motion.div>
           <motion.p
