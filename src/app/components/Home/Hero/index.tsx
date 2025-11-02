@@ -95,7 +95,7 @@ const Hero = () => {
                                           alt='banner image'
                                           width={900}
                                           height={600}
-                                          className='shadow-2xl absolute top-0 left-0 border-4 border-white rounded-lg'
+                                          className='shadow-3xl absolute top-0 left-0 rounded-lg'
                                           unoptimized
                                           ref={image1Ref}
                                         />            <Image
@@ -103,7 +103,7 @@ const Hero = () => {
               alt='banner image'
               width={900}
               height={600}
-              className='shadow-2xl absolute top-0 left-0 border-4 border-white rounded-lg'
+              className='shadow-3xl absolute top-0 left-0 rounded-lg'
               unoptimized
               ref={image2Ref}
             />
@@ -112,7 +112,7 @@ const Hero = () => {
               alt='banner image'
               width={900}
               height={600}
-              className='shadow-2xl absolute top-0 left-0 border-4 border-white rounded-lg'
+              className='shadow-3xl absolute top-0 left-0 rounded-lg'
               unoptimized
               ref={image3Ref}
             />
@@ -121,7 +121,7 @@ const Hero = () => {
               alt='banner image'
               width={900}
               height={600}
-              className='shadow-2xl absolute top-0 left-0 border-4 border-white rounded-lg'
+              className='shadow-3xl absolute top-0 left-0 rounded-lg'
               unoptimized
               ref={image4Ref}
             />

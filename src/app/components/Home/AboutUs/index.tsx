@@ -66,9 +66,9 @@ const Aboutus = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: i * 0.2 }}
                     key={i}
-                    className='hover:bg-darkmode bg-white rounded-3xl p-8 shadow-xl group flex flex-col justify-between min-h-[500px]'>
+                    className='hover:bg-white bg-black rounded-3xl p-8 shadow-xl group flex flex-col justify-between min-h-[500px]'>
                     <div className="flex-grow">
-                      <h5 className={`group-hover:text-white mb-5 ${bebasNeue.className}`}>
+                      <h5 className={`group-hover:text-black mb-5 ${bebasNeue.className}`}>
                         {item.heading}
                       </h5>
                     <div className="w-full h-64">
@@ -80,7 +80,7 @@ const Aboutus = () => {
                         className='w-full h-full object-cover'
                       />
                     </div>
-                      <p className='text-lg font-normal text-black group-hover:text-white mb-5 mt-8 whitespace-pre-line'>
+                      <p className='text-lg font-normal text-white group-hover:text-black mb-5 mt-8 whitespace-pre-line'>
                         {item.paragraph}
                       </p>
                     </div>
