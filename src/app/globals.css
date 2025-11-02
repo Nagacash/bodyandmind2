@@ -100,7 +100,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   overflow-x: hidden;
 }
 
@@ -173,4 +172,8 @@ html {
     height: 100%;
     fill: white;
     stroke: none;
+}
+
+.will-change-transform-opacity {
+  will-change: transform, opacity;
 }
