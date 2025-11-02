@@ -26,7 +26,7 @@ const footer = () => {
   }, [])
 
   return (
-    <div className='bg-blue-100' id='first-section'>
+    <div className='bg-black' id='first-section'>
       <div className='container mx-auto max-w-2xl pt-48 pb-16 px-4 sm:px-6 lg:max-w-7xl lg:px-8'>
         <div className='grid grid-cols-1 gap-y-10 gap-x-16 sm:grid-cols-2 lg:grid-cols-12 xl:gap-x-8'>
           {/* COLUMN-1 */}
@@ -78,7 +78,7 @@ const footer = () => {
                   <li key={i} className='mb-5'>
                     <Link
                       href={`${item.href}`}
-                      className='text-black text-lg font-normal mb-6 space-links hover:text-black/60 hover:underline'>
+                      className='text-white text-lg font-normal mb-6 space-links hover:text-white/60 hover:underline'>
                       {item.label}
                     </Link>
                   </li>

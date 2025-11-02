@@ -17,10 +17,10 @@ const Presse = () => {
         </div>
 
         <div className='mt-12'>
-          <h3 className='text-2xl font-semibold text-center mb-6'>Tv & Internet</h3>
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+          <h3 className='text-2xl font-semibold text-center mb-6'>TV & Internet Videos</h3>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8'>
             {
-              <div className='aspect-w-16 aspect-h-9 rounded-lg overflow-hidden'>
+              <div className='aspect-w-20 h-[600px] rounded-lg overflow-hidden'>
                 <iframe
                   src='https://www.youtube.com/embed/Jwbx5gjUos8?si=KYbhBA76P9xBQbX0'
                   title='YouTube video player'
@@ -32,7 +32,7 @@ const Presse = () => {
               </div>
             }
             {
-              <div className='aspect-w-16 aspect-h-9 rounded-lg overflow-hidden'>
+              <div className='aspect-w-20 h-[600px] rounded-lg overflow-hidden'>
                 <iframe
                   src='https://www.youtube.com/embed/3yoKKKqGqAA?si=yLbyaMHvJ8Ro1Xa8'
                   title='YouTube video player'
@@ -57,35 +57,34 @@ const Presse = () => {
               </div>
             }
             {
-            <div className='aspect-w-16 aspect-h-9 rounded-lg overflow-hidden'>
+            <div className='aspect-w-20 h-[600px] rounded-lg overflow-hidden'>
               <iframe src="https://www.youtube.com/embed/SLAkZV6mL3E?si=Gj7FMcUHRLb2KKnH"
                 className='w-full h-full rounded-lg'
                 title='YouTube video player'
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
+                referrerPolicy="strict-origin-origin"
                 allowFullScreen></iframe>
             </div>
             }
-            <div className='aspect-w-16 aspect-h-9 rounded-lg overflow-hidden'>
+            <div className='aspect-w-20 h-[600px] rounded-lg overflow-hidden'>
               <iframe
                 src='https://www.youtube.com/embed/oxgrS13Fb0o?si=gjNRxmTveESoxvJ6'
                 title='YouTube video player'
                 frameBorder='0'
                 allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-                referrerPolicy='strict-origin-when-cross-origin'
+                referrerPolicy='strict-origin-origin'
                 allowFullScreen
                 className='w-full h-full rounded-lg'
               ></iframe>
             </div>
             {
-              <div className='aspect-w-16 aspect-h-9 rounded-lg overflow-hidden'>
+              <div className='aspect-w-20 h-[600px] rounded-lg overflow-hidden'>
                 <iframe
                   src='https://www.youtube.com/embed/sFCfVHTVoy4?si=JLrDf4Fj3oyrLR0e'
                   title='YouTube video player'
                   frameBorder='0'
-                  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-                  referrerPolicy='strict-origin-when-cross-origin'
+                  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                   allowFullScreen
                   className='w-full h-full rounded-lg'
                 ></iframe>
