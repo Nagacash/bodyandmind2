@@ -116,7 +116,7 @@ const Work = () => {
                   <h6 className='text-xl text-black dark:text-white font-bold pt-14 text-center'>
                     {items.name}
                   </h6>
-                  <p className='text-base dark:text-white font-normal pt-4 pb-2 px-4 flex-grow text-left'>
+                  <p className='text-base dark:text-white font-normal pt-4 pb-2 px-4 flex-grow text-left h-[150px] overflow-y-auto'>
                     {items.profession}
                   </p>
                 </div>

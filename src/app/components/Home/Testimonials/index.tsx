@@ -71,7 +71,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ items }) => {
           height={71}
           className='inline-block m-auto absolute top-3'
         />
-        <p className='text-base font-medium my-4 text-black'>{items.comment}</p>
+        <p className='text-base font-medium my-4 text-black h-[150px] overflow-y-auto'>{items.comment}</p>
         <hr style={{ color: 'border' }} />
         <div className='flex justify-between'>
           <div>

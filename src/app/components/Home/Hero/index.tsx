@@ -71,14 +71,14 @@ const Hero = () => {
   }, []); // Empty dependency array to run once on mount
 
   return (
-    <section id='Hero' className='relative overflow-hidden z-1 bg-black text-white min-h-screen flex items-center justify-center py-16'>
+    <section id='Hero' className='relative overflow-hidden z-1 bg-light text-white min-h-screen flex items-center justify-center py-16'>
       <div className='container mx-auto px-4 py-16 md:py-24 lg:py-32'>
         <div className='flex flex-col lg:flex-row items-center justify-center gap-12'>
           <div className='w-full text-center'>
-            <p ref={headingRef} className='text-white text-base font-bold mb-4' style={{ transform: 'translateZ(0)' }}>Box Weltmeisterin</p>
+            <p ref={headingRef} className='text-black text-base font-bold mb-4' style={{ transform: 'translateZ(0)' }}>Box Weltmeisterin</p>
             <h1
               ref={paragraphRef}
-              className='text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white'>
+              className='text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-black'>
               Gemeinsam zu körperlicher Stärke und mentaler Resilienz – mit meiner Expertise zu Ihrem Erfolg!
             </h1>
             <Link href={'/kontakt'}>
