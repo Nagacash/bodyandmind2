@@ -60,8 +60,8 @@ const Beliefs = () => {
               Regeneration und Entspannung
               </span>
             </h3>
-            <p className='text-lg text-white/75 pt-2 mb-16 text-center'>
-            Gönnen Sie Ihrem Körper eine Auszeit. Unsere erfahrenen Masseure helfen Ihnen, Verspannungen zu lösen, Schmerzen zu lindern und die Regeneration zu fördern. Egal, ob nach dem Training oder im Alltag – unsere Massagen bringen Ihren Körper wieder ins Gleichgewicht.
+            <p className='pt-2 mb-16 text-center sm:text-start text-white/75 text-lg'>
+            Gönnen Sie Ihrem Körper eine Auszeit. Unsere erfahrenen Masseure helfen Ihnen, Verspannungen zu lösen, Schmerzen zu lindern und die Regeneration zu fördern. <br></br> <br></br> Egal, ob nach dem Training oder im Alltag – unsere Massagen bringen Ihren Körper wieder ins Gleichgewicht.
             </p>
             <div className='text-center'>
               <Link
@@ -88,7 +88,7 @@ const Beliefs = () => {
                 <span className='text-primary'>Build</span> Dynamik und Präzision
               </h3>
               <p className='pt-2 mb-16 text-center sm:text-start text-black/75 text-lg'>
-              Für alle, die noch mehr Bewegung wollen: Beim Kickboxen trainieren Sie mit einer Kombination aus Box- und Kicktechniken. Dieses Workout fördert Ihre Beweglichkeit, stärkt Ihre Muskulatur und schult Ihre Koordination. Dabei steht der Spaß am Sport und das Training in einer unterstützenden Atmosphäre immer im Vordergrund.
+              Für alle, die noch mehr Bewegung wollen: Beim Kickboxen trainieren Sie mit einer Kombination aus Box- und Kicktechniken. Dieses Workout fördert Ihre Beweglichkeit, stärkt Ihre Muskulatur und schult Ihre Koordination. <br></br> <br></br> Dabei steht der Spaß am Sport und das Training in einer unterstützenden Atmosphäre immer im Vordergrund.
               </p>
               <div className='text-center sm:text-start'>
                 <Link

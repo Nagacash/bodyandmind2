@@ -94,7 +94,7 @@ const Work = () => {
           ? Array.from({ length: 5 }).map((_, i) => <WorkSkeleton key={i} />)
           : work.map((items, i) => (
               <div key={i}>
-                <div className='bg-white dark:bg-darkHeroBg m-3 py-14 my-10 text-center shadow-xl rounded-3xl relative h-[600px] flex flex-col justify-between'>
+                <div className='bg-white dark:bg-darkHeroBg m-3 py-14 my-10 shadow-xl rounded-3xl relative h-[600px] flex flex-col justify-between'>
                   <div className='relative flex-grow'>
                     <Image
                       src={items.imgSrc}
@@ -113,10 +113,10 @@ const Work = () => {
                       />
                     </div>
                   </div>
-                  <h6 className='text-xl text-black dark:text-white font-bold pt-14'>
+                  <h6 className='text-xl text-black dark:text-white font-bold pt-14 text-center'>
                     {items.name}
                   </h6>
-                  <p className='text-base dark:text-white font-normal pt-4 pb-2 px-4 flex-grow'>
+                  <p className='text-base dark:text-white font-normal pt-4 pb-2 px-4 flex-grow text-left'>
                     {items.profession}
                   </p>
                 </div>

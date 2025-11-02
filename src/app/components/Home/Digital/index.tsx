@@ -20,7 +20,7 @@ const Digital = () => {
               </p>
               <h2 className='text-white mb-8 leading-tight text-center lg:text-start lg:w-full'>
               
-              Sind Sie bereit etwas zu ändern? 
+              Sind Sie bereit etwas zu ändern? <br></br>
               Starten Sie jetzt und erreichen gemeinsam mit unserem Experten Team, Ihre Gesundheits- und Fitnessziele.            </h2>
               <div className='text-center lg:text-start'>
                 <Link

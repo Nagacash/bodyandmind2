@@ -85,7 +85,7 @@ const Articles = () => {
               ))
             : articles.map((items, i) => (
                 <div key={i}>
-                  <div className='bg-white m-3 px-3 pt-3 pb-12 my-10 shadow-lg rounded-4xl relative h-[600px] sm:h-[550px] flex flex-col justify-between'>
+                  <div className='bg-white m-3 px-3 pt-3 pb-12 my-10 shadow-lg rounded-4xl relative h-[650px] sm:h-[600px] flex flex-col justify-between'>
                     <div className="w-full h-64">
                       <Image
                         src={items.imgSrc}

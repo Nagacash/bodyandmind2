@@ -62,8 +62,8 @@ const Aboutus = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className='text-center text-red-500 text-lg tracking-widest uppercase mt-10'>
-            about us
+            className='text-center text-black-500 text-lg tracking-widest uppercase mt-10'>
+            Über Mich
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
