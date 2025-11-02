@@ -14,10 +14,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <body className={`${manrope.className}`}>
+      <body className={`${manrope.className} flex flex-col min-h-screen`}>
         <Aoscompo>
           <Header />
-          {children}
+          <div className="flex-grow">
+            {children}
+          </div>
           <Footer />
         </Aoscompo>
         <ScrollToTop />
