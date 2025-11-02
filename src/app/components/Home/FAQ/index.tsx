@@ -13,17 +13,17 @@ const FAQ = () => {
       id='FAQ'
       className='relative py-16 bg-cover bg-center overflow-hidde dark:bg-darkmode'>
       <div className='container mx-auto max-w-7xl px-4'>
-        <div className='relative rounded-2xl py-24 bg-no-repeat bg-cover bg-black'>
+        <div className='relative rounded-2xl py-24 bg-no-repeat bg-cover bg-blue-100'>
           <motion.p
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className='text-lg font-normal text-white text-center mb-6'>FAQ</motion.p>
+            className='text-lg font-normal text-black text-center mb-6'>FAQ</motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className={`text-white text-center max-w-3xl mx-auto ${bebasNeue.className}`}>
+            className={`text-black text-center max-w-3xl mx-auto ${bebasNeue.className}`}>
             Häufig gestellten Fragen
           </motion.h2>
           <div className='w-full px-4 pt-16'>

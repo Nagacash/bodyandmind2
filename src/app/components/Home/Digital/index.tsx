@@ -11,14 +11,14 @@ const Digital = () => {
   return (
     <section className='relative bg-cover bg-center overflow-hidden py-16'>
       <div className='container mx-auto max-w-7xl px-4'>
-                  <div className="rounded-3xl bg-blue-800 bg-no-repeat bg-right-top lg:pb-40 pb-20 relative overflow-hidden shadow-lg">          <div className='grid grid-cols-1 lg:grid-cols-1 xl:grid-cols-2'>
+                  <div className="rounded-3xl bg-blue-100 bg-no-repeat bg-right-top lg:pb-40 pb-20 relative overflow-hidden shadow-lg">          <div className='grid grid-cols-1 lg:grid-cols-1 xl:grid-cols-2'>
             {/* COLUMN-1 */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               className='pt-24 lg:pl-24'>
-              <p className='text-lg font-normal text-white mb-5 tracking-widest text-center lg:text-start uppercase mt-5'>
+              <p className='text-lg font-normal text-black mb-5 tracking-widest text-center lg:text-start uppercase mt-5'>
               Ihr Fitness Trainer
               </p>
               <h2 className={`text-white mb-8 leading-tight text-center lg:text-start lg:w-full ${bebasNeue.className}`}>
