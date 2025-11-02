@@ -102,6 +102,7 @@ const footer = () => {
                   {' '}
                   Natalie Zimmermann
                 </Link>
+                <span className='text-xs text-white/50 block mt-1'>Designed by: <Link href='https://cyber-sec-six.vercel.app/#work' target='_blank' className='hover:text-white/60 hover:underline'>Naga Codex</Link></span>
               </p>
             </div>
             <div className='flex justify-center md:justify-end'>
