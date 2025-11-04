@@ -104,7 +104,7 @@ const Hero = () => {
               ref={image2Ref}
             />
             <Image
-              src='/images/hero/sab4.jpg'
+              src='/images/hero/lind2.JPG'
               alt='banner image'
               width={900}
               height={600}
