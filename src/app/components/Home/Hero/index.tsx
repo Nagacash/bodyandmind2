@@ -87,7 +87,7 @@ const Hero = () => {
           </div>
           <div ref={imageRef} className='w-full flex justify-center relative h-[400px] md:h-[500px] lg:h-[600px] max-w-full lg:max-w-[900px]'>
                                         <Image
-                                          src='/images/hero/boxa6.jpg'
+                                          src='/images/hero/lind4.JPG'
                                           alt='banner image'
                                           width={900}
                                           height={600}
@@ -95,7 +95,7 @@ const Hero = () => {
                                           unoptimized
                                           ref={image1Ref}
                                         />            <Image
-              src='/images/hero/boxa1.jpg'
+              src='/images/hero/lind3.JPG'
               alt='banner image'
               width={900}
               height={600}
@@ -113,7 +113,7 @@ const Hero = () => {
               ref={image3Ref}
             />
             <Image
-              src='/images/hero/sab5.jpg'
+              src='/images/hero/lind1.JPG'
               alt='banner image'
               width={900}
               height={600}
