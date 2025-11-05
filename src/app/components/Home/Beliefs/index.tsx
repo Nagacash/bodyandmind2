@@ -53,7 +53,7 @@ const Beliefs = () => {
 
           <div
             ref={column1Ref}
-            className="bg-black pt-12 px-10 sm:px-24 pb-52 md:pb-70 rounded-3xl  bg-no-repeat bg-right-bottom">
+            className="bg-[#37BEF0] pt-12 px-10 sm:px-24 pb-52 md:pb-70 rounded-3xl  bg-no-repeat bg-right-bottom">
             <p className='text-lg font-normal text-white tracking-widest mb-5 text-center sm:text-start uppercase'>
               beliefs
             </p>

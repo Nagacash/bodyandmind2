@@ -11,7 +11,7 @@ const Digital = () => {
   return (
     <section className='relative bg-cover bg-center overflow-hidden py-16'>
       <div className='container mx-auto max-w-7xl px-4'>
-                  <div className="rounded-3xl bg-blue-100 bg-no-repeat bg-right-top lg:pb-40 pb-20 relative overflow-hidden shadow-lg flex flex-col items-center justify-center">
+                  <div className="rounded-3xl bg-[#37BEF0] bg-no-repeat bg-right-top lg:pb-40 pb-20 relative overflow-hidden shadow-lg flex flex-col items-center justify-center">
             {/* COLUMN-1 */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}

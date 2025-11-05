@@ -82,7 +82,7 @@ const Aboutus = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: i * 0.2 }}
                     key={i}
-                    className='hover:bg-blue-50 bg-blue-100 rounded-3xl p-8 shadow-xl group flex flex-col justify-between min-h-[500px]'>
+                    className='hover:bg-blue-50 bg-[#37BEF0] rounded-3xl p-8 shadow-xl group flex flex-col justify-between min-h-[500px]'>
                     <div className="flex-grow">
                       <h5 className={`group-hover:text-black mb-5 ${bebasNeue.className}`}>
                         {item.heading}
