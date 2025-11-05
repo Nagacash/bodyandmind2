@@ -61,7 +61,7 @@ const Hero = () => {
           </div>
           <div className='w-full flex justify-center relative h-[400px] md:h-[500px] lg:h-[600px] max-w-full lg:max-w-[900px]'>
             <Image
-              src='/images/hero/lind4.JPG'
+              src='/images/hero/lind3.JPG'
               alt='banner image'
               width={900}
               height={600}
