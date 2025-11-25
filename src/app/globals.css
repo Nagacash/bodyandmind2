@@ -42,6 +42,14 @@
   --color-border: #dbdbdb;
   --color-darkmode: #00224a;
   --color-deep-slate: #02398a;
+  --color-light: #ffffff;
+  --color-accent-cyan: #37BEF0;
+  --color-accent-cyan-light: #E6F7FD;
+  --color-accent-cyan-dark: #1E9BC7;
+  --color-accent-blue: #0066FF;
+  --color-text-primary: #000000;
+  --color-text-secondary: #4b5563;
+  --color-text-muted: #6b7280;
 
   --text-80: 5rem;
   --text-65: 4.063rem;
@@ -70,8 +78,36 @@
   }
 
   section {
-    @apply py-20;
-    scroll-margin-top: 10rem;
+    @apply py-16 md:py-20 lg:py-24;
+    scroll-margin-top: 6rem;
+  }
+
+  /* Better scroll padding for anchor links */
+  :target {
+    scroll-margin-top: 6rem;
+  }
+
+  /* Smooth scroll offset for better UX */
+  @media (min-width: 1024px) {
+    section {
+      scroll-margin-top: 8rem;
+    }
+    :target {
+      scroll-margin-top: 8rem;
+    }
+  }
+
+  /* Consistent button styles */
+  .btn-primary {
+    @apply bg-black text-white text-lg font-semibold py-4 px-8 md:px-10 rounded-full hover:bg-gray-800 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-black text-lg font-semibold py-4 px-8 md:px-10 rounded-full border-2 border-black hover:bg-gray-50 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2;
+  }
+
+  .btn-accent {
+    @apply bg-accent-cyan text-white text-lg font-semibold py-4 px-8 md:px-10 rounded-full hover:bg-accent-cyan/90 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2;
   }
 
   h1 {
@@ -99,13 +135,34 @@
   }
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
-html {
+body {
+  margin: 0;
+  padding: 0;
   overflow-x: hidden;
+}
+
+/* Smooth scroll for anchor links */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(to right, var(--color-accent-cyan), var(--color-accent-cyan-dark));
+  z-index: 9999;
+  transition: width 0.1s ease-out;
 }
 
 /* .bg-joinus {

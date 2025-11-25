@@ -15,7 +15,7 @@ const Join = () => {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className='text-red-500 text-lg font-normal tracking-widest uppercase'>
+            className='text-accent-cyan text-lg font-normal tracking-widest uppercase'>
             Join us
           </motion.p>
           <motion.h2
@@ -43,23 +43,26 @@ Personaltraining, Workshops, Seminare - Wir sind offen für eine Zusammenarbeit 
             <div>
               <input
                 type='name'
-                className='my-4 py-4 sm:pl-6 lg:text-xl text-black sm:rounded-full bg-transparent pl-1 focus:outline-hidden bg-emailbg focus:text-black'
+                className='my-4 py-4 sm:pl-6 lg:text-xl text-black sm:rounded-full bg-transparent pl-1 focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2 bg-emailbg focus:text-black'
                 placeholder='Your name'
                 autoComplete='off'
+                aria-label="Your name"
               />
             </div>
             <div>
               <input
                 type='email'
-                className='my-4 py-4 sm:pl-6 lg:text-xl text-black sm:border-l border-linegrey bg-transparent focus:outline-hidden bg-emailbg focus:text-black'
+                className='my-4 py-4 sm:pl-6 lg:text-xl text-black sm:border-l border-linegrey bg-transparent focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2 bg-emailbg focus:text-black'
                 placeholder='Your email'
                 autoComplete='off'
+                aria-label="Your email"
               />
             </div>
             <div className='sm:mr-3'>
               <Link
                 href='#'
-                className='w-full sm:w-auto text-xl text-black font-semibold text-center rounded-xl sm:rounded-full bg-blue-50 py-5 px-12 hover:bg-blue-200 duration-300'>
+                className='w-full sm:w-auto text-xl text-black font-semibold text-center rounded-xl sm:rounded-full bg-accent-cyan/20 py-5 px-12 hover:bg-accent-cyan/30 duration-300 focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2'
+                aria-label="Join Body & Mind Studio Hamburg">
                 Join!
               </Link>
             </div>

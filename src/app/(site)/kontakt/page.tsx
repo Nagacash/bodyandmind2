@@ -1,136 +1,369 @@
 'use client'
-import React, { useEffect } from 'react';
-import { gsap } from 'gsap';
-import Image from 'next/image';
+import React, { useState } from 'react'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Icon } from '@iconify/react'
+import { Bebas_Neue } from 'next/font/google'
+
+const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 
 const KontaktPage = () => {
-  useEffect(() => {
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-    tl.to('.contact-form-container', { 
-        opacity: 1, 
-        y: 0, 
-        duration: 0.8, 
-        ease: 'power4.out' 
-    });
-    
-    tl.to('.form-group', { 
-        opacity: 1, 
-        y: 0, 
-        stagger: 0.1, 
-        duration: 0.5 
-    }, '-=0.4');
-    
-    tl.to('.form-actions', { 
-        opacity: 1, 
-        y: 0, 
-        duration: 0.5 
-    }, '-=0.2');
-    
-    const inputs = document.querySelectorAll('.form-control');
-    
-    inputs.forEach(input => {
-        input.addEventListener('focus', () => {
-            gsap.to(input, { 
-                borderColor: '#ff3e79', 
-                duration: 0.3 
-            });
-        });
-        
-        input.addEventListener('blur', () => {
-            if (!(input as HTMLInputElement).value) {
-                gsap.to(input, { 
-                    borderColor: '#555', 
-                    duration: 0.3 
-                });
-            }
-        });
-    });
-    
-    const buttons = document.querySelectorAll('.btn');
-    
-    buttons.forEach(button => {
-        button.addEventListener('mouseenter', () => {
-            gsap.to(button, { 
-                scale: 1.05, 
-                duration: 0.3 
-            });
-        });
-        
-        button.addEventListener('mouseleave', () => {
-            gsap.to(button, { 
-                scale: 1, 
-                duration: 0.3 
-            });
-        });
-    });
-    
-    const form = document.getElementById('contactForm');
-    
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const nameInput = document.getElementById('name') as HTMLInputElement;
-            const emailInput = document.getElementById('email') as HTMLInputElement;
-            const messageInput = document.getElementById('message') as HTMLTextAreaElement;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    })
+  }
 
-            const name = nameInput ? nameInput.value : '';
-            const email = emailInput ? emailInput.value : '';
-            const message = messageInput ? messageInput.value : '';
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
 
-            const subject = encodeURIComponent(`Kontaktanfrage von ${name}`);
-            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nNachricht:\n${message}`);
+    const subject = encodeURIComponent(`Kontaktanfrage von ${formData.name}`)
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\nTelefon: ${formData.phone}\n\nNachricht:\n${formData.message}`
+    )
 
-            window.location.href = `mailto:kontakt@nataliezimmermann.de?subject=${subject}&body=${body}`;
-        });
-    }
-  }, []);
+    window.location.href = `mailto:info@nataliezimmermann.de?subject=${subject}&body=${body}`
+    
+    setTimeout(() => {
+      setIsSubmitting(false)
+      setFormData({ name: '', email: '', phone: '', message: '' })
+    }, 1000)
+  }
+
+  const contactInfo = [
+    {
+      icon: 'mdi:email-outline',
+      label: 'Email',
+      value: 'info@nataliezimmermann.de',
+      href: 'mailto:info@nataliezimmermann.de',
+    },
+    {
+      icon: 'mdi:phone-outline',
+      label: 'Telefon',
+      value: '040 / 53790578',
+      href: 'tel:+494053790578',
+    },
+    {
+      icon: 'mdi:whatsapp',
+      label: 'WhatsApp',
+      value: '040 / 53790578',
+      href: 'https://wa.me/494053790578',
+    },
+    {
+      icon: 'mdi:map-marker-outline',
+      label: 'Adresse',
+      value: 'Rothenbaumchaussee 156, 20149 Hamburg',
+      href: 'https://maps.google.com/?q=Rothenbaumchaussee+156,+20149+Hamburg',
+    },
+  ]
+
+  const socialLinks = [
+    {
+      icon: 'mdi:facebook',
+      href: 'https://www.facebook.com/natalie.zimmermann.94',
+      label: 'Facebook',
+    },
+    {
+      icon: 'mdi:instagram',
+      href: 'https://www.instagram.com/nataliezimmermann_ger/',
+      label: 'Instagram',
+    },
+    {
+      icon: 'mdi:tiktok',
+      href: 'https://tiktok.com/@nataliezimmermann',
+      label: 'TikTok',
+    },
+  ]
 
   return (
-    <div className="container mx-auto p-8">
-      <div className="flex items-center justify-center mb-2">
-        <h1 className="text-4xl font-bold text-black text-center mr-4">Kontakt</h1>
-        <Image 
-          src="/images/icons/icon-bag.svg" 
-          alt="Shopping Bag Icon" 
-          width={40} 
-          height={40} 
-        />
-      </div>
-      <p className="text-lg mb-6 relative inline-block text-black text-center w-full">Hier können Sie uns kontaktieren.</p>
-      
-      <div className="text-black mb-8 text-center">
-        <p className="mb-4">Bitte füllen Sie das untenstehende Formular aus oder kontaktieren Sie uns direkt.</p>
-        <ul className="list-disc list-inside ml-4 inline-block text-left">
-          <li>Email: <a href="mailto:kontakt@nataliezimmermann.de" className="text-pink-600 hover:underline">kontakt@nataliezimmermann.de</a></li>
-          <li>Telefon: <span className="text-pink-600">+49 123 456789</span></li>
-          <li>Website: <a href="https://www.nataliezimmermann.de" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:underline">www.nataliezimmermann.de</a></li>
-        </ul>
-      </div>
+    <div className="min-h-screen bg-light">
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-accent-cyan/10 via-light to-accent-cyan-light/10 py-16 md:py-24 lg:py-32">
+        <div className="container mx-auto max-w-7xl px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-accent-cyan text-sm md:text-base font-bold mb-4 uppercase tracking-wider"
+            >
+              Kontakt
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className={`text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 ${bebasNeue.className}`}
+            >
+              Lassen Sie uns gemeinsam starten
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto"
+            >
+              Haben Sie Fragen oder möchten Sie einen Termin vereinbaren? Wir freuen uns auf Ihre Nachricht!
+            </motion.p>
+          </motion.div>
+        </div>
+      </section>
 
-      <div className="contact-form-container bg-gray-800 p-8 rounded-lg shadow-lg max-w-2xl mx-auto opacity-0 transform translate-y-12 will-change-transform-opacity">
-        <h3 className="text-2xl font-semibold mb-4 text-white">Kontaktformular</h3>
-        <form id="contactForm">
-          <div className="form-group mb-4 opacity-0 transform translate-y-12 will-change-transform-opacity">
-            <label htmlFor="name" className="block text-gray-400 text-sm font-bold mb-2">Name:</label>
-            <input type="text" id="name" name="name" className="form-control shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:shadow-outline" />
+      {/* Main Content */}
+      <section className="py-16 md:py-20 lg:py-24">
+        <div className="container mx-auto max-w-7xl px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            {/* Contact Information */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="space-y-8"
+            >
+              <div>
+                <h2 className={`text-3xl md:text-4xl font-bold text-text-primary mb-6 ${bebasNeue.className}`}>
+                  Kontaktinformationen
+                </h2>
+                <p className="text-text-secondary mb-8 text-lg">
+                  Erreichen Sie uns über verschiedene Kanäle. Wir sind für Sie da!
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                {contactInfo.map((info, index) => (
+                  <motion.a
+                    key={index}
+                    href={info.href}
+                    target={info.href.startsWith('http') ? '_blank' : undefined}
+                    rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="flex items-start gap-4 p-6 bg-grey rounded-2xl hover:bg-accent-cyan/10 transition-all duration-300 group"
+                  >
+                    <div className="flex-shrink-0 w-12 h-12 bg-accent-cyan rounded-xl flex items-center justify-center group-hover:bg-accent-cyan/80 transition-colors duration-300">
+                      <Icon icon={info.icon} className="text-white text-2xl" />
+                    </div>
+                    <div className="flex-grow">
+                      <p className="text-sm font-semibold text-text-secondary mb-1 uppercase tracking-wide">
+                        {info.label}
+                      </p>
+                      <p className="text-lg font-medium text-text-primary group-hover:text-accent-cyan transition-colors duration-300">
+                        {info.value}
+                      </p>
+                    </div>
+                  </motion.a>
+                ))}
+              </div>
+
+              {/* Social Media */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="pt-8 border-t border-border"
+              >
+                <h3 className={`text-2xl font-bold text-text-primary mb-4 ${bebasNeue.className}`}>
+                  Folgen Sie uns
+                </h3>
+                <div className="flex gap-4">
+                  {socialLinks.map((social, index) => (
+                    <motion.a
+                      key={index}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="w-12 h-12 bg-black rounded-full flex items-center justify-center hover:bg-accent-cyan transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2"
+                      aria-label={social.label}
+                    >
+                      <Icon icon={social.icon} className="text-white text-xl" />
+                    </motion.a>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Location Image */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="pt-8"
+              >
+                <div className="relative h-64 rounded-2xl overflow-hidden shadow-xl">
+                  <Image
+                    src="/images/hero/lind3.JPG"
+                    alt="Body & Mind Studio Hamburg - Rothenbaumchaussee 156"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                    <div>
+                      <p className="text-white font-semibold text-lg mb-1">Body & Mind Studio</p>
+                      <p className="text-white/90">Harvestehude, Hamburg</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* Contact Form */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="lg:sticky lg:top-24 h-fit"
+            >
+              <div className="bg-grey rounded-3xl p-8 md:p-10 shadow-xl">
+                <h2 className={`text-3xl md:text-4xl font-bold text-text-primary mb-2 ${bebasNeue.className}`}>
+                  Schreiben Sie uns
+                </h2>
+                <p className="text-text-secondary mb-8">
+                  Füllen Sie das Formular aus und wir melden uns schnellstmöglich bei Ihnen zurück.
+                </p>
+
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                  >
+                    <label htmlFor="name" className="block text-sm font-semibold text-text-primary mb-2">
+                      Name <span className="text-accent-cyan">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 bg-white border-2 border-border rounded-xl focus:outline-none focus:border-accent-cyan focus:ring-2 focus:ring-accent-cyan/20 transition-all duration-300 text-text-primary"
+                      placeholder="Ihr Name"
+                    />
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                  >
+                    <label htmlFor="email" className="block text-sm font-semibold text-text-primary mb-2">
+                      Email <span className="text-accent-cyan">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 bg-white border-2 border-border rounded-xl focus:outline-none focus:border-accent-cyan focus:ring-2 focus:ring-accent-cyan/20 transition-all duration-300 text-text-primary"
+                      placeholder="ihre.email@beispiel.de"
+                    />
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                  >
+                    <label htmlFor="phone" className="block text-sm font-semibold text-text-primary mb-2">
+                      Telefon
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 bg-white border-2 border-border rounded-xl focus:outline-none focus:border-accent-cyan focus:ring-2 focus:ring-accent-cyan/20 transition-all duration-300 text-text-primary"
+                      placeholder="+49 123 456789"
+                    />
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                  >
+                    <label htmlFor="message" className="block text-sm font-semibold text-text-primary mb-2">
+                      Nachricht <span className="text-accent-cyan">*</span>
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={6}
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 bg-white border-2 border-border rounded-xl focus:outline-none focus:border-accent-cyan focus:ring-2 focus:ring-accent-cyan/20 transition-all duration-300 resize-none text-text-primary"
+                      placeholder="Ihre Nachricht..."
+                    />
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                  >
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? (
+                        <span className="flex items-center justify-center gap-2">
+                          <Icon icon="mdi:loading" className="animate-spin text-xl" />
+                          Wird gesendet...
+                        </span>
+                      ) : (
+                        <span className="flex items-center justify-center gap-2">
+                          Nachricht senden
+                          <Icon icon="mdi:send" className="text-xl" />
+                        </span>
+                      )}
+                    </button>
+                  </motion.div>
+
+                  <p className="text-sm text-text-muted text-center">
+                    * Pflichtfelder
+                  </p>
+                </form>
+              </div>
+            </motion.div>
           </div>
-          <div className="form-group mb-4 opacity-0 transform translate-y-12 will-change-transform-opacity">
-            <label htmlFor="email" className="block text-gray-400 text-sm font-bold mb-2">Email:</label>
-            <input type="email" id="email" name="email" className="form-control shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:shadow-outline" />
-          </div>
-          <div className="form-group mb-6 opacity-0 transform translate-y-12 will-change-transform-opacity">
-            <label htmlFor="message" className="block text-gray-400 text-sm font-bold mb-2">Nachricht:</label>
-            <textarea id="message" name="message" rows={5} className="form-control shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:shadow-outline"></textarea>
-          </div>
-          <div className="form-actions opacity-0 transform translate-y-12 will-change-transform-opacity">
-            <button type="submit" className="btn bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Senden</button>
-          </div>
-        </form>
-      </div>
+        </div>
+      </section>
     </div>
-  );
-};
+  )
+}
 
-export default KontaktPage;
+export default KontaktPage

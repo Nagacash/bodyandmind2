@@ -1,76 +1,103 @@
-import { useState } from "react";
-import Link from "next/link";
-import { HeaderItem } from "../../../../types/menu";
-import { usePathname, useRouter } from "next/navigation";
-import { Bebas_Neue } from 'next/font/google';
+import { useState } from 'react'
+import Link from 'next/link'
+import { HeaderItem } from '@/app/types/menu'
+import { usePathname, useRouter } from 'next/navigation'
+import { Icon } from '@iconify/react'
+import { Bebas_Neue } from 'next/font/google'
 
-const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' });
+const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 
-const MobileHeaderLink: React.FC<{ item: HeaderItem, setNavbarOpen: (isOpen: boolean) => void }> = ({ item, setNavbarOpen }) => {
-  const [submenuOpen, setSubmenuOpen] = useState(false);
-  const router = useRouter();
-  const path = usePathname();
+const MobileHeaderLink: React.FC<{
+  item: HeaderItem
+  setNavbarOpen: (isOpen: boolean) => void
+}> = ({ item, setNavbarOpen }) => {
+  const [submenuOpen, setSubmenuOpen] = useState(false)
+  const router = useRouter()
+  const path = usePathname()
 
   const playAudio = () => {
-    const audio = new Audio('/sound/click.wav');
-    audio.volume = 0.5;
-    audio.play();
-  };
+    const audio = new Audio('/sound/click.wav')
+    audio.volume = 0.5
+    audio.play()
+  }
 
   const handleToggle = () => {
-    setSubmenuOpen(!submenuOpen);
-  };
+    setSubmenuOpen(!submenuOpen)
+  }
 
   const handleClick = (e: React.MouseEvent) => {
-    playAudio();
-    if (item.href.startsWith("#")) {
-      e.preventDefault();
-      router.push(item.href);
-    } else if (item.submenu) {
-      handleToggle();
-    }
-    setNavbarOpen(false);
-  };
+    playAudio()
+    if (item.href.startsWith('#')) {
+      e.preventDefault()
+      const targetId = item.href.substring(1)
+      const targetElement = document.getElementById(targetId)
+      
+      setNavbarOpen(false)
+      
+      // Wait for menu to close before scrolling
+      setTimeout(() => {
+        if (targetElement) {
+          const headerOffset = 100
+          const elementPosition = targetElement.getBoundingClientRect().top
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset
 
-  const activeStyle = {
-    backgroundColor: 'white'
-  };
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth',
+          })
+        } else {
+          router.push(item.href)
+        }
+      }, 300)
+    } else if (!item.submenu) {
+      setNavbarOpen(false)
+    }
+  }
+
+  const isActive = path === item.href || (item.href.startsWith('#') && path === '/')
 
   return (
-    <div className="relative w-full">
-      <Link
-        href={item.href}
-        target={item.target}
-        onClick={handleClick}
-        className={`text-lg font-normal text-black hover:text-[#89CFF0] hover:scale-105 hover:underline mb-6 ${bebasNeue.className} transform transition duration-300`}
-        style={path === item.href ? activeStyle : {}}
-      >
-        {item.label}
+    <div className='relative w-full mb-4'>
+      <div className='flex items-center justify-between'>
+        <Link
+          href={item.href}
+          target={item.target}
+          onClick={handleClick}
+          className={`text-lg font-semibold flex items-center gap-2 transition-colors duration-300 ${
+            isActive
+              ? 'text-accent-cyan'
+              : 'text-text-primary hover:text-accent-cyan'
+          } ${bebasNeue.className}`}
+        >
+          {item.label}
+        </Link>
         {item.submenu && (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1.5em"
-            height="1.5em"
-            viewBox="0 0 24 24"
+          <button
+            onClick={handleToggle}
+            className='p-2 rounded-lg hover:bg-grey transition-colors duration-200'
+            aria-label='Toggle submenu'
           >
-            <path
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="1.5"
-              d="m7 10l5 5l5-5"
+            <Icon
+              icon='mdi:chevron-down'
+              className={`text-xl text-text-primary transition-transform duration-300 ${
+                submenuOpen ? 'rotate-180' : ''
+              }`}
             />
-          </svg>
+          </button>
         )}
-      </Link>
+      </div>
+
+      {/* Submenu */}
       {submenuOpen && item.submenu && (
-        <div className="bg-white p-2 w-full">
+        <div className='mt-2 ml-4 space-y-2 border-l-2 border-accent-cyan/30 pl-4'>
           {item.submenu.map((subItem, index) => (
             <Link
               key={index}
               href={subItem.href}
-              className="block py-2 text-gray-500 hover:bg-gray-200 hover:text-black"
+              onClick={() => setNavbarOpen(false)}
+              className={`block py-2 text-text-secondary hover:text-accent-cyan transition-colors duration-200 ${
+                path === subItem.href ? 'text-accent-cyan font-semibold' : ''
+              }`}
             >
               {subItem.label}
             </Link>
@@ -78,7 +105,7 @@ const MobileHeaderLink: React.FC<{ item: HeaderItem, setNavbarOpen: (isOpen: boo
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default MobileHeaderLink;
+export default MobileHeaderLink

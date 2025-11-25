@@ -2,19 +2,15 @@
 import { Key, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useTheme } from 'next-themes'
 import { HeaderItem } from '@/app/types/menu'
 import Logo from './Logo'
 import HeaderLink from './Navigation/HeaderLink'
 import MobileHeaderLink from './Navigation/MobileHeaderLink'
-
-
 import { Icon } from '@iconify/react/dist/iconify.js'
 
 const Header: React.FC = () => {
   const [navbarOpen, setNavbarOpen] = useState(false)
   const [sticky, setSticky] = useState(false)
-  const navbarRef = useRef<HTMLDivElement>(null)
   const mobileMenuRef = useRef<HTMLDivElement>(null)
 
   const handleScroll = () => {
@@ -49,7 +45,6 @@ const Header: React.FC = () => {
   }, [navbarOpen])
 
   // header data fetch
-
   const [headerData, setHeaderData] = useState<HeaderItem[]>([])
   const [mobileHeaderData, setMobileHeaderData] = useState<HeaderItem[]>([])
 
@@ -70,74 +65,138 @@ const Header: React.FC = () => {
 
   return (
     <header
-            className={`fixed top-0 z-40 w-full transition-all duration-300 border-b border-black/10 text-black ${
-              sticky ? ' shadow-lg bg-white' : 'shadow-none bg-white'
-            }`}>
-      <div className='lg:py-0 py-2'>
-        <div className='container mx-auto max-w-7xl flex items-center justify-between px-4'>
-          <div
-            className={`pr-16 lg:border-r border-black/10 duration-300 ${
-              sticky ? 'py-3' : 'py-7'
-            }`}>
+      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+        sticky
+          ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-border'
+          : 'bg-white border-b border-border/50'
+      }`}
+    >
+      <div className='container mx-auto max-w-7xl px-4'>
+        <div className='flex items-center justify-between h-16 md:h-20 lg:h-24'>
+          {/* Logo */}
+          <div className='flex-shrink-0 z-50'>
             <Logo />
           </div>
-          <nav className='hidden lg:flex grow items-center gap-8 justify-center'>
+
+          {/* Desktop Navigation */}
+          <nav className='hidden lg:flex items-center gap-6 xl:gap-8 flex-grow justify-center'>
             {headerData.map((item, index) => (
               <HeaderLink key={index} item={item} />
             ))}
           </nav>
-          <div
-            className={`flex items-center gap-4 pl-16 lg:border-l border-black/10 duration-300 ${
-              sticky ? 'py-3' : 'py-7'
-            }`}>
 
+          {/* Right Side Actions */}
+          <div className='flex items-center gap-3 md:gap-4'>
+            {/* WhatsApp Button - Desktop */}
             <a
-              href="https://wa.me/49123456789" // Replace with actual WhatsApp number
-              target="_blank"
-              rel="noopener noreferrer"
-              className='hidden lg:block bg-darkmode text-white hover:bg-transparent hover:text-darkmode border border-darkmode px-4 py-2 rounded-lg hover:cursor-pointer'
+              href='https://wa.me/494053790578'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='hidden lg:flex items-center gap-2 bg-accent-cyan text-white hover:bg-accent-cyan/90 px-4 py-2 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2 shadow-md hover:shadow-lg'
+              aria-label='WhatsApp Kontakt'
             >
-              <Icon icon='mdi:whatsapp' className='inline-block text-2xl mr-2' /> WhatsApp
+              <Icon icon='mdi:whatsapp' className='text-xl' aria-hidden='true' />
+              <span className='hidden xl:inline'>WhatsApp</span>
             </a>
 
+            {/* Mobile Menu Button */}
             <button
               onClick={() => setNavbarOpen(!navbarOpen)}
-              className='block lg:hidden p-2 rounded-lg'
-              aria-label='Toggle mobile menu'>
-              <span className='block w-6 h-0.5 bg-darkmode'></span>
-              <span className='block w-6 h-0.5 bg-darkmode mt-1.5'></span>
-              <span className='block w-6 h-0.5 bg-darkmode mt-1.5'></span>
+              className='lg:hidden p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2 transition-all duration-200 z-50'
+              aria-label='Toggle mobile menu'
+              aria-expanded={navbarOpen}
+            >
+              <div className='flex flex-col gap-1.5 w-6'>
+                <span
+                  className={`block h-0.5 bg-darkmode transition-all duration-300 ${
+                    navbarOpen ? 'rotate-45 translate-y-2' : ''
+                  }`}
+                ></span>
+                <span
+                  className={`block h-0.5 bg-darkmode transition-all duration-300 ${
+                    navbarOpen ? 'opacity-0' : ''
+                  }`}
+                ></span>
+                <span
+                  className={`block h-0.5 bg-darkmode transition-all duration-300 ${
+                    navbarOpen ? '-rotate-45 -translate-y-2' : ''
+                  }`}
+                ></span>
+              </div>
             </button>
           </div>
         </div>
-        {navbarOpen && (
-          <div className='fixed top-0 left-0 w-full h-full bg-black/50 z-40' />
-        )}
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      {navbarOpen && (
         <div
-          ref={mobileMenuRef}
-          className={`lg:hidden fixed top-0 right-0 h-full w-full !bg-white shadow-lg transform transition-transform duration-300 max-w-xs ${
-            navbarOpen ? 'translate-x-0' : 'translate-x-full'
-          } z-50`} style={{ backgroundColor: 'white' }}>
-          <div className='flex items-center justify-between p-4'>
-            <h2 className='text-lg font-bold text-midnight_text dark:text-midnight_text text-black'>
-              <Logo />
-            </h2>
+          className='fixed inset-0 bg-black/50 z-40 lg:hidden'
+          onClick={() => setNavbarOpen(false)}
+          aria-hidden='true'
+        />
+      )}
 
-            {/*  */}
-            <button
-              onClick={() => setNavbarOpen(false)}
-              className="bg-[url('/images/closed.svg')] bg-no-repeat bg-contain w-5 h-5 absolute top-0 right-0 mr-8 mt-8 dark:invert"
-              aria-label='Close menu Modal'></button>
-          </div>
-          <nav className='flex flex-col items-start p-4'>
-            {mobileHeaderData.map(
-              (item: HeaderItem, index: Key | null | undefined) => (
-                <MobileHeaderLink key={index} item={item} setNavbarOpen={setNavbarOpen} />
-              )
-            )}
-
-          </nav>
+      {/* Mobile Menu */}
+      <div
+        ref={mobileMenuRef}
+        className={`lg:hidden fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-2xl transform transition-transform duration-300 ease-in-out z-50 ${
+          navbarOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        {/* Mobile Menu Header */}
+        <div className='flex items-center justify-between p-6 border-b border-border'>
+          <Logo />
+          <button
+            onClick={() => setNavbarOpen(false)}
+            className='p-2 rounded-lg hover:bg-grey transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2'
+            aria-label='Close menu'
+          >
+            <Icon icon='mdi:close' className='text-2xl text-text-primary' />
+          </button>
         </div>
+
+        {/* Mobile Navigation */}
+        <nav className='flex flex-col p-6 overflow-y-auto h-[calc(100vh-80px)]'>
+          {mobileHeaderData.map((item: HeaderItem, index: Key | null | undefined) => (
+            <MobileHeaderLink key={index} item={item} setNavbarOpen={setNavbarOpen} />
+          ))}
+
+          {/* Mobile WhatsApp Button */}
+          <a
+            href='https://wa.me/494053790578'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='mt-6 flex items-center justify-center gap-2 bg-accent-cyan text-white hover:bg-accent-cyan/90 px-6 py-3 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2 shadow-md'
+            onClick={() => setNavbarOpen(false)}
+          >
+            <Icon icon='mdi:whatsapp' className='text-xl' />
+            WhatsApp Kontakt
+          </a>
+
+          {/* Mobile Contact Info */}
+          <div className='mt-8 pt-8 border-t border-border'>
+            <p className='text-text-secondary text-sm font-semibold mb-4 uppercase tracking-wide'>
+              Kontakt
+            </p>
+            <div className='space-y-3'>
+              <a
+                href='tel:+494053790578'
+                className='flex items-center gap-3 text-text-primary hover:text-accent-cyan transition-colors duration-300'
+              >
+                <Icon icon='mdi:phone' className='text-xl text-accent-cyan' />
+                <span>040 / 53790578</span>
+              </a>
+              <a
+                href='mailto:info@nataliezimmermann.de'
+                className='flex items-center gap-3 text-text-primary hover:text-accent-cyan transition-colors duration-300'
+              >
+                <Icon icon='mdi:email' className='text-xl text-accent-cyan' />
+                <span>info@nataliezimmermann.de</span>
+              </a>
+            </div>
+          </div>
+        </nav>
       </div>
     </header>
   )

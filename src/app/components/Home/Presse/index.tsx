@@ -1,43 +1,242 @@
 'use client'
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { Icon } from '@iconify/react'
 import { Bebas_Neue } from 'next/font/google'
 import VideoGallery from './VideoGallery'
 
 const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 
+const pressArticles = [
+  {
+    id: 1,
+    title: 'Hamburgerin Natalie Zimmermann boxt um WBO-WM-Titel',
+    source: 'NDR Hamburg Journal',
+    date: '2024',
+    image: '/images/articles/nat1.jpg',
+    link: 'https://www.ndr.de/fernsehen/sendungen/hamburg_journal/Hamburgerin-Natalie-Zimmermann-boxt-um-WBO-WM-Titel,hamj157910.html',
+    category: 'TV',
+  },
+  {
+    id: 2,
+    title: 'Box-Weltmeisterin im Interview',
+    source: 'Hamburger Abendblatt',
+    date: '2024',
+    image: '/images/articles/nat2.jpg',
+    link: '#',
+    category: 'Print',
+  },
+  {
+    id: 3,
+    title: 'Von der Schäferstochter zur Weltmeisterin',
+    source: 'Bild',
+    date: '2024',
+    image: '/images/articles/nat3.jpg',
+    link: '#',
+    category: 'Print',
+  },
+]
+
+const pressCategories = [
+  { name: 'TV & Internet', icon: 'mdi:television', color: 'bg-accent-cyan' },
+  { name: 'Print', icon: 'mdi:newspaper-variant', color: 'bg-accent-cyan-light' },
+  { name: 'Radio', icon: 'mdi:radio', color: 'bg-accent-cyan' },
+]
+
 const Presse = () => {
   return (
-    <section id='Presse' className='overflow-hidden scroll-mt-[100px] py-16'>
+    <section id='Presse' className='overflow-hidden scroll-mt-[100px] py-16 md:py-20 lg:py-24 bg-grey'>
       <div className='container mx-auto max-w-7xl px-4'>
-        <div className='text-center'>
-          <h2 className={`my-6 ${bebasNeue.className}`}>Presse</h2>
-          <p className={`text-black/50 text-base font-normal max-w-3xl mx-auto ${bebasNeue.className}`}>
-            Auf dieser Seite präsentiere ich euch meine Medienauftritte, sowohl im Fernsehen ( NDR), Internet (YouTube), Radio und Print wie etwa Bild, Hamburger Abendblatt usw. Viel Spaß beim Stöbern.
-          </p>
-        </div>
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className='text-center mb-12 md:mb-16'
+        >
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className='text-accent-cyan text-sm md:text-base font-bold mb-4 uppercase tracking-wider'
+          >
+            Presse & Medien
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className={`text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 ${bebasNeue.className}`}
+          >
+            Medienauftritte
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className='text-text-secondary text-base md:text-lg max-w-3xl mx-auto leading-relaxed'
+          >
+            Auf dieser Seite präsentiere ich euch meine Medienauftritte, sowohl im Fernsehen (NDR), Internet (YouTube), Radio und Print wie etwa Bild, Hamburger Abendblatt usw. Viel Spaß beim Stöbern.
+          </motion.p>
+        </motion.div>
 
-        <div className='mt-12'>
-          <h3 className='text-2xl font-semibold text-center mb-6'>TV & Internet Videos</h3>
+        {/* Category Pills */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className='flex flex-wrap justify-center gap-4 mb-12'
+        >
+          {pressCategories.map((category, index) => (
+            <div
+              key={index}
+              className={`${category.color} text-white px-6 py-3 rounded-full flex items-center gap-2 shadow-lg`}
+            >
+              <Icon icon={category.icon} className='text-xl' />
+              <span className='font-semibold'>{category.name}</span>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* TV & Internet Videos Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className='mb-16 md:mb-20'
+        >
+          <div className='flex items-center gap-4 mb-8'>
+            <div className='flex-shrink-0 w-12 h-12 bg-accent-cyan rounded-xl flex items-center justify-center'>
+              <Icon icon='mdi:television' className='text-white text-2xl' />
+            </div>
+            <h3 className={`text-3xl md:text-4xl font-bold text-text-primary ${bebasNeue.className}`}>
+              TV & Internet Videos
+            </h3>
+          </div>
+          
           <VideoGallery />
-          <p className='text-center text-black/70 mt-4 text-lg'>Scrollen Sie durch die Videos mit den Pfeiltasten!</p>
-          <div className='flex justify-center mt-8'>
-            {
-              <div className='aspect-w-16 aspect-h-9 rounded-lg overflow-hidden relative'>                          <a href='https://www.ndr.de/fernsehen/sendungen/hamburg_journal/Hamburgerin-Natalie-Zimmermann-boxt-um-WBO-WM-Titel,hamj157910.html' target='_blank' rel='noopener noreferrer' className='w-full h-full rounded-lg bg-black flex items-center justify-center text-center p-4 relative'>
-                            <Image
-                              src='/images/articles/nat1.jpg' // Placeholder image
-                              alt='Article cover'
-                              fill
-                              className='absolute inset-0 z-0 opacity-50 object-cover'
-                            />
-                            <h4 className='text-lg font-semibold text-white relative z-10'>Hamburgerin Natalie Zimmermann boxt um WBO-WM-Titel</h4>
-                          </a>
-                        </div>
-                      }
+          
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className='text-center text-text-secondary mt-6 text-sm md:text-base flex items-center justify-center gap-2'
+          >
+            <Icon icon='mdi:information-outline' className='text-accent-cyan' />
+            Scrollen Sie durch die Videos mit den Pfeiltasten oder den Navigationspfeilen
+          </motion.p>
+        </motion.div>
+
+        {/* Print Articles Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className='mb-12'
+        >
+          <div className='flex items-center gap-4 mb-8'>
+            <div className='flex-shrink-0 w-12 h-12 bg-accent-cyan rounded-xl flex items-center justify-center'>
+              <Icon icon='mdi:newspaper-variant' className='text-white text-2xl' />
+            </div>
+            <h3 className={`text-3xl md:text-4xl font-bold text-text-primary ${bebasNeue.className}`}>
+              Print & Online Artikel
+            </h3>
+          </div>
+
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8'>
+            {pressArticles.map((article, index) => (
+              <motion.div
+                key={article.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className='group'
+              >
+                <Link
+                  href={article.link}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='block bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full'
+                >
+                  <div className='relative h-48 md:h-56 overflow-hidden'>
+                    <Image
+                      src={article.image}
+                      alt={article.title}
+                      fill
+                      className='object-cover group-hover:scale-110 transition-transform duration-300'
+                    />
+                    <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent' />
+                    <div className='absolute top-4 right-4'>
+                      <span className='bg-accent-cyan text-white px-3 py-1 rounded-full text-xs font-semibold'>
+                        {article.category}
+                      </span>
                     </div>
-        </div>
+                  </div>
+                  <div className='p-6'>
+                    <p className='text-xs text-text-secondary uppercase tracking-wide mb-2 font-semibold'>
+                      {article.source} • {article.date}
+                    </p>
+                    <h4 className='text-lg md:text-xl font-bold text-text-primary mb-3 group-hover:text-accent-cyan transition-colors duration-300 line-clamp-2'>
+                      {article.title}
+                    </h4>
+                    <div className='flex items-center gap-2 text-accent-cyan font-semibold text-sm'>
+                      Artikel lesen
+                      <Icon icon='mdi:arrow-right' className='text-lg group-hover:translate-x-1 transition-transform duration-300' />
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Featured Article - NDR */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className='mt-12'
+        >
+          <div className='bg-gradient-to-br from-accent-cyan to-accent-cyan-dark rounded-3xl p-8 md:p-12 overflow-hidden relative'>
+            <div className='absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2' />
+            <div className='relative z-10'>
+              <div className='flex items-center gap-3 mb-4'>
+                <Icon icon='mdi:television' className='text-white text-3xl' />
+                <span className='text-white/90 text-sm font-semibold uppercase tracking-wide'>Featured</span>
+              </div>
+              <h3 className={`text-3xl md:text-4xl font-bold text-white mb-4 ${bebasNeue.className}`}>
+                NDR Hamburg Journal
+              </h3>
+              <p className='text-white/90 text-lg mb-6 max-w-2xl'>
+                Hamburgerin Natalie Zimmermann boxt um WBO-WM-Titel - Ein ausführlicher Bericht über den Weg zur Weltmeisterschaft.
+              </p>
+              <Link
+                href='https://www.ndr.de/fernsehen/sendungen/hamburg_journal/Hamburgerin-Natalie-Zimmermann-boxt-um-WBO-WM-Titel,hamj157910.html'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='inline-flex items-center gap-2 bg-white text-accent-cyan px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-accent-cyan'
+              >
+                Artikel ansehen
+                <Icon icon='mdi:arrow-right' className='text-xl' />
+              </Link>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )
 }
+
 export default Presse

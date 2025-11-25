@@ -1,43 +1,61 @@
-"use client";
-import { useState } from "react";
-import Link from "next/link";
-import { HeaderItem } from "../../../../types/menu";
-import { usePathname, useRouter } from "next/navigation";
-import { Bebas_Neue } from 'next/font/google';
+'use client'
+import { useState } from 'react'
+import Link from 'next/link'
+import { HeaderItem } from '@/app/types/menu'
+import { usePathname, useRouter } from 'next/navigation'
+import { Icon } from '@iconify/react'
+import { Bebas_Neue } from 'next/font/google'
 
-const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' });
+const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 
 const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
-  const [submenuOpen, setSubmenuOpen] = useState(false);
-  const path = usePathname();
-  const router = useRouter();
+  const [submenuOpen, setSubmenuOpen] = useState(false)
+  const path = usePathname()
+  const router = useRouter()
 
   const playAudio = () => {
-    const audio = new Audio('/sound/click.wav');
-    audio.volume = 0.5;
-    audio.play();
-  };
+    const audio = new Audio('/sound/click.wav')
+    audio.volume = 0.5
+    audio.play()
+  }
 
   const handleMouseEnter = () => {
     if (item.submenu) {
-      setSubmenuOpen(true);
+      setSubmenuOpen(true)
     }
-  };
+  }
+
   const handleMouseLeave = () => {
-    setSubmenuOpen(false);
-  };
+    setSubmenuOpen(false)
+  }
 
   const handleClick = (e: React.MouseEvent) => {
-    playAudio();
-    if (item.href.startsWith("#")) {
-      e.preventDefault();
-      router.push(item.href);
+    playAudio()
+    if (item.href.startsWith('#')) {
+      e.preventDefault()
+      const targetId = item.href.substring(1)
+      const targetElement = document.getElementById(targetId)
+      
+      if (targetElement) {
+        const headerOffset = 100
+        const elementPosition = targetElement.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        })
+      } else {
+        router.push(item.href)
+      }
     }
-  };
+  }
+
+  const isActive = path === item.href || (item.href.startsWith('#') && path === '/')
 
   return (
     <div
-      className="relative"
+      className='relative'
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -45,43 +63,35 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
         href={item.href}
         target={item.target}
         onClick={handleClick}
-        className={`text-lg flex hover:text-[#89CFF0] hover:scale-105 hover:underline capitalized text-black ${bebasNeue.className} ${
-          path === item.href ? "text-black/75" : ""
-        } transform transition duration-300`}
+        className={`text-base md:text-lg flex items-center gap-1 hover:text-accent-cyan transition-all duration-300 font-semibold ${
+          isActive ? 'text-accent-cyan' : 'text-text-primary'
+        } ${bebasNeue.className} relative group`}
       >
-        {item.label}
+        <span className='relative'>
+          {item.label}
+          {isActive && (
+            <span className='absolute -bottom-1 left-0 w-full h-0.5 bg-accent-cyan'></span>
+          )}
+        </span>
         {item.submenu && (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1.5em"
-            height="1.5em"
-            viewBox="0 0 24 24"
-          >
-            <path
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="1.5"
-              d="m7 10l5 5l5-5"
-            />
-          </svg>
+          <Icon
+            icon='mdi:chevron-down'
+            className={`text-lg transition-transform duration-300 ${
+              submenuOpen ? 'rotate-180' : ''
+            }`}
+          />
         )}
       </Link>
-      {submenuOpen && (
-        <div
-          className={`absolute py-2 left-0 mt-0.5 w-60 bg-white dark:bg-darklight dark:text-white shadow-lg rounded-lg `}
-          data-aos="fade-up"
-          data-aos-duration="500"
-        >
-          {item.submenu?.map((subItem, index) => (
+
+      {/* Submenu */}
+      {submenuOpen && item.submenu && (
+        <div className='absolute top-full left-0 mt-2 w-64 bg-white shadow-xl rounded-2xl py-2 border border-border overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200'>
+          {item.submenu.map((subItem, index) => (
             <Link
               key={index}
               href={subItem.href}
-              className={`block px-4 py-2   ${
-                path === subItem.href
-                  ? "text-white"
-                  : "text-black dark:text-white hover:bg-primary"
+              className={`block px-4 py-3 text-text-primary hover:bg-accent-cyan/10 hover:text-accent-cyan transition-colors duration-200 ${
+                path === subItem.href ? 'bg-accent-cyan/10 text-accent-cyan font-semibold' : ''
               }`}
             >
               {subItem.label}
@@ -90,7 +100,7 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default HeaderLink;
+export default HeaderLink

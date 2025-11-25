@@ -26,36 +26,31 @@ const settings = {
   dots: true,
   infinite: true,
   slidesToShow: 3,
-  slidesToScroll: 2,
-  arrows: false,
-  autoplay: false,
-  speed: 500,
-  autoplaySpeed: 2000,
-  cssEase: 'linear',
+  slidesToScroll: 1,
+  arrows: true,
+  autoplay: true,
+  autoplaySpeed: 4000,
+  speed: 600,
+  pauseOnHover: true,
+  cssEase: 'cubic-bezier(0.4, 0, 0.2, 1)',
   responsive: [
     {
       breakpoint: 1200,
       settings: {
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        infinite: true,
-        dots: false,
-      },
-    },
-    {
-      breakpoint: 800,
-      settings: {
         slidesToShow: 2,
         slidesToScroll: 1,
         infinite: true,
+        dots: true,
       },
     },
     {
-      breakpoint: 450,
+      breakpoint: 768,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
         infinite: true,
+        dots: true,
+        arrows: false,
       },
     },
   ],
@@ -65,46 +60,68 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ items }) => {
   const validRating = Math.min(Math.max(items.rating, 0), 5)
 
   return (
-    <div className='relative py-10'>
-      <div className='bg-white dark:bg-darkHeroBg shadow-testimonial m-3 p-10 rounded-3xl'>
-        <Image
-          src={items.imgSrc}
-          alt={`${items.name} - ${items.profession} testimonial image`}
-          width={71}
-          height={71}
-          className='inline-block m-auto absolute top-3'
-        />
-        <p className='text-base font-medium my-4 text-black h-[150px] overflow-y-auto'>{items.comment}</p>
-        <hr style={{ color: 'border' }} />
-        <div className='flex justify-between'>
-          <div>
-            <p className='text-base font-medium pt-4 pb-2 text-black dark:text-white'>
+    <div className='px-2 md:px-4'>
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className='bg-white shadow-testimonial rounded-3xl p-6 md:p-8 h-full flex flex-col hover:shadow-xl transition-all duration-300 group'
+      >
+        {/* Quote Icon */}
+        <div className='mb-4'>
+          <Icon
+            icon='mdi:format-quote-open'
+            className='text-accent-cyan text-4xl opacity-20'
+          />
+        </div>
+
+        {/* Rating */}
+        <div className='flex gap-1 mb-4'>
+          {Array.from({ length: 5 }, (_, i) => (
+            <Icon
+              key={i}
+              icon='mdi:star'
+              className={`text-lg ${
+                i < validRating ? 'text-yellow-400' : 'text-gray-300'
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Comment */}
+        <p className='text-text-secondary text-base md:text-lg leading-relaxed mb-6 flex-grow'>
+          "{items.comment}"
+        </p>
+
+        {/* Divider */}
+        <div className='border-t border-border mb-6'></div>
+
+        {/* Author Info */}
+        <div className='flex items-center gap-4'>
+          <div className='relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-accent-cyan/20 group-hover:ring-accent-cyan/40 transition-all duration-300'>
+            <Image
+              src={items.imgSrc}
+              alt={`${items.name} - ${items.profession}`}
+              fill
+              className='object-cover'
+            />
+          </div>
+          <div className='flex-grow'>
+            <p className='text-text-primary font-bold text-base md:text-lg mb-1'>
               {items.name}
             </p>
-            <p className='text-xs font-medium pb-2 text-black/50'>
+            <p className='text-text-secondary text-sm'>
               {items.profession}
             </p>
           </div>
-          <div className='flex mt-5'>
-            {Array.from({ length: 5 }, (_, i) => (
-              <Icon
-                key={i}
-                icon='twemoji:star'
-                width='18'
-                className={`mr-1 ${
-                  i < validRating ? 'text-yellow-500' : 'text-gray-300'
-                }`}
-              />
-            ))}
-          </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   )
 }
 
 const Testimonial: React.FC = () => {
-  // fetch data
   const [testimonals, setTestimonials] = useState<testimonials[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -124,32 +141,153 @@ const Testimonial: React.FC = () => {
     fetchData()
   }, [])
 
+  // Calculate average rating
+  const averageRating =
+    testimonals.length > 0
+      ? testimonals.reduce((sum, t) => sum + t.rating, 0) / testimonals.length
+      : 0
+
   return (
     <section
-      className="bg-testimonial dark:bg-darkmode bg-cover bg-center overflow-hidden py-16 before:absolute before:w-full before:h-full before:bg-[url('/images/wework/elipse.svg')] before:bg-no-repeat before:bg-center"
-      id='testimonial-section'>
-      <div className='container mx-auto max-w-7xl px-4'>
-        <div className=''>
-          <div className='text-center'>
-            <motion.h2
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className={`my-3 ${bebasNeue.className}`}>Was andere sagen.</motion.h2>
-            <p className='text-sm text-gray-600 mt-2'>Basierend auf 57 Bewertungen</p>
+      className='relative bg-gradient-to-br from-accent-cyan/5 via-light to-accent-cyan-light/5 overflow-hidden py-16 md:py-20 lg:py-24'
+      id='testimonial-section'
+    >
+      {/* Decorative Background */}
+      <div className='absolute inset-0 bg-[url("/images/wework/elipse.svg")] bg-no-repeat bg-center opacity-5' />
+
+      <div className='container mx-auto max-w-7xl px-4 relative z-10'>
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className='text-center mb-12 md:mb-16'
+        >
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className='text-accent-cyan text-sm md:text-base font-bold mb-4 uppercase tracking-wider'
+          >
+            Testimonials
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className={`text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 ${bebasNeue.className}`}
+          >
+            Was andere sagen
+          </motion.h2>
+
+          {/* Rating Summary */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className='flex items-center justify-center gap-4 mb-4'
+          >
+            <div className='flex items-center gap-2'>
+              <div className='flex gap-1'>
+                {Array.from({ length: 5 }, (_, i) => (
+                  <Icon
+                    key={i}
+                    icon='mdi:star'
+                    className={`text-2xl ${
+                      i < Math.round(averageRating)
+                        ? 'text-yellow-400'
+                        : 'text-gray-300'
+                    }`}
+                  />
+                ))}
+              </div>
+              <span className='text-2xl font-bold text-text-primary'>
+                {averageRating.toFixed(1)}
+              </span>
+            </div>
+            <div className='h-8 w-px bg-border'></div>
+            <p className='text-text-secondary text-base md:text-lg'>
+              Basierend auf <span className='font-bold text-text-primary'>57 Bewertungen</span>
+            </p>
+          </motion.div>
+        </motion.div>
+
+        {/* Testimonials Slider */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <Slider {...settings}>
+            {loading
+              ? Array.from({ length: 3 }).map((_, i) => (
+                  <TestimonialSkeleton key={i} />
+                ))
+              : testimonals.map((items, i) => (
+                  <TestimonialCard key={i} items={items} />
+                ))}
+          </Slider>
+        </motion.div>
+
+        {/* Custom Slider Styles */}
+        <style jsx global>{`
+          .slick-dots {
+            bottom: -50px !important;
+          }
+          .slick-dots li button:before {
+            color: var(--color-accent-cyan) !important;
+            font-size: 12px !important;
+            opacity: 0.3 !important;
+          }
+          .slick-dots li.slick-active button:before {
+            opacity: 1 !important;
+            color: var(--color-accent-cyan) !important;
+          }
+          .slick-prev,
+          .slick-next {
+            z-index: 20;
+            width: 48px;
+            height: 48px;
+          }
+          .slick-prev:before,
+          .slick-next:before {
+            color: var(--color-accent-cyan);
+            font-size: 24px;
+          }
+          .slick-prev {
+            left: -60px;
+          }
+          .slick-next {
+            right: -60px;
+          }
+          @media (max-width: 1024px) {
+            .slick-prev,
+            .slick-next {
+              display: none !important;
+            }
+          }
+        `}</style>
+
+        {/* Trust Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className='mt-16 md:mt-20 text-center'
+        >
+          <div className='inline-flex items-center gap-3 bg-white rounded-full px-6 py-3 shadow-lg'>
+            <Icon icon='mdi:shield-check' className='text-accent-cyan text-2xl' />
+            <p className='text-text-primary font-semibold'>
+              Verifizierte Bewertungen von echten Kunden
+            </p>
           </div>
-          <div className='mt-20'>
-            <Slider {...settings}>
-              {loading
-                ? Array.from({ length: 3 }).map((_, i) => (
-                    <TestimonialSkeleton key={i} />
-                  ))
-                : testimonals.map((items, i) => (
-                    <TestimonialCard key={i} items={items} />
-                  ))}
-            </Slider>
-          </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
