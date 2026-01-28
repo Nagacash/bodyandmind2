@@ -15,12 +15,12 @@ const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 const settings = {
   dots: false,
   infinite: true,
-  slidesToShow: 5,
-  slidesToScroll: 5,
+  slidesToShow: 3,
+  slidesToScroll: 1,
   arrows: false,
   autoplay: true,
-  speed: 24000,
-  autoplaySpeed: 12000,
+  speed: 4000,
+  autoplaySpeed: 0,
   cssEase: 'linear',
   pauseOnHover: true,
   responsive: [
@@ -28,7 +28,7 @@ const settings = {
       breakpoint: 1200,
       settings: {
         slidesToShow: 3,
-        slidesToScroll: 3,
+        slidesToScroll: 1,
         infinite: true,
         dots: false,
       },
@@ -37,7 +37,7 @@ const settings = {
       breakpoint: 800,
       settings: {
         slidesToShow: 2,
-        slidesToScroll: 2,
+        slidesToScroll: 1,
         infinite: true,
         dots: false,
       },
