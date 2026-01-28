@@ -88,12 +88,6 @@ const WorkData: workdata[] = [
     name: 'Juri',
     imgSrc: '/images/wework/coach3.avif',
   },
-  {
-    profession: 'Staatlich anerkannte Sportlehrerin und Dozentin. Bereiche: Pilates, Yinyoga, Kampfsportfitness/Combat, Tanz, Funktionales Training, Faszien Training, Gesundheitstraining, Schmerztherapie, Atemtherapie, Cupping/Schröpfen, Taping und verschiedene Massagen.',
-    name: 'Zasou',
-    imgSrc: '/images/wework/coach4.avif',
-  },
-  
 ]
 
 // featured data
