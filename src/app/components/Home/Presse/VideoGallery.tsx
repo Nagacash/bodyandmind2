@@ -127,28 +127,30 @@ const VideoGallery: React.FC = () => {
 
         {/* Navigation Buttons */}
         <button
+          type='button'
           onClick={() => {
             playAudio()
             paginate(-1)
           }}
-          className='absolute top-1/2 left-4 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-black p-3 rounded-full shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2 hover:scale-110'
+          className='absolute left-4 top-1/2 z-10 -translate-y-1/2 rounded-xl border border-border/50 bg-white/95 p-3 text-text-primary shadow-md shadow-black/10 backdrop-blur-sm transition-all duration-200 hover:bg-white hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 active:scale-[0.97]'
           aria-label='Vorheriges Video'
         >
-          <Icon icon='mdi:chevron-left' className='text-2xl' />
+          <Icon icon='mdi:chevron-left' className='text-2xl' aria-hidden />
         </button>
         <button
+          type='button'
           onClick={() => {
             playAudio()
             paginate(1)
           }}
-          className='absolute top-1/2 right-4 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-black p-3 rounded-full shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2 hover:scale-110'
+          className='absolute right-4 top-1/2 z-10 -translate-y-1/2 rounded-xl border border-border/50 bg-white/95 p-3 text-text-primary shadow-md shadow-black/10 backdrop-blur-sm transition-all duration-200 hover:bg-white hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 active:scale-[0.97]'
           aria-label='Nächstes Video'
         >
-          <Icon icon='mdi:chevron-right' className='text-2xl' />
+          <Icon icon='mdi:chevron-right' className='text-2xl' aria-hidden />
         </button>
 
         {/* Video Counter */}
-        <div className='absolute bottom-4 left-1/2 -translate-x-1/2 z-10 bg-black/70 text-white px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm'>
+        <div className='absolute bottom-4 left-1/2 z-10 -translate-x-1/2 rounded-xl bg-black/75 px-4 py-2 text-sm font-semibold text-white shadow-lg backdrop-blur-sm'>
           {videoIndex + 1} / {videos.length}
         </div>
       </div>
@@ -158,13 +160,14 @@ const VideoGallery: React.FC = () => {
         <div className='flex gap-4 justify-center'>
           {videos.map((video, index) => (
             <button
+              type='button'
               key={video.id}
               onClick={() => {
                 playAudio()
                 const direction = index > videoIndex ? 1 : -1
                 setPage([index, direction])
               }}
-              className={`flex-shrink-0 w-24 h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2 ${
+              className={`flex-shrink-0 w-24 h-16 rounded-xl overflow-hidden border-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 ${
                 index === videoIndex
                   ? 'border-accent-cyan scale-110 shadow-lg'
                   : 'border-transparent hover:border-accent-cyan/50 hover:scale-105 opacity-70 hover:opacity-100'

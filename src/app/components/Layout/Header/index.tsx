@@ -92,7 +92,7 @@ const Header: React.FC = () => {
               href='https://wa.me/494053790578'
               target='_blank'
               rel='noopener noreferrer'
-              className='hidden lg:flex items-center gap-2 bg-accent-cyan text-white hover:bg-accent-cyan/90 px-4 py-2 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2 shadow-md hover:shadow-lg'
+              className='btn-accent-sm hidden lg:flex'
               aria-label='WhatsApp Kontakt'
             >
               <Icon icon='mdi:whatsapp' className='text-xl' aria-hidden='true' />
@@ -102,7 +102,7 @@ const Header: React.FC = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setNavbarOpen(!navbarOpen)}
-              className='lg:hidden p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2 transition-all duration-200 z-50'
+              className='btn-icon-surface z-50 p-2 lg:hidden'
               aria-label='Toggle mobile menu'
               aria-expanded={navbarOpen}
             >
@@ -149,7 +149,7 @@ const Header: React.FC = () => {
           <Logo />
           <button
             onClick={() => setNavbarOpen(false)}
-            className='p-2 rounded-lg hover:bg-grey transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2'
+            className='btn-icon-surface p-2 hover:bg-grey'
             aria-label='Close menu'
           >
             <Icon icon='mdi:close' className='text-2xl text-text-primary' />
@@ -167,7 +167,7 @@ const Header: React.FC = () => {
             href='https://wa.me/494053790578'
             target='_blank'
             rel='noopener noreferrer'
-            className='mt-6 flex items-center justify-center gap-2 bg-accent-cyan text-white hover:bg-accent-cyan/90 px-6 py-3 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2 shadow-md'
+            className='btn-accent-sm mt-6 flex w-full justify-center'
             onClick={() => setNavbarOpen(false)}
           >
             <Icon icon='mdi:whatsapp' className='text-xl' />

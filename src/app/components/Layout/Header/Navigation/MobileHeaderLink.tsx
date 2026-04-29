@@ -3,9 +3,7 @@ import Link from 'next/link'
 import { HeaderItem } from '@/app/types/menu'
 import { usePathname, useRouter } from 'next/navigation'
 import { Icon } from '@iconify/react'
-import { Bebas_Neue } from 'next/font/google'
-
-const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
+import { bebasNeue } from '@/app/fonts'
 
 const MobileHeaderLink: React.FC<{
   item: HeaderItem

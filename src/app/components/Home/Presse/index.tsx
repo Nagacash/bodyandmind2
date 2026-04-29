@@ -4,10 +4,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
-import { Bebas_Neue } from 'next/font/google'
 import VideoGallery from './VideoGallery'
-
-const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
+import { bebasNeue } from '@/app/fonts'
 
 const pressArticles = [
   {
@@ -97,7 +95,7 @@ const Presse = () => {
           {pressCategories.map((category, index) => (
             <div
               key={index}
-              className={`${category.color} text-white px-6 py-3 rounded-full flex items-center gap-2 shadow-lg`}
+              className={`${category.color} flex items-center gap-2 rounded-xl px-6 py-3 text-white shadow-md shadow-black/10 ring-1 ring-inset ring-white/15`}
             >
               <Icon icon={category.icon} className='text-xl' />
               <span className='font-semibold'>{category.name}</span>
@@ -226,7 +224,7 @@ const Presse = () => {
                 href='https://www.ndr.de/fernsehen/sendungen/hamburg_journal/Hamburgerin-Natalie-Zimmermann-boxt-um-WBO-WM-Titel,hamj157910.html'
                 target='_blank'
                 rel='noopener noreferrer'
-                className='inline-flex items-center gap-2 bg-white text-accent-cyan px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-accent-cyan'
+                className='btn-solid-light'
               >
                 Artikel ansehen
                 <Icon icon='mdi:arrow-right' className='text-xl' />

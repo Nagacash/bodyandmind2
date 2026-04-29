@@ -58,10 +58,7 @@ const NotFound = () => {
                 Oops! The page you are looking for does not exist. It might have
                 been moved or deleted.
               </p>
-              <Link
-                href="/"
-                className="rounded-md px-7 py-3 text-base font-medium text-white transition hover:bg-blue-700 bg-primary"
-              >
+              <Link href='/' className='btn-primary'>
                 Go To Home
               </Link>
             </div>

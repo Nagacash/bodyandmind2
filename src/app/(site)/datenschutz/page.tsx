@@ -8,10 +8,10 @@ export default function DatenschutzPage() {
 
   return (
     <div className="container mx-auto max-w-7xl px-4 py-16 md:py-24 lg:py-32">
-      <button onClick={() => router.back()} className="mb-8 px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300">Go Back</button>
-      <h1 className="text-4xl font-bold mb-8">Datenschutzerklärung</h1>
-
-      <h2 className="text-2xl font-semibold mt-8 mb-4">1. Datenschutz auf einen Blick</h2>
+      <button type='button' onClick={() => router.back()} className='btn-back'>
+        ← Zurück
+      </button>
+      <h1 className='text-4xl font-bold mb-8'>Datenschutzerklärung</h1>
       <h3 className="text-xl font-semibold mt-4 mb-2">Allgemeine Hinweise</h3>
       <p className="mb-4">Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text aufgeführten Datenschutzerklärung.</p>
 

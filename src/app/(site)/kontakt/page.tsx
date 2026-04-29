@@ -4,9 +4,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Icon } from '@iconify/react'
-import { Bebas_Neue } from 'next/font/google'
-
-const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
+import { bebasNeue } from '@/app/fonts'
 
 const KontaktPage = () => {
   const [formData, setFormData] = useState({
@@ -194,7 +192,7 @@ const KontaktPage = () => {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
-                      className="w-12 h-12 bg-black rounded-full flex items-center justify-center hover:bg-accent-cyan transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2"
+                      className="btn-icon-filled"
                       aria-label={social.label}
                     >
                       <Icon icon={social.icon} className="text-white text-xl" />

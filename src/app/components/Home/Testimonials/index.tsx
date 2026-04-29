@@ -6,9 +6,7 @@ import { Icon } from '@iconify/react'
 import { testimonials } from '@/app/types/testimonials'
 import { motion } from 'framer-motion'
 import TestimonialSkeleton from '../../Skeleton/Testimonial'
-import { Bebas_Neue } from 'next/font/google'
-
-const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
+import { bebasNeue } from '@/app/fonts'
 
 interface TestimonialType {
   name: string
@@ -141,11 +139,11 @@ const Testimonial: React.FC = () => {
     fetchData()
   }, [])
 
-  // Calculate average rating
-  const averageRating =
-    testimonals.length > 0
-      ? testimonals.reduce((sum, t) => sum + t.rating, 0) / testimonals.length
-      : 0
+  let averageRating = 0
+  if (testimonals.length > 0) {
+    const sum = testimonals.reduce((acc, t) => acc + t.rating, 0)
+    averageRating = sum / testimonals.length
+  }
 
   return (
     <section
@@ -153,7 +151,11 @@ const Testimonial: React.FC = () => {
       id='testimonial-section'
     >
       {/* Decorative Background */}
-      <div className='absolute inset-0 bg-[url("/images/wework/elipse.svg")] bg-no-repeat bg-center opacity-5' />
+      <div
+        className='pointer-events-none absolute inset-0 bg-center bg-no-repeat opacity-5'
+        style={{ backgroundImage: 'url(/images/wework/elipse.svg)' }}
+        aria-hidden
+      />
 
       <div className='container mx-auto max-w-7xl px-4 relative z-10'>
         {/* Header */}
@@ -234,45 +236,6 @@ const Testimonial: React.FC = () => {
           </Slider>
         </motion.div>
 
-        {/* Custom Slider Styles */}
-        <style jsx global>{`
-          .slick-dots {
-            bottom: -50px !important;
-          }
-          .slick-dots li button:before {
-            color: var(--color-accent-cyan) !important;
-            font-size: 12px !important;
-            opacity: 0.3 !important;
-          }
-          .slick-dots li.slick-active button:before {
-            opacity: 1 !important;
-            color: var(--color-accent-cyan) !important;
-          }
-          .slick-prev,
-          .slick-next {
-            z-index: 20;
-            width: 48px;
-            height: 48px;
-          }
-          .slick-prev:before,
-          .slick-next:before {
-            color: var(--color-accent-cyan);
-            font-size: 24px;
-          }
-          .slick-prev {
-            left: -60px;
-          }
-          .slick-next {
-            right: -60px;
-          }
-          @media (max-width: 1024px) {
-            .slick-prev,
-            .slick-next {
-              display: none !important;
-            }
-          }
-        `}</style>
-
         {/* Trust Badge */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -281,7 +244,7 @@ const Testimonial: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
           className='mt-16 md:mt-20 text-center'
         >
-          <div className='inline-flex items-center gap-3 bg-white rounded-full px-6 py-3 shadow-lg'>
+          <div className='inline-flex items-center gap-3 rounded-xl bg-white px-6 py-3 shadow-md shadow-black/10 ring-1 ring-border/60'>
             <Icon icon='mdi:shield-check' className='text-accent-cyan text-2xl' />
             <p className='text-text-primary font-semibold'>
               Verifizierte Bewertungen von echten Kunden

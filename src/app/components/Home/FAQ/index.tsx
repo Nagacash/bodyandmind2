@@ -1,12 +1,10 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Icon } from '@iconify/react'
 import { DisclosurePanel, DisclosureButton, Disclosure } from '@headlessui/react'
 import { motion } from 'framer-motion'
-import { Bebas_Neue } from 'next/font/google'
 import Link from 'next/link'
-
-const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
+import { bebasNeue } from '@/app/fonts'
 
 interface FAQItem {
   id: number
@@ -57,6 +55,7 @@ const faqData: FAQItem[] = [
 const FAQ = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [desktopActiveId, setDesktopActiveId] = useState<number>(faqData[0].id)
 
   const playAudio = () => {
     const audio = new Audio('/sound/click.wav')
@@ -68,13 +67,27 @@ const FAQ = () => {
     new Set(faqData.map((faq) => faq.category).filter((cat): cat is string => Boolean(cat)))
   )
 
-  const filteredFAQs = faqData.filter((faq) => {
-    const matchesSearch =
-      faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      faq.answer.toLowerCase().includes(searchQuery.toLowerCase())
-    const matchesCategory = !selectedCategory || faq.category === selectedCategory
-    return matchesSearch && matchesCategory
-  })
+  const filteredFAQs = useMemo(
+    () =>
+      faqData.filter((faq) => {
+        const matchesSearch =
+          faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          faq.answer.toLowerCase().includes(searchQuery.toLowerCase())
+        const matchesCategory = !selectedCategory || faq.category === selectedCategory
+        return matchesSearch && matchesCategory
+      }),
+    [searchQuery, selectedCategory]
+  )
+
+  useEffect(() => {
+    if (filteredFAQs.length === 0) return
+    setDesktopActiveId((id) =>
+      filteredFAQs.some((f) => f.id === id) ? id : filteredFAQs[0].id
+    )
+  }, [filteredFAQs])
+
+  const desktopActiveFaq =
+    filteredFAQs.find((f) => f.id === desktopActiveId) ?? filteredFAQs[0]
 
   return (
     <section
@@ -98,9 +111,9 @@ const FAQ = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className='text-accent-cyan text-sm md:text-base font-bold mb-4 uppercase tracking-wider'
+            className='mb-4 text-sm font-semibold tracking-wide text-accent-cyan md:text-base'
           >
-            FAQ
+            Fragen & Antworten
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -150,24 +163,18 @@ const FAQ = () => {
             {categories.length > 0 && (
               <div className='flex flex-wrap justify-center gap-3'>
                 <button
+                  type="button"
                   onClick={() => setSelectedCategory(null)}
-                  className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-                    selectedCategory === null
-                      ? 'bg-accent-cyan text-white shadow-lg'
-                      : 'bg-white text-text-secondary hover:bg-accent-cyan/10'
-                  }`}
+                  className={`btn-chip ${selectedCategory === null ? 'btn-chip-active' : 'btn-chip-idle'}`}
                 >
                   Alle
                 </button>
                 {categories.map((category) => (
                   <button
+                    type="button"
                     key={category}
                     onClick={() => setSelectedCategory(category)}
-                    className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-                      selectedCategory === category
-                        ? 'bg-accent-cyan text-white shadow-lg'
-                        : 'bg-white text-text-secondary hover:bg-accent-cyan/10'
-                    }`}
+                    className={`btn-chip ${selectedCategory === category ? 'btn-chip-active' : 'btn-chip-idle'}`}
                   >
                     {category}
                   </button>
@@ -177,90 +184,171 @@ const FAQ = () => {
           </div>
         </motion.div>
 
-        {/* FAQ Items */}
-        <div className='max-w-4xl mx-auto space-y-4'>
+        {/* FAQ: split panel (lg+), accordion mobile */}
+        <div className='mx-auto max-w-6xl'>
           {filteredFAQs.length > 0 ? (
-            filteredFAQs.map((faq, index) => (
-              <motion.div
-                key={faq.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className='bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden'
-              >
-                <Disclosure>
-                  {({ open }) => (
-                    <>
-                      <DisclosureButton
-                        onClick={playAudio}
-                        className='flex w-full justify-between items-center p-6 md:p-8 text-left focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2 rounded-2xl hover:bg-grey/50 transition-colors duration-300'
-                      >
-                        <div className='flex items-start gap-4 flex-grow'>
-                          <div className='flex-shrink-0 w-10 h-10 bg-accent-cyan/10 rounded-xl flex items-center justify-center mt-1'>
-                            <Icon
-                              icon='mdi:help-circle-outline'
-                              className='text-accent-cyan text-xl'
-                            />
-                          </div>
-                          <div className='flex-grow'>
-                            <h3 className='text-lg md:text-xl font-bold text-text-primary mb-1 pr-8'>
-                              {faq.question}
-                            </h3>
-                            {faq.category && (
-                              <span className='inline-block text-xs text-text-secondary bg-grey px-3 py-1 rounded-full font-semibold'>
-                                {faq.category}
+            <>
+              <div className='hidden gap-10 lg:grid lg:grid-cols-12 lg:items-start'>
+                <div className='lg:col-span-5'>
+                  <p className='mb-3 text-xs font-semibold uppercase tracking-wide text-text-muted'>
+                    Thema wählen
+                  </p>
+                  <ul
+                    className='max-h-[min(70vh,560px)] space-y-2 overflow-y-auto pr-1 [scrollbar-width:thin]'
+                    role='tablist'
+                    aria-label='Fragen'
+                  >
+                    {filteredFAQs.map((faq, index) => {
+                      const active = faq.id === desktopActiveId
+                      return (
+                        <li key={faq.id}>
+                          <button
+                            type='button'
+                            role='tab'
+                            aria-selected={active}
+                            onClick={() => {
+                              playAudio()
+                              setDesktopActiveId(faq.id)
+                            }}
+                            className={`flex w-full rounded-2xl border-2 px-4 py-4 text-left transition-all duration-300 ${
+                              active
+                                ? 'border-accent-cyan bg-white shadow-[var(--shadow-card-lift)]'
+                                : 'border-border/80 bg-white/60 hover:border-accent-cyan/40 hover:bg-white'
+                            }`}
+                          >
+                            <span className='mr-3 mt-0.5 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-accent-cyan/10 text-sm font-bold text-accent-cyan'>
+                              {String(index + 1).padStart(2, '0')}
+                            </span>
+                            <span className='min-w-0 flex-1'>
+                              <span className='block font-semibold text-text-primary'>
+                                {faq.question}
                               </span>
-                            )}
-                          </div>
-                        </div>
-                        <div
-                          className={`flex-shrink-0 w-10 h-10 bg-accent-cyan rounded-xl flex items-center justify-center transform transition-transform duration-300 ${
-                            open ? 'rotate-180' : ''
-                          }`}
+                              {faq.category ? (
+                                <span className='mt-1 inline-block rounded-full bg-grey px-2 py-0.5 text-xs font-medium text-text-secondary'>
+                                  {faq.category}
+                                </span>
+                              ) : null}
+                            </span>
+                          </button>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </div>
+                <div className='lg:col-span-7'>
+                  {desktopActiveFaq ? (
+                    <motion.div
+                      key={desktopActiveFaq.id}
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.35 }}
+                      className='rounded-3xl border border-border bg-white p-8 shadow-[var(--shadow-card-lift)] md:p-10'
+                      role='tabpanel'
+                    >
+                      <h3 className={`mb-4 text-2xl font-bold text-text-primary md:text-3xl ${bebasNeue.className} text-pretty`}>
+                        {desktopActiveFaq.question}
+                      </h3>
+                      <p className='copy-prose text-base leading-relaxed text-text-secondary md:text-lg'>
+                        {desktopActiveFaq.answer}
+                      </p>
+                      {desktopActiveFaq.id === 1 && (
+                        <Link
+                          href='/kontakt'
+                          className='mt-6 inline-flex items-center gap-2 font-semibold text-accent-cyan transition-colors duration-300 hover:text-accent-cyan/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2'
                         >
-                          <Icon
-                            icon='mdi:chevron-down'
-                            className='text-white text-xl'
-                          />
-                        </div>
-                      </DisclosureButton>
-                      <DisclosurePanel className='px-6 md:px-8 pb-6 md:pb-8'>
-                        <div className='pl-14 md:pl-16'>
-                          <div className='pt-4 border-t border-border'>
-                            <p className='text-base md:text-lg text-text-secondary leading-relaxed'>
-                              {faq.answer}
-                            </p>
-                            {faq.id === 1 && (
-                              <Link
-                                href='/kontakt'
-                                className='inline-flex items-center gap-2 mt-4 text-accent-cyan font-semibold hover:text-accent-cyan/80 transition-colors duration-300'
-                              >
-                                Zur Kontaktseite
-                                <Icon icon='mdi:arrow-right' className='text-lg' />
-                              </Link>
-                            )}
-                          </div>
-                        </div>
-                      </DisclosurePanel>
-                    </>
-                  )}
-                </Disclosure>
-              </motion.div>
-            ))
+                          Zur Kontaktseite
+                          <Icon icon='mdi:arrow-right' className='text-lg' aria-hidden />
+                        </Link>
+                      )}
+                    </motion.div>
+                  ) : null}
+                </div>
+              </div>
+
+              <div className='max-w-4xl mx-auto space-y-4 lg:hidden'>
+                {filteredFAQs.map((faq, index) => (
+                  <motion.div
+                    key={faq.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.05 }}
+                    className='overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl'
+                  >
+                    <Disclosure>
+                      {({ open }) => (
+                        <>
+                          <DisclosureButton
+                            onClick={playAudio}
+                            className='flex w-full items-center justify-between rounded-2xl p-6 text-left transition-colors duration-300 hover:bg-grey/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 md:p-8'
+                          >
+                            <div className='flex flex-grow items-start gap-4'>
+                              <div className='mt-1 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-accent-cyan/10'>
+                                <Icon
+                                  icon='mdi:help-circle-outline'
+                                  className='text-xl text-accent-cyan'
+                                  aria-hidden
+                                />
+                              </div>
+                              <div className='min-w-0 flex-grow'>
+                                <h3 className='mb-1 pr-6 text-lg font-bold text-text-primary md:text-xl'>
+                                  {faq.question}
+                                </h3>
+                                {faq.category ? (
+                                  <span className='inline-block rounded-full bg-grey px-3 py-1 text-xs font-semibold text-text-secondary'>
+                                    {faq.category}
+                                  </span>
+                                ) : null}
+                              </div>
+                            </div>
+                            <div
+                              className={`flex h-10 w-10 flex-shrink-0 transform items-center justify-center rounded-xl bg-accent-cyan transition-transform duration-300 ${
+                                open ? 'rotate-180' : ''
+                              }`}
+                            >
+                              <Icon icon='mdi:chevron-down' className='text-xl text-white' aria-hidden />
+                            </div>
+                          </DisclosureButton>
+                          <DisclosurePanel className='px-6 pb-6 md:px-8 md:pb-8'>
+                            <div className='border-t border-border pl-14 pt-4 md:pl-16'>
+                              <p className='text-base leading-relaxed text-text-secondary md:text-lg'>
+                                {faq.answer}
+                              </p>
+                              {faq.id === 1 && (
+                                <Link
+                                  href='/kontakt'
+                                  className='mt-4 inline-flex items-center gap-2 font-semibold text-accent-cyan transition-colors duration-300 hover:text-accent-cyan/80'
+                                >
+                                  Zur Kontaktseite
+                                  <Icon icon='mdi:arrow-right' className='text-lg' aria-hidden />
+                                </Link>
+                              )}
+                            </div>
+                          </DisclosurePanel>
+                        </>
+                      )}
+                    </Disclosure>
+                  </motion.div>
+                ))}
+              </div>
+            </>
           ) : (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className='text-center py-12 bg-white rounded-2xl shadow-lg'
+              className='rounded-2xl bg-white py-12 text-center shadow-lg'
             >
-              <Icon icon='mdi:help-circle-outline' className='text-text-secondary text-6xl mb-4 mx-auto' />
-              <p className='text-text-secondary text-lg font-semibold mb-2'>
+              <Icon
+                icon='mdi:help-circle-outline'
+                className='mx-auto mb-4 text-6xl text-text-secondary'
+                aria-hidden
+              />
+              <p className='mb-2 text-lg font-semibold text-text-secondary'>
                 Keine Ergebnisse gefunden
               </p>
               <p className='text-text-muted'>
                 Versuchen Sie es mit anderen Suchbegriffen oder{' '}
-                <Link href='/kontakt' className='text-accent-cyan hover:underline font-semibold'>
+                <Link href='/kontakt' className='font-semibold text-accent-cyan hover:underline'>
                   kontaktieren Sie uns direkt
                 </Link>
                 .
@@ -289,7 +377,7 @@ const FAQ = () => {
               </p>
               <Link
                 href='/kontakt'
-                className='inline-flex items-center gap-2 bg-white text-accent-cyan px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-accent-cyan'
+                className='btn-solid-light'
               >
                 Jetzt kontaktieren
                 <Icon icon='mdi:arrow-right' className='text-xl' />

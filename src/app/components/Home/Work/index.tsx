@@ -8,9 +8,7 @@ import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { workdata } from '@/app/types/workdata'
 import WorkSkeleton from '../../Skeleton/Work'
-import { Bebas_Neue } from 'next/font/google'
-
-const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
+import { bebasNeue } from '@/app/fonts'
 
 const settings = {
   dots: false,

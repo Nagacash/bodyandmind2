@@ -8,10 +8,10 @@ export default function ImpressumPage() {
 
   return (
     <div className="container mx-auto max-w-7xl px-4 py-16 md:py-24 lg:py-32">
-      <button onClick={() => router.back()} className="mb-8 px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300">Go Back</button>
-      <h1 className="text-4xl font-bold mb-8">Impressum</h1>
-
-      <h2 className="text-2xl font-semibold mt-8 mb-4">Angaben gemäß § 5 TMG</h2>
+      <button type='button' onClick={() => router.back()} className='btn-back'>
+        ← Zurück
+      </button>
+      <h1 className='text-4xl font-bold mb-8'>Impressum</h1>
       <p>Natalie Zimmermann</p>
       <p>Physiotherapeutin & Personal Fitness Trainerin | body&mind</p>
       <p>Rothenbaumchaussee 156</p>

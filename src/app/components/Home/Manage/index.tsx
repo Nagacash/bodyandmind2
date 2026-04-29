@@ -148,10 +148,11 @@ const Manage = () => {
                   <h5 className='mb-3'>{items.heading}</h5>
                   <p className='text-6xl font-extrabold mb-3'>${items.price}</p>
                   <p className='text-sm font-medium mb-6'>{items.user}</p>
-                  <Link href={'mailto:info@example.com'}>
-                    <button className='text-sm font-bold text-primary bg-transparent hover:bg-primary hover:text-white border-2 border-primary rounded-full py-4 px-12 mb-6 hover:cursor-pointer'>
-                      Start My 15-day Trial
-                    </button>
+                  <Link
+                    href='mailto:info@example.com'
+                    className='btn-outline-primary mb-6'
+                  >
+                    Start My 15-day Trial
                   </Link>
                   {/* Map through the features object and render each key-value pair dynamically */}
                   {items.features.map((feature: string, index: number) => (

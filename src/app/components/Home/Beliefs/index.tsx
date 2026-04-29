@@ -3,9 +3,7 @@ import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
-import { Bebas_Neue } from 'next/font/google'
-
-const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
+import { bebasNeue } from '@/app/fonts'
 
 const Beliefs = () => {
   return (
@@ -80,7 +78,7 @@ const Beliefs = () => {
               {/* CTA Button */}
               <Link
                 href='/kontakt'
-                className='inline-flex items-center gap-2 bg-white text-accent-cyan px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-accent-cyan'
+                className='btn-solid-light'
               >
                 Jetzt Termin vereinbaren
                 <Icon icon='mdi:arrow-right' className='text-xl' />
@@ -135,7 +133,7 @@ const Beliefs = () => {
               {/* CTA Button */}
               <Link
                 href='/kontakt'
-                className='inline-flex items-center gap-2 bg-black text-white px-6 py-3 rounded-full font-semibold hover:bg-darkmode transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-offset-accent-cyan-light'
+                className='btn-primary'
               >
                 Jetzt Kontakt aufnehmen
                 <Icon icon='mdi:arrow-right' className='text-xl' />

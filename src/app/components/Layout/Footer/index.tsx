@@ -6,9 +6,6 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { footerlinks } from '@/app/types/footerlinks'
-import { Bebas_Neue } from 'next/font/google'
-
-const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 
 const footer = () => {
   const [footerlinks, setFooterLinks] = useState<footerlinks[]>([])

@@ -1,121 +1,16 @@
 'use client'
-import React, { useEffect, useState } from 'react'
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
+import React, { useCallback, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { featureddata } from '@/app/types/featureddata'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import FeaturedSkeleton from '../../Skeleton/Featured'
-import { Bebas_Neue } from 'next/font/google'
+import { bebasNeue } from '@/app/fonts'
 import { Icon } from '@iconify/react'
-
-const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
-
-const SampleNextArrow = (props: { className?: string; style?: React.CSSProperties; onClick?: () => void }) => {
-  const { className, style, onClick } = props
-  return (
-    <div
-      className={className}
-      style={{
-        ...style,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        background: 'var(--color-accent-cyan)',
-        padding: '20px',
-        borderRadius: '50%',
-        width: '56px',
-        height: '56px',
-        zIndex: 10,
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-        cursor: 'pointer',
-      }}
-      onClick={onClick}
-      aria-label="Next slide"
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if ((e.key === 'Enter' || e.key === ' ') && onClick) {
-          e.preventDefault()
-          onClick()
-        }
-      }}
-    >
-      <Icon icon="mdi:chevron-right" className="text-white text-2xl" />
-    </div>
-  )
-}
-
-const SamplePrevArrow = (props: { className?: string; style?: React.CSSProperties; onClick?: () => void }) => {
-  const { className, style, onClick } = props
-  return (
-    <div
-      className={className}
-      style={{
-        ...style,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        background: 'var(--color-accent-cyan)',
-        padding: '20px',
-        borderRadius: '50%',
-        width: '56px',
-        height: '56px',
-        zIndex: 10,
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-        cursor: 'pointer',
-      }}
-      onClick={onClick}
-      aria-label="Previous slide"
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if ((e.key === 'Enter' || e.key === ' ') && onClick) {
-          e.preventDefault()
-          onClick()
-        }
-      }}
-    >
-      <Icon icon="mdi:chevron-left" className="text-white text-2xl" />
-    </div>
-  )
-}
-
-const settings = {
-  dots: true,
-  infinite: true,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  arrows: true,
-  autoplay: true,
-  autoplaySpeed: 5000,
-  speed: 800,
-  fade: true,
-  nextArrow: <SampleNextArrow />,
-  prevArrow: <SamplePrevArrow />,
-  cssEase: 'cubic-bezier(0.4, 0, 0.2, 1)',
-  pauseOnHover: true,
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        arrows: true,
-      },
-    },
-    {
-      breakpoint: 768,
-      settings: {
-        arrows: false,
-        dots: true,
-      },
-    },
-  ],
-}
 
 const Featured = () => {
   const [featured, setFeatured] = useState<featureddata[]>([])
   const [loading, setLoading] = useState(true)
+  const [activeIndex, setActiveIndex] = useState(0)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -130,39 +25,66 @@ const Featured = () => {
         setLoading(false)
       }
     }
-
     fetchData()
   }, [])
 
+  useEffect(() => {
+    if (featured.length && activeIndex >= featured.length) {
+      setActiveIndex(0)
+    }
+  }, [featured, activeIndex])
+
+  useEffect(() => {
+    if (featured.length < 2) return
+    const t = setInterval(() => {
+      setActiveIndex((i) => (i + 1) % featured.length)
+    }, 5500)
+    return () => clearInterval(t)
+  }, [featured.length])
+
+  const go = useCallback(
+    (dir: -1 | 1) => {
+      setActiveIndex((i) => {
+        const n = featured.length
+        if (!n) return 0
+        return (i + dir + n) % n
+      })
+    },
+    [featured.length]
+  )
+
+  const current = featured[activeIndex]
+
   return (
-    <section id='Featured' className="relative bg-grey py-16 md:py-20 lg:py-24 overflow-hidden">
-      {/* Decorative Background Elements */}
-      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-[url('/images/wework/vector.svg')] bg-no-repeat bg-contain opacity-20 -z-0" />
-      
-      <div className='container mx-auto max-w-7xl px-4 relative z-10'>
-        {/* Header */}
+    <section
+      id='Featured'
+      className='relative overflow-hidden bg-grey py-16 md:py-20 lg:py-24'
+    >
+      <div className='pointer-events-none absolute top-0 right-0 -z-0 h-1/3 w-1/3 bg-[url("/images/wework/vector.svg")] bg-contain bg-no-repeat opacity-20' />
+
+      <div className='container relative z-10 mx-auto max-w-7xl px-4'>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className='text-center mb-12 md:mb-16'
+          className='mb-12 text-center md:mb-16'
         >
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className='text-accent-cyan text-sm md:text-base font-bold mb-4 uppercase tracking-wider'
+            className='mb-4 text-sm font-semibold tracking-wide text-accent-cyan md:text-base'
           >
-            Featured Works
+            Ausgewählte Einblicke
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className={`text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 ${bebasNeue.className}`}
+            className={`mb-6 text-4xl font-bold text-text-primary md:text-5xl lg:text-6xl ${bebasNeue.className} text-balance`}
           >
             Unsere Highlights
           </motion.h2>
@@ -171,111 +93,109 @@ const Featured = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className='text-text-secondary text-base md:text-lg max-w-3xl mx-auto leading-relaxed'
+            className='copy-prose mx-auto max-w-3xl text-base leading-relaxed text-text-secondary md:text-lg'
           >
-            Entdecken Sie unsere besten Momente, Trainingseinheiten und Erfolge. Jedes Bild erzählt eine Geschichte von Leidenschaft, Hingabe und Exzellenz.
+            Entdecken Sie unsere besten Momente, Trainingseinheiten und Erfolge. Jedes Bild erzählt
+            eine Geschichte von Leidenschaft, Hingabe und Exzellenz.
           </motion.p>
         </motion.div>
 
-        {/* Slider Container */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="relative"
-        >
-          <Slider {...settings}>
-            {loading
-              ? Array.from({ length: 2 }).map((_, index) => (
-                  <FeaturedSkeleton key={index} />
-                ))
-              : featured.map((items, i) => (
-                  <div key={i} className="px-2 md:px-4">
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5 }}
-                      className='group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300'
-                    >
-                      {/* Image Container */}
-                      <div className='relative aspect-[4/3] md:aspect-[16/10] overflow-hidden'>
-                        <Image
-                          src={items.imgSrc}
-                          alt={items.heading || `Featured work ${i + 1}`}
-                          fill
-                          className='object-cover group-hover:scale-110 transition-transform duration-700'
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
-                        />
-                        {/* Gradient Overlay */}
-                        <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
-                        
-                        {/* Content Overlay */}
-                        {items.heading && (
-                          <div className='absolute bottom-0 left-0 right-0 p-6 md:p-8 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300'>
-                            <h4 className='text-white text-2xl md:text-3xl font-bold mb-2'>
-                              {items.heading}
-                            </h4>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Bottom Content */}
-                      {items.heading && (
-                        <div className='p-6 md:p-8 bg-white'>
-                          <h4 className='text-xl md:text-2xl font-bold text-text-primary text-center'>
-                            {items.heading}
-                          </h4>
-                        </div>
-                      )}
-                    </motion.div>
+        {loading ? (
+          <div className='flex justify-center py-8'>
+            <FeaturedSkeleton />
+          </div>
+        ) : featured.length === 0 ? null : (
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, delay: 0.15 }}
+            className='space-y-6'
+          >
+            <div className='relative'>
+              <AnimatePresence mode='wait'>
+                <motion.div
+                  key={current?.imgSrc ?? activeIndex}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.35 }}
+                  className='group relative overflow-hidden rounded-3xl bg-white shadow-[var(--shadow-card-lift)]'
+                >
+                  <div className='relative aspect-[4/3] overflow-hidden md:aspect-[16/10]'>
+                    <Image
+                      src={current.imgSrc}
+                      alt={current.heading || `Featured work ${activeIndex + 1}`}
+                      fill
+                      className='object-cover transition-transform duration-700 group-hover:scale-[1.03]'
+                      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px'
+                      priority={activeIndex === 0}
+                    />
+                    <div className='pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent opacity-80 md:opacity-90' />
+                    <div className='absolute bottom-0 left-0 right-0 p-6 md:p-10'>
+                      <p className='text-center text-xl font-bold text-white md:text-2xl lg:text-3xl'>
+                        {current.heading}
+                      </p>
+                    </div>
                   </div>
-                ))}
-          </Slider>
-        </motion.div>
+                </motion.div>
+              </AnimatePresence>
 
-        {/* Custom Dots Styling */}
-        <style jsx global>{`
-          .slick-dots {
-            bottom: -50px !important;
-          }
-          .slick-dots li button:before {
-            color: var(--color-accent-cyan) !important;
-            font-size: 12px !important;
-            opacity: 0.3 !important;
-          }
-          .slick-dots li.slick-active button:before {
-            opacity: 1 !important;
-            color: var(--color-accent-cyan) !important;
-          }
-          .slick-dots li button:hover:before {
-            opacity: 0.7 !important;
-          }
-          .slick-prev,
-          .slick-next {
-            z-index: 20;
-          }
-          .slick-prev {
-            left: -70px;
-          }
-          .slick-next {
-            right: -70px;
-          }
-          @media (max-width: 1024px) {
-            .slick-prev {
-              left: 10px;
-            }
-            .slick-next {
-              right: 10px;
-            }
-          }
-          @media (max-width: 768px) {
-            .slick-prev,
-            .slick-next {
-              display: none !important;
-            }
-          }
-        `}</style>
+              {featured.length > 1 && (
+                <>
+                  <button
+                    type='button'
+                    onClick={() => go(-1)}
+                    className='absolute left-2 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-xl bg-accent-cyan text-white shadow-md shadow-accent-cyan/35 ring-1 ring-inset ring-white/10 transition-all duration-200 hover:bg-accent-cyan-dark hover:shadow-lg active:scale-[0.97] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 md:left-4 md:h-14 md:w-14'
+                    aria-label='Vorheriges Bild'
+                  >
+                    <Icon icon='mdi:chevron-left' className='text-2xl md:text-3xl' aria-hidden />
+                  </button>
+                  <button
+                    type='button'
+                    onClick={() => go(1)}
+                    className='absolute right-2 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-xl bg-accent-cyan text-white shadow-md shadow-accent-cyan/35 ring-1 ring-inset ring-white/10 transition-all duration-200 hover:bg-accent-cyan-dark hover:shadow-lg active:scale-[0.97] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 md:right-4 md:h-14 md:w-14'
+                    aria-label='Nächstes Bild'
+                  >
+                    <Icon icon='mdi:chevron-right' className='text-2xl md:text-3xl' aria-hidden />
+                  </button>
+                </>
+              )}
+            </div>
+
+            {featured.length > 1 && (
+              <div
+                className='flex gap-3 overflow-x-auto pb-2 pt-1 [scrollbar-width:thin]'
+                style={{ scrollSnapType: 'x mandatory' }}
+                role='tablist'
+                aria-label='Highlight auswählen'
+              >
+                {featured.map((item, i) => (
+                  <button
+                    key={`${item.imgSrc}-${i}`}
+                    type='button'
+                    role='tab'
+                    aria-selected={i === activeIndex}
+                    onClick={() => setActiveIndex(i)}
+                    className={`relative h-16 w-24 shrink-0 snap-start overflow-hidden rounded-xl border-2 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 md:h-20 md:w-28 ${
+                      i === activeIndex
+                        ? 'border-accent-cyan ring-2 ring-accent-cyan/40'
+                        : 'border-transparent opacity-75 hover:opacity-100'
+                    }`}
+                  >
+                    <Image
+                      src={item.imgSrc}
+                      alt=''
+                      fill
+                      className='object-cover'
+                      sizes='112px'
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+          </motion.div>
+        )}
       </div>
     </section>
   )

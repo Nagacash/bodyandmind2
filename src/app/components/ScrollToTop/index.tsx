@@ -76,7 +76,7 @@ export default function ScrollToTop() {
                 href='https://wa.me/494053790578'
                 target='_blank'
                 rel='noopener noreferrer'
-                className='btn-primary text-sm md:text-base inline-flex items-center gap-2 shadow-lg hover:shadow-xl transition-all duration-300'
+                className='btn-accent-sm inline-flex items-center gap-2'
                 aria-label='WhatsApp Kontakt - 040 / 53790578'
               >
                 <Icon icon='mdi:whatsapp' className='text-xl' />
@@ -89,7 +89,7 @@ export default function ScrollToTop() {
             <motion.button
               onClick={scrollToTop}
               aria-label='Scroll to top'
-              className='back-to-top flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-accent-cyan text-white shadow-lg transition-all duration-300 hover:bg-accent-cyan/90 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2 group'
+              className='back-to-top group flex h-12 w-12 cursor-pointer items-center justify-center rounded-xl bg-accent-cyan text-white shadow-md shadow-accent-cyan/35 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-accent-cyan-dark hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2'
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >

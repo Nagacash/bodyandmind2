@@ -2,9 +2,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Bebas_Neue } from 'next/font/google'
-
-const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
+import { bebasNeue } from '@/app/fonts'
 
 const Join = () => {
   return (
@@ -39,11 +37,11 @@ Personaltraining, Workshops, Seminare - Wir sind offen für eine Zusammenarbeit 
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.8 }}
           className='mx-auto max-w-4xl pt-5'>
-          <div className='sm:flex items-center mx-5 p-5 sm:p-0 rounded-xl justify-between bg-grey sm:rounded-full'>
+          <div className='sm:flex items-center mx-5 p-5 sm:p-0 rounded-2xl justify-between bg-grey sm:rounded-2xl'>
             <div>
               <input
                 type='name'
-                className='my-4 py-4 sm:pl-6 lg:text-xl text-black sm:rounded-full bg-transparent pl-1 focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2 bg-emailbg focus:text-black'
+                className='my-4 py-4 sm:pl-6 lg:text-xl text-black sm:rounded-xl bg-transparent pl-1 focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2 bg-emailbg focus:text-black'
                 placeholder='Your name'
                 autoComplete='off'
                 aria-label="Your name"
@@ -61,8 +59,9 @@ Personaltraining, Workshops, Seminare - Wir sind offen für eine Zusammenarbeit 
             <div className='sm:mr-3'>
               <Link
                 href='#'
-                className='w-full sm:w-auto text-xl text-black font-semibold text-center rounded-xl sm:rounded-full bg-accent-cyan/20 py-5 px-12 hover:bg-accent-cyan/30 duration-300 focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2'
-                aria-label="Join Body & Mind Studio Hamburg">
+                className='btn-accent inline-flex w-full justify-center sm:w-auto'
+                aria-label='Join Body & Mind Studio Hamburg'
+              >
                 Join!
               </Link>
             </div>

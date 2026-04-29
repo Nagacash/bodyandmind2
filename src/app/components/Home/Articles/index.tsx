@@ -8,9 +8,7 @@ import { articles } from '@/app/types/articles'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import ArticlesSkeleton from '../../Skeleton/Articles'
-import { Bebas_Neue } from 'next/font/google'
-
-const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
+import { bebasNeue } from '@/app/fonts'
 
 const settings = {
   dots: true,
@@ -275,7 +273,7 @@ const Articles = () => {
               </p>
               <Link
                 href='/kontakt'
-                className='inline-flex items-center gap-2 bg-white text-accent-cyan px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-accent-cyan'
+                className='btn-solid-light'
               >
                 Jetzt Kontakt aufnehmen
                 <Icon icon='mdi:arrow-right' className='text-xl' />

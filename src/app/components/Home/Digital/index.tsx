@@ -4,9 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
-import { Bebas_Neue } from 'next/font/google'
-
-const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
+import { bebasNeue } from '@/app/fonts'
 
 const Digital = () => {
   return (
@@ -54,10 +52,10 @@ const Digital = () => {
                 className={`text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight ${bebasNeue.className}`}
               >
                 Sind Sie bereit{' '}
-                <span className='text-black'>etwas zu ändern?</span>
+                <span className='text-text-primary'>etwas zu ändern?</span>
                 <br />
                 Starten Sie jetzt und erreichen gemeinsam mit{' '}
-                <span className='text-black'>unserem Experten Team</span> Ihre
+                <span className='text-text-primary'>unserem Experten Team</span> Ihre
                 Gesundheits- und Fitnessziele.
               </motion.h2>
 
@@ -81,14 +79,14 @@ const Digital = () => {
               >
                 <Link
                   href='/kontakt'
-                  className='inline-flex items-center justify-center gap-2 bg-white text-accent-cyan px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-accent-cyan'
+                  className='btn-solid-light'
                 >
                   Jetzt starten
                   <Icon icon='mdi:arrow-right' className='text-xl' />
                 </Link>
                 <Link
                   href='/#Team'
-                  className='inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 px-8 py-4 rounded-full font-semibold hover:bg-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-accent-cyan'
+                  className='btn-outline-light'
                 >
                   Unser Team kennenlernen
                   <Icon icon='mdi:account-group' className='text-xl' />

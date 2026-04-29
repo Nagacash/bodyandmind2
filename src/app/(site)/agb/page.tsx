@@ -1,4 +1,13 @@
 import React from 'react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'AGB – Natalie Zimmermann | Body & Mind Hamburg',
+  description:
+    'Allgemeine Geschäftsbedingungen (AGB) von Natalie Zimmermann – Body & Mind, Hamburg. Geltungsbereich, Vertragsschluss, Preise, Widerrufsrecht und Haftung.',
+  alternates: { canonical: '/agb' },
+  robots: { index: true, follow: true },
+};
 
 const AGBPage = () => {
   return (

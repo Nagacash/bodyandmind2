@@ -3,11 +3,9 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
-import { Bebas_Neue } from 'next/font/google'
 import { workdata } from '@/app/types/workdata'
 import Link from 'next/link'
-
-const bebasNeue = Bebas_Neue({ subsets: ['latin'], weight: '400' })
+import { bebasNeue } from '@/app/fonts'
 
 const Team = () => {
   const [teamMembers, setTeamMembers] = useState<workdata[]>([])
