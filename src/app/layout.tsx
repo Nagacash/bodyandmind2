@@ -6,6 +6,7 @@ import { manrope } from '@/app/fonts'
 import Header from '@/app/components/Layout/Header'
 import Footer from '@/app/components/Layout/Footer'
 import ScrollToTop from '@/app/components/ScrollToTop'
+import BackgroundAmbience from '@/app/components/BackgroundAmbience'
 import Aoscompo from '@/utils/aos'
 
 const SITE_URL = 'https://www.nataliezimmermann.de'
@@ -205,6 +206,7 @@ export default function RootLayout({
           <Footer />
         </Aoscompo>
         <ScrollToTop />
+        <BackgroundAmbience />
       </body>
     </html>
   )
