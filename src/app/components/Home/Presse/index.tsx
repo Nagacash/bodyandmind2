@@ -1,53 +1,55 @@
 'use client'
-import React from 'react'
+
 import Image from 'next/image'
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
+import { useTranslations } from 'next-intl'
 import VideoGallery from './VideoGallery'
 import { bebasNeue } from '@/app/fonts'
 
-const pressArticles = [
-  {
-    id: 1,
-    title: 'Hamburgerin Natalie Zimmermann boxt um WBO-WM-Titel',
-    source: 'NDR Hamburg Journal',
-    date: '2024',
-    image: '/images/articles/nat1.webp',
-    link: 'https://www.ndr.de/fernsehen/sendungen/hamburg_journal/Hamburgerin-Natalie-Zimmermann-boxt-um-WBO-WM-Titel,hamj157910.html',
-    category: 'TV',
-  },
-  {
-    id: 2,
-    title: 'Box-Weltmeisterin im Interview',
-    source: 'Hamburger Abendblatt',
-    date: '2024',
-    image: '/images/articles/nat2.webp',
-    link: '#',
-    category: 'Print',
-  },
-  {
-    id: 3,
-    title: 'Von der Schäferstochter zur Weltmeisterin',
-    source: 'Bild',
-    date: '2024',
-    image: '/images/articles/nat3.webp',
-    link: '#',
-    category: 'Print',
-  },
-]
+const PRESS_IMAGES = [
+  '/images/articles/nat1.webp',
+  '/images/articles/nat2.webp',
+  '/images/articles/nat3.webp',
+] as const
 
-const pressCategories = [
-  { name: 'TV & Internet', icon: 'mdi:television', color: 'bg-accent-cyan' },
-  { name: 'Print', icon: 'mdi:newspaper-variant', color: 'bg-accent-cyan-light' },
-  { name: 'Radio', icon: 'mdi:radio', color: 'bg-accent-cyan' },
-]
+const PRESS_LINKS = [
+  'https://www.ndr.de/fernsehen/sendungen/hamburg_journal/Hamburgerin-Natalie-Zimmermann-boxt-um-WBO-WM-Titel,hamj157910.html',
+  '#',
+  '#',
+] as const
+
+const CATEGORY_STYLES = [
+  { icon: 'mdi:television', color: 'bg-accent-cyan' },
+  { icon: 'mdi:newspaper-variant', color: 'bg-accent-cyan-light' },
+  { icon: 'mdi:radio', color: 'bg-accent-cyan' },
+] as const
 
 const Presse = () => {
+  const t = useTranslations('presse')
+
+  const categories = Object.values(
+    t.raw('categories') as Record<string, { name: string }>
+  ).map((category, i) => ({
+    ...category,
+    ...CATEGORY_STYLES[i],
+  }))
+
+  const articlesRaw = t.raw('articles') as Record<
+    string,
+    { title: string; source: string; date: string; category: string }
+  >
+
+  const pressArticles = Object.values(articlesRaw).map((article, i) => ({
+    id: i + 1,
+    ...article,
+    image: PRESS_IMAGES[i],
+    link: PRESS_LINKS[i],
+  }))
+
   return (
     <section id='Presse' className='overflow-hidden scroll-mt-[100px] py-16 md:py-20 lg:py-24 bg-grey'>
       <div className='container mx-auto max-w-7xl px-4'>
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -62,7 +64,7 @@ const Presse = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className='text-accent-cyan text-sm md:text-base font-bold mb-4 uppercase tracking-wider'
           >
-            Presse & Medien
+            {t('eyebrow')}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -71,7 +73,7 @@ const Presse = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className={`text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 ${bebasNeue.className}`}
           >
-            Medienauftritte
+            {t('title')}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -80,11 +82,10 @@ const Presse = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className='text-text-secondary text-base md:text-lg max-w-3xl mx-auto leading-relaxed'
           >
-            Auf dieser Seite präsentiere ich euch meine Medienauftritte, sowohl im Fernsehen (NDR), Internet (YouTube), Radio und Print wie etwa Bild, Hamburger Abendblatt usw. Viel Spaß beim Stöbern.
+            {t('description')}
           </motion.p>
         </motion.div>
 
-        {/* Category Pills */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -92,9 +93,9 @@ const Presse = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className='flex flex-wrap justify-center gap-4 mb-12'
         >
-          {pressCategories.map((category, index) => (
+          {categories.map((category) => (
             <div
-              key={index}
+              key={category.name}
               className={`${category.color} flex items-center gap-2 rounded-xl px-6 py-3 text-white shadow-md shadow-black/10 ring-1 ring-inset ring-white/15`}
             >
               <Icon icon={category.icon} className='text-xl' />
@@ -103,7 +104,6 @@ const Presse = () => {
           ))}
         </motion.div>
 
-        {/* TV & Internet Videos Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -116,12 +116,12 @@ const Presse = () => {
               <Icon icon='mdi:television' className='text-white text-2xl' />
             </div>
             <h3 className={`text-3xl md:text-4xl font-bold text-text-primary ${bebasNeue.className}`}>
-              TV & Internet Videos
+              {t('videosSectionTitle')}
             </h3>
           </div>
-          
+
           <VideoGallery />
-          
+
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -130,11 +130,10 @@ const Presse = () => {
             className='text-center text-text-secondary mt-6 text-sm md:text-base flex items-center justify-center gap-2'
           >
             <Icon icon='mdi:information-outline' className='text-accent-cyan' />
-            Scrollen Sie durch die Videos mit den Pfeiltasten oder den Navigationspfeilen
+            {t('videosScrollHint')}
           </motion.p>
         </motion.div>
 
-        {/* Print Articles Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -147,7 +146,7 @@ const Presse = () => {
               <Icon icon='mdi:newspaper-variant' className='text-white text-2xl' />
             </div>
             <h3 className={`text-3xl md:text-4xl font-bold text-text-primary ${bebasNeue.className}`}>
-              Print & Online Artikel
+              {t('printSectionTitle')}
             </h3>
           </div>
 
@@ -161,7 +160,7 @@ const Presse = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className='group'
               >
-                <Link
+                <a
                   href={article.link}
                   target='_blank'
                   rel='noopener noreferrer'
@@ -189,17 +188,16 @@ const Presse = () => {
                       {article.title}
                     </h4>
                     <div className='flex items-center gap-2 text-accent-cyan font-semibold text-sm'>
-                      Artikel lesen
+                      {t('readArticle')}
                       <Icon icon='mdi:arrow-right' className='text-lg group-hover:translate-x-1 transition-transform duration-300' />
                     </div>
                   </div>
-                </Link>
+                </a>
               </motion.div>
             ))}
           </div>
         </motion.div>
 
-        {/* Featured Article - NDR */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -212,23 +210,25 @@ const Presse = () => {
             <div className='relative z-10'>
               <div className='flex items-center gap-3 mb-4'>
                 <Icon icon='mdi:television' className='text-white text-3xl' />
-                <span className='text-white/90 text-sm font-semibold uppercase tracking-wide'>Featured</span>
+                <span className='text-white/90 text-sm font-semibold uppercase tracking-wide'>
+                  {t('featured.badge')}
+                </span>
               </div>
               <h3 className={`text-3xl md:text-4xl font-bold text-white mb-4 ${bebasNeue.className}`}>
-                NDR Hamburg Journal
+                {t('featured.title')}
               </h3>
               <p className='text-white/90 text-lg mb-6 max-w-2xl'>
-                Hamburgerin Natalie Zimmermann boxt um WBO-WM-Titel - Ein ausführlicher Bericht über den Weg zur Weltmeisterschaft.
+                {t('featured.description')}
               </p>
-              <Link
+              <a
                 href='https://www.ndr.de/fernsehen/sendungen/hamburg_journal/Hamburgerin-Natalie-Zimmermann-boxt-um-WBO-WM-Titel,hamj157910.html'
                 target='_blank'
                 rel='noopener noreferrer'
                 className='btn-solid-light'
               >
-                Artikel ansehen
+                {t('featured.cta')}
                 <Icon icon='mdi:arrow-right' className='text-xl' />
-              </Link>
+              </a>
             </div>
           </div>
         </motion.div>

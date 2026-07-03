@@ -1,61 +1,58 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { Link } from '@/i18n/routing'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
-import { footerlinks } from '@/app/types/footerlinks'
+import { useTranslations } from 'next-intl'
 
-const footer = () => {
-  const [footerlinks, setFooterLinks] = useState<footerlinks[]>([])
+const FOOTER_LINK_HREFS: string[][] = [
+  ['/', '/#About', '/about-me', '/#Team', '/#FAQ', '/#Featured', '/#Presse', '/kontakt'],
+  ['/about-me', '/#Blog', '/kontakt', '/#Flow', '/#Recovery'],
+  ['https://www.mesoskin-hamburg.com'],
+]
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch('/api/data')
-        if (!res.ok) throw new Error('Failed to fetch')
-        const data = await res.json()
-        setFooterLinks(data.FooterLinksData)
-      } catch (error) {
-        console.error('Error fetching services:', error)
-      }
-    }
-    fetchData()
-  }, [])
+const SOCIAL_LINKS = [
+  {
+    href: 'https://www.facebook.com/natalie.zimmermann.94',
+    icon: '/images/footer/vec.svg',
+  },
+  {
+    href: 'https://tiktok.com/@nataliezimmermann',
+    icon: '/images/footer/tiktok.svg',
+  },
+  {
+    href: 'https://www.instagram.com/nataliezimmermann_ger/',
+    icon: '/images/footer/instagram.svg',
+  },
+] as const
 
-  const socialLinks = [
-    {
-      name: 'Facebook',
-      href: 'https://www.facebook.com/natalie.zimmermann.94',
-      icon: '/images/footer/vec.svg',
-      color: 'hover:bg-blue-600',
-    },
-    {
-      name: 'TikTok',
-      href: 'https://tiktok.com/@nataliezimmermann',
-      icon: '/images/footer/tiktok.svg',
-      color: 'hover:bg-black',
-    },
-    {
-      name: 'Instagram',
-      href: 'https://www.instagram.com/nataliezimmermann_ger/',
-      icon: '/images/footer/instagram.svg',
-      color: 'hover:bg-gradient-to-br hover:from-purple-600 hover:via-pink-600 hover:to-orange-500',
-    },
-  ]
+const Footer = () => {
+  const t = useTranslations('footer')
+
+  const sectionsRaw = t.raw('sections') as Record<
+    string,
+    { title: string; links: Record<string, { label: string }> }
+  >
+
+  const footerSections = Object.values(sectionsRaw).map((section, sectionIndex) => ({
+    title: section.title,
+    links: Object.values(section.links).map((link, linkIndex) => ({
+      label: link.label,
+      href: FOOTER_LINK_HREFS[sectionIndex]?.[linkIndex] ?? '#',
+    })),
+  }))
+
+  const socialNames = Object.values(t.raw('social') as Record<string, string>)
 
   return (
     <footer className='bg-black text-white relative overflow-hidden'>
-      {/* Decorative Background */}
       <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black via-black to-black/95 z-0' />
       <div className='absolute top-0 right-0 w-96 h-96 bg-accent-cyan/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 z-0' />
 
       <div className='container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-20'>
-        {/* Main Footer Content */}
         <div className='pt-12 md:pt-16 lg:pt-20 pb-8 md:pb-12'>
           <div className='grid grid-cols-1 gap-8 md:gap-12 lg:grid-cols-12'>
-            {/* Column 1 - About */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -64,11 +61,9 @@ const footer = () => {
               className='lg:col-span-4 relative z-20'
             >
               <p className='text-white/70 text-base md:text-lg leading-relaxed mb-6 max-w-md'>
-                Gemeinsam zu körperlicher Stärke und mentaler Resilienz. Natalie Zimmermann –
-                Box-Weltmeisterin und Body & Mind Coach in Hamburg.
+                {t('tagline')}
               </p>
 
-              {/* Contact Info */}
               <div className='space-y-3 mb-6 md:mb-8'>
                 <a
                   href='tel:+494053790578'
@@ -96,26 +91,25 @@ const footer = () => {
                 </div>
               </div>
 
-              {/* Social Media */}
               <div>
                 <p className='text-white/70 text-xs md:text-sm font-semibold mb-3 md:mb-4 uppercase tracking-wide'>
-                  Folge uns
+                  {t('followUs')}
                 </p>
                 <div className='flex items-center gap-3 md:gap-4'>
-                  {socialLinks.map((social, index) => (
+                  {SOCIAL_LINKS.map((social, index) => (
                     <motion.a
-                      key={index}
+                      key={social.href}
                       href={social.href}
                       target='_blank'
                       rel='noopener noreferrer'
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
-                      className='w-10 h-10 md:w-12 md:h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent-cyan transition duration-300 group relative z-30'
-                      aria-label={social.name}
+                      className='relative z-30 flex h-10 w-10 cursor-pointer items-center justify-center rounded-sm bg-white/10 transition duration-300 hover:bg-accent-cyan md:h-12 md:w-12'
+                      aria-label={socialNames[index]}
                     >
                       <Image
                         src={social.icon}
-                        alt={social.name}
+                        alt={socialNames[index]}
                         width={18}
                         height={18}
                         className='md:w-5 md:h-5 filter brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition duration-300 relative z-40'
@@ -126,10 +120,9 @@ const footer = () => {
               </div>
             </motion.div>
 
-            {/* Columns 2/3/4 - Footer Links */}
-            {footerlinks.map((item, i) => (
+            {footerSections.map((section, i) => (
               <motion.div
-                key={i}
+                key={section.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -138,33 +131,49 @@ const footer = () => {
               >
                 <h3 className='text-white text-base md:text-lg lg:text-xl font-bold mb-4 md:mb-6 flex items-center gap-2'>
                   <Icon icon='mdi:chevron-right' className='text-accent-cyan text-xs md:text-sm' />
-                  {item.section}
+                  {section.title}
                 </h3>
                 <ul className='space-y-2 md:space-y-3'>
-                  {item.links.map((link, linkIndex) => (
-                    <li key={linkIndex}>
-                      <Link
-                        href={link.href || '#'}
-                        className='text-white/70 text-sm md:text-base hover:text-accent-cyan transition-colors duration-300 flex items-center gap-2 group'
-                      >
-                        <Icon
-                          icon='mdi:chevron-right'
-                          className='text-accent-cyan/50 text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition duration-300'
-                        />
-                        <span className='break-words'>{link.label}</span>
-                      </Link>
-                    </li>
-                  ))}
+                  {section.links.map((link) => {
+                    const isExternal = link.href.startsWith('http')
+                    return (
+                      <li key={link.label}>
+                        {isExternal ? (
+                          <a
+                            href={link.href}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='text-white/70 text-sm md:text-base hover:text-accent-cyan transition-colors duration-300 flex items-center gap-2 group'
+                          >
+                            <Icon
+                              icon='mdi:chevron-right'
+                              className='text-accent-cyan/50 text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition duration-300'
+                            />
+                            <span className='break-words'>{link.label}</span>
+                          </a>
+                        ) : (
+                          <Link
+                            href={link.href}
+                            className='text-white/70 text-sm md:text-base hover:text-accent-cyan transition-colors duration-300 flex items-center gap-2 group'
+                          >
+                            <Icon
+                              icon='mdi:chevron-right'
+                              className='text-accent-cyan/50 text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition duration-300'
+                            />
+                            <span className='break-words'>{link.label}</span>
+                          </Link>
+                        )}
+                      </li>
+                    )
+                  })}
                 </ul>
               </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className='border-t border-white/10 pt-6 md:pt-8 pb-6 md:pb-8 relative z-20'>
           <div className='flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6'>
-            {/* Copyright */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -173,22 +182,21 @@ const footer = () => {
               className='text-center md:text-left order-2 md:order-1'
             >
               <p className='text-white/70 text-xs md:text-sm lg:text-base'>
-                © {new Date().getFullYear()} Natalie Zimmermann. Alle Rechte vorbehalten.
+                © {new Date().getFullYear()} Natalie Zimmermann. {t('copyright')}
               </p>
               <p className='text-white/50 text-xs mt-1 md:mt-2'>
-                Designed by:{' '}
-                <Link
-                  href='https://nagacodex.de'
+                {t('designedBy')}{' '}
+                <a
+                  href='https://www.nagacodex.cloud/'
                   target='_blank'
                   rel='noopener noreferrer'
                   className='hover:text-accent-cyan transition-colors duration-300'
                 >
-                  Naga Codex
-                </Link>
+                  {t('designer')}
+                </a>
               </p>
             </motion.div>
 
-            {/* Legal Links */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -224,4 +232,4 @@ const footer = () => {
   )
 }
 
-export default footer
+export default Footer

@@ -1,70 +1,44 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
+import { useTranslations } from 'next-intl'
 import { bebasNeue } from '@/app/fonts'
 
-const effects = [
-  {
-    num: '01',
-    label: 'Foto · Regeneration',
-    title: 'Recovery',
-    text: 'Löst Verspannungen, fördert die Durchblutung und unterstützt die Regeneration deiner Muskulatur.',
-    imgSrc: '/images/new/recovery1.webp',
-    icon: 'mdi:spa-outline',
-  },
-  {
-    num: '02',
-    label: 'Foto · IHHT',
-    title: 'IHHT-Training',
-    text: 'Unterstützt die Zellatmung, steigert die Leistungsfähigkeit und fördert die Regeneration auf zellulärer Ebene.',
-    imgSrc: '/images/new/recovery2.webp',
-    icon: 'mdi:pulse',
-  },
-  {
-    num: '03',
-    label: 'Foto · Atmung',
-    title: 'Atem & Entspannung',
-    text: 'Aktiviert deine Selbstregulation, reduziert Stress und bringt Körper und Geist wieder in Balance.',
-    imgSrc: '/images/new/recovery3.webp',
-    icon: 'mdi:weather-windy',
-  },
-]
-
-const gains = [
-  'Stress reduzieren',
-  'Regeneration fördern',
-  'Energie aufbauen',
-  'Schlaf & Erholung',
-  'Leistungsfähigkeit steigern',
-  'Körper & Geist in Balance',
-]
-
-const steps = [
-  {
-    num: '1',
-    title: 'Basis wählen',
-    text: 'Du startest mit FLOW oder FORM in der Stufe, die zu dir passt.',
-  },
-  {
-    num: '2',
-    title: 'Recovery dazu',
-    text: 'Du buchst Recovery passend zu deiner Trainingsfrequenz dazu – ab 70 € pro Einheit.',
-  },
-  {
-    num: '3',
-    title: 'Erholt durchstarten',
-    text: 'Training und Regeneration greifen ineinander – für bessere Erholung und Leistungsfähigkeit.',
-  },
-]
+const EFFECT_IMAGES = [
+  '/images/new/recovery1.webp',
+  '/images/new/recovery2.webp',
+  '/images/new/recovery3.webp',
+] as const
+const EFFECT_ICONS = ['mdi:spa-outline', 'mdi:pulse', 'mdi:weather-windy'] as const
 
 const Recovery = () => {
+  const t = useTranslations('recovery')
+
+  const intro = Object.values(t.raw('intro') as Record<string, string>)
+  const effects = Object.values(
+    t.raw('effects') as Record<
+      string,
+      { num: string; label: string; title: string; text: string }
+    >
+  ).map((effect, i) => ({
+    ...effect,
+    imgSrc: EFFECT_IMAGES[i],
+    icon: EFFECT_ICONS[i],
+  }))
+  const gains = Object.values(t.raw('gains') as Record<string, string>)
+  const steps = Object.values(
+    t.raw('steps') as Record<string, { num: string; title: string; text: string }>
+  )
+
+  const linkClassName =
+    'font-semibold text-accent-cyan underline-offset-2 transition-colors duration-200 hover:text-accent-cyan-dark hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2'
+
   return (
     <section id='Recovery' className='overflow-hidden bg-light py-16 md:py-20 lg:py-24'>
       <div className='container mx-auto max-w-7xl px-4'>
-        {/* Hero */}
         <div className='grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16'>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -76,14 +50,14 @@ const Recovery = () => {
             <div className='relative aspect-[3/4] overflow-hidden rounded-3xl shadow-[var(--shadow-card-lift)] lg:aspect-[3/4]'>
               <Image
                 src='/images/new/recovery1.webp'
-                alt='Recovery – Regeneration und IHHT-Bereich'
+                alt={t('heroImageAlt')}
                 fill
                 className='object-cover object-center'
                 sizes='(max-width: 1024px) 100vw, 50vw'
               />
               <div className='absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent' />
               <span className='absolute bottom-4 left-4 rounded-lg bg-black/50 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-white backdrop-blur-sm'>
-                Foto · Recovery / IHHT-Bereich
+                {t('heroImageCaption')}
               </span>
             </div>
           </motion.div>
@@ -96,32 +70,28 @@ const Recovery = () => {
             className='order-1 lg:order-2'
           >
             <p className='mb-4 text-sm font-bold uppercase tracking-widest text-accent-cyan md:text-base'>
-              Recovery
+              {t('eyebrow')}
             </p>
             <h2
               className={`mb-6 text-4xl font-bold text-text-primary md:text-5xl lg:text-6xl ${bebasNeue.className} text-balance`}
             >
-              Regeneration für Körper und Nervensystem.
+              {t('title')}
             </h2>
-            <p className='copy-prose mb-5 text-base leading-relaxed text-text-secondary md:text-lg'>
-              Recovery kombiniert gezielte Anwendungen mit persönlicher Betreuung, um körperliche
-              und mentale Belastung nachhaltig auszugleichen. Durch IHHT-Training, ATP-Atmung und
-              regenerative Methoden entsteht ein Raum für Ruhe, Erholung und neue Energie.
-            </p>
-            <p className='copy-prose mb-8 text-base leading-relaxed text-text-secondary md:text-lg'>
-              Ziel von Recovery ist es, Stress zu reduzieren, die Regeneration zu fördern und das
-              allgemeine Wohlbefinden zu verbessern. Die Sessions unterstützen deinen Körper
-              dabei, schneller zu regenerieren, neue Energie aufzubauen und wieder mehr Balance,
-              Fokus und innere Ruhe im Alltag zu finden.
-            </p>
+            {intro.map((paragraph) => (
+              <p
+                key={paragraph}
+                className='copy-prose mb-5 text-base leading-relaxed text-text-secondary last:mb-8 md:text-lg'
+              >
+                {paragraph}
+              </p>
+            ))}
             <Link href='/kontakt' className='btn-accent inline-flex items-center gap-2'>
-              Erstgespräch vereinbaren
+              {t('cta')}
               <Icon icon='mdi:arrow-right' className='text-xl' aria-hidden />
             </Link>
           </motion.div>
         </div>
 
-        {/* Worum es geht */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -131,15 +101,15 @@ const Recovery = () => {
         >
           <div className='mb-10 text-center md:mb-14'>
             <p className='mb-3 text-sm font-bold uppercase tracking-widest text-accent-cyan'>
-              Worum es geht
+              {t('effectsSection.eyebrow')}
             </p>
             <h3
               className={`mb-4 text-3xl font-bold text-text-primary md:text-4xl lg:text-5xl ${bebasNeue.className} text-balance`}
             >
-              Mehr als nur Erholung
+              {t('effectsSection.title')}
             </h3>
             <p className='copy-prose mx-auto max-w-2xl text-base text-text-secondary md:text-lg'>
-              Recovery wirkt auf mehreren Ebenen – von der Muskulatur bis zum Nervensystem.
+              {t('effectsSection.subtitle')}
             </p>
           </div>
 
@@ -185,7 +155,6 @@ const Recovery = () => {
           </div>
         </motion.div>
 
-        {/* Dein Gewinn */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -195,12 +164,12 @@ const Recovery = () => {
         >
           <div className='mb-8 text-center md:mb-10'>
             <p className='mb-3 text-sm font-bold uppercase tracking-widest text-accent-cyan'>
-              Dein Gewinn
+              {t('gainsSection.eyebrow')}
             </p>
             <h3
               className={`text-3xl font-bold text-text-primary md:text-4xl ${bebasNeue.className}`}
             >
-              Das bringt dir Recovery
+              {t('gainsSection.title')}
             </h3>
           </div>
           <ul className='flex flex-wrap justify-center gap-3 md:gap-4'>
@@ -220,7 +189,6 @@ const Recovery = () => {
           </ul>
         </motion.div>
 
-        {/* So einfach geht's */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -230,16 +198,15 @@ const Recovery = () => {
         >
           <div className='mb-10 text-center md:mb-14'>
             <p className='mb-3 text-sm font-bold uppercase tracking-widest text-accent-cyan'>
-              So einfach geht&apos;s
+              {t('stepsSection.eyebrow')}
             </p>
             <h3
               className={`mb-4 text-3xl font-bold text-text-primary md:text-4xl ${bebasNeue.className} text-balance`}
             >
-              Recovery zu deinem Training dazu
+              {t('stepsSection.title')}
             </h3>
             <p className='copy-prose mx-auto max-w-2xl text-base text-text-secondary md:text-lg'>
-              Recovery ist ein modularer Baustein – du buchst ihn passend zu FLOW oder FORM dazu,
-              so viel oder so wenig, wie zu dir passt.
+              {t('stepsSection.subtitle')}
             </p>
           </div>
 
@@ -267,22 +234,16 @@ const Recovery = () => {
           </div>
 
           <p className='copy-prose mx-auto mt-10 max-w-3xl text-center text-sm leading-relaxed text-text-muted md:text-base'>
-            In jeder Recovery-Einheit kombinieren wir – abgestimmt auf dich – IHHT, ATP-Atmung,
-            mentales Coaching, Nervensystem-Regulation, Körper-Scans, Beinkompressionen und
-            gezielte Supplementierung. Recovery-Anwendungen dienen der Regeneration und dem
-            Wohlbefinden; sie sind keine medizinische Heilbehandlung und ersetzen keine ärztliche
-            Diagnose oder Therapie. Details zu Tarifen findest du unter{' '}
-            <Link
-              href='/#services-section'
-              className='font-semibold text-accent-cyan underline-offset-2 transition-colors duration-200 hover:text-accent-cyan-dark hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2'
-            >
-              Mitgliedschaften
-            </Link>
-            .
+            {t.rich('disclaimer', {
+              memberships: (chunks) => (
+                <Link href='/#services-section' className={linkClassName}>
+                  {chunks}
+                </Link>
+              ),
+            })}
           </p>
         </motion.div>
 
-        {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -296,14 +257,13 @@ const Recovery = () => {
               <h3
                 className={`mb-4 text-3xl font-bold text-white md:text-4xl lg:text-5xl ${bebasNeue.className} text-balance`}
               >
-                Gönn deinem Körper echte Erholung
+                {t('bottomCta.title')}
               </h3>
               <p className='copy-prose mx-auto mb-8 max-w-2xl text-base text-white/85 md:text-lg'>
-                Im kostenlosen Erstgespräch zeigen wir dir, wie Training und Recovery zusammen
-                wirken.
+                {t('bottomCta.description')}
               </p>
               <Link href='/kontakt' className='btn-accent inline-flex items-center gap-2'>
-                Erstgespräch vereinbaren
+                {t('cta')}
                 <Icon icon='mdi:arrow-right' className='text-xl' aria-hidden />
               </Link>
             </div>

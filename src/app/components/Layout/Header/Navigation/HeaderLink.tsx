@@ -1,10 +1,9 @@
 'use client'
 import { useState } from 'react'
-import Link from 'next/link'
+import { Link, usePathname, useRouter } from '@/i18n/routing'
 import { HeaderItem } from '@/app/types/menu'
 import { getNavHashTarget } from '@/app/data/nav'
 import { useActiveNavLink } from '@/app/hooks/useActiveNavLink'
-import { usePathname, useRouter } from 'next/navigation'
 import { Icon } from '@iconify/react'
 import { bebasNeue } from '@/app/fonts'
 

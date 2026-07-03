@@ -2,29 +2,27 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 
-const moments = [
-  {
-    src: '/images/new/nature1.webp',
-    label: 'Geist',
-    caption: 'Klarheit & innere Ruhe',
-    alt: 'Natalie Zimmermann in der Natur – Geist und Fokus',
-  },
-  {
-    src: '/images/new/nature2.webp',
-    label: 'Körper',
-    caption: 'Stärke & Bewegung',
-    alt: 'Natalie Zimmermann – körperliche Präsenz und Bewegung',
-  },
-  {
-    src: '/images/new/nature3.webp',
-    label: 'Seele',
-    caption: 'Balance & Ausgeglichenheit',
-    alt: 'Natalie Zimmermann – Ruhe und ganzheitliche Balance',
-  },
-]
+const MOMENT_IMAGES = [
+  '/images/new/nature1.webp',
+  '/images/new/nature2.webp',
+  '/images/new/nature3.webp',
+] as const
 
 const NatureTriptych = () => {
+  const t = useTranslations('about')
+
+  const moments = Object.values(
+    t.raw('natureTriptych.moments') as Record<
+      string,
+      { label: string; caption: string; alt: string }
+    >
+  ).map((moment, i) => ({
+    ...moment,
+    src: MOMENT_IMAGES[i],
+  }))
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -32,7 +30,7 @@ const NatureTriptych = () => {
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: 0.22 }}
       className='mx-auto mb-10 max-w-4xl'
-      aria-label='Geist, Körper und Seele in Bildern'
+      aria-label={t('natureTriptych.ariaLabel')}
     >
       <div className='grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-5'>
         {moments.map((item, i) => (

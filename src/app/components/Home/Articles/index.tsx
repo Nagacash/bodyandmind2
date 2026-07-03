@@ -1,14 +1,18 @@
 'use client'
-import { useEffect, useState } from 'react'
+
 import Image from 'next/image'
 import Slider from 'react-slick'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { articles } from '@/app/types/articles'
+import { Link, useRouter } from '@/i18n/routing'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
-import ArticlesSkeleton from '../../Skeleton/Articles'
+import { useTranslations } from 'next-intl'
 import { bebasNeue } from '@/app/fonts'
+
+const ARTICLE_IMAGES = [
+  '/images/dedicated/sab5.webp',
+  '/images/articles/sab8.webp',
+  '/images/dedicated/sab2.webp',
+] as const
 
 const settings = {
   dots: true,
@@ -41,7 +45,6 @@ const settings = {
   ],
 }
 
-// Service icons mapping
 const getServiceIcon = (heading: string) => {
   const headingLower = heading.toLowerCase()
   if (headingLower.includes('recovery') || headingLower.includes('ihht')) {
@@ -63,41 +66,37 @@ const getServiceIcon = (heading: string) => {
 }
 
 const Articles = () => {
+  const t = useTranslations('articles')
   const router = useRouter()
+
   const playAudio = () => {
     const audio = new Audio('/sound/click.wav')
     audio.volume = 0.5
     audio.play()
   }
 
-  const [articles, setArticles] = useState<articles[]>([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch('/api/data')
-        if (!res.ok) throw new Error('Failed to fetch')
-        const data = await res.json()
-        setArticles(data.ArticlesData)
-      } catch (error) {
-        console.error('Error fetching services:', error)
-      } finally {
-        setLoading(false)
-      }
+  const itemsRaw = t.raw('items') as Record<
+    string,
+    {
+      heading: string
+      heading2: string
+      description: string
+      date: string
+      cta: string
     }
+  >
 
-    fetchData()
-  }, [])
+  const articles = Object.values(itemsRaw).map((item, i) => ({
+    ...item,
+    imgSrc: ARTICLE_IMAGES[i],
+  }))
 
   return (
     <section id='Blog' className='relative bg-light overflow-hidden py-16 md:py-20 lg:py-24'>
-      {/* Decorative Background */}
       <div className='absolute top-0 right-0 w-1/3 h-1/3 bg-accent-cyan/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2' />
       <div className='absolute bottom-0 left-0 w-1/3 h-1/3 bg-accent-cyan/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2' />
 
       <div className='container mx-auto max-w-7xl px-4 relative z-10'>
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -112,7 +111,7 @@ const Articles = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className='text-accent-cyan text-sm md:text-base font-bold mb-4 uppercase tracking-wider'
           >
-            Meine Leistungen
+            {t('eyebrow')}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -121,7 +120,7 @@ const Articles = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className={`text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 ${bebasNeue.className}`}
           >
-            Was ich für Sie tun kann
+            {t('title')}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -130,11 +129,10 @@ const Articles = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className='text-text-secondary text-base md:text-lg max-w-3xl mx-auto leading-relaxed'
           >
-            Von inspirierenden Vorträgen über professionelles Coaching bis hin zu Markenpartnerschaften – entdecken Sie meine vielfältigen Leistungen.
+            {t('description')}
           </motion.p>
         </motion.div>
 
-        {/* Services Slider */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -142,79 +140,67 @@ const Articles = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <Slider {...settings}>
-            {loading
-              ? Array.from({ length: 3 }).map((_, i) => (
-                  <ArticlesSkeleton key={i} />
-                ))
-              : articles.map((item, i) => {
-                  const serviceIcon = getServiceIcon(item.heading)
-                  return (
-                    <div key={i} className='px-2 md:px-4'>
-                      <div className='bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col group'>
-                        {/* Image Section */}
-                        <div className='relative h-64 overflow-hidden'>
-                          <Image
-                            src={item.imgSrc}
-                            alt={item.heading || 'Service image'}
-                            fill
-                            className='object-cover group-hover:scale-110 transition-transform duration-500'
-                            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-                          />
-                          <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent' />
-                          
-                          {/* Icon Badge */}
-                          <div className='absolute top-4 right-4 w-14 h-14 bg-accent-cyan rounded-2xl flex items-center justify-center shadow-lg'>
-                            <Icon icon={serviceIcon} className='text-white text-2xl' />
-                          </div>
+            {articles.map((item, i) => {
+              const serviceIcon = getServiceIcon(item.heading)
+              return (
+                <div key={i} className='px-2 md:px-4'>
+                  <div className='bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col group'>
+                    <div className='relative h-64 overflow-hidden'>
+                      <Image
+                        src={item.imgSrc}
+                        alt={item.heading}
+                        fill
+                        className='object-cover group-hover:scale-110 transition-transform duration-500'
+                        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                      />
+                      <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent' />
 
-                          {/* Category Badge */}
-                          <div className='absolute bottom-4 left-4'>
-                            <span className='bg-white/90 backdrop-blur-sm text-text-primary px-3 py-1 rounded-full text-xs font-semibold'>
-                              {item.date}
-                            </span>
-                          </div>
-                        </div>
+                      <div className='absolute top-4 right-4 w-14 h-14 bg-accent-cyan rounded-2xl flex items-center justify-center shadow-lg'>
+                        <Icon icon={serviceIcon} className='text-white text-2xl' />
+                      </div>
 
-                        {/* Content Section */}
-                        <div className='p-6 md:p-8 flex-grow flex flex-col'>
-                          {/* Heading */}
-                          <div className='mb-4'>
-                            <h3 className={`text-2xl md:text-3xl font-bold text-text-primary mb-2 ${bebasNeue.className}`}>
-                              {item.heading}
-                            </h3>
-                            {item.heading2 && (
-                              <h4 className='text-lg md:text-xl font-semibold text-accent-cyan'>
-                                {item.heading2}
-                              </h4>
-                            )}
-                          </div>
-
-                          {/* Description */}
-                          <p className='text-text-secondary text-sm md:text-base leading-relaxed mb-6 flex-grow line-clamp-4'>
-                            {item.name}
-                          </p>
-
-                          {/* CTA Button */}
-                          <button
-                            onClick={() => {
-                              playAudio()
-                              router.push('/kontakt')
-                            }}
-                            className='btn-primary w-full inline-flex items-center justify-center gap-2'
-                            aria-label={`${item.heading} - Jetzt anfragen`}
-                          >
-                            <Icon icon='mdi:arrow-right' className='text-xl' />
-                            {item.time || 'Jetzt anfragen'}
-                          </button>
-                        </div>
+                      <div className='absolute bottom-4 left-4'>
+                        <span className='bg-white/90 backdrop-blur-sm text-text-primary px-3 py-1 rounded-full text-xs font-semibold'>
+                          {item.date}
+                        </span>
                       </div>
                     </div>
-                  )
-                })}
+
+                    <div className='p-6 md:p-8 flex-grow flex flex-col'>
+                      <div className='mb-4'>
+                        <h3 className={`text-2xl md:text-3xl font-bold text-text-primary mb-2 ${bebasNeue.className}`}>
+                          {item.heading}
+                        </h3>
+                        {item.heading2 && (
+                          <h4 className='text-lg md:text-xl font-semibold text-accent-cyan'>
+                            {item.heading2}
+                          </h4>
+                        )}
+                      </div>
+
+                      <p className='text-text-secondary text-sm md:text-base leading-relaxed mb-6 flex-grow line-clamp-4'>
+                        {item.description}
+                      </p>
+
+                      <button
+                        onClick={() => {
+                          playAudio()
+                          router.push('/kontakt')
+                        }}
+                        className='btn-primary w-full inline-flex items-center justify-center gap-2'
+                        aria-label={`${item.heading} - ${item.cta}`}
+                      >
+                        <Icon icon='mdi:arrow-right' className='text-xl' />
+                        {item.cta}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
           </Slider>
         </motion.div>
 
-        {/* Custom Slider Styles */}
         <style jsx global>{`
           .slick-dots {
             bottom: -50px !important;
@@ -253,7 +239,6 @@ const Articles = () => {
           }
         `}</style>
 
-        {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -266,16 +251,13 @@ const Articles = () => {
             <div className='relative z-10'>
               <Icon icon='mdi:handshake' className='text-5xl mb-4 mx-auto' />
               <h3 className={`text-3xl md:text-4xl font-bold mb-4 ${bebasNeue.className}`}>
-                Bereit für eine Zusammenarbeit?
+                {t('bottomCta.title')}
               </h3>
               <p className='text-white/90 text-lg mb-6 max-w-2xl mx-auto'>
-                Lassen Sie uns gemeinsam Ihre Ziele erreichen. Kontaktieren Sie mich für ein individuelles Angebot.
+                {t('bottomCta.description')}
               </p>
-              <Link
-                href='/kontakt'
-                className='btn-solid-light'
-              >
-                Jetzt Kontakt aufnehmen
+              <Link href='/kontakt' className='btn-solid-light'>
+                {t('bottomCta.button')}
                 <Icon icon='mdi:arrow-right' className='text-xl' />
               </Link>
             </div>

@@ -1,0 +1,26 @@
+{
+  "badge": "Boxing World Champion · Hamburg",
+  "title": "Building physical strength and mental resilience—together",
+  "subtitle": "Natalie Zimmermann — WIBF/WBF World Champion, physical therapist, mental coach, and personal trainer at the Body & Mind Studio in Harvestehude.",
+  "imageAlt": "Natalie Zimmermann – boxing world champion, physical therapist, and mental coach",
+  "badgePhoto": "WIBF · WBF World Champion",
+  "badgeYearsMobile": "22+ Years",
+  "floatingCardOrg": "WBO",
+  "floatingCardTitle": "World Champion",
+  "floatingCardYears": "22+",
+  "floatingCardYearsLabel": "Years of Expertise",
+  "ctaPrimary": "Book a free consultation",
+  "ctaSecondary": "Explore our philosophy",
+  "quickLinks": {
+    "0": { "label": "Philosophy" },
+    "1": { "label": "My Book" },
+    "2": { "label": "Contact" }
+  },
+  "stats": {
+    "0": { "value": "22+", "label": "Years of Experience" },
+    "1": { "value": "1000+", "label": "Happy Clients" },
+    "2": { "value": "1", "label": "World Champion" }
+  },
+  "scrollLabel": "Learn more",
+  "scrollAria": "Scroll to philosophy section"
+}

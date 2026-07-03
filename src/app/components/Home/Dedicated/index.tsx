@@ -1,36 +1,31 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
+import { useTranslations } from 'next-intl'
 import { bebasNeue } from '@/app/fonts'
 
-const strengths = [
-  {
-    icon: 'mdi:fire',
-    title: 'Motivation',
-    text: 'Disziplin und Durchhaltevermögen, die dich auch dann weiterbringen, wenn es schwierig wird.',
-  },
-  {
-    icon: 'mdi:chess-knight',
-    title: 'Strategie',
-    text: 'Klare Struktur, messbare Ziele und ein Plan, der zu deinem Alltag passt – nicht nur zum Training.',
-  },
-  {
-    icon: 'mdi:shield-check',
-    title: 'Selbstbehauptung',
-    text: 'Mentale Stärke und Präsenz unter Druck – übersetzt in deinen Beruf, dein Training und dein Leben.',
-  },
-]
-
-const gallery = [
-  { src: '/images/dedicated/sa1.webp', alt: 'Natalie Zimmermann beim Training' },
-  { src: '/images/dedicated/sab2.webp', alt: 'Natalie Zimmermann im Boxen' },
-  { src: '/images/dedicated/sab5.webp', alt: 'Natalie Zimmermann im Einsatz' },
-]
+const STRENGTH_ICONS = ['mdi:fire', 'mdi:chess-knight', 'mdi:shield-check'] as const
+const GALLERY_IMAGES = [
+  { src: '/images/dedicated/sa1.webp', key: '0' },
+  { src: '/images/dedicated/sab2.webp', key: '1' },
+  { src: '/images/dedicated/sab5.webp', key: '2' },
+] as const
 
 const Dedicated = () => {
+  const t = useTranslations('dedicated')
+
+  const strengths = Object.values(
+    t.raw('strengths') as Record<string, { title: string; text: string }>
+  ).map((strength, i) => ({
+    ...strength,
+    icon: STRENGTH_ICONS[i],
+  }))
+
+  const galleryAlts = t.raw('galleryAlts') as Record<string, string>
+
   return (
     <section className='relative overflow-hidden bg-light bg-cover bg-center py-16 md:py-20 lg:py-24'>
       <div className='container mx-auto max-w-7xl px-4'>
@@ -42,12 +37,12 @@ const Dedicated = () => {
           className='mb-12 text-center md:mb-16'
         >
           <p className='mb-4 text-sm font-bold uppercase tracking-widest text-accent-cyan md:text-base'>
-            Im Einsatz
+            {t('eyebrow')}
           </p>
           <h2
             className={`text-4xl font-bold text-text-primary md:text-5xl lg:text-6xl ${bebasNeue.className} text-balance`}
           >
-            Champion-Mindset für deinen Alltag
+            {t('title')}
           </h2>
         </motion.div>
 
@@ -71,7 +66,7 @@ const Dedicated = () => {
             <div className='group relative overflow-hidden rounded-3xl shadow-2xl'>
               <Image
                 src='/images/dedicated/sabine.webp'
-                alt='Natalie Zimmermann beim Coaching und Training'
+                alt={t('mainImageAlt')}
                 width={416}
                 height={530}
                 className='h-auto w-full object-cover transition-[filter] duration-300 group-hover:brightness-[1.03]'
@@ -88,9 +83,7 @@ const Dedicated = () => {
             className='col-span-12 flex flex-col justify-center lg:col-span-6'
           >
             <p className='copy-prose mb-8 text-base leading-relaxed text-text-secondary md:text-lg'>
-              Spitzensport lehrt, unter Druck klar zu bleiben und jeden Tag das Beste zu geben.
-              Genau diese Prinzipien setze ich heute in meinem Coaching ein – im Einzeltraining,
-              im Studio und in meinen Vorträgen.
+              {t('description')}
             </p>
 
             <ul className='mb-8 space-y-5'>
@@ -119,7 +112,7 @@ const Dedicated = () => {
             </ul>
 
             <div className='mb-8 grid grid-cols-3 gap-3 md:gap-4'>
-              {gallery.map((item, i) => (
+              {GALLERY_IMAGES.map((item, i) => (
                 <motion.div
                   key={item.src}
                   initial={{ opacity: 0, y: 20 }}
@@ -130,7 +123,7 @@ const Dedicated = () => {
                 >
                   <Image
                     src={item.src}
-                    alt={item.alt}
+                    alt={galleryAlts[item.key]}
                     fill
                     className='object-cover object-center transition-[filter] duration-300 group-hover:brightness-[1.03]'
                   />
@@ -140,14 +133,14 @@ const Dedicated = () => {
 
             <div className='flex flex-col gap-4 sm:flex-row'>
               <Link href='/kontakt' className='btn-primary inline-flex min-h-12 items-center justify-center gap-2'>
-                Erstgespräch vereinbaren
+                {t('ctaPrimary')}
                 <Icon icon='mdi:arrow-right' className='text-xl' aria-hidden />
               </Link>
               <Link
                 href='/#UberMich'
                 className='btn-secondary inline-flex min-h-12 items-center justify-center gap-2'
               >
-                Meine Geschichte
+                {t('ctaSecondary')}
                 <Icon icon='mdi:account-outline' className='text-xl' aria-hidden />
               </Link>
             </div>

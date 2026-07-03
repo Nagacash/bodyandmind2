@@ -1,0 +1,34 @@
+{
+  "eyebrow": "My services",
+  "title": "What I can do for you",
+  "description": "From inspiring talks to professional coaching and brand partnerships—discover my full range of services.",
+  "defaultCta": "Request now",
+  "bottomCta": {
+    "title": "Ready to work together?",
+    "description": "Let's reach your goals together. Contact me for a personalized offer.",
+    "button": "Get in touch now"
+  },
+  "items": {
+    "0": {
+      "heading": "FLOW",
+      "heading2": "Boxing & Kickboxing",
+      "description": "Movement as a mental release valve. FLOW combines boxing and kickboxing for intense physical and mental relief—release stress, unlock energy, find focus.",
+      "date": "2025",
+      "cta": "Request now"
+    },
+    "1": {
+      "heading": "Brand ambassador",
+      "heading2": "For your products!",
+      "description": "As a brand ambassador, I present your brand authentically and warmly, create targeted content, and strengthen your marketing campaigns. With an active social media presence and positive communication, I build trust and customer loyalty.",
+      "date": "2025",
+      "cta": "Request now"
+    },
+    "2": {
+      "heading": "Recovery",
+      "heading2": "Regeneration & IHHT",
+      "description": "Regeneration for body and nervous system. IHHT training, ATP breathing, and regenerative methods for recovery, energy, and balance.",
+      "date": "2025",
+      "cta": "Request now"
+    }
+  }
+}

@@ -1,12 +1,22 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+
 import Slider from 'react-slick'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
-import { testimonials } from '@/app/types/testimonials'
 import { motion } from 'framer-motion'
-import TestimonialSkeleton from '../../Skeleton/Testimonial'
+import { useTranslations } from 'next-intl'
 import { bebasNeue } from '@/app/fonts'
+
+const TESTIMONIAL_IMAGES = [
+  '/images/testimonial/user1.svg',
+  '/images/testimonial/user2.svg',
+  '/images/testimonial/user3.svg',
+  '/images/testimonial/user1.svg',
+  '/images/testimonial/user2.svg',
+  '/images/testimonial/user3.svg',
+] as const
+
+const TESTIMONIAL_RATINGS = [5, 4, 4, 4, 4, 4] as const
 
 interface TestimonialType {
   name: string
@@ -60,7 +70,6 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ items }) => {
   return (
     <div className='px-2 md:px-4'>
       <div className='bg-white shadow-testimonial rounded-3xl p-6 md:p-8 h-full flex flex-col hover:shadow-xl transition-shadow duration-300 group'>
-        {/* Quote Icon */}
         <div className='mb-4'>
           <Icon
             icon='mdi:format-quote-open'
@@ -68,7 +77,6 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ items }) => {
           />
         </div>
 
-        {/* Rating */}
         <div className='flex gap-1 mb-4'>
           {Array.from({ length: 5 }, (_, i) => (
             <Icon
@@ -81,15 +89,12 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ items }) => {
           ))}
         </div>
 
-        {/* Comment */}
         <p className='text-text-secondary text-base md:text-lg leading-relaxed mb-6 flex-grow'>
-          "{items.comment}"
+          &ldquo;{items.comment}&rdquo;
         </p>
 
-        {/* Divider */}
         <div className='border-t border-border mb-6'></div>
 
-        {/* Author Info */}
         <div className='flex items-center gap-4'>
           <div className='relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-accent-cyan/20 group-hover:ring-accent-cyan/40 transition-[box-shadow] duration-300'>
             <Image
@@ -114,28 +119,22 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ items }) => {
 }
 
 const Testimonial: React.FC = () => {
-  const [testimonals, setTestimonials] = useState<testimonials[]>([])
-  const [loading, setLoading] = useState(true)
+  const t = useTranslations('testimonial')
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch('/api/data')
-        if (!res.ok) throw new Error('Failed to fetch')
-        const data = await res.json()
-        setTestimonials(data.TestimonialsData)
-      } catch (error) {
-        console.error('Error fetching services:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchData()
-  }, [])
+  const itemsRaw = t.raw('items') as Record<
+    string,
+    { name: string; profession: string; comment: string }
+  >
+
+  const testimonals: TestimonialType[] = Object.values(itemsRaw).map((item, i) => ({
+    ...item,
+    imgSrc: TESTIMONIAL_IMAGES[i],
+    rating: TESTIMONIAL_RATINGS[i],
+  }))
 
   let averageRating = 0
   if (testimonals.length > 0) {
-    const sum = testimonals.reduce((acc, t) => acc + t.rating, 0)
+    const sum = testimonals.reduce((acc, item) => acc + item.rating, 0)
     averageRating = sum / testimonals.length
   }
 
@@ -144,7 +143,6 @@ const Testimonial: React.FC = () => {
       className='relative bg-gradient-to-br from-accent-cyan/5 via-light to-accent-cyan-light/5 overflow-hidden py-16 md:py-20 lg:py-24'
       id='testimonial-section'
     >
-      {/* Decorative Background */}
       <div
         className='pointer-events-none absolute inset-0 bg-center bg-no-repeat opacity-5'
         style={{ backgroundImage: 'url(/images/wework/elipse.svg)' }}
@@ -152,7 +150,6 @@ const Testimonial: React.FC = () => {
       />
 
       <div className='container mx-auto max-w-7xl px-4 relative z-10'>
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -167,7 +164,7 @@ const Testimonial: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className='text-accent-cyan text-sm md:text-base font-bold mb-4 uppercase tracking-wider'
           >
-            Testimonials
+            {t('eyebrow')}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -176,10 +173,9 @@ const Testimonial: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className={`text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 ${bebasNeue.className}`}
           >
-            Was andere sagen
+            {t('title')}
           </motion.h2>
 
-          {/* Rating Summary */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -207,12 +203,11 @@ const Testimonial: React.FC = () => {
             </div>
             <div className='hidden h-8 w-px bg-border sm:block' />
             <p className='text-center text-sm text-text-secondary sm:text-left sm:text-base md:text-lg'>
-              Basierend auf <span className='font-bold text-text-primary'>57 Bewertungen</span>
+              {t('ratingSummary')}
             </p>
           </motion.div>
         </motion.div>
 
-        {/* Testimonials Slider */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -221,17 +216,12 @@ const Testimonial: React.FC = () => {
           className='testimonial-slider pb-12'
         >
           <Slider {...settings}>
-            {loading
-              ? Array.from({ length: 3 }).map((_, i) => (
-                  <TestimonialSkeleton key={i} />
-                ))
-              : testimonals.map((items, i) => (
-                  <TestimonialCard key={i} items={items} />
-                ))}
+            {testimonals.map((items, i) => (
+              <TestimonialCard key={i} items={items} />
+            ))}
           </Slider>
         </motion.div>
 
-        {/* Trust Badge */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -242,7 +232,7 @@ const Testimonial: React.FC = () => {
           <div className='inline-flex max-w-full flex-col items-center gap-3 rounded-xl bg-white px-4 py-3 text-center shadow-md shadow-black/10 ring-1 ring-border/60 sm:flex-row sm:px-6 sm:text-left'>
             <Icon icon='mdi:shield-check' className='text-accent-cyan text-2xl shrink-0' />
             <p className='text-sm font-semibold text-text-primary sm:text-base'>
-              Verifizierte Bewertungen von echten Kunden
+              {t('trustBadge')}
             </p>
           </div>
         </motion.div>

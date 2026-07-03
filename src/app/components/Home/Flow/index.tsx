@@ -1,54 +1,38 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
+import { useTranslations } from 'next-intl'
 import { bebasNeue } from '@/app/fonts'
 
-const effects = [
-  {
-    num: '01',
-    label: 'Foto · Bewegung',
-    title: 'Stress abbauen',
-    text: 'Lass los, was dich belastet. Bewegung hilft dir, innere Spannung zu lösen und den Kopf freizubekommen.',
-    imgSrc: '/images/new/beach1.webp',
-    icon: 'mdi:meditation',
-  },
-  {
-    num: '02',
-    label: 'Foto · Energie',
-    title: 'Energie freisetzen',
-    text: 'Setze Energie frei, die dich antreibt – mehr Kraft, Ausdauer und ein besseres Körpergefühl.',
-    imgSrc: '/images/new/beach2.webp',
-    icon: 'mdi:lightning-bolt',
-  },
-  {
-    num: '03',
-    label: 'Foto · Fokus',
-    title: 'Fokus & Präsenz',
-    text: 'Werde im Moment stark. Mehr Fokus, Klarheit und Kontrolle – im Training und im Alltag.',
-    imgSrc: '/images/new/beach3.webp',
-    icon: 'mdi:target',
-  },
-]
-
-const gains = [
-  'Stress abbauen',
-  'Energie freisetzen',
-  'Fokus & Präsenz',
-  'Selbstbewusstsein steigern',
-  'Kraft & Ausdauer',
-  'Disziplin & Routine',
-  'Reaktionsfähigkeit verbessern',
-  'Mentale Klarheit',
-]
+const EFFECT_IMAGES = [
+  '/images/new/beach1.webp',
+  '/images/new/beach2.webp',
+  '/images/new/beach3.webp',
+] as const
+const EFFECT_ICONS = ['mdi:meditation', 'mdi:lightning-bolt', 'mdi:target'] as const
 
 const Flow = () => {
+  const t = useTranslations('flow')
+
+  const intro = Object.values(t.raw('intro') as Record<string, string>)
+  const effects = Object.values(
+    t.raw('effects') as Record<
+      string,
+      { num: string; label: string; title: string; text: string }
+    >
+  ).map((effect, i) => ({
+    ...effect,
+    imgSrc: EFFECT_IMAGES[i],
+    icon: EFFECT_ICONS[i],
+  }))
+  const gains = Object.values(t.raw('gains') as Record<string, string>)
+
   return (
     <section id='Flow' className='overflow-hidden bg-grey py-16 md:py-20 lg:py-24'>
       <div className='container mx-auto max-w-7xl px-4'>
-        {/* Hero */}
         <div className='grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16'>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -57,26 +41,23 @@ const Flow = () => {
             transition={{ duration: 0.6 }}
           >
             <p className='mb-4 text-sm font-bold uppercase tracking-widest text-accent-cyan md:text-base'>
-              Säule 01 · Flow
+              {t('eyebrow')}
             </p>
             <h2
               className={`mb-6 text-4xl font-bold text-text-primary md:text-5xl lg:text-6xl ${bebasNeue.className} text-balance`}
             >
-              Bewegung als mentales Ventil.
+              {t('title')}
             </h2>
-            <p className='copy-prose mb-5 text-base leading-relaxed text-text-secondary md:text-lg'>
-              FLOW verbindet Boxen und Kickboxen zu einer intensiven Form körperlicher und
-              mentaler Entlastung. Durch gezielte Bewegung, Fokus und Präsenz entsteht ein Raum,
-              um Stress abzubauen, Energie freizusetzen und den Kopf wieder klar zu bekommen.
-            </p>
-            <p className='copy-prose mb-8 text-base leading-relaxed text-text-secondary md:text-lg'>
-              Ziel von FLOW ist es, mentale Belastung auszugleichen, innere Spannung abzubauen
-              und gleichzeitig körperliche Stärke, Ausdauer und Selbstbewusstsein aufzubauen. Die
-              Sessions fördern Fokus, Disziplin und Reaktionsfähigkeit – und helfen dir, im Alltag
-              leistungsfähiger und ausgeglichener zu sein.
-            </p>
+            {intro.map((paragraph) => (
+              <p
+                key={paragraph}
+                className='copy-prose mb-5 text-base leading-relaxed text-text-secondary last:mb-8 md:text-lg'
+              >
+                {paragraph}
+              </p>
+            ))}
             <Link href='/kontakt' className='btn-accent inline-flex items-center gap-2'>
-              Erstgespräch vereinbaren
+              {t('cta')}
               <Icon icon='mdi:arrow-right' className='text-xl' aria-hidden />
             </Link>
           </motion.div>
@@ -91,20 +72,19 @@ const Flow = () => {
             <div className='relative aspect-[3/4] overflow-hidden rounded-3xl shadow-[var(--shadow-card-lift)] sm:aspect-[4/5] lg:max-h-[min(80vh,720px)] lg:aspect-[3/4]'>
               <Image
                 src='/images/new/bewegung.webp'
-                alt='FLOW – Krafttraining und Bewegung im Gym'
+                alt={t('heroImageAlt')}
                 fill
                 className='object-cover object-center'
                 sizes='(max-width: 1024px) 100vw, 50vw'
               />
               <div className='absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent' />
               <span className='absolute bottom-4 left-4 rounded-lg bg-black/50 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-white backdrop-blur-sm'>
-                Foto · Flow / Bewegung
+                {t('heroImageCaption')}
               </span>
             </div>
           </motion.div>
         </div>
 
-        {/* Worum es geht */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -114,16 +94,15 @@ const Flow = () => {
         >
           <div className='mb-10 text-center md:mb-14'>
             <p className='mb-3 text-sm font-bold uppercase tracking-widest text-accent-cyan'>
-              Worum es geht
+              {t('effectsSection.eyebrow')}
             </p>
             <h3
               className={`mb-4 text-3xl font-bold text-text-primary md:text-4xl lg:text-5xl ${bebasNeue.className} text-balance`}
             >
-              Drei Wirkungen, ein Gefühl
+              {t('effectsSection.title')}
             </h3>
             <p className='copy-prose mx-auto max-w-2xl text-base text-text-secondary md:text-lg'>
-              FLOW wirkt auf Körper und Kopf zugleich – das macht den Unterschied zu reinem
-              Auspowern.
+              {t('effectsSection.subtitle')}
             </p>
           </div>
 
@@ -169,7 +148,6 @@ const Flow = () => {
           </div>
         </motion.div>
 
-        {/* Dein Gewinn */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -179,12 +157,12 @@ const Flow = () => {
         >
           <div className='mb-8 text-center md:mb-10'>
             <p className='mb-3 text-sm font-bold uppercase tracking-widest text-accent-cyan'>
-              Dein Gewinn
+              {t('gainsSection.eyebrow')}
             </p>
             <h3
               className={`text-3xl font-bold text-text-primary md:text-4xl ${bebasNeue.className}`}
             >
-              Das bringt dir FLOW
+              {t('gainsSection.title')}
             </h3>
           </div>
           <ul className='flex flex-wrap justify-center gap-3 md:gap-4'>
@@ -204,7 +182,6 @@ const Flow = () => {
           </ul>
         </motion.div>
 
-        {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -218,14 +195,13 @@ const Flow = () => {
               <h3
                 className={`mb-4 text-3xl font-bold text-white md:text-4xl lg:text-5xl ${bebasNeue.className} text-balance`}
               >
-                Bereit, Druck rauszulassen?
+                {t('bottomCta.title')}
               </h3>
               <p className='copy-prose mx-auto mb-8 max-w-2xl text-base text-white/90 md:text-lg'>
-                Im kostenlosen Erstgespräch finden wir gemeinsam heraus, ob FLOW der richtige Weg
-                für dich ist.
+                {t('bottomCta.description')}
               </p>
               <Link href='/kontakt' className='btn-solid-light inline-flex items-center gap-2'>
-                Erstgespräch vereinbaren
+                {t('cta')}
                 <Icon icon='mdi:arrow-right' className='text-xl' aria-hidden />
               </Link>
             </div>

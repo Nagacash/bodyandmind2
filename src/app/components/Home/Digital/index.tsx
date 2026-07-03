@@ -1,12 +1,16 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
+import { useTranslations } from 'next-intl'
 import { bebasNeue } from '@/app/fonts'
 
 const Digital = () => {
+  const t = useTranslations('digital')
+  const titlePrefix = t('title').replace(t('titleHighlight'), '').trim()
+
   return (
     <section className='relative overflow-hidden bg-grey py-16 md:py-20 lg:py-24'>
       <div className='container mx-auto max-w-7xl px-4'>
@@ -23,31 +27,30 @@ const Digital = () => {
             >
               <p className='mb-4 flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest text-accent-cyan-light md:text-base lg:justify-start'>
                 <Icon icon='mdi:dumbbell' className='text-xl' aria-hidden />
-                Dein Training
+                {t('eyebrow')}
               </p>
 
               <h2
                 className={`mb-6 text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl ${bebasNeue.className} text-balance`}
               >
-                Bereit,{' '}
-                <span className='text-accent-cyan-light'>etwas zu verändern?</span>
+                {titlePrefix}{' '}
+                <span className='text-accent-cyan-light'>{t('titleHighlight')}</span>
               </h2>
 
               <p className='mb-8 max-w-xl text-base leading-relaxed text-white/85 md:text-lg lg:mx-0 mx-auto'>
-                Professionelles Training, individuelle Betreuung und ein motivierendes Team – gemeinsam
-                erreichen wir deine Gesundheits- und Fitnessziele.
+                {t('description')}
               </p>
 
               <div className='flex flex-col justify-center gap-4 sm:flex-row lg:justify-start'>
                 <Link href='/kontakt' className='btn-accent inline-flex min-h-12 items-center justify-center gap-2'>
-                  Jetzt starten
+                  {t('ctaPrimary')}
                   <Icon icon='mdi:arrow-right' className='text-xl' aria-hidden />
                 </Link>
                 <Link
                   href='/#Team'
                   className='btn-outline-light inline-flex min-h-12 items-center justify-center gap-2'
                 >
-                  Team kennenlernen
+                  {t('ctaSecondary')}
                   <Icon icon='mdi:account-group' className='text-xl' aria-hidden />
                 </Link>
               </div>
@@ -63,7 +66,7 @@ const Digital = () => {
               <div className='relative aspect-[4/5] overflow-hidden rounded-2xl shadow-[0_24px_48px_-16px_rgba(0,0,0,0.45)] ring-1 ring-white/20 sm:aspect-[5/4] lg:aspect-[4/5]'>
                 <Image
                   src='/images/new/nature2.webp'
-                  alt='Natalie Zimmermann – Personal Training und ganzheitliche Fitness'
+                  alt={t('imageAlt')}
                   fill
                   className='object-cover object-center'
                   sizes='(max-width: 1024px) 90vw, 480px'

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { usePathname } from 'next/navigation'
+import { usePathname } from '@/i18n/routing'
 import { getNavHashTarget } from '@/app/data/nav'
 
 const DEFAULT_HOME_SECTION = 'Hero'

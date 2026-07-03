@@ -1,0 +1,26 @@
+{
+  "badge": "Box-Weltmeisterin · Hamburg",
+  "title": "Gemeinsam zu körperlicher Stärke und mentaler Resilienz",
+  "subtitle": "Natalie Zimmermann — WIBF/WBF-Weltmeisterin, Physiotherapeutin, Mental Coach und Personal Trainerin im Body & Mind Studio, Harvestehude.",
+  "imageAlt": "Natalie Zimmermann – Box-Weltmeisterin, Physiotherapeutin und Mental Coach",
+  "badgePhoto": "WIBF · WBF Weltmeisterin",
+  "badgeYearsMobile": "22+ Jahre",
+  "floatingCardOrg": "WBO",
+  "floatingCardTitle": "Weltmeisterin",
+  "floatingCardYears": "22+",
+  "floatingCardYearsLabel": "Jahre Expertise",
+  "ctaPrimary": "Erstgespräch vereinbaren",
+  "ctaSecondary": "Philosophie entdecken",
+  "quickLinks": {
+    "0": { "label": "Philosophie" },
+    "1": { "label": "Mein Buch" },
+    "2": { "label": "Kontakt" }
+  },
+  "stats": {
+    "0": { "value": "22+", "label": "Jahre Erfahrung" },
+    "1": { "value": "1000+", "label": "Zufriedene Kunden" },
+    "2": { "value": "1", "label": "Weltmeisterin" }
+  },
+  "scrollLabel": "Mehr erfahren",
+  "scrollAria": "Weiter zur Philosophie"
+}

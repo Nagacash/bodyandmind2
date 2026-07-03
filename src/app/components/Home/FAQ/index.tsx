@@ -1,9 +1,11 @@
 'use client'
-import React, { useEffect, useMemo, useState } from 'react'
+
+import { useEffect, useMemo, useState } from 'react'
 import { Icon } from '@iconify/react'
 import { DisclosurePanel, DisclosureButton, Disclosure } from '@headlessui/react'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
+import { useTranslations } from 'next-intl'
 import { bebasNeue } from '@/app/fonts'
 
 interface FAQItem {
@@ -13,56 +15,23 @@ interface FAQItem {
   category?: string
 }
 
-const faqData: FAQItem[] = [
-  {
-    id: 1,
-    question: 'Wie kann man uns erreichen?',
-    answer: 'Sie können uns über unser Kontaktformular auf der Webseite erreichen. Wir sind auch per E-Mail (info@nataliezimmermann.de) und Telefon (040 / 53790578) erreichbar. Besuchen Sie unsere Kontaktseite, um die genauen Kontaktinformationen zu erhalten.',
-    category: 'Allgemein',
-  },
-  {
-    id: 2,
-    question: 'Was kostet eine Stunde Personaltraining?',
-    answer: 'Die Kosten für eine Stunde Personaltraining bei Body & Mind by Natalie Zimmermann können je nach Ihren individuellen Bedürfnissen und Anforderungen variieren. Wir bieten maßgeschneiderte Trainingsprogramme an, die auf Ihre Ziele, Ihr Fitnesslevel und Ihre Verfügbarkeit zugeschnitten sind. Um genauere Informationen zu den Preisen zu erhalten und ein auf Sie abgestimmtes Angebot zu erhalten, kontaktieren Sie uns bitte direkt.',
-    category: 'Preise',
-  },
-  {
-    id: 3,
-    question: 'Wie verläuft die Terminvergabe?',
-    answer: 'Nehmen Sie Kontakt über das Kontaktformular oder telefonisch auf und vereinbaren Sie flexibel Ihren Wunschtermin. Wir passen uns gerne Ihrem Zeitplan an und finden gemeinsam den besten Termin für Sie.',
-    category: 'Termine',
-  },
-  {
-    id: 4,
-    question: 'Wo findet das Training statt?',
-    answer: 'Das Training findet in unserem Body & Mind Studio in Hamburg-Harvestehude statt. Unsere Räumlichkeiten befinden sich in einer wunderschönen Jugendstilvilla in der Rothenbaumchaussee 156, 20149 Hamburg. Wir bieten auch Online-Training an.',
-    category: 'Standort',
-  },
-  {
-    id: 5,
-    question: 'Welche Trainingsarten werden angeboten?',
-    answer: 'Wir bieten ein breites Spektrum an Trainingsmöglichkeiten: Boxen, Kickboxen, Personaltraining, Mental Coaching, Massagen, Physiotherapie, Faszientraining, Lu Jong Yoga und vieles mehr. Jedes Training wird individuell auf Ihre Bedürfnisse angepasst.',
-    category: 'Training',
-  },
-  {
-    id: 6,
-    question: 'Muss ich Vorkenntnisse haben?',
-    answer: 'Nein, Vorkenntnisse sind nicht erforderlich. Wir passen das Training an Ihr individuelles Fitnesslevel an. Ob Anfänger oder Fortgeschrittener – wir haben für jeden das passende Programm.',
-    category: 'Training',
-  },
-  {
-    id: 7,
-    question: 'Bietet Natalie Zimmermann Wingwave Coaching in Hamburg an?',
-    answer:
-      'Ja. Natalie Zimmermann ist Mental Coach mit Schwerpunkt Wingwave und bietet Wingwave Coaching im Body & Mind Studio in Hamburg-Harvestehude an (Rothenbaumchaussee 156, 20149 Hamburg). Wingwave ist eine neurobiologisch fundierte Methode, um emotionale Blockaden und Stress schnell zu lösen — kombiniert mit Personal Training und Physiotherapie. Termin: info@nataliezimmermann.de oder 040 / 53790578.',
-    category: 'Mental Coaching',
-  },
-]
-
 const FAQ = () => {
+  const t = useTranslations('faq')
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
-  const [desktopActiveId, setDesktopActiveId] = useState<number>(faqData[0].id)
+
+  const faqData: FAQItem[] = useMemo(() => {
+    const items = t.raw('items') as Record<
+      string,
+      { question: string; answer: string; category: string }
+    >
+    return Object.values(items).map((item, index) => ({
+      id: index + 1,
+      ...item,
+    }))
+  }, [t])
+
+  const [desktopActiveId, setDesktopActiveId] = useState<number>(1)
 
   const playAudio = () => {
     const audio = new Audio('/sound/click.wav')
@@ -70,8 +39,12 @@ const FAQ = () => {
     audio.play()
   }
 
-  const categories = Array.from(
-    new Set(faqData.map((faq) => faq.category).filter((cat): cat is string => Boolean(cat)))
+  const categories = useMemo(
+    () =>
+      Array.from(
+        new Set(faqData.map((faq) => faq.category).filter((cat): cat is string => Boolean(cat)))
+      ),
+    [faqData]
   )
 
   const filteredFAQs = useMemo(
@@ -83,7 +56,7 @@ const FAQ = () => {
         const matchesCategory = !selectedCategory || faq.category === selectedCategory
         return matchesSearch && matchesCategory
       }),
-    [searchQuery, selectedCategory]
+    [faqData, searchQuery, selectedCategory]
   )
 
   useEffect(() => {
@@ -96,16 +69,17 @@ const FAQ = () => {
   const desktopActiveFaq =
     filteredFAQs.find((f) => f.id === desktopActiveId) ?? filteredFAQs[0]
 
+  const linkClassName =
+    'font-semibold text-accent-cyan transition-colors duration-300 hover:text-accent-cyan/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2'
+
   return (
     <section
       id='FAQ'
       className='relative py-16 md:py-20 lg:py-24 bg-gradient-to-br from-accent-cyan/10 via-light to-accent-cyan-light/10 overflow-hidden'
     >
-      {/* Decorative Background */}
       <div className='absolute inset-0 bg-[url("/images/faq/swirl.webp")] bg-no-repeat bg-right-bottom opacity-10 -z-0' />
 
       <div className='container mx-auto max-w-7xl px-4 relative z-10'>
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -120,7 +94,7 @@ const FAQ = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className='mb-4 text-sm font-semibold tracking-wide text-accent-cyan md:text-base'
           >
-            Fragen & Antworten
+            {t('eyebrow')}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -129,7 +103,7 @@ const FAQ = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className={`text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 ${bebasNeue.className}`}
           >
-            Häufig gestellte Fragen
+            {t('title')}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -138,11 +112,10 @@ const FAQ = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className='text-text-secondary text-base md:text-lg max-w-3xl mx-auto'
           >
-            Finden Sie schnell Antworten auf die häufigsten Fragen. Falls Sie weitere Fragen haben, kontaktieren Sie uns gerne.
+            {t('description')}
           </motion.p>
         </motion.div>
 
-        {/* Search and Filter */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -151,7 +124,6 @@ const FAQ = () => {
           className='mb-8 md:mb-12'
         >
           <div className='max-w-3xl mx-auto'>
-            {/* Search Bar */}
             <div className='relative mb-6'>
               <Icon
                 icon='mdi:magnify'
@@ -159,26 +131,25 @@ const FAQ = () => {
               />
               <input
                 type='text'
-                placeholder='Fragen durchsuchen...'
+                placeholder={t('searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className='input-field rounded-2xl py-4 pl-12 pr-4 text-lg'
               />
             </div>
 
-            {/* Category Filters */}
             {categories.length > 0 && (
               <div className='flex flex-wrap justify-center gap-3'>
                 <button
-                  type="button"
+                  type='button'
                   onClick={() => setSelectedCategory(null)}
                   className={`btn-chip ${selectedCategory === null ? 'btn-chip-active' : 'btn-chip-idle'}`}
                 >
-                  Alle
+                  {t('filterAll')}
                 </button>
                 {categories.map((category) => (
                   <button
-                    type="button"
+                    type='button'
                     key={category}
                     onClick={() => setSelectedCategory(category)}
                     className={`btn-chip ${selectedCategory === category ? 'btn-chip-active' : 'btn-chip-idle'}`}
@@ -191,19 +162,18 @@ const FAQ = () => {
           </div>
         </motion.div>
 
-        {/* FAQ: split panel (lg+), accordion mobile */}
         <div className='mx-auto max-w-6xl'>
           {filteredFAQs.length > 0 ? (
             <>
               <div className='hidden gap-10 lg:grid lg:grid-cols-12 lg:items-start'>
                 <div className='lg:col-span-5'>
                   <p className='mb-3 text-xs font-semibold uppercase tracking-wide text-text-muted'>
-                    Thema wählen
+                    {t('selectTopic')}
                   </p>
                   <ul
                     className='max-h-[min(70vh,560px)] space-y-2 overflow-y-auto pr-1 [scrollbar-width:thin]'
                     role='tablist'
-                    aria-label='Fragen'
+                    aria-label={t('questionsAria')}
                   >
                     {filteredFAQs.map((faq, index) => {
                       const active = faq.id === desktopActiveId
@@ -217,7 +187,7 @@ const FAQ = () => {
                               playAudio()
                               setDesktopActiveId(faq.id)
                             }}
-                            className={`flex w-full rounded-2xl border-2 px-4 py-4 text-left transition-[border-color,background-color,box-shadow] duration-300 ${
+                            className={`flex w-full cursor-pointer rounded-sm border-2 px-4 py-4 text-left transition-[border-color,background-color,box-shadow] duration-300 ${
                               active
                                 ? 'border-accent-cyan bg-white shadow-[var(--shadow-card-lift)]'
                                 : 'border-border/80 bg-white/60 hover:border-accent-cyan/40 hover:bg-white'
@@ -259,11 +229,8 @@ const FAQ = () => {
                         {desktopActiveFaq.answer}
                       </p>
                       {desktopActiveFaq.id === 1 && (
-                        <Link
-                          href='/kontakt'
-                          className='mt-6 inline-flex items-center gap-2 font-semibold text-accent-cyan transition-colors duration-300 hover:text-accent-cyan/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2'
-                        >
-                          Zur Kontaktseite
+                        <Link href='/kontakt' className={`mt-6 inline-flex items-center gap-2 ${linkClassName}`}>
+                          {t('toContactPage')}
                           <Icon icon='mdi:arrow-right' className='text-lg' aria-hidden />
                         </Link>
                       )}
@@ -287,7 +254,7 @@ const FAQ = () => {
                         <>
                           <DisclosureButton
                             onClick={playAudio}
-                            className='flex w-full items-center justify-between rounded-2xl p-6 text-left transition-colors duration-300 hover:bg-grey/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 md:p-8'
+                            className='flex w-full cursor-pointer items-center justify-between rounded-sm p-6 text-left transition-colors duration-300 hover:bg-grey/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 md:p-8'
                           >
                             <div className='flex flex-grow items-start gap-4'>
                               <div className='mt-1 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-accent-cyan/10'>
@@ -309,7 +276,7 @@ const FAQ = () => {
                               </div>
                             </div>
                             <div
-                              className={`flex h-10 w-10 flex-shrink-0 transform items-center justify-center rounded-xl bg-accent-cyan transition-transform duration-300 ${
+                              className={`flex h-10 w-10 flex-shrink-0 transform items-center justify-center rounded-sm bg-accent-cyan transition-transform duration-300 ${
                                 open ? 'rotate-180' : ''
                               }`}
                             >
@@ -324,9 +291,9 @@ const FAQ = () => {
                               {faq.id === 1 && (
                                 <Link
                                   href='/kontakt'
-                                  className='mt-4 inline-flex items-center gap-2 font-semibold text-accent-cyan transition-colors duration-300 hover:text-accent-cyan/80'
+                                  className={`mt-4 inline-flex items-center gap-2 ${linkClassName}`}
                                 >
-                                  Zur Kontaktseite
+                                  {t('toContactPage')}
                                   <Icon icon='mdi:arrow-right' className='text-lg' aria-hidden />
                                 </Link>
                               )}
@@ -351,20 +318,21 @@ const FAQ = () => {
                 aria-hidden
               />
               <p className='mb-2 text-lg font-semibold text-text-secondary'>
-                Keine Ergebnisse gefunden
+                {t('noResultsTitle')}
               </p>
               <p className='text-text-muted'>
-                Versuchen Sie es mit anderen Suchbegriffen oder{' '}
-                <Link href='/kontakt' className='font-semibold text-accent-cyan hover:underline'>
-                  kontaktieren Sie uns direkt
-                </Link>
-                .
+                {t.rich('noResultsDescription', {
+                  contact: (chunks) => (
+                    <Link href='/kontakt' className='font-semibold text-accent-cyan hover:underline'>
+                      {chunks}
+                    </Link>
+                  ),
+                })}
               </p>
             </motion.div>
           )}
         </div>
 
-        {/* CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -377,16 +345,13 @@ const FAQ = () => {
             <div className='relative z-10'>
               <Icon icon='mdi:message-question-outline' className='text-5xl mb-4 mx-auto' />
               <h3 className={`text-3xl md:text-4xl font-bold mb-4 ${bebasNeue.className}`}>
-                Haben Sie weitere Fragen?
+                {t('ctaTitle')}
               </h3>
               <p className='text-white/90 text-lg mb-6 max-w-2xl mx-auto'>
-                Wir helfen Ihnen gerne weiter. Kontaktieren Sie uns für eine persönliche Beratung.
+                {t('ctaDescription')}
               </p>
-              <Link
-                href='/kontakt'
-                className='btn-solid-light'
-              >
-                Jetzt kontaktieren
+              <Link href='/kontakt' className='btn-solid-light'>
+                {t('ctaButton')}
                 <Icon icon='mdi:arrow-right' className='text-xl' />
               </Link>
             </div>

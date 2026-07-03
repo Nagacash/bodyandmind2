@@ -1,26 +1,19 @@
 'use client'
 
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 import Image from 'next/image'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Icon } from '@iconify/react'
+import { useTranslations } from 'next-intl'
 import { bebasNeue } from '@/app/fonts'
 
 const AMAZON_BOOK_URL =
   'https://www.amazon.de/-/en/Mens-Health-Womens-Erfolgsgeheimnisse-Box-Weltmeisterin/dp/3613509911'
 
-const quickLinks = [
-  { icon: 'mdi:account-circle', label: 'Philosophie', href: '/#About' },
-  { icon: 'mdi:book-open-variant', label: 'Mein Buch', href: AMAZON_BOOK_URL, external: true },
-  { icon: 'mdi:phone', label: 'Kontakt', href: '/kontakt' },
-]
-
-const stats = [
-  { value: '22+', label: 'Jahre Erfahrung' },
-  { value: '1000+', label: 'Zufriedene Kunden' },
-  { value: '1', label: 'Weltmeisterin' },
-]
+const QUICK_LINK_ICONS = ['mdi:account-circle', 'mdi:book-open-variant', 'mdi:phone'] as const
+const QUICK_LINK_HREFS = ['/#About', AMAZON_BOOK_URL, '/kontakt'] as const
+const QUICK_LINK_EXTERNAL = [false, true, false] as const
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -39,10 +32,24 @@ function useNarrowViewport() {
 }
 
 const Hero = () => {
+  const t = useTranslations('hero')
   const shouldReduceMotion = useReducedMotion()
   const motionOff = shouldReduceMotion
   const isNarrow = useNarrowViewport()
   const videoRef = useRef<HTMLVideoElement>(null)
+
+  const quickLinks = Object.values(
+    t.raw('quickLinks') as Record<string, { label: string }>
+  ).map((link, i) => ({
+    ...link,
+    icon: QUICK_LINK_ICONS[i],
+    href: QUICK_LINK_HREFS[i],
+    external: QUICK_LINK_EXTERNAL[i],
+  }))
+
+  const stats = Object.values(
+    t.raw('stats') as Record<string, { value: string; label: string }>
+  )
 
   useEffect(() => {
     if (shouldReduceMotion) return
@@ -101,14 +108,11 @@ const Hero = () => {
               <source src='/clip/mist.mp4' type='video/mp4' />
             </motion.video>
 
-            {/* Mobile: vertical wash — portrait top, copy below */}
             <div className='absolute inset-0 bg-gradient-to-b from-light/94 via-light/72 to-light/90 md:hidden' />
-            {/* Desktop: horizontal wash — copy left, portrait right */}
             <div className='absolute inset-0 hidden bg-gradient-to-r from-light/92 via-light/55 to-accent-cyan-light/25 md:block' />
             <div className='absolute inset-0 bg-gradient-to-br from-transparent via-accent-cyan/[0.06] to-accent-cyan/15 mix-blend-soft-light md:via-accent-cyan/[0.07] md:to-accent-cyan/20' />
             <div className='absolute inset-0 bg-[radial-gradient(ellipse_110%_50%_at_50%_8%,rgba(55,190,240,0.08),transparent_62%)] md:bg-[radial-gradient(ellipse_80%_60%_at_70%_40%,rgba(55,190,240,0.12),transparent_70%)]' />
 
-            {/* Occlude Veo / Flow watermark — bottom-right (larger touch target on mobile) */}
             <div className='absolute bottom-0 right-0 h-[min(32vw,120px)] w-[min(48vw,200px)] bg-gradient-to-tl from-light/95 via-accent-cyan-light/80 to-transparent backdrop-blur-2xl md:h-[min(22vw,96px)] md:w-[min(34vw,168px)] md:via-accent-cyan-light/75' />
             <div className='absolute bottom-0 right-0 h-[min(20vw,72px)] w-[min(30vw,140px)] rounded-tl-3xl bg-light/50 backdrop-blur-3xl md:h-[min(14vw,56px)] md:w-[min(22vw,112px)] md:bg-light/40' />
           </motion.div>
@@ -121,7 +125,6 @@ const Hero = () => {
 
       <div className='container relative z-10 mx-auto max-w-7xl px-4'>
         <div className='flex flex-col gap-10 min-w-0 sm:gap-8 lg:flex-row lg:items-center lg:gap-12 xl:gap-16'>
-          {/* Portrait — first on mobile, right on desktop */}
           <motion.div
             initial={motionOff ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -132,7 +135,7 @@ const Hero = () => {
               <div className='relative aspect-[4/5] w-full overflow-hidden rounded-[1.75rem] shadow-[var(--shadow-card-lift)] ring-1 ring-black/[0.06] sm:aspect-[5/6] sm:rounded-3xl md:aspect-[4/5] lg:h-[min(72vh,650px)] lg:max-h-[650px] lg:aspect-auto'>
                 <Image
                   src='/images/hero/lind3.webp'
-                  alt='Natalie Zimmermann – Box-Weltmeisterin, Physiotherapeutin und Mental Coach'
+                  alt={t('imageAlt')}
                   fill
                   className='object-cover object-[center_12%] transition-transform duration-700 group-hover:scale-[1.02] motion-reduce:transform-none motion-reduce:group-hover:scale-100'
                   priority
@@ -140,19 +143,17 @@ const Hero = () => {
                 />
                 <div className='absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent' />
 
-                {/* Mobile / tablet badges on photo */}
                 <div className='absolute bottom-4 left-4 right-4 flex flex-wrap items-end justify-between gap-2 md:bottom-5 md:left-5 md:right-5'>
                   <span className='inline-flex items-center gap-2 rounded-xl bg-white/95 px-3 py-2 text-xs font-bold uppercase tracking-wide text-text-primary shadow-md backdrop-blur-sm ring-1 ring-black/5'>
                     <Icon icon='mdi:trophy-variant' className='text-lg text-accent-cyan' aria-hidden />
-                    WIBF · WBF Weltmeisterin
+                    {t('badgePhoto')}
                   </span>
                   <span className='inline-flex rounded-xl bg-accent-cyan/95 px-3 py-2 text-xs font-bold tabular-nums text-white shadow-md backdrop-blur-sm lg:hidden'>
-                    22+ Jahre
+                    {t('badgeYearsMobile')}
                   </span>
                 </div>
               </div>
 
-              {/* Desktop floating cards */}
               <motion.div
                 initial={motionOff ? false : { opacity: 0, scale: 0.92 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -164,8 +165,8 @@ const Hero = () => {
                     <Icon icon='mdi:trophy-variant' className='text-2xl text-white' aria-hidden />
                   </div>
                   <div>
-                    <p className='text-xs font-semibold uppercase tracking-wide text-text-secondary'>WBO</p>
-                    <p className='text-sm font-bold text-text-primary'>Weltmeisterin</p>
+                    <p className='text-xs font-semibold uppercase tracking-wide text-text-secondary'>{t('floatingCardOrg')}</p>
+                    <p className='text-sm font-bold text-text-primary'>{t('floatingCardTitle')}</p>
                   </div>
                 </div>
               </motion.div>
@@ -176,13 +177,12 @@ const Hero = () => {
                 transition={{ duration: 0.45, delay: motionOff ? 0 : 0.52, ease }}
                 className='absolute -right-4 -top-4 z-10 hidden rounded-2xl bg-accent-cyan p-4 shadow-[var(--shadow-card-lift)] lg:block'
               >
-                <p className='mb-1 text-2xl font-bold tabular-nums text-white'>22+</p>
-                <p className='text-xs text-white/90'>Jahre Expertise</p>
+                <p className='mb-1 text-2xl font-bold tabular-nums text-white'>{t('floatingCardYears')}</p>
+                <p className='text-xs text-white/90'>{t('floatingCardYearsLabel')}</p>
               </motion.div>
             </div>
           </motion.div>
 
-          {/* Copy — second on mobile, left on desktop */}
           <div className='relative z-20 order-2 w-full min-w-0 text-center lg:order-1 lg:w-1/2 lg:text-left'>
             <motion.div
               initial={motionOff ? false : { opacity: 0, y: 24 }}
@@ -191,7 +191,7 @@ const Hero = () => {
               className='mb-4 inline-flex items-center gap-2 rounded-full bg-accent-cyan/12 px-4 py-2 text-sm font-semibold tracking-wide text-accent-cyan md:mb-6 md:text-base'
             >
               <Icon icon='mdi:trophy' className='text-xl' aria-hidden />
-              Box-Weltmeisterin · Hamburg
+              {t('badge')}
             </motion.div>
 
             <motion.h1
@@ -200,7 +200,7 @@ const Hero = () => {
               transition={{ duration: motionOff ? 0.2 : 0.7, delay: motionOff ? 0 : 0.18, ease }}
               className={`mb-4 text-[clamp(2rem,8vw,2.75rem)] font-bold leading-[1.05] text-text-primary sm:text-4xl md:mb-6 md:text-5xl lg:text-6xl xl:text-7xl ${bebasNeue.className} text-balance`}
             >
-              Gemeinsam zu körperlicher Stärke und mentaler Resilienz
+              {t('title')}
             </motion.h1>
 
             <motion.p
@@ -209,8 +209,7 @@ const Hero = () => {
               transition={{ duration: motionOff ? 0.2 : 0.6, delay: motionOff ? 0 : 0.24, ease }}
               className='relative z-10 mx-auto mb-6 max-w-xl text-base leading-relaxed text-text-secondary sm:text-lg md:mb-8 lg:mx-0'
             >
-              Natalie Zimmermann — WIBF/WBF-Weltmeisterin, Physiotherapeutin, Mental Coach und
-              Personal Trainerin im Body&nbsp;&amp;&nbsp;Mind Studio, Harvestehude.
+              {t('subtitle')}
             </motion.p>
 
             <motion.div
@@ -224,14 +223,14 @@ const Hero = () => {
                 className='btn-primary inline-flex w-full min-h-12 items-center justify-center gap-2 sm:w-auto'
               >
                 <Icon icon='mdi:calendar-check' className='text-xl' aria-hidden />
-                Erstgespräch vereinbaren
+                {t('ctaPrimary')}
               </Link>
               <Link
                 href='/#About'
                 className='btn-secondary inline-flex w-full min-h-12 items-center justify-center gap-2 sm:w-auto'
               >
                 <Icon icon='mdi:heart-pulse' className='text-xl' aria-hidden />
-                Philosophie entdecken
+                {t('ctaSecondary')}
               </Link>
             </motion.div>
 
@@ -242,16 +241,27 @@ const Hero = () => {
               className='mb-8 flex flex-wrap justify-center gap-x-5 gap-y-2 lg:justify-start'
             >
               {quickLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  target={link.external ? '_blank' : undefined}
-                  rel={link.external ? 'noopener noreferrer' : undefined}
-                  className='inline-flex min-h-11 items-center gap-2 text-sm text-text-secondary transition-colors duration-200 hover:text-accent-cyan md:text-base'
-                >
-                  <Icon icon={link.icon} className='text-lg shrink-0' aria-hidden />
-                  {link.label}
-                </Link>
+                link.external ? (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='inline-flex min-h-11 items-center gap-2 text-sm text-text-secondary transition-colors duration-200 hover:text-accent-cyan md:text-base'
+                  >
+                    <Icon icon={link.icon} className='text-lg shrink-0' aria-hidden />
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className='inline-flex min-h-11 items-center gap-2 text-sm text-text-secondary transition-colors duration-200 hover:text-accent-cyan md:text-base'
+                  >
+                    <Icon icon={link.icon} className='text-lg shrink-0' aria-hidden />
+                    {link.label}
+                  </Link>
+                )
               ))}
             </motion.div>
 
@@ -289,10 +299,10 @@ const Hero = () => {
               })
             }}
             className='flex min-h-11 cursor-pointer flex-col items-center gap-1 rounded-lg px-3 py-2 text-text-secondary transition-colors duration-200 hover:text-accent-cyan focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2'
-            aria-label='Weiter zur Philosophie'
+            aria-label={t('scrollAria')}
           >
             <span className='text-xs font-semibold uppercase tracking-widest sm:text-sm'>
-              Mehr erfahren
+              {t('scrollLabel')}
             </span>
             <motion.span
               animate={shouldReduceMotion ? undefined : { y: [0, 6, 0] }}
@@ -309,7 +319,6 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Dissolve into Philosophie section */}
       <div
         className='pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-40 sm:h-44 md:h-52'
         aria-hidden
