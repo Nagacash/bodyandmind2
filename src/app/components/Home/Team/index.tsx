@@ -15,12 +15,16 @@ const stats = [
   { value: '3×', label: 'Weltmeisterin' },
 ]
 
+const TEAM_PHOTO_HEIGHT = 'h-64 sm:h-72 lg:h-[340px]'
+const TEAM_CARD_WIDTH =
+  'w-[min(calc(100vw-2.5rem),340px)] max-w-full shrink-0 snap-center lg:w-auto lg:min-w-0 lg:max-w-none lg:shrink'
+
 function TeamCardSkeleton() {
   return (
     <div
       role='status'
       aria-label='Team wird geladen'
-      className='team-card min-w-[min(85vw,340px)] shrink-0 animate-pulse overflow-hidden rounded-3xl bg-white shadow-md ring-1 ring-border/50 lg:min-w-0'
+      className='team-card min-w-0 w-[min(calc(100vw-2.5rem),340px)] max-w-full shrink-0 snap-center animate-pulse overflow-hidden rounded-3xl bg-white shadow-md ring-1 ring-border/50 lg:w-auto lg:min-w-0'
     >
       <div className={`${TEAM_PHOTO_HEIGHT} bg-border/40`} />
       <div className='space-y-3 p-6'>
@@ -36,27 +40,32 @@ function TeamCardSkeleton() {
   )
 }
 
-const TEAM_PHOTO_HEIGHT = 'h-[340px]'
-
 function TeamMemberCard({ member }: { member: workdata }) {
   return (
-    <article className='team-card group flex h-full min-w-[min(85vw,340px)] shrink-0 flex-col overflow-hidden rounded-3xl bg-white shadow-md ring-1 ring-border/50 transition-[box-shadow,ring-color] duration-200 hover:shadow-lg hover:ring-accent-cyan/30 lg:min-w-0'>
+    <article
+      className={`team-card group flex flex-col overflow-hidden rounded-3xl bg-white shadow-md ring-1 ring-border/50 transition-[box-shadow,ring-color] duration-200 hover:shadow-lg hover:ring-accent-cyan/30 ${TEAM_CARD_WIDTH}`}
+    >
       <div
         className={`relative ${TEAM_PHOTO_HEIGHT} w-full shrink-0 overflow-hidden bg-gradient-to-b from-grey to-white`}
       >
-        <Image
-          src={member.imgSrc}
-          alt={`${member.name} – Teammitglied bei Natalie Zimmermann`}
-          fill
-          className='object-contain object-bottom px-4 pb-1 pt-4 transition-[filter] duration-200 group-hover:brightness-[1.03]'
-          sizes='(max-width: 1024px) 85vw, 340px'
-        />
+        <div className='absolute inset-0 flex items-center justify-center p-4 pb-2'>
+          <Image
+            src={member.imgSrc}
+            alt={`${member.name} – Teammitglied bei Natalie Zimmermann`}
+            width={320}
+            height={400}
+            className='max-h-full w-auto max-w-full object-contain object-center transition-[filter] duration-200 group-hover:brightness-[1.03]'
+            sizes='(max-width: 1024px) min(calc(100vw - 2.5rem), 340px), 340px'
+          />
+        </div>
       </div>
-      <div className='flex flex-1 flex-col p-6 pt-4'>
-        <h3 className={`mb-2 text-2xl font-bold text-text-primary ${bebasNeue.className}`}>
+      <div className='flex min-h-0 flex-col p-5 pt-4 sm:p-6'>
+        <h3
+          className={`mb-3 text-center text-2xl font-bold text-text-primary lg:text-left ${bebasNeue.className}`}
+        >
           {member.name}
         </h3>
-        <p className='copy-prose flex-1 text-sm leading-relaxed text-text-secondary md:text-base'>
+        <p className='text-center text-sm leading-relaxed text-text-secondary break-words hyphens-auto md:text-base lg:text-left'>
           {member.profession}
         </p>
       </div>
@@ -174,7 +183,7 @@ const Team = () => {
 
           <div
             ref={scrollRef}
-            className='team-scroll -mx-4 flex gap-6 overflow-x-auto px-4 pb-2 lg:mx-0 lg:grid lg:grid-cols-3 lg:overflow-visible lg:px-0'
+            className='team-scroll flex gap-4 overflow-x-auto overscroll-x-contain px-[max(1rem,calc((100%-min(calc(100vw-2.5rem),340px))/2))] pb-4 pt-1 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-6 lg:overflow-visible lg:px-0 lg:pb-2'
             role='region'
             aria-roledescription='Karussell'
             aria-label='Teammitglieder'
@@ -222,13 +231,15 @@ const Team = () => {
               className='absolute top-0 right-0 h-64 w-64 translate-x-1/2 -translate-y-1/2 rounded-full bg-white/10'
               aria-hidden
             />
-            <div className='relative z-10 grid grid-cols-2 gap-8 md:grid-cols-4'>
+            <div className='relative z-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-8 md:grid-cols-4'>
               {stats.map((item) => (
-                <div key={item.label} className='text-center'>
-                  <p className={`mb-1 text-4xl font-bold tabular-nums md:text-5xl ${bebasNeue.className}`}>
+                <div key={item.label} className='min-w-0 px-1 text-center'>
+                  <p className={`mb-1 text-3xl font-bold tabular-nums sm:text-4xl md:text-5xl ${bebasNeue.className}`}>
                     {item.value}
                   </p>
-                  <p className='text-sm text-white/90 md:text-base'>{item.label}</p>
+                  <p className='text-xs leading-snug text-white/90 text-balance sm:text-sm md:text-base'>
+                    {item.label}
+                  </p>
                 </div>
               ))}
             </div>

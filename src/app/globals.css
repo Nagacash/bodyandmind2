@@ -475,7 +475,7 @@ main {
 /* Team scroll-snap carousel – scoped to #Team */
 #Team .team-scroll {
   scroll-snap-type: x mandatory;
-  scroll-padding-inline: 1rem;
+  scroll-padding-inline: max(1rem, calc((100% - min(calc(100vw - 2.5rem), 340px)) / 2));
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
@@ -483,7 +483,7 @@ main {
   display: none;
 }
 #Team .team-card {
-  scroll-snap-align: start;
+  scroll-snap-align: center;
 }
 @media (prefers-reduced-motion: reduce) {
   #Team .team-scroll {
