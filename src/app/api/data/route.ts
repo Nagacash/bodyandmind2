@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 
 import { HeaderItem } from '@/app/types/menu'
+import { headerNavLinks, mobileNavLinks } from '@/app/data/nav'
 import { aboutdata } from '@/app/types/aboutdata'
 import { workdata } from '@/app/types/workdata'
 import { featureddata } from '@/app/types/featureddata'
@@ -9,84 +10,30 @@ import { articles } from '@/app/types/articles'
 import { footerlinks } from '@/app/types/footerlinks'
 
 // header nav-links data
-const headerData: HeaderItem[] = [
-  { label: 'Home', href: '/#Hero' },
-  { label: 'Über Mich', href: '/#About' },
-  { label: 'Team', href: '/#Team' },
-  { label: 'FAQ', href: '/#FAQ' },
-  { label: 'Featured', href: '/#Featured' },
-  { label: 'Presse', href: '/#Presse' },
-  { label: 'Kontakt', href: '/kontakt' },
-
-
-]
+const headerData: HeaderItem[] = headerNavLinks
 
 // mobile header nav-links data
-const mobileHeaderData: HeaderItem[] = [
-  { label: 'Home', href: '/#Hero' },
-  { label: 'Über Mich', href: '/#About' },
-  { label: 'Team', href: '/#Team' },
-  { label: 'FAQ', href: '/#FAQ' },
-  { label: 'Featured', href: '/#Featured' },
-  { label: 'Presse', href: '/#Presse' },
-  { label: 'Blog', href: '/#Blog' },
-  { label: 'Kontakt', href: '/kontakt' },
-  { label: 'Impressum', href: '/imprint' },
-  { label: 'Datenschutz', href: '/privacy' },
-  { label: 'AGB', href: '/agb' },
-]
+const mobileHeaderData: HeaderItem[] = mobileNavLinks
 
-// about data
-const Aboutdata: aboutdata[] = [
-  {
-    heading: 'Über Mich.',
-    imgSrc: '/images/aboutus/boxa6.jpg',
-    paragraph:
-      'Seit meinem 20. Lebensjahr bin ich Leistungssportlerin und habe meine Leidenschaft außerdem zu meinem Beruf gemacht.\n\n\nSeit fast 20 Jahren arbeite ich bereits als Physiotherapeutin, Personal Fitness Trainerin und Mental Trainerin.\n\n\nIch liebe es, zu lernen und mich weiterzuentwickeln, und strebe danach, jeden Tag mein Bestes zu geben – sowohl im Sport als auch als Coach.\n\n\nDaher bilde ich mich kontinuierlich fort, um sowohl als Kämpferin als auch als Coach 100% Leistung zu erbringen und meine Klienten optimal zu betreuen.',
-    fullParagraph:
-      'Seit meinem 20. Lebensjahr bin ich Leistungssportlerin und habe meine Leidenschaft außerdem zu meinem Beruf gemacht. Seit fast 20 Jahren arbeite ich bereits als Physiotherapeutin, Personal Fitness Trainerin und Mental Trainerin. \n\nIch liebe es, zu lernen und mich weiterzuentwickeln, und strebe danach, jeden Tag mein Bestes zu geben – sowohl im Sport als auch als Coach. Daher bilde ich mich kontinuierlich fort, um sowohl als Kämpferin als auch als Coach 100% Leistung zu erbringen und meine Klienten optimal zu betreuen.\nMit Freude gebe ich meine Expertise weiter, um Menschen zu inspirieren und zu motivieren, eine bessere Version ihrer selbst zu werden und das Beste aus ihrem Leben zu machen, um ein glückliches, gesundes und erfülltes Leben zu führen. \nEs ist nie zu spät, um an sich zu glauben und seine Ziele und Träume zu verwirklichen: So habe ich mich mit Mitte 30 dazu entschieden, meinen Traum zu verfolgen und Profiboxerin zu werden. 2023 habe ich diesen Traum verwirklicht und den Meisterschaftstitel gewonnen.',
-    link: 'Learn more',
-  },
-  {
-    heading: 'Die Speakerin.',
-    imgSrc: '/images/aboutus/NatalieZimmermann3.jpg',
-    paragraph:
-      'Als erfolgreiche Profibox-Weltmeisterin und leidenschaftliche Rednerin teile ich meine inspirierende Geschichte und wertvolle Erkenntnisse über Erfolg, Durchhaltevermögen und mentale Stärke mit Ihnen.\n\nVon der Schäferstochter zur Boxweltmeisterin: Erleben Sie eine inspirierende Reise von der Schäfertochter zur Boxweltmeisterin. \n\n\nIn diesem Vortrag teile ich meine Erfolgsgeheimnisse und zeige, wie ich es geschafft habe, meine Träume zu verwirklichen.\nLassen Sie sich von meiner Geschichte motivieren und lernen Sie, wie Sie Ihre eigenen Ziele erreichen können.',
-    fullParagraph:
-      'Als erfolgreiche Profibox-Weltmeisterin und leidenschaftliche Rednerin teile ich meine inspirierende Geschichte und wertvolle Erkenntnisse über Erfolg, Durchhaltevermögen und mentale Stärke mit Ihnen.\n\nVon der Schäferstochter zur Boxweltmeisterin: Erleben Sie eine inspirierende Reise von der Schäferstochter zur Boxweltmeisterin. In diesem Vortrag teile ich meine Erfolgsgeheimnisse und zeige, wie ich es geschafft habe, meine Träume zu verwirklichen. Lassen Sie sich von meiner Geschichte motivieren und lernen Sie, wie Sie Ihre eigenen Ziele erreichen können.\n\nBelastungsgrenzen sprengen: In diesem Workshop lernen Sie, wie Sie Belastungsgrenzen sprengen und Herausforderungen mit innerer Freude, Gelassenheit und Vertrauen meistern können. Anstatt auszubrennen oder krank zu werden, zeige ich Ihnen Techniken, um stressige Situationen positiv zu bewältigen und Ihre Resilienz zu stärken.\n\nWie ich mein biologisches Alter zurückdrehen kann: Entdecken Sie Maßnahmen und Tools, die Ihnen helfen, Ihr biologisches Alter zurückzudrehen und sich zu verjüngen. In diesem Vortrag stelle ich effektive Methoden vor, die nicht nur körperlich, sondern auch mental und emotional verjüngen.\n\nAußerdem biete ich Ihnen maßgeschneiderte Speaker-Auftritte, bezogen auf Ihre individuellen Themen, auf Konferenzen, Workshops und Veranstaltungen an, die Ihre Zuhörer motivieren und inspirieren werden. \nBuchen Sie mich für Ihre nächste Veranstaltung, profitieren Sie von meinem Wissen als Physiotherapeutin, Mentalcoach und Fitnesstrainerin und lassen Sie sich von meiner Begeisterung und meinem Wissen inspirieren, um Ihre eigenen Ziele erreichen.',
-    link: 'Learn more',
-  },
-  {
-    heading: 'DER MENTAL-COACH:',
-    imgSrc: '/images/aboutus/boxa6.jpg',
-    paragraph:
-      'Egal, ob Sie in Ihrem Sport, Beruf oder persönlichen Leben vor Herausforderungen stehen, ich biete maßgeschneidertes Coaching an, das genau auf Ihre individuellen Bedürfnisse abgestimmt ist.\nGemeinsam arbeiten wir daran, Ihre inneren Blockaden zu überwinden, Ihre Ziele klar zu definieren und Strategien zu entwickeln, um diese zu erreichen.\n\nWarum Mentales Coaching mit mir?\nErfahrung und Expertise: Mit meiner fundierten Ausbildung als Physiotherapeutin, Mentalcoach und Fitnesstrainerin bringe ich ein umfassendes Wissen und praktische Erfahrung mit, um Sie bestmöglich zu unterstützen',
-    fullParagraph:
-      'Egal, ob Sie in Ihrem Sport, Beruf oder persönlichen Leben vor Herausforderungen stehen, ich biete maßgeschneidertes Coaching an, das genau auf Ihre individuellen Bedürfnisse abgestimmt ist. \n\n\nGemeinsam arbeiten wir daran, Ihre inneren Blockaden zu überwinden, Ihre Ziele klar zu definieren und Strategien zu entwickeln, um diese zu erreichen. \n\n\nWarum Mentales Coaching mit mir? \n\n\nErfahrung und Expertise: Mit meiner fundierten Ausbildung als Physiotherapeutin, Mentalcoach und Fitnesstrainerin bringe ich ein umfassendes Wissen und praktische Erfahrung mit, um Sie bestmöglich zu unterstützen.<br />Persönliche Erfolgsgeschichte: Als Profibox-Weltmeisterin weiß ich, was es bedeutet, sich durchzusetzen und an die eigenen Grenzen zu gehen. Diese Erfahrungen fließen in mein Coaching ein und bieten Ihnen wertvolle Einblicke und Motivation.\n\n\nGanzheitlicher Ansatz: Mein Coaching-Ansatz ist ganzheitlich und berücksichtigt sowohl Ihre körperliche als auch geistige Gesundheit. So können Sie nachhaltig und langfristig von den positiven Effekten profitieren.',
-    link: 'Learn more',
-  },
-]
+// about data (legacy – section content is static in AboutUs)
+const Aboutdata: aboutdata[] = []
 
 // work-data
 const WorkData: workdata[] = [
   {
     profession: 'Mental Coach, Speaker, Influencer, Profiboxerin, Personal Trainer, Physiotherapeutin. Spezialisiert auf Manuelle Therapie und Leistungssportler. Faszienexpertin und Lu Jong Yoga Lehrerin. Mentalcoach mit Schwerpunkt Wingwave. Leidenschaftliche Kampfsportlerin seit 22 Jahren.',
     name: 'Natalie',
-    imgSrc: '/images/wework/coach1.avif',
-    width: 182,
-    height: 182,
+    imgSrc: '/images/wework/coach1-team.webp',
   },
   {
     profession: 'Bachelor of Arts in Fitnessökonomie. Zertifizierter Trainer (B- und A-Lizenz), Ernährungsberater und Athletiktrainer (B-Lizenz). Bietet EMS-Training an. Ehemaliger semi-professioneller Fußballspieler, jetzt Fußballcoach, Box- und Kickboxen-Coach.',
     name: 'Jerry',
-    imgSrc: '/images/wework/coach2.avif',
-    width: 182,
-    height: 182,
+    imgSrc: '/images/wework/coach2-team.webp',
   },
   {
     profession: 'Ernährungswissenschaftler (B.Sc.), M.Sc. in Ernährung und Sport. Dozent an der Macromedia Hochschule. Über zehn Jahre Erfahrung als Personal Trainer mit Zusatzqualifikationen als Functionaltrainer. Sportliche Erfahrungen in Karate, Fußball, Leistungsturnen, Kickboxen, Boxen, Thaiboxen, Grappling, BJJ und MMA.',
     name: 'Juri',
-    imgSrc: '/images/wework/coach3.avif',
+    imgSrc: '/images/wework/coach3-team.webp',
   },
 ]
 
@@ -94,11 +41,11 @@ const WorkData: workdata[] = [
 const FeaturedData: featureddata[] = [
   {
     heading: '',
-    imgSrc: '/images/featured/box1.jpg',
+    imgSrc: '/images/featured/box1.webp',
   },
   {
     heading: '',
-    imgSrc: '/images/featured/box2.jpg',
+    imgSrc: '/images/featured/box2.webp',
   },
 ]
 
@@ -206,11 +153,11 @@ const TestimonialsData: testimonials[] = [
 const ArticlesData: articles[] = [
   {
     time: 'Jetzt anfragen',
-    heading: 'Speakerin',
-    heading2: '',
-    name: 'Erlebe den fesselnden Werdegang von der Schäferstochter zur Weltmeisterin im Profiboxen. Motivation, Strategie und Selbstbehauptung. \n\n\nIch teile meinen Erfolg mit dir.',
+    heading: 'FLOW',
+    heading2: 'Box & Kickboxen',
+    name: 'Bewegung als mentales Ventil. FLOW verbindet Boxen und Kickboxen zu intensiver körperlicher und mentaler Entlastung – Stress abbauen, Energie freisetzen, Fokus finden.',
     date: '2025',
-    imgSrc: '/images/articles/nat1.jpg',
+    imgSrc: '/images/dedicated/sab5.webp',
     width: 200,
     height: 200,
   },
@@ -220,17 +167,17 @@ const ArticlesData: articles[] = [
     heading2: 'Für ihre Produkte!',
     name: 'Als Markenbotschafterin bringe ich Ihre Marke authentisch und sympathisch rüber, erstelle zielgerichtete Inhalte und stärke Ihre Marketingkampagnen. Mit meiner aktiven Social Media Präsenz und positiven Kommunikation baue ich Vertrauen auf und fördere die Kundenbindung.',
     date: '2025',
-    imgSrc: '/images/articles/sab8.jpg',
+    imgSrc: '/images/articles/sab8.webp',
     width: 200,
     height: 200,
   },
   {
     time: 'Jetzt anfragen',
-    heading: 'Coaching',
-    heading2: 'Für ein freies Denken!',
-    name: 'Mental-/Healthcoaching: Du möchtest Altlasten, Blockaden und negative Gedanken loswerden? Du möchtest deine Muster durchbrechen oder einfach das Beste aus dir herausholen? - In meinem Onlinecoaching helfe ich dir, dein Selbst neu zu finden und selbstbewusst und erfolgreich aufzutreten. ',
+    heading: 'Recovery',
+    heading2: 'Regeneration & IHHT',
+    name: 'Regeneration für Körper und Nervensystem. IHHT-Training, ATP-Atmung und regenerative Methoden für Erholung, Energie und Balance.',
     date: '2025',
-    imgSrc: '/images/articles/nat2.jpg',
+    imgSrc: '/images/dedicated/sab2.webp',
     width: 200,
     height: 200,
   },
@@ -246,9 +193,11 @@ const FooterLinksData: footerlinks[] = [
   {
     section: 'Others',
     links: [
+      { label: 'Über mich', href: '/about-me' },
       { label: 'Leistungen', href: '/#Blog' },
       { label: 'Kontakt', href: '/kontakt' },
-      { label: 'Speakerin', href: '/#Blog' },
+      { label: 'FLOW', href: '/#Flow' },
+      { label: 'Recovery', href: '/#Recovery' },
     ]
   },
   {

@@ -30,7 +30,7 @@ export const metadata: Metadata = {
       'Profibox-Weltmeisterin 2023, Speakerin, Mental Coach und Personal Trainerin in Hamburg. Erfahren Sie mehr über ihren Werdegang und ihre Philosophie.',
     images: [
       {
-        url: '/images/aboutus/NatalieZimmermann3.jpg',
+        url: '/images/aboutus/NatalieZimmermann3.webp',
         width: 1200,
         height: 630,
         alt: 'Natalie Zimmermann – Profibox-Weltmeisterin & Mental Coach',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: 'Über Natalie Zimmermann – Box-Weltmeisterin & Mental Coach Hamburg',
     description:
       'Profibox-Weltmeisterin 2023, Speakerin, Mental Coach und Personal Trainerin in Hamburg.',
-    images: ['/images/aboutus/NatalieZimmermann3.jpg'],
+    images: ['/images/aboutus/NatalieZimmermann3.webp'],
   },
 }
 
@@ -79,10 +79,14 @@ export default function AboutMePage() {
             Über Natalie Zimmermann – Box-Weltmeisterin, Mental Coach &amp;
             Personal Trainerin in Hamburg
           </h1>
+          <p className='text-lg md:text-xl text-text-secondary font-medium'>
+            Natalie Zimmermann ist WIBF- und WBF-Box-Weltmeisterin, Physiotherapeutin, Personal
+            Trainerin, Mental Coach und Speakerin in Hamburg-Harvestehude — Leiterin des Body &amp;
+            Mind Studios an der Rothenbaumchaussee 156.
+          </p>
           <p className='text-lg md:text-xl text-text-secondary'>
-            Profibox-Weltmeisterin 2023, Physiotherapeutin, Personal Trainerin,
-            Mental Coach und Speakerin – aus Hamburg-Harvestehude für ganz
-            Deutschland.
+            Profibox-Weltmeisterin (WIBF 2023/2024, WBF 2024), Physiotherapeutin, Personal
+            Trainerin, Mental Coach und Speakerin — aus Hamburg-Harvestehude für ganz Deutschland.
           </p>
         </header>
 
@@ -107,7 +111,9 @@ export default function AboutMePage() {
         <section>
           <h2>Auszeichnungen &amp; Qualifikationen</h2>
           <ul>
-            <li>Profibox-Weltmeisterin 2023</li>
+            <li>WIBF-Weltmeisterin Superleichtgewicht 2023</li>
+            <li>WIBF-Weltmeisterin Leichtgewicht 2024</li>
+            <li>WBF Intercontinental-Weltmeisterin 2024</li>
             <li>Examinierte Physiotherapeutin (Schwerpunkt Manuelle Therapie)</li>
             <li>Zertifizierter Personal Fitness Trainer</li>
             <li>Mental Coach mit Schwerpunkt Wingwave</li>

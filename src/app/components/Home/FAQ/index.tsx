@@ -50,6 +50,13 @@ const faqData: FAQItem[] = [
     answer: 'Nein, Vorkenntnisse sind nicht erforderlich. Wir passen das Training an Ihr individuelles Fitnesslevel an. Ob Anfänger oder Fortgeschrittener – wir haben für jeden das passende Programm.',
     category: 'Training',
   },
+  {
+    id: 7,
+    question: 'Bietet Natalie Zimmermann Wingwave Coaching in Hamburg an?',
+    answer:
+      'Ja. Natalie Zimmermann ist Mental Coach mit Schwerpunkt Wingwave und bietet Wingwave Coaching im Body & Mind Studio in Hamburg-Harvestehude an (Rothenbaumchaussee 156, 20149 Hamburg). Wingwave ist eine neurobiologisch fundierte Methode, um emotionale Blockaden und Stress schnell zu lösen — kombiniert mit Personal Training und Physiotherapie. Termin: info@nataliezimmermann.de oder 040 / 53790578.',
+    category: 'Mental Coaching',
+  },
 ]
 
 const FAQ = () => {
@@ -95,7 +102,7 @@ const FAQ = () => {
       className='relative py-16 md:py-20 lg:py-24 bg-gradient-to-br from-accent-cyan/10 via-light to-accent-cyan-light/10 overflow-hidden'
     >
       {/* Decorative Background */}
-      <div className='absolute inset-0 bg-[url("/images/faq/swirl.png")] bg-no-repeat bg-right-bottom opacity-10 -z-0' />
+      <div className='absolute inset-0 bg-[url("/images/faq/swirl.webp")] bg-no-repeat bg-right-bottom opacity-10 -z-0' />
 
       <div className='container mx-auto max-w-7xl px-4 relative z-10'>
         {/* Header */}
@@ -155,7 +162,7 @@ const FAQ = () => {
                 placeholder='Fragen durchsuchen...'
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className='w-full pl-12 pr-4 py-4 bg-white border-2 border-border rounded-2xl focus:outline-none focus:border-accent-cyan focus:ring-2 focus:ring-accent-cyan/20 transition-all duration-300 text-text-primary text-lg'
+                className='input-field rounded-2xl py-4 pl-12 pr-4 text-lg'
               />
             </div>
 
@@ -210,7 +217,7 @@ const FAQ = () => {
                               playAudio()
                               setDesktopActiveId(faq.id)
                             }}
-                            className={`flex w-full rounded-2xl border-2 px-4 py-4 text-left transition-all duration-300 ${
+                            className={`flex w-full rounded-2xl border-2 px-4 py-4 text-left transition-[border-color,background-color,box-shadow] duration-300 ${
                               active
                                 ? 'border-accent-cyan bg-white shadow-[var(--shadow-card-lift)]'
                                 : 'border-border/80 bg-white/60 hover:border-accent-cyan/40 hover:bg-white'
@@ -273,7 +280,7 @@ const FAQ = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.05 }}
-                    className='overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl'
+                    className='overflow-hidden rounded-2xl bg-white shadow-lg transition-shadow duration-300 hover:shadow-xl'
                   >
                     <Disclosure>
                       {({ open }) => (

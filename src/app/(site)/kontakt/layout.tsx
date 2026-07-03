@@ -4,7 +4,7 @@ import React from 'react'
 const SITE_URL = 'https://www.nataliezimmermann.de'
 
 export const metadata: Metadata = {
-  title: 'Kontakt – Natalie Zimmermann | Body & Mind Studio Hamburg',
+  title: 'Kontakt – Body & Mind Studio Hamburg',
   description:
     'Kontaktieren Sie Natalie Zimmermann – Body & Mind Studio Hamburg, Rothenbaumchaussee 156, 20149 Hamburg. Telefon 040 / 53790578, E-Mail info@nataliezimmermann.de. Personal Training, Mental Coaching, Physiotherapie & Boxen in Hamburg-Harvestehude.',
   keywords: [
@@ -20,13 +20,13 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'de_DE',
     url: `${SITE_URL}/kontakt`,
-    title: 'Kontakt – Natalie Zimmermann | Body & Mind Studio Hamburg',
+    title: 'Kontakt – Body & Mind Studio Hamburg',
     description:
       'Body & Mind Studio Hamburg-Harvestehude – Termin vereinbaren für Personal Training, Mental Coaching, Boxen oder Physiotherapie.',
   },
   twitter: {
     card: 'summary',
-    title: 'Kontakt – Natalie Zimmermann | Body & Mind Hamburg',
+    title: 'Kontakt – Body & Mind Hamburg',
     description:
       'Termin vereinbaren bei Body & Mind in Hamburg-Harvestehude.',
   },

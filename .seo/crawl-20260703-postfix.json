@@ -1,0 +1,102 @@
+{
+  "generated_at": "2026-07-03T11:53:06.997196+00:00",
+  "base_url": "http://127.0.0.1:3000",
+  "robots": {
+    "url": "http://127.0.0.1:3000/robots.txt",
+    "status": 200,
+    "body": "User-Agent: *\nAllow: /\nDisallow: /api/\nDisallow: /_next/\nDisallow: /404\n\nUser-Agent: GPTBot\nAllow: /\n\nUser-Agent: OAI-SearchBot\nAllow: /\n\nUser-Agent: ChatGPT-User\nAllow: /\n\nUser-Agent: PerplexityBot\nAllow: /\n\nUser-Agent: Perplexity-User\nAllow: /\n\nUser-Agent: ClaudeBot\nAllow: /\n\nUser-Agent: Claude-Web\nAllow: /\n\nUser-Agent: Google-Extended\nAllow: /\n\nUser-Agent: GoogleOther\nAllow: /\n\nUser-Agent: Applebot-Extended\nAllow: /\n\nUser-Agent: Bingbot\nAllow: /\n\nUser-Agent: CCBot\nAllow: /\n\nUser-Agent: cohere-ai\nAllow: /\n\nUser-Agent: Meta-ExternalAgent\nAllow: /\n\nHost: https://www.nataliezimmermann.de\nSitemap: https://www.nataliezimmermann.de/sitemap.xml\n"
+  },
+  "sitemap": {
+    "url": "http://127.0.0.1:3000/sitemap.xml",
+    "status": 200
+  },
+  "pages": {
+    "http://127.0.0.1:3000/": {
+      "url": "http://127.0.0.1:3000/",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "title": "Natalie Zimmermann \u2013 Box-Weltmeisterin, Speakerin & Mental Coach in Hamburg",
+      "meta_robots": "index, follow",
+      "canonical": "https://www.nataliezimmermann.de",
+      "h1": [
+        "Gemeinsam zu k\u00f6rperlicher St\u00e4rke und mentaler Resilienz"
+      ],
+      "has_json_ld": true,
+      "internal_links": 56
+    },
+    "http://127.0.0.1:3000/kontakt": {
+      "url": "http://127.0.0.1:3000/kontakt",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "title": "Kontakt \u2013 Body & Mind Studio Hamburg | Natalie Zimmermann \u2013 Hamburg",
+      "meta_robots": "index, follow",
+      "canonical": "https://www.nataliezimmermann.de/kontakt",
+      "h1": [
+        "Lassen Sie uns gemeinsam starten"
+      ],
+      "has_json_ld": true,
+      "internal_links": 25
+    },
+    "http://127.0.0.1:3000/impressum": {
+      "url": "http://127.0.0.1:3000/impressum",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "title": "Impressum \u2013 Natalie Zimmermann | Body & Mind Hamburg | Natalie Zimmermann \u2013 Hamburg",
+      "meta_robots": "index, follow",
+      "canonical": "https://www.nataliezimmermann.de/impressum",
+      "h1": [
+        "Impressum"
+      ],
+      "has_json_ld": true,
+      "internal_links": 25
+    },
+    "http://127.0.0.1:3000/datenschutz": {
+      "url": "http://127.0.0.1:3000/datenschutz",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "title": "Datenschutzerkl\u00e4rung \u2013 Natalie Zimmermann | Body & Mind Hamburg | Natalie Zimmermann \u2013 Hamburg",
+      "meta_robots": "index, follow",
+      "canonical": "https://www.nataliezimmermann.de/datenschutz",
+      "h1": [
+        "Datenschutzerkl\u00e4rung"
+      ],
+      "has_json_ld": true,
+      "internal_links": 25
+    },
+    "http://127.0.0.1:3000/agb": {
+      "url": "http://127.0.0.1:3000/agb",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "title": "AGB \u2013 Natalie Zimmermann | Body & Mind Hamburg | Natalie Zimmermann \u2013 Hamburg",
+      "meta_robots": "index, follow",
+      "canonical": "https://www.nataliezimmermann.de/agb",
+      "h1": [
+        "Allgemeine Gesch\u00e4ftsbedingungen (AGB)"
+      ],
+      "has_json_ld": true,
+      "internal_links": 25
+    },
+    "http://127.0.0.1:3000/about-me": {
+      "url": "http://127.0.0.1:3000/about-me",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "title": "\u00dcber Natalie Zimmermann \u2013 Box-Weltmeisterin, Mental Coach & Personal Trainerin Hamburg | Natalie Zimmermann \u2013 Hamburg",
+      "meta_robots": "index, follow",
+      "canonical": "https://www.nataliezimmermann.de/about-me",
+      "h1": [
+        "\u00dcber Natalie Zimmermann \u2013 Box-Weltmeisterin, Mental Coach & Personal Trainerin in Hamburg"
+      ],
+      "has_json_ld": true,
+      "internal_links": 26
+    }
+  },
+  "issues": [],
+  "summary": {
+    "pages_crawled": 6,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "note": "crawled 6 pages (max 200)"
+  }
+}

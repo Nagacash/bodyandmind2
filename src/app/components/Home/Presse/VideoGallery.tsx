@@ -132,7 +132,7 @@ const VideoGallery: React.FC = () => {
             playAudio()
             paginate(-1)
           }}
-          className='absolute left-4 top-1/2 z-10 -translate-y-1/2 rounded-xl border border-border/50 bg-white/95 p-3 text-text-primary shadow-md shadow-black/10 backdrop-blur-sm transition-all duration-200 hover:bg-white hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 active:scale-[0.97]'
+          className='absolute left-4 top-1/2 z-10 -translate-y-1/2 rounded-xl border border-border/50 bg-white/95 p-3 text-text-primary shadow-md shadow-black/10 backdrop-blur-sm transition duration-200 hover:bg-white hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 active:scale-[0.97]'
           aria-label='Vorheriges Video'
         >
           <Icon icon='mdi:chevron-left' className='text-2xl' aria-hidden />
@@ -143,7 +143,7 @@ const VideoGallery: React.FC = () => {
             playAudio()
             paginate(1)
           }}
-          className='absolute right-4 top-1/2 z-10 -translate-y-1/2 rounded-xl border border-border/50 bg-white/95 p-3 text-text-primary shadow-md shadow-black/10 backdrop-blur-sm transition-all duration-200 hover:bg-white hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 active:scale-[0.97]'
+          className='absolute right-4 top-1/2 z-10 -translate-y-1/2 rounded-xl border border-border/50 bg-white/95 p-3 text-text-primary shadow-md shadow-black/10 backdrop-blur-sm transition duration-200 hover:bg-white hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 active:scale-[0.97]'
           aria-label='Nächstes Video'
         >
           <Icon icon='mdi:chevron-right' className='text-2xl' aria-hidden />
@@ -167,7 +167,7 @@ const VideoGallery: React.FC = () => {
                 const direction = index > videoIndex ? 1 : -1
                 setPage([index, direction])
               }}
-              className={`flex-shrink-0 w-24 h-16 rounded-xl overflow-hidden border-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 ${
+              className={`flex-shrink-0 w-24 h-16 rounded-xl overflow-hidden border-2 transition duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 ${
                 index === videoIndex
                   ? 'border-accent-cyan scale-110 shadow-lg'
                   : 'border-transparent hover:border-accent-cyan/50 hover:scale-105 opacity-70 hover:opacity-100'

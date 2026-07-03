@@ -59,13 +59,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ items }) => {
 
   return (
     <div className='px-2 md:px-4'>
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className='bg-white shadow-testimonial rounded-3xl p-6 md:p-8 h-full flex flex-col hover:shadow-xl transition-all duration-300 group'
-      >
+      <div className='bg-white shadow-testimonial rounded-3xl p-6 md:p-8 h-full flex flex-col hover:shadow-xl transition-shadow duration-300 group'>
         {/* Quote Icon */}
         <div className='mb-4'>
           <Icon
@@ -97,7 +91,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ items }) => {
 
         {/* Author Info */}
         <div className='flex items-center gap-4'>
-          <div className='relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-accent-cyan/20 group-hover:ring-accent-cyan/40 transition-all duration-300'>
+          <div className='relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-accent-cyan/20 group-hover:ring-accent-cyan/40 transition-[box-shadow] duration-300'>
             <Image
               src={items.imgSrc}
               alt={`${items.name} - ${items.profession}`}
@@ -114,7 +108,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ items }) => {
             </p>
           </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   )
 }
@@ -191,7 +185,7 @@ const Testimonial: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className='flex items-center justify-center gap-4 mb-4'
+            className='flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4 mb-4'
           >
             <div className='flex items-center gap-2'>
               <div className='flex gap-1'>
@@ -199,7 +193,7 @@ const Testimonial: React.FC = () => {
                   <Icon
                     key={i}
                     icon='mdi:star'
-                    className={`text-2xl ${
+                    className={`text-xl sm:text-2xl ${
                       i < Math.round(averageRating)
                         ? 'text-yellow-400'
                         : 'text-gray-300'
@@ -207,12 +201,12 @@ const Testimonial: React.FC = () => {
                   />
                 ))}
               </div>
-              <span className='text-2xl font-bold text-text-primary'>
+              <span className='text-xl sm:text-2xl font-bold text-text-primary'>
                 {averageRating.toFixed(1)}
               </span>
             </div>
-            <div className='h-8 w-px bg-border'></div>
-            <p className='text-text-secondary text-base md:text-lg'>
+            <div className='hidden h-8 w-px bg-border sm:block' />
+            <p className='text-center text-sm text-text-secondary sm:text-left sm:text-base md:text-lg'>
               Basierend auf <span className='font-bold text-text-primary'>57 Bewertungen</span>
             </p>
           </motion.div>
@@ -224,6 +218,7 @@ const Testimonial: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
+          className='testimonial-slider pb-12'
         >
           <Slider {...settings}>
             {loading
@@ -242,11 +237,11 @@ const Testimonial: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className='mt-16 md:mt-20 text-center'
+          className='mt-10 md:mt-12 text-center'
         >
-          <div className='inline-flex items-center gap-3 rounded-xl bg-white px-6 py-3 shadow-md shadow-black/10 ring-1 ring-border/60'>
-            <Icon icon='mdi:shield-check' className='text-accent-cyan text-2xl' />
-            <p className='text-text-primary font-semibold'>
+          <div className='inline-flex max-w-full flex-col items-center gap-3 rounded-xl bg-white px-4 py-3 text-center shadow-md shadow-black/10 ring-1 ring-border/60 sm:flex-row sm:px-6 sm:text-left'>
+            <Icon icon='mdi:shield-check' className='text-accent-cyan text-2xl shrink-0' />
+            <p className='text-sm font-semibold text-text-primary sm:text-base'>
               Verifizierte Bewertungen von echten Kunden
             </p>
           </div>

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     'Dokumentation und Hintergrundinformationen zu Natalie Zimmermann, Body & Mind Hamburg, Trainingsmethoden und Coaching-Ansätzen.',
   alternates: { canonical: '/documentation' },
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: true },
 }
 
 export default function Page() {

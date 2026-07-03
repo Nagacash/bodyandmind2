@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -8,109 +8,67 @@ import { bebasNeue } from '@/app/fonts'
 
 const Digital = () => {
   return (
-    <section className='relative bg-cover bg-center overflow-hidden py-16 md:py-20 lg:py-24'>
+    <section className='relative overflow-hidden bg-grey py-16 md:py-20 lg:py-24'>
       <div className='container mx-auto max-w-7xl px-4'>
-        <div className='relative rounded-3xl bg-gradient-to-br from-accent-cyan to-accent-cyan-dark overflow-hidden shadow-2xl'>
-          {/* Background Image */}
-          <div className='absolute inset-0 opacity-10'>
-            <Image
-              src='/images/hero/sab6.jpg'
-              alt='Background'
-              fill
-              className='object-cover'
-            />
-          </div>
+        <div className='relative overflow-hidden rounded-3xl bg-gradient-to-br from-deep-slate via-[#1a5f7a] to-accent-cyan-dark shadow-[var(--shadow-card-lift)] ring-1 ring-black/5'>
+          <div className='pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-accent-cyan/20 blur-3xl' aria-hidden />
 
-          {/* Decorative Elements */}
-          <div className='absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2' />
-
-          <div className='relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center p-8 md:p-12 lg:p-16'>
-            {/* Content Column */}
+          <div className='relative z-10 grid grid-cols-1 items-center gap-8 p-6 sm:p-8 md:p-10 lg:grid-cols-2 lg:gap-12 lg:p-12'>
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -24 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.6 }}
               className='text-center lg:text-left'
             >
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className='text-white/90 text-sm md:text-base font-bold mb-4 uppercase tracking-wider flex items-center gap-2 justify-center lg:justify-start'
-              >
-                <Icon icon='mdi:dumbbell' className='text-xl' />
-                Ihr Fitness Trainer
-              </motion.p>
+              <p className='mb-4 flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest text-accent-cyan-light md:text-base lg:justify-start'>
+                <Icon icon='mdi:dumbbell' className='text-xl' aria-hidden />
+                Dein Training
+              </p>
 
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className={`text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight ${bebasNeue.className}`}
+              <h2
+                className={`mb-6 text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl ${bebasNeue.className} text-balance`}
               >
-                Sind Sie bereit{' '}
-                <span className='text-text-primary'>etwas zu ändern?</span>
-                <br />
-                Starten Sie jetzt und erreichen gemeinsam mit{' '}
-                <span className='text-text-primary'>unserem Experten Team</span> Ihre
-                Gesundheits- und Fitnessziele.
-              </motion.h2>
+                Bereit,{' '}
+                <span className='text-accent-cyan-light'>etwas zu verändern?</span>
+              </h2>
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className='text-white/90 text-base md:text-lg mb-8 leading-relaxed'
-              >
-                Professionelles Training, individuelle Betreuung und ein
-                motivierendes Team – gemeinsam erreichen wir Ihre Ziele.
-              </motion.p>
+              <p className='mb-8 max-w-xl text-base leading-relaxed text-white/85 md:text-lg lg:mx-0 mx-auto'>
+                Professionelles Training, individuelle Betreuung und ein motivierendes Team – gemeinsam
+                erreichen wir deine Gesundheits- und Fitnessziele.
+              </p>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className='flex flex-col sm:flex-row gap-4 justify-center lg:justify-start'
-              >
-                <Link
-                  href='/kontakt'
-                  className='btn-solid-light'
-                >
+              <div className='flex flex-col justify-center gap-4 sm:flex-row lg:justify-start'>
+                <Link href='/kontakt' className='btn-accent inline-flex min-h-12 items-center justify-center gap-2'>
                   Jetzt starten
-                  <Icon icon='mdi:arrow-right' className='text-xl' />
+                  <Icon icon='mdi:arrow-right' className='text-xl' aria-hidden />
                 </Link>
                 <Link
                   href='/#Team'
-                  className='btn-outline-light'
+                  className='btn-outline-light inline-flex min-h-12 items-center justify-center gap-2'
                 >
-                  Unser Team kennenlernen
-                  <Icon icon='mdi:account-group' className='text-xl' />
+                  Team kennenlernen
+                  <Icon icon='mdi:account-group' className='text-xl' aria-hidden />
                 </Link>
-              </motion.div>
+              </div>
             </motion.div>
 
-            {/* Image Column */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: 24 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className='relative hidden lg:block'
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className='relative mx-auto w-full max-w-md lg:max-w-none'
             >
-              <div className='relative rounded-2xl overflow-hidden shadow-2xl group'>
+              <div className='relative aspect-[4/5] overflow-hidden rounded-2xl shadow-[0_24px_48px_-16px_rgba(0,0,0,0.45)] ring-1 ring-white/20 sm:aspect-[5/4] lg:aspect-[4/5]'>
                 <Image
-                  src='/images/hero/sab6.jpg'
-                  alt='Natalie Zimmermann - Fitness Training'
-                  width={615}
-                  height={491}
-                  className='w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700'
+                  src='/images/new/nature2.webp'
+                  alt='Natalie Zimmermann – Personal Training und ganzheitliche Fitness'
+                  fill
+                  className='object-cover object-center'
+                  sizes='(max-width: 1024px) 90vw, 480px'
                 />
-                <div className='absolute inset-0 bg-gradient-to-t from-black/20 to-transparent' />
+                <div className='absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent' />
               </div>
             </motion.div>
           </div>

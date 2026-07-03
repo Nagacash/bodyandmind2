@@ -64,8 +64,8 @@ const footer = () => {
               className='lg:col-span-4 relative z-20'
             >
               <p className='text-white/70 text-base md:text-lg leading-relaxed mb-6 max-w-md'>
-                Gemeinsam zu körperlicher Stärke und mentaler Resilienz. Natalie Zimmermann,
-                Box-Weltmeisterin, Speakerin & Mental Coach.
+                Gemeinsam zu körperlicher Stärke und mentaler Resilienz. Natalie Zimmermann –
+                Box-Weltmeisterin und Body & Mind Coach in Hamburg.
               </p>
 
               {/* Contact Info */}
@@ -110,7 +110,7 @@ const footer = () => {
                       rel='noopener noreferrer'
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
-                      className='w-10 h-10 md:w-12 md:h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent-cyan transition-all duration-300 group relative z-30'
+                      className='w-10 h-10 md:w-12 md:h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent-cyan transition duration-300 group relative z-30'
                       aria-label={social.name}
                     >
                       <Image
@@ -118,7 +118,7 @@ const footer = () => {
                         alt={social.name}
                         width={18}
                         height={18}
-                        className='md:w-5 md:h-5 filter brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all duration-300 relative z-40'
+                        className='md:w-5 md:h-5 filter brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition duration-300 relative z-40'
                       />
                     </motion.a>
                   ))}
@@ -149,7 +149,7 @@ const footer = () => {
                       >
                         <Icon
                           icon='mdi:chevron-right'
-                          className='text-accent-cyan/50 text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300'
+                          className='text-accent-cyan/50 text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition duration-300'
                         />
                         <span className='break-words'>{link.label}</span>
                       </Link>

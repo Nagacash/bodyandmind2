@@ -155,7 +155,7 @@ const KontaktPage = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="flex items-start gap-4 p-6 bg-grey rounded-2xl hover:bg-accent-cyan/10 transition-all duration-300 group"
+                    className="flex items-start gap-4 p-6 bg-grey rounded-2xl hover:bg-accent-cyan/10 transition duration-300 group"
                   >
                     <div className="flex-shrink-0 w-12 h-12 bg-accent-cyan rounded-xl flex items-center justify-center group-hover:bg-accent-cyan/80 transition-colors duration-300">
                       <Icon icon={info.icon} className="text-white text-2xl" />
@@ -164,7 +164,7 @@ const KontaktPage = () => {
                       <p className="text-sm font-semibold text-text-secondary mb-1 uppercase tracking-wide">
                         {info.label}
                       </p>
-                      <p className="text-lg font-medium text-text-primary group-hover:text-accent-cyan transition-colors duration-300">
+                      <p className='text-base sm:text-lg font-medium text-text-primary group-hover:text-accent-cyan transition-colors duration-300 break-words'>
                         {info.value}
                       </p>
                     </div>
@@ -211,7 +211,7 @@ const KontaktPage = () => {
               >
                 <div className="relative h-64 rounded-2xl overflow-hidden shadow-xl">
                   <Image
-                    src="/images/hero/lind3.JPG"
+                    src="/images/hero/lind3.webp"
                     alt="Body & Mind Studio Hamburg - Rothenbaumchaussee 156"
                     fill
                     className="object-cover"
@@ -259,7 +259,7 @@ const KontaktPage = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white border-2 border-border rounded-xl focus:outline-none focus:border-accent-cyan focus:ring-2 focus:ring-accent-cyan/20 transition-all duration-300 text-text-primary"
+                      className="input-field"
                       placeholder="Ihr Name"
                     />
                   </motion.div>
@@ -280,7 +280,7 @@ const KontaktPage = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white border-2 border-border rounded-xl focus:outline-none focus:border-accent-cyan focus:ring-2 focus:ring-accent-cyan/20 transition-all duration-300 text-text-primary"
+                      className="input-field"
                       placeholder="ihre.email@beispiel.de"
                     />
                   </motion.div>
@@ -300,7 +300,7 @@ const KontaktPage = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white border-2 border-border rounded-xl focus:outline-none focus:border-accent-cyan focus:ring-2 focus:ring-accent-cyan/20 transition-all duration-300 text-text-primary"
+                      className="input-field"
                       placeholder="+49 123 456789"
                     />
                   </motion.div>
@@ -321,7 +321,7 @@ const KontaktPage = () => {
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white border-2 border-border rounded-xl focus:outline-none focus:border-accent-cyan focus:ring-2 focus:ring-accent-cyan/20 transition-all duration-300 resize-none text-text-primary"
+                      className="input-field resize-none"
                       placeholder="Ihre Nachricht..."
                     />
                   </motion.div>

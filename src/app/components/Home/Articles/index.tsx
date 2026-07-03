@@ -44,6 +44,12 @@ const settings = {
 // Service icons mapping
 const getServiceIcon = (heading: string) => {
   const headingLower = heading.toLowerCase()
+  if (headingLower.includes('recovery') || headingLower.includes('ihht')) {
+    return 'mdi:spa-outline'
+  }
+  if (headingLower.includes('flow') || headingLower.includes('box') || headingLower.includes('kick')) {
+    return 'mdi:boxing-glove'
+  }
   if (headingLower.includes('speaker') || headingLower.includes('vortrag')) {
     return 'mdi:microphone'
   }
@@ -144,13 +150,7 @@ const Articles = () => {
                   const serviceIcon = getServiceIcon(item.heading)
                   return (
                     <div key={i} className='px-2 md:px-4'>
-                      <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: i * 0.1 }}
-                        className='bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col group'
-                      >
+                      <div className='bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col group'>
                         {/* Image Section */}
                         <div className='relative h-64 overflow-hidden'>
                           <Image
@@ -207,7 +207,7 @@ const Articles = () => {
                             {item.time || 'Jetzt anfragen'}
                           </button>
                         </div>
-                      </motion.div>
+                      </div>
                     </div>
                   )
                 })}

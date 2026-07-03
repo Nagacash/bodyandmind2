@@ -13,7 +13,7 @@ const pressArticles = [
     title: 'Hamburgerin Natalie Zimmermann boxt um WBO-WM-Titel',
     source: 'NDR Hamburg Journal',
     date: '2024',
-    image: '/images/articles/nat1.jpg',
+    image: '/images/articles/nat1.webp',
     link: 'https://www.ndr.de/fernsehen/sendungen/hamburg_journal/Hamburgerin-Natalie-Zimmermann-boxt-um-WBO-WM-Titel,hamj157910.html',
     category: 'TV',
   },
@@ -22,7 +22,7 @@ const pressArticles = [
     title: 'Box-Weltmeisterin im Interview',
     source: 'Hamburger Abendblatt',
     date: '2024',
-    image: '/images/articles/nat2.jpg',
+    image: '/images/articles/nat2.webp',
     link: '#',
     category: 'Print',
   },
@@ -31,7 +31,7 @@ const pressArticles = [
     title: 'Von der Schäferstochter zur Weltmeisterin',
     source: 'Bild',
     date: '2024',
-    image: '/images/articles/nat3.jpg',
+    image: '/images/articles/nat3.webp',
     link: '#',
     category: 'Print',
   },
@@ -165,7 +165,7 @@ const Presse = () => {
                   href={article.link}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='block bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full'
+                  className='block bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full'
                 >
                   <div className='relative h-48 md:h-56 overflow-hidden'>
                     <Image

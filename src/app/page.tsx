@@ -1,10 +1,12 @@
 import React from 'react'
 import Hero from '@/app/components/Home/Hero'
 import Aboutus from '@/app/components/Home/AboutUs'
+import UberMich from '@/app/components/Home/UberMich'
+import Flow from '@/app/components/Home/Flow'
+import Recovery from '@/app/components/Home/Recovery'
 import Dedicated from '@/app/components/Home/Dedicated'
 import Digital from '@/app/components/Home/Digital'
 import Beliefs from '@/app/components/Home/Beliefs'
-import Work from '@/app/components/Home/Work'
 import Team from '@/app/components/Home/Team'
 import Featured from '@/app/components/Home/Featured'
 import Manage from '@/app/components/Home/Manage'
@@ -22,7 +24,7 @@ export const metadata: Metadata = {
   title:
     'Natalie Zimmermann – Box-Weltmeisterin, Speakerin & Mental Coach in Hamburg',
   description:
-    'Natalie Zimmermann – Profibox-Weltmeisterin, Speakerin, Mental Coach, Physiotherapeutin & Personal Trainerin in Hamburg-Harvestehude. Body & Mind Studio, Rothenbaumchaussee 156, 20149 Hamburg. Personal Training, Mental Coaching, Boxen, Vorträge & Markenbotschafterin – jetzt Termin vereinbaren.',
+    'Natalie Zimmermann – WIBF/WBF-Box-Weltmeisterin, Speakerin, Mental Coach, Physiotherapeutin & Personal Trainerin in Hamburg-Harvestehude. Body & Mind Studio, Rothenbaumchaussee 156, 20149 Hamburg. Personal Training, Mental Coaching, Boxen, Vorträge & Markenbotschafterin – jetzt Termin vereinbaren.',
   keywords: [
     'Natalie Zimmermann',
     'Box Weltmeisterin Hamburg',
@@ -61,7 +63,7 @@ export const metadata: Metadata = {
       'Profibox-Weltmeisterin, Speakerin, Mental Coach & Personal Trainerin in Hamburg-Harvestehude. Body & Mind Studio – Personal Training, Mental Coaching, Boxen, Vorträge.',
     images: [
       {
-        url: '/images/hero/natalie.jpg',
+        url: '/images/hero/natalie.webp',
         width: 1200,
         height: 630,
         alt: 'Natalie Zimmermann – Box-Weltmeisterin & Mental Coach Hamburg',
@@ -74,7 +76,7 @@ export const metadata: Metadata = {
       'Natalie Zimmermann – Box-Weltmeisterin, Speakerin & Mental Coach Hamburg',
     description:
       'Profibox-Weltmeisterin, Speakerin, Mental Coach & Personal Trainerin in Hamburg-Harvestehude.',
-    images: ['/images/hero/natalie.jpg'],
+    images: ['/images/hero/natalie.webp'],
   },
 }
 
@@ -87,7 +89,7 @@ export default function Home() {
     givenName: 'Natalie',
     familyName: 'Zimmermann',
     url: SITE_URL,
-    image: `${SITE_URL}/images/hero/natalie.jpg`,
+    image: `${SITE_URL}/images/hero/natalie.webp`,
     gender: 'Female',
     nationality: { '@type': 'Country', name: 'Deutschland' },
     jobTitle: [
@@ -112,7 +114,11 @@ export default function Home() {
       'Resilienztraining',
       'Motivationsvorträge',
     ],
-    award: ['Profibox-Weltmeisterin 2023'],
+    award: [
+      'WIBF-Weltmeisterin Superleichtgewicht 2023',
+      'WIBF-Weltmeisterin Leichtgewicht 2024',
+      'WBF Intercontinental-Weltmeisterin 2024',
+    ],
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Rothenbaumchaussee 156',
@@ -134,8 +140,8 @@ export default function Home() {
     '@id': `${SITE_URL}#localbusiness`,
     name: 'Body & Mind by Natalie Zimmermann',
     image: [
-      `${SITE_URL}/images/hero/natalie.jpg`,
-      `${SITE_URL}/images/hero/lind3.JPG`,
+      `${SITE_URL}/images/hero/natalie.webp`,
+      `${SITE_URL}/images/hero/lind3.webp`,
     ],
     url: SITE_URL,
     logo: `${SITE_URL}/images/logo/logo.svg`,
@@ -282,6 +288,15 @@ export default function Home() {
             'Nein, Vorkenntnisse sind nicht erforderlich. Das Training wird an Ihr individuelles Fitnesslevel angepasst – sowohl für Anfänger als auch für Fortgeschrittene.',
         },
       },
+      {
+        '@type': 'Question',
+        name: 'Bietet Natalie Zimmermann Wingwave Coaching in Hamburg an?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text:
+            'Ja. Natalie Zimmermann ist Mental Coach mit Schwerpunkt Wingwave und bietet Wingwave Coaching im Body & Mind Studio in Hamburg-Harvestehude an (Rothenbaumchaussee 156, 20149 Hamburg). Wingwave ist eine neurobiologisch fundierte Methode zur schnellen Lösung emotionaler Blockaden und Stress — kombiniert mit Personal Training und Physiotherapie. Kontakt: info@nataliezimmermann.de oder 040 / 53790578.',
+        },
+      },
     ],
   }
 
@@ -302,10 +317,12 @@ export default function Home() {
     <main>
       <Hero />
       <Aboutus />
+      <UberMich />
+      <Flow />
+      <Recovery />
       <Dedicated />
       <Digital />
       <Beliefs />
-      <Work />
       <Team />
       <Featured />
       <Manage />

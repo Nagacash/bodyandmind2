@@ -1,14 +1,76 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { motion, useReducedMotion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { workdata } from '@/app/types/workdata'
-import Link from 'next/link'
 import { bebasNeue } from '@/app/fonts'
+
+const stats = [
+  { value: '22+', label: 'Jahre Erfahrung' },
+  { value: '1000+', label: 'Zufriedene Kunden' },
+  { value: '50+', label: 'Erfolgreiche Programme' },
+  { value: '3×', label: 'Weltmeisterin' },
+]
+
+function TeamCardSkeleton() {
+  return (
+    <div
+      role='status'
+      aria-label='Team wird geladen'
+      className='team-card min-w-[min(85vw,340px)] shrink-0 animate-pulse overflow-hidden rounded-3xl bg-white shadow-md ring-1 ring-border/50 lg:min-w-0'
+    >
+      <div className={`${TEAM_PHOTO_HEIGHT} bg-border/40`} />
+      <div className='space-y-3 p-6'>
+        <div className='mx-auto h-6 w-32 rounded-full bg-border/50' />
+        <div className='space-y-2'>
+          <div className='h-3 w-full rounded-full bg-border/40' />
+          <div className='h-3 w-full rounded-full bg-border/40' />
+          <div className='mx-auto h-3 w-4/5 rounded-full bg-border/40' />
+        </div>
+      </div>
+      <span className='sr-only'>Lädt…</span>
+    </div>
+  )
+}
+
+const TEAM_PHOTO_HEIGHT = 'h-[340px]'
+
+function TeamMemberCard({ member }: { member: workdata }) {
+  return (
+    <article className='team-card group flex h-full min-w-[min(85vw,340px)] shrink-0 flex-col overflow-hidden rounded-3xl bg-white shadow-md ring-1 ring-border/50 transition-[box-shadow,ring-color] duration-200 hover:shadow-lg hover:ring-accent-cyan/30 lg:min-w-0'>
+      <div
+        className={`relative ${TEAM_PHOTO_HEIGHT} w-full shrink-0 overflow-hidden bg-gradient-to-b from-grey to-white`}
+      >
+        <Image
+          src={member.imgSrc}
+          alt={`${member.name} – Teammitglied bei Natalie Zimmermann`}
+          fill
+          className='object-contain object-bottom px-4 pb-1 pt-4 transition-[filter] duration-200 group-hover:brightness-[1.03]'
+          sizes='(max-width: 1024px) 85vw, 340px'
+        />
+      </div>
+      <div className='flex flex-1 flex-col p-6 pt-4'>
+        <h3 className={`mb-2 text-2xl font-bold text-text-primary ${bebasNeue.className}`}>
+          {member.name}
+        </h3>
+        <p className='copy-prose flex-1 text-sm leading-relaxed text-text-secondary md:text-base'>
+          {member.profession}
+        </p>
+      </div>
+    </article>
+  )
+}
 
 const Team = () => {
   const [teamMembers, setTeamMembers] = useState<workdata[]>([])
+  const [loading, setLoading] = useState(true)
+  const [canScrollPrev, setCanScrollPrev] = useState(false)
+  const [canScrollNext, setCanScrollNext] = useState(false)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const prefersReducedMotion = useReducedMotion()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,254 +81,181 @@ const Team = () => {
         setTeamMembers(data.WorkData || [])
       } catch (error) {
         console.error('Error fetching team data:', error)
+      } finally {
+        setLoading(false)
       }
     }
     fetchData()
   }, [])
 
-  const achievements = [
-    { icon: 'mdi:trophy', label: 'Box Weltmeisterin', value: 'WBO' },
-    { icon: 'mdi:heart-pulse', label: 'Physiotherapeutin', value: 'Expertin' },
-    { icon: 'mdi:dumbbell', label: 'Personal Trainer', value: 'Zertifiziert' },
-    { icon: 'mdi:brain', label: 'Mental Coach', value: 'Wingwave' },
-  ]
+  const updateScrollState = useCallback(() => {
+    const el = scrollRef.current
+    if (!el) return
+    const { scrollLeft, scrollWidth, clientWidth } = el
+    setCanScrollPrev(scrollLeft > 4)
+    setCanScrollNext(scrollLeft + clientWidth < scrollWidth - 4)
+  }, [])
+
+  useEffect(() => {
+    const el = scrollRef.current
+    if (!el) return
+
+    updateScrollState()
+
+    el.addEventListener('scroll', updateScrollState, { passive: true })
+    window.addEventListener('resize', updateScrollState)
+
+    return () => {
+      el.removeEventListener('scroll', updateScrollState)
+      window.removeEventListener('resize', updateScrollState)
+    }
+  }, [loading, teamMembers.length, updateScrollState])
+
+  const scrollByCard = useCallback((direction: -1 | 1) => {
+    const el = scrollRef.current
+    if (!el) return
+    const card = el.querySelector<HTMLElement>('.team-card')
+    const gap = 24
+    const distance = (card?.offsetWidth ?? 320) + gap
+    el.scrollBy({ left: direction * distance, behavior: prefersReducedMotion ? 'auto' : 'smooth' })
+  }, [prefersReducedMotion])
+
+  const showCarouselControls = !loading && teamMembers.length > 1
 
   return (
-    <section className='overflow-hidden py-16 md:py-20 lg:py-24 bg-grey'>
-      <div className='container mx-auto max-w-7xl px-4'>
-        {/* Header */}
+    <section id='Team' className='relative overflow-hidden bg-grey py-16 md:py-20 lg:py-24'>
+      <div
+        className='pointer-events-none absolute inset-0 bg-[url("/images/wework/elipse.svg")] bg-center bg-no-repeat opacity-[0.07]'
+        aria-hidden
+      />
+
+      <div className='container relative z-10 mx-auto max-w-7xl px-4'>
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className='text-center mb-12 md:mb-16'
+          transition={{ duration: 0.5 }}
+          className='mb-10 text-center md:mb-14'
         >
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className='text-accent-cyan text-sm md:text-base font-bold mb-4 uppercase tracking-wider'
-          >
+          <p className='mb-4 text-sm font-bold uppercase tracking-widest text-accent-cyan md:text-base'>
             Unser Team
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className={`text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 ${bebasNeue.className}`}
+          </p>
+          <h2
+            className={`mb-5 text-4xl font-bold text-text-primary md:text-5xl lg:text-6xl ${bebasNeue.className} text-balance`}
           >
-          Mit Leidenschaft zum Erfolg!
-        </motion.h2>
-        <motion.p
-            initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className='text-text-secondary text-base md:text-lg max-w-3xl mx-auto leading-relaxed'
-          >
-            Leidenschaftliche Boxweltmeisterin, engagierte Physiotherapeutin und einfühlsame Personaltrainerin – Erfahren Sie mehr über unsere Reise und unsere Mission, Ihre Gesundheit und Ihr Wohlbefinden zu fördern.
-        </motion.p>
+            Gemeinsam zu deinem Ziel
+          </h2>
+          <p className='copy-prose mx-auto mb-6 max-w-2xl text-base leading-relaxed text-text-secondary md:text-lg'>
+            Physiotherapie, Training und Mental Coaching – in Hamburg verbindet unser Team Medizin,
+            Sport und Mindset unter einem Dach.
+          </p>
+          <blockquote className='mx-auto max-w-xl text-sm italic text-text-muted md:text-base'>
+            „Die Stärke des Teams ist jedes einzelne Mitglied. Die Stärke eines jeden Mitglieds ist
+            das Team.“
+            <footer className='mt-1 text-xs not-italic font-semibold text-text-secondary md:text-sm'>
+              — Phil Jackson
+            </footer>
+          </blockquote>
         </motion.div>
 
-        {/* Main Content - Natalie Featured */}
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-16 md:mb-20'>
-          {/* Image Section */}
-        <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className='relative'
-          >
-            <div className='relative rounded-3xl overflow-hidden shadow-2xl group'>
-          <Image
-            src='/images/team/boxa5.jpg'
-                alt='Natalie Zimmermann - Box Weltmeisterin, Physiotherapeutin und Personaltrainerin'
-                width={1296}
-            height={684}
-                className='w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700'
-                priority
+        <div className='relative'>
+          {showCarouselControls && (
+            <>
+              <div
+                className='pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-grey to-transparent lg:hidden'
+                aria-hidden
               />
-              <div className='absolute inset-0 bg-gradient-to-t from-black/40 to-transparent' />
-              <div className='absolute bottom-0 left-0 right-0 p-6 md:p-8'>
-                <h3 className={`text-white text-3xl md:text-4xl font-bold mb-2 ${bebasNeue.className}`}>
-                  Natalie Zimmermann
-                </h3>
-                <p className='text-white/90 text-lg font-semibold'>
-                  Box Weltmeisterin • Physiotherapeutin • Mental Coach
-                </p>
-              </div>
-            </div>
-          </motion.div>
+              <div
+                className='pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-grey to-transparent lg:hidden'
+                aria-hidden
+              />
+            </>
+          )}
 
-          {/* Content Section */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className='flex flex-col justify-center'
+          <div
+            ref={scrollRef}
+            className='team-scroll -mx-4 flex gap-6 overflow-x-auto px-4 pb-2 lg:mx-0 lg:grid lg:grid-cols-3 lg:overflow-visible lg:px-0'
+            role='region'
+            aria-roledescription='Karussell'
+            aria-label='Teammitglieder'
           >
-            <div className='bg-white rounded-3xl p-8 md:p-10 shadow-xl'>
-              <div className='mb-6'>
-                <h3 className={`text-3xl md:text-4xl font-bold text-text-primary mb-4 ${bebasNeue.className}`}>
-                  Die Geschichte hinter dem Erfolg
-                </h3>
-                <p className='text-text-secondary text-base md:text-lg leading-relaxed mb-6'>
-                  Von der Schäferstochter zur Weltmeisterin im Profiboxen – meine Reise ist geprägt von Leidenschaft, Disziplin und dem unerschütterlichen Willen, Menschen zu helfen, ihre Ziele zu erreichen.
-                </p>
-                <p className='text-text-secondary text-base md:text-lg leading-relaxed'>
-                  Als Physiotherapeutin, Personal Trainerin und Mental Coach kombiniere ich körperliche Stärke mit mentaler Resilienz, um meinen Klienten einen ganzheitlichen Ansatz für Gesundheit und Fitness zu bieten.
-                </p>
-              </div>
-
-              {/* Achievements Grid */}
-              <div className='grid grid-cols-2 gap-4 mt-8'>
-                {achievements.map((achievement, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                    className='bg-accent-cyan/10 rounded-2xl p-4 text-center'
-                  >
-                    <Icon icon={achievement.icon} className='text-accent-cyan text-3xl mb-2 mx-auto' />
-                    <p className='text-text-secondary text-xs font-semibold uppercase tracking-wide mb-1'>
-                      {achievement.label}
-                    </p>
-                    <p className='text-text-primary font-bold text-sm'>{achievement.value}</p>
-                  </motion.div>
+            {loading
+              ? Array.from({ length: 3 }).map((_, i) => <TeamCardSkeleton key={i} />)
+              : teamMembers.map((member) => (
+                  <TeamMemberCard key={member.name} member={member} />
                 ))}
-              </div>
+          </div>
 
-              {/* CTA Button */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.8 }}
-                className='mt-8'
+          {showCarouselControls && (
+            <div className='mt-6 flex items-center justify-center gap-3 lg:hidden'>
+              <button
+                type='button'
+                onClick={() => scrollByCard(-1)}
+                disabled={!canScrollPrev}
+                aria-label='Vorheriges Teammitglied'
+                className='inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-border bg-white text-text-primary shadow-sm transition-colors duration-200 hover:border-accent-cyan hover:text-accent-cyan focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-cyan disabled:cursor-not-allowed disabled:opacity-40'
               >
-                <Link
-                  href='/about-me'
-                  className='inline-flex items-center gap-2 btn-primary'
-                >
-                  Mehr über mich erfahren
-                  <Icon icon='mdi:arrow-right' className='text-xl' />
-                </Link>
-              </motion.div>
+                <Icon icon='mdi:chevron-left' className='text-2xl' aria-hidden />
+              </button>
+              <button
+                type='button'
+                onClick={() => scrollByCard(1)}
+                disabled={!canScrollNext}
+                aria-label='Nächstes Teammitglied'
+                className='inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-border bg-white text-text-primary shadow-sm transition-colors duration-200 hover:border-accent-cyan hover:text-accent-cyan focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-cyan disabled:cursor-not-allowed disabled:opacity-40'
+              >
+                <Icon icon='mdi:chevron-right' className='text-2xl' aria-hidden />
+              </button>
             </div>
-          </motion.div>
+          )}
         </div>
 
-        {/* Team Members Section */}
-        {teamMembers.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            <div className='text-center mb-12'>
-              <h3 className={`text-3xl md:text-4xl font-bold text-text-primary mb-4 ${bebasNeue.className}`}>
-                Unser Expertenteam
-              </h3>
-              <p className='text-text-secondary text-lg max-w-2xl mx-auto'>
-                "Die Stärke des Teams ist jedes einzelne Mitglied. Die Stärke eines jeden Mitglieds ist das Team." - Phil Jackson
-              </p>
-            </div>
-
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8'>
-              {teamMembers.slice(0, 4).map((member, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-                  className='group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300'
-                >
-                  {/* Image */}
-                  <div className='relative h-64 bg-grey overflow-hidden'>
-                    <Image
-                      src={member.imgSrc}
-                      alt={member.name || 'Team member'}
-                      fill
-                      className='object-cover group-hover:scale-110 transition-transform duration-500'
-                    />
-                    <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
-                    
-                    {/* LinkedIn Badge */}
-                    <div className='absolute bottom-4 right-4 bg-white rounded-full p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
-                      <Icon icon='mdi:linkedin' className='text-accent-cyan text-xl' />
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className='p-6'>
-                    <h4 className='text-xl font-bold text-text-primary mb-2'>{member.name}</h4>
-                    <p className='text-text-secondary text-sm leading-relaxed line-clamp-4'>
-                      {member.profession}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* View All Team Link */}
-            {teamMembers.length > 4 && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 1 }}
-                className='text-center mt-12'
-              >
-                <Link
-                  href='/#Team'
-                  className='inline-flex items-center gap-2 text-accent-cyan font-semibold hover:text-accent-cyan/80 transition-colors duration-300'
-                >
-                  Alle Teammitglieder anzeigen
-                  <Icon icon='mdi:arrow-right' className='text-lg' />
-                </Link>
-              </motion.div>
-            )}
-          </motion.div>
-        )}
-
-        {/* Stats Section */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className='mt-16 md:mt-20'
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className='mt-12 md:mt-16'
         >
-          <div className='bg-gradient-to-br from-accent-cyan to-accent-cyan-dark rounded-3xl p-8 md:p-12 text-white relative overflow-hidden'>
-            <div className='absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2' />
-            <div className='relative z-10 grid grid-cols-2 md:grid-cols-4 gap-8'>
-              <div className='text-center'>
-                <div className='text-4xl md:text-5xl font-bold mb-2'>22+</div>
-                <p className='text-white/90 text-sm md:text-base'>Jahre Erfahrung</p>
-              </div>
-              <div className='text-center'>
-                <div className='text-4xl md:text-5xl font-bold mb-2'>1000+</div>
-                <p className='text-white/90 text-sm md:text-base'>Zufriedene Kunden</p>
-              </div>
-              <div className='text-center'>
-                <div className='text-4xl md:text-5xl font-bold mb-2'>50+</div>
-                <p className='text-white/90 text-sm md:text-base'>Erfolgreiche Programme</p>
-              </div>
-              <div className='text-center'>
-                <div className='text-4xl md:text-5xl font-bold mb-2'>1</div>
-                <p className='text-white/90 text-sm md:text-base'>Weltmeisterin</p>
-              </div>
+          <div className='relative overflow-hidden rounded-3xl bg-gradient-to-br from-accent-cyan to-accent-cyan-dark p-8 text-white md:p-12'>
+            <div
+              className='absolute top-0 right-0 h-64 w-64 translate-x-1/2 -translate-y-1/2 rounded-full bg-white/10'
+              aria-hidden
+            />
+            <div className='relative z-10 grid grid-cols-2 gap-8 md:grid-cols-4'>
+              {stats.map((item) => (
+                <div key={item.label} className='text-center'>
+                  <p className={`mb-1 text-4xl font-bold tabular-nums md:text-5xl ${bebasNeue.className}`}>
+                    {item.value}
+                  </p>
+                  <p className='text-sm text-white/90 md:text-base'>{item.label}</p>
+                </div>
+              ))}
             </div>
           </div>
+        </motion.div>
+
+        <motion.div
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className='mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row md:mt-12'
+        >
+          <Link
+            href='/kontakt'
+            className='btn-primary inline-flex min-h-12 cursor-pointer items-center justify-center gap-2'
+          >
+            Erstgespräch vereinbaren
+            <Icon icon='mdi:arrow-right' className='text-xl' aria-hidden />
+          </Link>
+          <Link
+            href='/#UberMich'
+            className='btn-secondary inline-flex min-h-12 cursor-pointer items-center justify-center gap-2'
+          >
+            Natalie kennenlernen
+            <Icon icon='mdi:account-outline' className='text-xl' aria-hidden />
+          </Link>
         </motion.div>
       </div>
     </section>

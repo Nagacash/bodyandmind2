@@ -67,11 +67,11 @@ const Beliefs = () => {
 
               {/* Description */}
               <p className='text-white/90 text-base md:text-lg leading-relaxed mb-8'>
-                Gönnen Sie Ihrem Körper eine Auszeit. Unsere erfahrenen Masseure helfen Ihnen,
+                Gönn deinem Körper eine Auszeit. Unsere erfahrenen Masseure helfen dir,
                 Verspannungen zu lösen, Schmerzen zu lindern und die Regeneration zu fördern.
               </p>
               <p className='text-white/90 text-base md:text-lg leading-relaxed mb-8'>
-                Egal, ob nach dem Training oder im Alltag – unsere Massagen bringen Ihren Körper
+                Egal ob nach dem Training oder im Alltag – unsere Massagen bringen deinen Körper
                 wieder ins Gleichgewicht.
               </p>
 
@@ -121,9 +121,9 @@ const Beliefs = () => {
 
               {/* Description */}
               <p className='text-text-secondary text-base md:text-lg leading-relaxed mb-8'>
-                Für alle, die noch mehr Bewegung wollen: Beim Kickboxen trainieren Sie mit einer
-                Kombination aus Box- und Kicktechniken. Dieses Workout fördert Ihre Beweglichkeit,
-                stärkt Ihre Muskulatur und schult Ihre Koordination.
+                Für alle, die noch mehr Bewegung wollen: Beim Kickboxen trainierst du mit einer
+                Kombination aus Box- und Kicktechniken. Dieses Workout fördert deine Beweglichkeit,
+                stärkt deine Muskulatur und schult deine Koordination.
               </p>
               <p className='text-text-secondary text-base md:text-lg leading-relaxed mb-8'>
                 Dabei steht der Spaß am Sport und das Training in einer unterstützenden Atmosphäre

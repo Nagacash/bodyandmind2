@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 import { manrope } from '@/app/fonts'
 import Header from '@/app/components/Layout/Header'
 import Footer from '@/app/components/Layout/Footer'
@@ -49,13 +51,6 @@ export const metadata: Metadata = {
   publisher: 'Natalie Zimmermann – Body & Mind',
   referrer: 'origin-when-cross-origin',
   formatDetection: { email: false, address: false, telephone: false },
-  alternates: {
-    canonical: '/',
-    languages: {
-      'de-DE': '/',
-      'x-default': '/',
-    },
-  },
   openGraph: {
     type: 'website',
     locale: 'de_DE',
@@ -67,7 +62,7 @@ export const metadata: Metadata = {
       'Profibox-Weltmeisterin, Speakerin, Mental Coach & Personal Trainerin in Hamburg. Body & Mind Studio in Harvestehude. Personal Training, Mental Coaching, Vorträge & Workshops.',
     images: [
       {
-        url: '/images/hero/natalie.jpg',
+        url: '/images/hero/natalie.webp',
         width: 1200,
         height: 630,
         alt: 'Natalie Zimmermann – Box-Weltmeisterin, Speakerin & Mental Coach in Hamburg',
@@ -80,7 +75,7 @@ export const metadata: Metadata = {
       'Natalie Zimmermann – Box-Weltmeisterin, Speakerin & Mental Coach Hamburg',
     description:
       'Profibox-Weltmeisterin, Speakerin, Mental Coach & Personal Trainerin in Hamburg. Body & Mind Studio Harvestehude.',
-    images: ['/images/hero/natalie.jpg'],
+    images: ['/images/hero/natalie.webp'],
     creator: '@nataliezimmermann',
   },
   robots: {
@@ -141,7 +136,7 @@ export default function RootLayout({
     alternateName: 'Body & Mind by Natalie Zimmermann',
     url: SITE_URL,
     logo: `${SITE_URL}/images/logo/logo.svg`,
-    image: `${SITE_URL}/images/hero/natalie.jpg`,
+    image: `${SITE_URL}/images/hero/natalie.webp`,
     email: 'info@nataliezimmermann.de',
     telephone: '+49-40-53790578',
     description:
@@ -186,9 +181,6 @@ export default function RootLayout({
   return (
     <html lang='de-DE' suppressHydrationWarning>
       <head>
-        <link rel='canonical' href={SITE_URL} />
-        <link rel='alternate' hrefLang='de-DE' href={SITE_URL} />
-        <link rel='alternate' hrefLang='x-default' href={SITE_URL} />
         <meta name='theme-color' content='#37BEF0' />
         {/* GEO targeting meta tags for local SEO */}
         <meta name='geo.region' content='DE-HH' />

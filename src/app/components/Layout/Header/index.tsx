@@ -1,8 +1,8 @@
 'use client'
 import { Key, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { HeaderItem } from '@/app/types/menu'
+import { headerNavLinks, mobileNavLinks } from '@/app/data/nav'
 import Logo from './Logo'
 import HeaderLink from './Navigation/HeaderLink'
 import MobileHeaderLink from './Navigation/MobileHeaderLink'
@@ -45,8 +45,8 @@ const Header: React.FC = () => {
   }, [navbarOpen])
 
   // header data fetch
-  const [headerData, setHeaderData] = useState<HeaderItem[]>([])
-  const [mobileHeaderData, setMobileHeaderData] = useState<HeaderItem[]>([])
+  const [headerData, setHeaderData] = useState<HeaderItem[]>(headerNavLinks)
+  const [mobileHeaderData, setMobileHeaderData] = useState<HeaderItem[]>(mobileNavLinks)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -65,7 +65,7 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+      className={`fixed top-0 z-sticky w-full transition-[background-color,box-shadow,border-color] duration-300 ${
         sticky
           ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-border'
           : 'bg-white border-b border-border/50'
@@ -108,17 +108,17 @@ const Header: React.FC = () => {
             >
               <div className='flex flex-col gap-1.5 w-6'>
                 <span
-                  className={`block h-0.5 bg-darkmode transition-all duration-300 ${
+                  className={`block h-0.5 bg-darkmode transition-[transform,opacity] duration-300 ${
                     navbarOpen ? 'rotate-45 translate-y-2' : ''
                   }`}
                 ></span>
                 <span
-                  className={`block h-0.5 bg-darkmode transition-all duration-300 ${
+                  className={`block h-0.5 bg-darkmode transition-[transform,opacity] duration-300 ${
                     navbarOpen ? 'opacity-0' : ''
                   }`}
                 ></span>
                 <span
-                  className={`block h-0.5 bg-darkmode transition-all duration-300 ${
+                  className={`block h-0.5 bg-darkmode transition-[transform,opacity] duration-300 ${
                     navbarOpen ? '-rotate-45 -translate-y-2' : ''
                   }`}
                 ></span>
@@ -191,8 +191,8 @@ const Header: React.FC = () => {
                 href='mailto:info@nataliezimmermann.de'
                 className='flex items-center gap-3 text-text-primary hover:text-accent-cyan transition-colors duration-300'
               >
-                <Icon icon='mdi:email' className='text-xl text-accent-cyan' />
-                <span>info@nataliezimmermann.de</span>
+                <Icon icon='mdi:email' className='text-xl text-accent-cyan shrink-0' />
+                <span className='break-all'>info@nataliezimmermann.de</span>
               </a>
             </div>
           </div>

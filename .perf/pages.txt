@@ -1,0 +1,9 @@
+http://127.0.0.1:3000/
+http://127.0.0.1:3000/about-me
+http://127.0.0.1:3000/kontakt
+http://127.0.0.1:3000/datenschutz
+http://127.0.0.1:3000/impressum
+http://127.0.0.1:3000/documentation
+http://127.0.0.1:3000/agb
+http://127.0.0.1:3000/privacy
+http://127.0.0.1:3000/imprint

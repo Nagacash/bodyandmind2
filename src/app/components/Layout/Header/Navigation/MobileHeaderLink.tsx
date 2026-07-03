@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { HeaderItem } from '@/app/types/menu'
+import { getNavHashTarget } from '@/app/data/nav'
+import { useActiveNavLink } from '@/app/hooks/useActiveNavLink'
 import { usePathname, useRouter } from 'next/navigation'
 import { Icon } from '@iconify/react'
 import { bebasNeue } from '@/app/fonts'
@@ -10,8 +12,9 @@ const MobileHeaderLink: React.FC<{
   setNavbarOpen: (isOpen: boolean) => void
 }> = ({ item, setNavbarOpen }) => {
   const [submenuOpen, setSubmenuOpen] = useState(false)
-  const router = useRouter()
   const path = usePathname()
+  const router = useRouter()
+  const isActive = useActiveNavLink(item.href)
 
   const playAudio = () => {
     const audio = new Audio('/sound/click.wav')
@@ -25,19 +28,23 @@ const MobileHeaderLink: React.FC<{
 
   const handleClick = (e: React.MouseEvent) => {
     playAudio()
-    if (item.href.startsWith('#')) {
+    const targetId = getNavHashTarget(item.href)
+
+    if (targetId) {
       e.preventDefault()
-      const targetId = item.href.substring(1)
-      const targetElement = document.getElementById(targetId)
-      
+
       setNavbarOpen(false)
-      
-      // Wait for menu to close before scrolling
+
       setTimeout(() => {
+        const targetElement = document.getElementById(targetId)
+
         if (targetElement) {
           const headerOffset = 100
           const elementPosition = targetElement.getBoundingClientRect().top
           const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+          window.history.replaceState(null, '', `/#${targetId}`)
+          window.dispatchEvent(new HashChangeEvent('hashchange'))
 
           window.scrollTo({
             top: offsetPosition,
@@ -51,8 +58,6 @@ const MobileHeaderLink: React.FC<{
       setNavbarOpen(false)
     }
   }
-
-  const isActive = path === item.href || (item.href.startsWith('#') && path === '/')
 
   return (
     <div className='relative w-full mb-4'>

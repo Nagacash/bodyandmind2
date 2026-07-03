@@ -134,7 +134,7 @@ const Work = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: i * 0.1 }}
-                    className='bg-white m-3 py-8 md:py-14 my-10 shadow-xl rounded-3xl relative h-[600px] flex flex-col justify-between group hover:shadow-2xl transition-all duration-300'
+                    className='bg-white m-3 py-8 md:py-14 my-10 shadow-xl rounded-3xl relative h-[600px] flex flex-col justify-between group hover:shadow-2xl transition-shadow duration-300'
                   >
                     {/* Image Section */}
                     <div className='relative flex-grow flex items-center justify-center px-4'>

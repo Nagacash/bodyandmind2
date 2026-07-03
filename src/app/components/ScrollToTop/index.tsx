@@ -65,7 +65,7 @@ export default function ScrollToTop() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.8 }}
             transition={{ duration: 0.3 }}
-            className='fixed bottom-6 right-6 md:bottom-8 md:right-8 z-999 flex flex-col gap-3'
+            className='fixed bottom-6 right-6 md:bottom-8 md:right-8 z-fixed flex flex-col gap-3'
           >
             {/* WhatsApp Button */}
             <motion.div
@@ -89,7 +89,7 @@ export default function ScrollToTop() {
             <motion.button
               onClick={scrollToTop}
               aria-label='Scroll to top'
-              className='back-to-top group flex h-12 w-12 cursor-pointer items-center justify-center rounded-xl bg-accent-cyan text-white shadow-md shadow-accent-cyan/35 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-accent-cyan-dark hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2'
+              className='back-to-top group flex h-12 w-12 cursor-pointer items-center justify-center rounded-xl bg-accent-cyan text-white shadow-md shadow-accent-cyan/35 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-accent-cyan-dark hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2'
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >

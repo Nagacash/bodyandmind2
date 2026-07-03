@@ -1,74 +1,58 @@
 'use client'
-import React from 'react'
+
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { Icon } from '@iconify/react'
 import { bebasNeue } from '@/app/fonts'
 
 const Join = () => {
   return (
-    <section className='overflow-hidden bg-joinus py-16'>
+    <section id='Studio' className='overflow-hidden bg-light py-16 md:py-20 lg:py-24'>
       <div className='container mx-auto max-w-7xl px-4'>
-        <div className='text-center'>
-          <motion.p
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className='text-accent-cyan text-lg font-normal tracking-widest uppercase'>
-            Join us
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className={`my-6 ${bebasNeue.className}`}>Body & Mind Studio Hamburg</motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className={`text-black/50 text-base font-normal max-w-3xl mx-auto pt-4 ${bebasNeue.className}`}>
-            Unsere Räumlichkeiten beﬁnden sich in einer wunderschönen Jugendstilvilla im attraktiven Stadtteil von Harvestehude. Hohe Decken, viele Fenster und mit französischen Eichendielen ausgelegter Fußboden vermitteln eine angenehme Wohlfühlatmosphäre.
-
-Personaltraining, Workshops, Seminare - Wir sind offen für eine Zusammenarbeit mit Ihnen in unseren Räumlichkeiten.
-          </motion.p>
-        </div>
-
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          className='mx-auto max-w-4xl pt-5'>
-          <div className='sm:flex items-center mx-5 p-5 sm:p-0 rounded-2xl justify-between bg-grey sm:rounded-2xl'>
-            <div>
-              <input
-                type='name'
-                className='my-4 py-4 sm:pl-6 lg:text-xl text-black sm:rounded-xl bg-transparent pl-1 focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2 bg-emailbg focus:text-black'
-                placeholder='Your name'
-                autoComplete='off'
-                aria-label="Your name"
-              />
-            </div>
-            <div>
-              <input
-                type='email'
-                className='my-4 py-4 sm:pl-6 lg:text-xl text-black sm:border-l border-linegrey bg-transparent focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2 bg-emailbg focus:text-black'
-                placeholder='Your email'
-                autoComplete='off'
-                aria-label="Your email"
-              />
-            </div>
-            <div className='sm:mr-3'>
-              <Link
-                href='#'
-                className='btn-accent inline-flex w-full justify-center sm:w-auto'
-                aria-label='Join Body & Mind Studio Hamburg'
-              >
-                Join!
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className='mx-auto max-w-3xl text-center'
+        >
+          <p className='mb-4 text-sm font-bold uppercase tracking-widest text-accent-cyan md:text-base'>
+            Studio Hamburg
+          </p>
+          <h2 className={`mb-6 text-4xl font-bold text-text-primary md:text-5xl ${bebasNeue.className} text-balance`}>
+            Body &amp; Mind Studio Harvestehude
+          </h2>
+          <p className='copy-prose mx-auto mb-8 text-base leading-relaxed text-text-secondary md:text-lg'>
+            Unsere Räumlichkeiten befinden sich in einer wunderschönen Jugendstilvilla in
+            Harvestehude. Hohe Decken, viele Fenster und französische Eichendielen schaffen eine
+            angenehme Wohlfühlatmosphäre – ideal für Personal Training, Workshops und Seminare.
+          </p>
+
+          <div className='rounded-3xl border border-border bg-grey p-8 md:p-10'>
+            <p className='mb-6 text-lg text-text-secondary'>
+              Interesse an einer Zusammenarbeit oder einem Erstgespräch vor Ort?
+            </p>
+            <div className='flex flex-col justify-center gap-4 sm:flex-row'>
+              <Link href='/kontakt' className='btn-primary inline-flex min-h-12 items-center justify-center gap-2'>
+                Erstgespräch vereinbaren
+                <Icon icon='mdi:arrow-right' className='text-xl' aria-hidden />
               </Link>
+              <a
+                href='tel:+494053790578'
+                className='btn-secondary inline-flex min-h-12 items-center justify-center gap-2'
+              >
+                <Icon icon='mdi:phone' className='text-xl' aria-hidden />
+                040 / 53790578
+              </a>
             </div>
+            <p className='mt-6 text-sm text-text-muted'>
+              Rothenbaumchaussee 156 · 20149 Hamburg
+            </p>
           </div>
         </motion.div>
       </div>
     </section>
   )
 }
+
 export default Join

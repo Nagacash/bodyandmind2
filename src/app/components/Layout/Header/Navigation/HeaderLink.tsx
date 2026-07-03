@@ -2,6 +2,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { HeaderItem } from '@/app/types/menu'
+import { getNavHashTarget } from '@/app/data/nav'
+import { useActiveNavLink } from '@/app/hooks/useActiveNavLink'
 import { usePathname, useRouter } from 'next/navigation'
 import { Icon } from '@iconify/react'
 import { bebasNeue } from '@/app/fonts'
@@ -10,6 +12,7 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
   const [submenuOpen, setSubmenuOpen] = useState(false)
   const path = usePathname()
   const router = useRouter()
+  const isActive = useActiveNavLink(item.href)
 
   const playAudio = () => {
     const audio = new Audio('/sound/click.wav')
@@ -29,15 +32,19 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
 
   const handleClick = (e: React.MouseEvent) => {
     playAudio()
-    if (item.href.startsWith('#')) {
+    const targetId = getNavHashTarget(item.href)
+
+    if (targetId) {
       e.preventDefault()
-      const targetId = item.href.substring(1)
       const targetElement = document.getElementById(targetId)
-      
+
       if (targetElement) {
         const headerOffset = 100
         const elementPosition = targetElement.getBoundingClientRect().top
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+        window.history.replaceState(null, '', `/#${targetId}`)
+        window.dispatchEvent(new HashChangeEvent('hashchange'))
 
         window.scrollTo({
           top: offsetPosition,
@@ -49,8 +56,6 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
     }
   }
 
-  const isActive = path === item.href || (item.href.startsWith('#') && path === '/')
-
   return (
     <div
       className='relative'
@@ -61,7 +66,7 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
         href={item.href}
         target={item.target}
         onClick={handleClick}
-        className={`text-base md:text-lg flex items-center gap-1 hover:text-accent-cyan transition-all duration-300 font-semibold ${
+        className={`text-base md:text-lg flex items-center gap-1 hover:text-accent-cyan transition duration-300 font-semibold ${
           isActive ? 'text-accent-cyan' : 'text-text-primary'
         } ${bebasNeue.className} relative group`}
       >

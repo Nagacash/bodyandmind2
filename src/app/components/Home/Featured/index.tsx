@@ -132,8 +132,8 @@ const Featured = () => {
                       priority={activeIndex === 0}
                     />
                     <div className='pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent opacity-80 md:opacity-90' />
-                    <div className='absolute bottom-0 left-0 right-0 p-6 md:p-10'>
-                      <p className='text-center text-xl font-bold text-white md:text-2xl lg:text-3xl'>
+                    <div className='absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-10'>
+                      <p className='text-center text-base font-bold text-white sm:text-xl md:text-2xl lg:text-3xl text-balance'>
                         {current.heading}
                       </p>
                     </div>
@@ -146,7 +146,7 @@ const Featured = () => {
                   <button
                     type='button'
                     onClick={() => go(-1)}
-                    className='absolute left-2 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-xl bg-accent-cyan text-white shadow-md shadow-accent-cyan/35 ring-1 ring-inset ring-white/10 transition-all duration-200 hover:bg-accent-cyan-dark hover:shadow-lg active:scale-[0.97] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 md:left-4 md:h-14 md:w-14'
+                    className='absolute left-2 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-xl bg-accent-cyan text-white shadow-md shadow-accent-cyan/35 ring-1 ring-inset ring-white/10 transition duration-200 hover:bg-accent-cyan-dark hover:shadow-lg active:scale-[0.97] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 md:left-4 md:h-14 md:w-14'
                     aria-label='Vorheriges Bild'
                   >
                     <Icon icon='mdi:chevron-left' className='text-2xl md:text-3xl' aria-hidden />
@@ -154,7 +154,7 @@ const Featured = () => {
                   <button
                     type='button'
                     onClick={() => go(1)}
-                    className='absolute right-2 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-xl bg-accent-cyan text-white shadow-md shadow-accent-cyan/35 ring-1 ring-inset ring-white/10 transition-all duration-200 hover:bg-accent-cyan-dark hover:shadow-lg active:scale-[0.97] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 md:right-4 md:h-14 md:w-14'
+                    className='absolute right-2 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-xl bg-accent-cyan text-white shadow-md shadow-accent-cyan/35 ring-1 ring-inset ring-white/10 transition duration-200 hover:bg-accent-cyan-dark hover:shadow-lg active:scale-[0.97] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 md:right-4 md:h-14 md:w-14'
                     aria-label='Nächstes Bild'
                   >
                     <Icon icon='mdi:chevron-right' className='text-2xl md:text-3xl' aria-hidden />
