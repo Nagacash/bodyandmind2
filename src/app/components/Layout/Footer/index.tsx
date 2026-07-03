@@ -178,8 +178,9 @@ const footer = () => {
               <p className='text-white/50 text-xs mt-1 md:mt-2'>
                 Designed by:{' '}
                 <Link
-                  href='https://cyber-sec-six.vercel.app/#work'
+                  href='https://nagacodex.de'
                   target='_blank'
+                  rel='noopener noreferrer'
                   className='hover:text-accent-cyan transition-colors duration-300'
                 >
                   Naga Codex
