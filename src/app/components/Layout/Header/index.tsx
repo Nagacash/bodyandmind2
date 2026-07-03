@@ -131,7 +131,7 @@ const Header: React.FC = () => {
       {/* Mobile Menu Overlay */}
       {navbarOpen && (
         <div
-          className='fixed inset-0 bg-black/50 z-40 lg:hidden'
+          className='fixed inset-0 bg-black/50 z-fixed lg:hidden'
           onClick={() => setNavbarOpen(false)}
           aria-hidden='true'
         />
@@ -140,7 +140,7 @@ const Header: React.FC = () => {
       {/* Mobile Menu */}
       <div
         ref={mobileMenuRef}
-        className={`lg:hidden fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-2xl transform transition-transform duration-300 ease-in-out z-50 ${
+        className={`lg:hidden fixed top-0 right-0 h-full w-full max-w-sm bg-light shadow-2xl transform transition-transform duration-300 ease-in-out z-modal ${
           navbarOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >

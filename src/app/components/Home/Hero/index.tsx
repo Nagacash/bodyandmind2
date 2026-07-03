@@ -41,7 +41,7 @@ const Hero = () => {
       />
 
       <div className='container relative z-10 mx-auto max-w-7xl px-4'>
-        <div className='flex flex-col gap-8 min-w-0 lg:flex-row lg:items-center lg:gap-12 xl:gap-16'>
+        <div className='flex flex-col gap-10 min-w-0 sm:gap-8 lg:flex-row lg:items-center lg:gap-12 xl:gap-16'>
           {/* Portrait — first on mobile, right on desktop */}
           <motion.div
             initial={motionOff ? false : { opacity: 0, y: 20 }}
@@ -49,7 +49,7 @@ const Hero = () => {
             transition={{ duration: motionOff ? 0.2 : 0.75, ease }}
             className='order-1 w-full min-w-0 lg:order-2 lg:w-1/2'
           >
-            <div className='group relative mx-auto w-full max-w-[min(100%,28rem)] lg:max-w-none'>
+            <div className='group relative mx-auto w-full max-w-[min(100%,28rem)] max-lg:mb-2 lg:max-w-none'>
               <div className='relative aspect-[4/5] w-full overflow-hidden rounded-[1.75rem] shadow-[var(--shadow-card-lift)] ring-1 ring-black/[0.06] sm:aspect-[5/6] sm:rounded-3xl md:aspect-[4/5] lg:h-[min(72vh,650px)] lg:max-h-[650px] lg:aspect-auto'>
                 <Image
                   src='/images/hero/lind3.webp'
@@ -78,7 +78,7 @@ const Hero = () => {
                 initial={motionOff ? false : { opacity: 0, scale: 0.92 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.45, delay: motionOff ? 0 : 0.45, ease }}
-                className='absolute -bottom-4 -left-4 z-10 hidden rounded-2xl bg-white p-4 shadow-[var(--shadow-card-lift)] md:block'
+                className='absolute -bottom-4 -left-4 z-10 hidden rounded-2xl bg-white p-4 shadow-[var(--shadow-card-lift)] lg:block'
               >
                 <div className='flex items-center gap-3'>
                   <div className='flex h-12 w-12 items-center justify-center rounded-xl bg-accent-cyan'>
@@ -104,7 +104,7 @@ const Hero = () => {
           </motion.div>
 
           {/* Copy — second on mobile, left on desktop */}
-          <div className='order-2 w-full min-w-0 text-center lg:order-1 lg:w-1/2 lg:text-left'>
+          <div className='relative z-20 order-2 w-full min-w-0 text-center lg:order-1 lg:w-1/2 lg:text-left'>
             <motion.div
               initial={motionOff ? false : { opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -128,7 +128,7 @@ const Hero = () => {
               initial={motionOff ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: motionOff ? 0.2 : 0.6, delay: motionOff ? 0 : 0.24, ease }}
-              className='mx-auto mb-6 max-w-xl text-base leading-relaxed text-text-secondary sm:text-lg md:mb-8 lg:mx-0'
+              className='relative z-10 mx-auto mb-6 max-w-xl text-base leading-relaxed text-text-secondary sm:text-lg md:mb-8 lg:mx-0'
             >
               Natalie Zimmermann — WIBF/WBF-Weltmeisterin, Physiotherapeutin, Mental Coach und
               Personal Trainerin im Body&nbsp;&amp;&nbsp;Mind Studio, Harvestehude.
@@ -180,7 +180,7 @@ const Hero = () => {
               initial={motionOff ? false : { opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: motionOff ? 0.2 : 0.55, delay: motionOff ? 0 : 0.42, ease }}
-              className='mx-auto grid max-w-md grid-cols-3 gap-3 border-t border-border/80 pt-6 sm:gap-4 lg:mx-0'
+              className='mx-auto mt-2 grid max-w-md grid-cols-3 gap-3 border-t border-border/80 pt-6 sm:gap-4 lg:mx-0'
             >
               {stats.map((item) => (
                 <div key={item.label} className='min-w-0 text-center tabular-nums lg:text-left'>
@@ -200,7 +200,7 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: motionOff ? 0 : 0.7 }}
-          className='mt-8 flex justify-center md:absolute md:bottom-8 md:left-1/2 md:mt-0 md:-translate-x-1/2'
+          className='mt-8 flex justify-center lg:absolute lg:bottom-8 lg:left-1/2 lg:mt-0 lg:-translate-x-1/2'
         >
           <button
             type='button'
