@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { bebasNeue } from '@/app/fonts'
@@ -24,9 +24,24 @@ const stats = [
 
 const ease = [0.22, 1, 0.36, 1] as const
 
+function useNarrowViewport() {
+  const [isNarrow, setIsNarrow] = useState(false)
+
+  useLayoutEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)')
+    const update = () => setIsNarrow(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
+
+  return isNarrow
+}
+
 const Hero = () => {
   const shouldReduceMotion = useReducedMotion()
   const motionOff = shouldReduceMotion
+  const isNarrow = useNarrowViewport()
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
@@ -72,29 +87,30 @@ const Hero = () => {
               playsInline
               preload='auto'
               poster='/images/hero/sab6.webp'
-              initial={{ scale: 1.06, opacity: 0.32 }}
-              animate={{
-                scale: motionOff ? 1.08 : [1.06, 1.1, 1.06],
-                opacity: 0.38,
-              }}
-              transition={
-                motionOff
-                  ? { duration: 0.3 }
-                  : { scale: { duration: 14, repeat: Infinity, ease: 'easeInOut' }, opacity: { duration: 1.2 } }
+              initial={false}
+              animate={
+                motionOff || isNarrow ? undefined : { scale: [1.06, 1.1, 1.06] }
               }
-              className='absolute inset-0 h-full w-full object-cover object-[center_40%] saturate-[0.85] contrast-[0.92]'
+              transition={
+                motionOff || isNarrow
+                  ? undefined
+                  : { scale: { duration: 14, repeat: Infinity, ease: 'easeInOut' } }
+              }
+              className='absolute inset-0 h-full w-full scale-[1.14] object-cover object-[center_18%] opacity-[0.24] saturate-[0.85] contrast-[0.92] sm:scale-[1.12] sm:object-[center_24%] sm:opacity-[0.28] md:scale-[1.06] md:object-[center_40%] md:opacity-[0.38]'
             >
               <source src='/clip/mist.mp4' type='video/mp4' />
             </motion.video>
 
-            {/* Cyan atmosphere + text-side readability */}
-            <div className='absolute inset-0 bg-gradient-to-r from-light/92 via-light/55 to-accent-cyan-light/25' />
-            <div className='absolute inset-0 bg-gradient-to-br from-transparent via-accent-cyan/[0.07] to-accent-cyan/20 mix-blend-soft-light' />
-            <div className='absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_70%_40%,rgba(55,190,240,0.12),transparent_70%)]' />
+            {/* Mobile: vertical wash — portrait top, copy below */}
+            <div className='absolute inset-0 bg-gradient-to-b from-light/94 via-light/72 to-light/90 md:hidden' />
+            {/* Desktop: horizontal wash — copy left, portrait right */}
+            <div className='absolute inset-0 hidden bg-gradient-to-r from-light/92 via-light/55 to-accent-cyan-light/25 md:block' />
+            <div className='absolute inset-0 bg-gradient-to-br from-transparent via-accent-cyan/[0.06] to-accent-cyan/15 mix-blend-soft-light md:via-accent-cyan/[0.07] md:to-accent-cyan/20' />
+            <div className='absolute inset-0 bg-[radial-gradient(ellipse_110%_50%_at_50%_8%,rgba(55,190,240,0.08),transparent_62%)] md:bg-[radial-gradient(ellipse_80%_60%_at_70%_40%,rgba(55,190,240,0.12),transparent_70%)]' />
 
-            {/* Occlude Veo / Flow watermark — bottom-right */}
-            <div className='absolute bottom-0 right-0 h-[min(22vw,96px)] w-[min(34vw,168px)] bg-gradient-to-tl from-light/95 via-accent-cyan-light/75 to-transparent backdrop-blur-2xl' />
-            <div className='absolute bottom-0 right-0 h-[min(14vw,56px)] w-[min(22vw,112px)] rounded-tl-3xl bg-light/40 backdrop-blur-3xl' />
+            {/* Occlude Veo / Flow watermark — bottom-right (larger touch target on mobile) */}
+            <div className='absolute bottom-0 right-0 h-[min(32vw,120px)] w-[min(48vw,200px)] bg-gradient-to-tl from-light/95 via-accent-cyan-light/80 to-transparent backdrop-blur-2xl md:h-[min(22vw,96px)] md:w-[min(34vw,168px)] md:via-accent-cyan-light/75' />
+            <div className='absolute bottom-0 right-0 h-[min(20vw,72px)] w-[min(30vw,140px)] rounded-tl-3xl bg-light/50 backdrop-blur-3xl md:h-[min(14vw,56px)] md:w-[min(22vw,112px)] md:bg-light/40' />
           </motion.div>
         )}
       </div>
