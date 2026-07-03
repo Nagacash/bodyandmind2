@@ -11,40 +11,48 @@ export default function BackgroundAmbience() {
   const audioRef = useRef<HTMLAudioElement>(null)
   const userPausedRef = useRef(false)
   const unlockedRef = useRef(false)
+  const pendingUnmuteRef = useRef(false)
   const [playing, setPlaying] = useState(false)
 
-  const startPlayback = useCallback(async () => {
+  const startPlayback = useCallback(async (fromUserGesture = false) => {
     if (userPausedRef.current) return false
 
     const audio = audioRef.current
     if (!audio) return false
 
-    const finish = () => {
+    const markPlaying = () => {
       audio.volume = VOLUME
-      audio.muted = false
       setPlaying(true)
       unlockedRef.current = true
       sessionStorage.setItem(STORAGE_KEY, '1')
-      return true
+    }
+
+    if (fromUserGesture || !pendingUnmuteRef.current) {
+      try {
+        audio.muted = false
+        audio.volume = VOLUME
+        await audio.play()
+        pendingUnmuteRef.current = false
+        markPlaying()
+        return true
+      } catch {
+        if (fromUserGesture) {
+          setPlaying(false)
+          return false
+        }
+      }
     }
 
     try {
-      audio.muted = false
+      audio.muted = true
       audio.volume = VOLUME
       await audio.play()
-      return finish()
+      pendingUnmuteRef.current = true
+      markPlaying()
+      return true
     } catch {
-      // Muted autoplay is allowed in most browsers — unmute once playing
-      try {
-        audio.muted = true
-        audio.volume = VOLUME
-        await audio.play()
-        audio.muted = false
-        return finish()
-      } catch {
-        setPlaying(false)
-        return false
-      }
+      setPlaying(false)
+      return false
     }
   }, [])
 
@@ -57,12 +65,14 @@ export default function BackgroundAmbience() {
   }, [])
 
   const toggle = () => {
-    if (playing) pause()
-    else {
-      userPausedRef.current = false
-      sessionStorage.setItem(STORAGE_KEY, '1')
-      void startPlayback()
+    if (playing) {
+      pause()
+      return
     }
+
+    userPausedRef.current = false
+    sessionStorage.setItem(STORAGE_KEY, '1')
+    void startPlayback(true)
   }
 
   useEffect(() => {
@@ -83,15 +93,17 @@ export default function BackgroundAmbience() {
     }
 
     const onUnlock = () => {
-      if (userPausedRef.current || unlockedRef.current) return
-      void startPlayback().then((ok) => {
+      if (userPausedRef.current) return
+      if (unlockedRef.current && !pendingUnmuteRef.current) return
+
+      void startPlayback(true).then((ok) => {
         if (ok) removeUnlockListeners()
       })
     }
 
     const tryAutoplay = async () => {
-      const ok = await startPlayback()
-      if (!ok) {
+      const ok = await startPlayback(false)
+      if (!ok || pendingUnmuteRef.current) {
         window.addEventListener('pointerdown', onUnlock, { passive: true })
         window.addEventListener('touchstart', onUnlock, { passive: true })
         window.addEventListener('keydown', onUnlock)
@@ -103,7 +115,9 @@ export default function BackgroundAmbience() {
     void tryAutoplay()
 
     const onCanPlay = () => {
-      if (!unlockedRef.current && !userPausedRef.current) void startPlayback()
+      if (!unlockedRef.current && !userPausedRef.current) {
+        void startPlayback(false)
+      }
     }
     audio.addEventListener('canplaythrough', onCanPlay)
 
@@ -117,14 +131,20 @@ export default function BackgroundAmbience() {
   useEffect(() => {
     const onVisibility = () => {
       const audio = audioRef.current
-      if (!audio || userPausedRef.current) return
+      if (!audio || userPausedRef.current || !unlockedRef.current) return
+
       if (document.hidden) {
         audio.pause()
         setPlaying(false)
-      } else if (unlockedRef.current) {
-        void audio.play().then(() => setPlaying(true)).catch(() => setPlaying(false))
+        return
       }
+
+      void audio
+        .play()
+        .then(() => setPlaying(true))
+        .catch(() => setPlaying(false))
     }
+
     document.addEventListener('visibilitychange', onVisibility)
     return () => document.removeEventListener('visibilitychange', onVisibility)
   }, [])
@@ -135,8 +155,8 @@ export default function BackgroundAmbience() {
         ref={audioRef}
         src={TRACK_SRC}
         loop
+        autoPlay
         preload='auto'
-        playsInline
         className='sr-only'
         aria-hidden
       />

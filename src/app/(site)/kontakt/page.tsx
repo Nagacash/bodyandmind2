@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Icon } from '@iconify/react'
-import { bebasNeue } from '@/app/fonts'
+import { STUDIO_PHONE_DISPLAY, STUDIO_PHONE_E164, WHATSAPP_NUMBER_DISPLAY, WHATSAPP_URL } from '@/app/data/contact'
 
 const KontaktPage = () => {
   const [formData, setFormData] = useState({
@@ -49,14 +49,14 @@ const KontaktPage = () => {
     {
       icon: 'mdi:phone-outline',
       label: 'Telefon',
-      value: '040 / 53790578',
-      href: 'tel:+494053790578',
+      value: STUDIO_PHONE_DISPLAY,
+      href: `tel:${STUDIO_PHONE_E164}`,
     },
     {
       icon: 'mdi:whatsapp',
       label: 'WhatsApp',
-      value: '040 / 53790578',
-      href: 'https://wa.me/494053790578',
+      value: WHATSAPP_NUMBER_DISPLAY,
+      href: WHATSAPP_URL,
     },
     {
       icon: 'mdi:map-marker-outline',

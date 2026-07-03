@@ -1,6 +1,7 @@
 'use client'
 import { Key, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import { WHATSAPP_URL } from '@/app/data/contact'
 import { HeaderItem } from '@/app/types/menu'
 import { headerNavLinks, mobileNavLinks } from '@/app/data/nav'
 import Logo from './Logo'
@@ -89,7 +90,7 @@ const Header: React.FC = () => {
           <div className='flex items-center gap-3 md:gap-4'>
             {/* WhatsApp Button - Desktop */}
             <a
-              href='https://wa.me/494053790578'
+              href={WHATSAPP_URL}
               target='_blank'
               rel='noopener noreferrer'
               className='btn-accent-sm hidden lg:flex'
@@ -164,7 +165,7 @@ const Header: React.FC = () => {
 
           {/* Mobile WhatsApp Button */}
           <a
-            href='https://wa.me/494053790578'
+            href={WHATSAPP_URL}
             target='_blank'
             rel='noopener noreferrer'
             className='btn-accent-sm mt-6 flex w-full justify-center'

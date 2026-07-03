@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Icon } from '@iconify/react'
+import { WHATSAPP_NUMBER_DISPLAY, WHATSAPP_URL } from '@/app/data/contact'
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false)
@@ -73,14 +73,14 @@ export default function ScrollToTop() {
               whileTap={{ scale: 0.95 }}
             >
               <Link
-                href='https://wa.me/494053790578'
+                href={WHATSAPP_URL}
                 target='_blank'
                 rel='noopener noreferrer'
                 className='btn-accent-sm inline-flex items-center gap-2'
-                aria-label='WhatsApp Kontakt - 040 / 53790578'
+                aria-label={`WhatsApp Kontakt - ${WHATSAPP_NUMBER_DISPLAY}`}
               >
                 <Icon icon='mdi:whatsapp' className='text-xl' />
-                <span className='hidden sm:inline'>040 / 53790578</span>
+                <span className='hidden sm:inline'>{WHATSAPP_NUMBER_DISPLAY}</span>
                 <span className='sm:hidden'>WhatsApp</span>
               </Link>
             </motion.div>
