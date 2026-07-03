@@ -63,10 +63,11 @@ export const metadata: Metadata = {
       'Profibox-Weltmeisterin, Speakerin, Mental Coach & Personal Trainerin in Hamburg-Harvestehude. Body & Mind Studio – Personal Training, Mental Coaching, Boxen, Vorträge.',
     images: [
       {
-        url: '/images/hero/natalie.webp',
+        url: '/images/og/social-share.webp',
         width: 1200,
         height: 630,
-        alt: 'Natalie Zimmermann – Box-Weltmeisterin & Mental Coach Hamburg',
+        alt: 'Natalie Zimmermann – Box-Weltmeisterin, Speakerin & Mental Coach in Hamburg',
+        type: 'image/webp',
       },
     ],
   },
@@ -76,7 +77,7 @@ export const metadata: Metadata = {
       'Natalie Zimmermann – Box-Weltmeisterin, Speakerin & Mental Coach Hamburg',
     description:
       'Profibox-Weltmeisterin, Speakerin, Mental Coach & Personal Trainerin in Hamburg-Harvestehude.',
-    images: ['/images/hero/natalie.webp'],
+    images: ['/images/og/social-share.webp'],
   },
 }
 
