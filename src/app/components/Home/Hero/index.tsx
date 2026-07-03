@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
+import { useEffect, useRef } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { bebasNeue } from '@/app/fonts'
@@ -26,14 +27,76 @@ const ease = [0.22, 1, 0.36, 1] as const
 const Hero = () => {
   const shouldReduceMotion = useReducedMotion()
   const motionOff = shouldReduceMotion
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    if (shouldReduceMotion) return
+    const video = videoRef.current
+    if (!video) return
+
+    const play = () => {
+      void video.play().catch(() => {})
+    }
+
+    play()
+    video.addEventListener('loadeddata', play)
+    return () => video.removeEventListener('loadeddata', play)
+  }, [shouldReduceMotion])
 
   return (
     <section
       id='Hero'
       className='relative z-10 overflow-hidden bg-grain bg-gradient-to-br from-light via-accent-cyan/5 to-accent-cyan-light/30 pt-[calc(4.25rem+env(safe-area-inset-top,0px))] pb-10 sm:pb-14 md:min-h-[100dvh] md:flex md:items-center md:py-20 lg:py-24'
     >
-      <div className='pointer-events-none absolute inset-0 z-0 opacity-[0.1]' aria-hidden>
-        <Image src='/images/hero/sab6.webp' alt='' fill className='object-cover' sizes='100vw' />
+      <div className='pointer-events-none absolute inset-0 z-0 overflow-hidden' aria-hidden>
+        {shouldReduceMotion ? (
+          <Image
+            src='/images/hero/sab6.webp'
+            alt=''
+            fill
+            className='object-cover opacity-[0.1]'
+            sizes='100vw'
+          />
+        ) : (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.4, ease }}
+            className='absolute inset-0'
+          >
+            <motion.video
+              ref={videoRef}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload='auto'
+              poster='/images/hero/sab6.webp'
+              initial={{ scale: 1.06, opacity: 0.32 }}
+              animate={{
+                scale: motionOff ? 1.08 : [1.06, 1.1, 1.06],
+                opacity: 0.38,
+              }}
+              transition={
+                motionOff
+                  ? { duration: 0.3 }
+                  : { scale: { duration: 14, repeat: Infinity, ease: 'easeInOut' }, opacity: { duration: 1.2 } }
+              }
+              className='absolute inset-0 h-full w-full object-cover object-[center_40%] saturate-[0.85] contrast-[0.92]'
+            >
+              <source src='/clip/mist.mp4' type='video/mp4' />
+            </motion.video>
+
+            {/* Cyan atmosphere + text-side readability */}
+            <div className='absolute inset-0 bg-gradient-to-r from-light/92 via-light/55 to-accent-cyan-light/25' />
+            <div className='absolute inset-0 bg-gradient-to-br from-transparent via-accent-cyan/[0.07] to-accent-cyan/20 mix-blend-soft-light' />
+            <div className='absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_70%_40%,rgba(55,190,240,0.12),transparent_70%)]' />
+
+            {/* Occlude Veo / Flow watermark — bottom-right */}
+            <div className='absolute bottom-0 right-0 h-[min(22vw,96px)] w-[min(34vw,168px)] bg-gradient-to-tl from-light/95 via-accent-cyan-light/75 to-transparent backdrop-blur-2xl' />
+            <div className='absolute bottom-0 right-0 h-[min(14vw,56px)] w-[min(22vw,112px)] rounded-tl-3xl bg-light/40 backdrop-blur-3xl' />
+          </motion.div>
+        )}
       </div>
       <div
         className='pointer-events-none absolute top-[20%] right-0 z-0 h-[min(70vw,420px)] w-[min(70vw,420px)] translate-x-1/3 rounded-full bg-accent-cyan/15 blur-[100px] md:top-1/2 md:h-[min(80vw,520px)] md:w-[min(80vw,520px)] md:-translate-y-1/2'
