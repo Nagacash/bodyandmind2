@@ -61,7 +61,7 @@ const Hero = () => {
   return (
     <section
       id='Hero'
-      className='relative z-10 overflow-hidden bg-grain bg-gradient-to-br from-light via-accent-cyan/5 to-accent-cyan-light/30 pt-[calc(4.25rem+env(safe-area-inset-top,0px))] pb-10 sm:pb-14 md:min-h-[100dvh] md:flex md:items-center md:py-20 lg:py-24'
+      className='relative z-10 overflow-hidden bg-grain bg-gradient-to-br from-light via-accent-cyan/5 to-accent-cyan-light/30 pt-[calc(4.25rem+env(safe-area-inset-top,0px))] pb-20 sm:pb-24 md:min-h-[100dvh] md:flex md:items-center md:pb-28 md:py-20 lg:py-24 lg:pb-32'
     >
       <div className='pointer-events-none absolute inset-0 z-0 overflow-hidden' aria-hidden>
         {shouldReduceMotion ? (
@@ -96,7 +96,7 @@ const Hero = () => {
                   ? undefined
                   : { scale: { duration: 14, repeat: Infinity, ease: 'easeInOut' } }
               }
-              className='absolute inset-0 h-full w-full scale-[1.14] object-cover object-[center_18%] opacity-[0.24] saturate-[0.85] contrast-[0.92] sm:scale-[1.12] sm:object-[center_24%] sm:opacity-[0.28] md:scale-[1.06] md:object-[center_40%] md:opacity-[0.38]'
+              className='absolute inset-0 h-full w-full scale-[1.14] object-cover object-[center_18%] opacity-[0.24] saturate-[0.85] contrast-[0.92] [mask-image:linear-gradient(to_bottom,black_0%,black_42%,rgba(0,0,0,0.55)_68%,transparent_100%)] sm:scale-[1.12] sm:object-[center_24%] sm:opacity-[0.28] md:scale-[1.06] md:object-[center_40%] md:opacity-[0.38]'
             >
               <source src='/clip/mist.mp4' type='video/mp4' />
             </motion.video>
@@ -279,7 +279,7 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: motionOff ? 0 : 0.7 }}
-          className='mt-8 flex justify-center lg:absolute lg:bottom-8 lg:left-1/2 lg:mt-0 lg:-translate-x-1/2'
+          className='mt-8 flex justify-center lg:absolute lg:bottom-20 lg:left-1/2 lg:mt-0 lg:-translate-x-1/2 xl:bottom-24'
         >
           <button
             type='button'
@@ -307,6 +307,26 @@ const Hero = () => {
             </motion.span>
           </button>
         </motion.div>
+      </div>
+
+      {/* Dissolve into Philosophie section */}
+      <div
+        className='pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-40 sm:h-44 md:h-52'
+        aria-hidden
+      >
+        <div className='absolute inset-0 bg-gradient-to-b from-transparent via-light/50 to-light' />
+        <div className='absolute inset-x-0 bottom-16 h-32 bg-[radial-gradient(ellipse_90%_70%_at_50%_100%,rgba(55,190,240,0.14),transparent_68%)] sm:bottom-20 md:bottom-24' />
+        <svg
+          className='absolute bottom-0 left-0 h-12 w-full text-light sm:h-14 md:h-16'
+          viewBox='0 0 1440 56'
+          preserveAspectRatio='none'
+          aria-hidden
+        >
+          <path
+            fill='currentColor'
+            d='M0,36 C320,56 520,12 720,34 C920,56 1120,10 1440,32 L1440,56 L0,56 Z'
+          />
+        </svg>
       </div>
     </section>
   )
