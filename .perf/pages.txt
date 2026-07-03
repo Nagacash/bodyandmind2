@@ -1,3 +1,4 @@
+# German (default locale)
 http://127.0.0.1:3000/
 http://127.0.0.1:3000/about-me
 http://127.0.0.1:3000/kontakt
@@ -7,3 +8,13 @@ http://127.0.0.1:3000/documentation
 http://127.0.0.1:3000/agb
 http://127.0.0.1:3000/privacy
 http://127.0.0.1:3000/imprint
+# English locale
+http://127.0.0.1:3000/en
+http://127.0.0.1:3000/en/about-me
+http://127.0.0.1:3000/en/kontakt
+http://127.0.0.1:3000/en/datenschutz
+http://127.0.0.1:3000/en/impressum
+http://127.0.0.1:3000/en/documentation
+http://127.0.0.1:3000/en/agb
+http://127.0.0.1:3000/en/privacy
+http://127.0.0.1:3000/en/imprint
