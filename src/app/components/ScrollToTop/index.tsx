@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { WHATSAPP_NUMBER_DISPLAY, WHATSAPP_URL } from '@/app/data/contact'
+import { Icon } from '@iconify/react'
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false)

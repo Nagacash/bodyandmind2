@@ -8,8 +8,7 @@ import Footer from '@/app/components/Layout/Footer'
 import ScrollToTop from '@/app/components/ScrollToTop'
 import BackgroundAmbience from '@/app/components/BackgroundAmbience'
 import Aoscompo from '@/utils/aos'
-
-const SITE_URL = 'https://www.nataliezimmermann.de'
+import { SITE_URL, socialShareImageMetadata } from '@/app/data/site'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -61,15 +60,7 @@ export const metadata: Metadata = {
       'Natalie Zimmermann – Box-Weltmeisterin, Speakerin & Mental Coach in Hamburg',
     description:
       'Profibox-Weltmeisterin, Speakerin, Mental Coach & Personal Trainerin in Hamburg. Body & Mind Studio in Harvestehude. Personal Training, Mental Coaching, Vorträge & Workshops.',
-    images: [
-      {
-        url: '/images/og/social-share.webp',
-        width: 1200,
-        height: 630,
-        alt: 'Natalie Zimmermann – Box-Weltmeisterin, Speakerin & Mental Coach in Hamburg',
-        type: 'image/webp',
-      },
-    ],
+    images: [socialShareImageMetadata],
   },
   twitter: {
     card: 'summary_large_image',
@@ -77,7 +68,7 @@ export const metadata: Metadata = {
       'Natalie Zimmermann – Box-Weltmeisterin, Speakerin & Mental Coach Hamburg',
     description:
       'Profibox-Weltmeisterin, Speakerin, Mental Coach & Personal Trainerin in Hamburg. Body & Mind Studio Harvestehude.',
-    images: ['/images/og/social-share.webp'],
+    images: [socialShareImageMetadata.url],
     creator: '@nataliezimmermann',
   },
   robots: {

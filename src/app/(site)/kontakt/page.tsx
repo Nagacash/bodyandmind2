@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Icon } from '@iconify/react'
 import { STUDIO_PHONE_DISPLAY, STUDIO_PHONE_E164, WHATSAPP_NUMBER_DISPLAY, WHATSAPP_URL } from '@/app/data/contact'
+import { bebasNeue } from '@/app/fonts'
 
 const KontaktPage = () => {
   const [formData, setFormData] = useState({
