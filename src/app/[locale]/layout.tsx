@@ -98,9 +98,9 @@ export async function generateMetadata({
       },
     },
     icons: {
-      icon: '/favicon.ico',
-      shortcut: '/favicon.ico',
-      apple: '/favicon.ico',
+      icon: [{ url: '/icon.png', type: 'image/png', sizes: '32x32' }],
+      shortcut: '/icon.png',
+      apple: [{ url: '/apple-icon.png', type: 'image/png', sizes: '180x180' }],
     },
     manifest: '/manifest.webmanifest',
   }

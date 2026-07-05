@@ -15,9 +15,14 @@ export default function manifest(): MetadataRoute.Manifest {
     categories: ['health', 'fitness', 'sports', 'lifestyle', 'coaching'],
     icons: [
       {
-        src: '/favicon.ico',
-        sizes: 'any',
-        type: 'image/x-icon',
+        src: '/icon.png',
+        sizes: '32x32',
+        type: 'image/png',
+      },
+      {
+        src: '/apple-icon.png',
+        sizes: '180x180',
+        type: 'image/png',
       },
     ],
   }
