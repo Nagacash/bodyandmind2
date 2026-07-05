@@ -14,5 +14,10 @@
     "contactUs": "Jetzt kontaktieren",
     "learnMore": "Mehr erfahren",
     "getStarted": "Jetzt starten"
+  },
+  "lightbox": {
+    "close": "Schließen",
+    "expand": "Bild vergrößern",
+    "dialogLabel": "Bildansicht"
   }
 }

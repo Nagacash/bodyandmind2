@@ -6,13 +6,10 @@ import { Icon } from '@iconify/react'
 import { useTranslations } from 'next-intl'
 
 const VIDEO_SRCS = [
-  'https://www.youtube-nocookie.com/embed/Jwbx5gjUos8?si=KYbhBA76P9xBQbX0&rel=0',
-  'https://www.youtube-nocookie.com/embed/3yoKKKqGqAA?si=yLbyaMHvJ8Ro1Xa8&rel=0',
-  'https://www.youtube-nocookie.com/embed/SLAkZV6mL3E?si=Gj7FMcUHRLb2KKnH&rel=0',
-  'https://www.youtube-nocookie.com/embed/oxgrS13Fb0o?si=gjNRxmTveESoxvJ6&rel=0',
-  'https://www.youtube-nocookie.com/embed/sFCfVHTVoy4?si=JLrDf4Fj3oyrLR0e&rel=0',
-  'https://www.youtube-nocookie.com/embed/WjmfVrdd7dA?rel=0',
-  'https://www.youtube-nocookie.com/embed/2z4UgDQCOhE?rel=0',
+  'https://www.youtube-nocookie.com/embed/SLAkZV6mL3E?rel=0',
+  'https://www.youtube-nocookie.com/embed/-f76VQTPltI?rel=0',
+  'https://www.youtube-nocookie.com/embed/tfqBXnPkm4A?rel=0',
+  'https://www.youtube-nocookie.com/embed/sFCfVHTVoy4?rel=0',
 ] as const
 
 const variants = {

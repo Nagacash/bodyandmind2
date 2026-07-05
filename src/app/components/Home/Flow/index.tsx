@@ -5,6 +5,7 @@ import { Link } from '@/i18n/routing'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { useTranslations } from 'next-intl'
+import ImageLightbox from '@/app/components/Common/ImageLightbox'
 import { bebasNeue } from '@/app/fonts'
 
 const EFFECT_IMAGES = [
@@ -69,19 +70,20 @@ const Flow = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className='relative'
           >
-            <div className='relative aspect-[3/4] overflow-hidden rounded-3xl shadow-[var(--shadow-card-lift)] sm:aspect-[4/5] lg:max-h-[min(80vh,720px)] lg:aspect-[3/4]'>
-              <Image
-                src='/images/new/beach1.webp'
-                alt={t('heroImageAlt')}
-                fill
-                className='object-cover object-center'
-                sizes='(max-width: 1024px) 100vw, 50vw'
-              />
+            <ImageLightbox
+              src='/images/new/beach1.webp'
+              alt={t('heroImageAlt')}
+              caption={t('heroImageCaption')}
+              fill
+              className='relative aspect-[3/4] overflow-hidden rounded-3xl shadow-[var(--shadow-card-lift)] sm:aspect-[4/5] lg:max-h-[min(80vh,720px)] lg:aspect-[3/4]'
+              imageClassName='object-cover object-center transition duration-500 group-hover:scale-[1.02]'
+              sizes='(max-width: 1024px) 100vw, 50vw'
+            >
               <div className='absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent' />
               <span className='absolute bottom-4 left-4 rounded-lg bg-black/50 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-white backdrop-blur-sm'>
                 {t('heroImageCaption')}
               </span>
-            </div>
+            </ImageLightbox>
           </motion.div>
         </div>
 

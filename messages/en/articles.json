@@ -1,7 +1,7 @@
 {
   "eyebrow": "My services",
   "title": "What I can do for you",
-  "description": "From inspiring talks to professional coaching and brand partnerships—discover my full range of services.",
+  "description": "From FLOW and FORM to Recovery—discover my three pillars for body and mind.",
   "defaultCta": "Request now",
   "bottomCta": {
     "title": "Ready to work together?",
@@ -17,9 +17,9 @@
       "cta": "Request now"
     },
     "1": {
-      "heading": "Brand ambassador",
-      "heading2": "For your products!",
-      "description": "As a brand ambassador, I present your brand authentically and warmly, create targeted content, and strengthen your marketing campaigns. With an active social media presence and positive communication, I build trust and customer loyalty.",
+      "heading": "FORM",
+      "heading2": "Strength & Performance Coaching",
+      "description": "FORM is individual performance coaching for people who want to strengthen their body with purpose and become more resilient over the long term. Through functional training, athletic training, and personal support, you build strength, stability, and physical performance.",
       "date": "2025",
       "cta": "Request now"
     },

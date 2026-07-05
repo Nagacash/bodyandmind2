@@ -65,7 +65,7 @@ const Digital = () => {
             >
               <div className='relative aspect-[4/5] overflow-hidden rounded-2xl shadow-[0_24px_48px_-16px_rgba(0,0,0,0.45)] ring-1 ring-white/20 sm:aspect-[5/4] lg:aspect-[4/5]'>
                 <Image
-                  src='/images/new/nature2.webp'
+                  src='/images/new/natalie.jpg'
                   alt={t('imageAlt')}
                   fill
                   className='object-cover object-center'

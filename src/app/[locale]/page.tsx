@@ -10,7 +10,6 @@ import Form from '@/app/components/Home/Form'
 import Recovery from '@/app/components/Home/Recovery'
 import Dedicated from '@/app/components/Home/Dedicated'
 import Digital from '@/app/components/Home/Digital'
-import Beliefs from '@/app/components/Home/Beliefs'
 import Team from '@/app/components/Home/Team'
 import Featured from '@/app/components/Home/Featured'
 import Manage from '@/app/components/Home/Manage'
@@ -361,7 +360,6 @@ export default async function Home({
       <Recovery />
       <Dedicated />
       <Digital />
-      <Beliefs />
       <Team />
       <Featured />
       <Manage />

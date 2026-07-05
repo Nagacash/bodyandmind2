@@ -5,9 +5,15 @@ import { Link } from '@/i18n/routing'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { useTranslations } from 'next-intl'
+import ImageLightbox from '@/app/components/Common/ImageLightbox'
 import { bebasNeue } from '@/app/fonts'
 
-const HERO_IMAGE = '/images/new/beach3.webp'
+const HERO_IMAGE = '/images/articles/nat3.webp'
+const EFFECT_IMAGES = [
+  '/images/new/kraft1.jpg',
+  '/images/new/kraft2.jpg',
+  '/images/new/kraft3.jpg',
+] as const
 const EFFECT_ICONS = ['mdi:dumbbell', 'mdi:human-handsup', 'mdi:lightning-bolt'] as const
 
 const Form = () => {
@@ -21,6 +27,7 @@ const Form = () => {
     >
   ).map((effect, i) => ({
     ...effect,
+    imgSrc: EFFECT_IMAGES[i],
     icon: EFFECT_ICONS[i],
   }))
   const gains = Object.values(t.raw('gains') as Record<string, string>)
@@ -36,19 +43,20 @@ const Form = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className='relative order-2 lg:order-1'
           >
-            <div className='relative aspect-[3/4] overflow-hidden rounded-3xl shadow-[var(--shadow-card-lift)] sm:aspect-[4/5] lg:max-h-[min(80vh,720px)] lg:aspect-[3/4]'>
-              <Image
-                src={HERO_IMAGE}
-                alt={t('heroImageAlt')}
-                fill
-                className='object-cover object-center'
-                sizes='(max-width: 1024px) 100vw, 50vw'
-              />
+            <ImageLightbox
+              src={HERO_IMAGE}
+              alt={t('heroImageAlt')}
+              caption={t('heroImageCaption')}
+              fill
+              className='relative aspect-[3/4] overflow-hidden rounded-3xl shadow-[var(--shadow-card-lift)] sm:aspect-[4/5] lg:max-h-[min(80vh,720px)] lg:aspect-[3/4]'
+              imageClassName='object-cover object-center transition duration-500 group-hover:scale-[1.02]'
+              sizes='(max-width: 1024px) 100vw, 50vw'
+            >
               <div className='absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent' />
               <span className='absolute bottom-4 left-4 rounded-lg bg-black/50 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-white backdrop-blur-sm'>
                 {t('heroImageCaption')}
               </span>
-            </div>
+            </ImageLightbox>
           </motion.div>
 
           <motion.div
@@ -110,22 +118,35 @@ const Form = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className='rounded-3xl bg-white p-6 shadow-lg transition-shadow duration-300 hover:shadow-xl md:p-8'
+                className='group overflow-hidden rounded-3xl bg-white shadow-lg transition-shadow duration-300 hover:shadow-xl'
               >
-                <div className='mb-4 flex items-start justify-between gap-4'>
-                  <div className='flex h-10 w-10 items-center justify-center rounded-xl bg-accent-cyan/10'>
-                    <Icon icon={item.icon} className='text-xl text-accent-cyan' aria-hidden />
-                  </div>
+                <div className='relative h-48 overflow-hidden md:h-52'>
+                  <Image
+                    src={item.imgSrc}
+                    alt={item.title}
+                    fill
+                    className='object-cover object-center transition-[filter] duration-300 group-hover:brightness-[1.03]'
+                    sizes='(max-width: 768px) 100vw, 33vw'
+                  />
+                  <div className='absolute inset-0 bg-gradient-to-t from-black/50 to-transparent' />
+                  <span className='absolute bottom-3 left-3 text-xs font-semibold uppercase tracking-wide text-white/90'>
+                    {item.label}
+                  </span>
                   <span
-                    className={`text-3xl font-bold text-accent-cyan/25 ${bebasNeue.className}`}
+                    className={`absolute right-4 top-4 text-4xl font-bold text-white/30 ${bebasNeue.className}`}
                   >
                     {item.num}
                   </span>
                 </div>
-                <h4 className={`mb-3 text-xl font-bold text-text-primary md:text-2xl ${bebasNeue.className}`}>
-                  {item.title}
-                </h4>
-                <p className='text-base leading-relaxed text-text-secondary'>{item.text}</p>
+                <div className='p-6 md:p-8'>
+                  <div className='mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-accent-cyan/10'>
+                    <Icon icon={item.icon} className='text-xl text-accent-cyan' aria-hidden />
+                  </div>
+                  <h4 className={`mb-3 text-xl font-bold text-text-primary md:text-2xl ${bebasNeue.className}`}>
+                    {item.title}
+                  </h4>
+                  <p className='text-base leading-relaxed text-text-secondary'>{item.text}</p>
+                </div>
               </motion.article>
             ))}
           </div>

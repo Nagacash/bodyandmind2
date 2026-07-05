@@ -10,7 +10,7 @@ import { bebasNeue } from '@/app/fonts'
 
 const ARTICLE_IMAGES = [
   '/images/dedicated/sab5.webp',
-  '/images/articles/sab8.webp',
+  '/images/articles/nat3.webp',
   '/images/dedicated/sab2.webp',
 ] as const
 
@@ -53,11 +53,8 @@ const getServiceIcon = (heading: string) => {
   if (headingLower.includes('flow') || headingLower.includes('box') || headingLower.includes('kick')) {
     return 'mdi:boxing-glove'
   }
-  if (headingLower.includes('speaker') || headingLower.includes('vortrag')) {
-    return 'mdi:microphone'
-  }
-  if (headingLower.includes('marken') || headingLower.includes('brand')) {
-    return 'mdi:account-star'
+  if (headingLower.includes('form')) {
+    return 'mdi:dumbbell'
   }
   if (headingLower.includes('coach')) {
     return 'mdi:brain'

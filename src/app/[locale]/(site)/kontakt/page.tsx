@@ -362,6 +362,27 @@ const KontaktPage = () => {
           </div>
         </div>
       </section>
+
+      <section className="bg-black py-10 md:py-14 lg:py-16">
+        <div className="container mx-auto max-w-7xl px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.6 }}
+            className="mx-auto w-full max-w-5xl"
+          >
+            <Image
+              src="/images/new/sponsor.jpg"
+              alt={t('sponsorImageAlt')}
+              width={1169}
+              height={708}
+              className="h-auto w-full rounded-sm"
+              sizes="(max-width: 1024px) 100vw, 1024px"
+            />
+          </motion.div>
+        </div>
+      </section>
     </div>
   )
 }

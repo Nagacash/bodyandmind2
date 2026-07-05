@@ -63,9 +63,39 @@ CSV: `.perf/results-2026-07-03-full.csv`
 
 **Summary:** 18/18 passed. Slowest: `/` at **11.32 ms** median.
 
-## Final — 2026-07-03
+## Run 3 — 2026-07-05 (full inventory, 18 pages)
+(change: FORM section, SummerSpecial promo, hero/image updates, favicon from logo, removed SummerSpecial `priority`, NatureTriptych removed from Philosophy; fresh `rm -rf .next && pnpm run build`)
+
+Server on port **3001** (3000 occupied by dev). Same protocol otherwise.
+
+| Page | Median (ms) | Pass (<50)? |
+|------|-------------|-------------|
+| / | 13.19 | ✅ |
+| /about-me | 8.83 | ✅ |
+| /kontakt | 3.16 | ✅ |
+| /datenschutz | 3.79 | ✅ |
+| /impressum | 2.90 | ✅ |
+| /documentation | 3.16 | ✅ |
+| /agb | 2.70 | ✅ |
+| /privacy | 0.79 | ✅ (308 redirect) |
+| /imprint | 0.66 | ✅ (308 redirect) |
+| /en | 8.04 | ✅ |
+| /en/about-me | 2.77 | ✅ |
+| /en/kontakt | 2.45 | ✅ |
+| /en/datenschutz | 3.18 | ✅ |
+| /en/impressum | 2.88 | ✅ |
+| /en/documentation | 3.64 | ✅ |
+| /en/agb | 7.38 | ✅ |
+| /en/privacy | 0.96 | ✅ (308 redirect) |
+| /en/imprint | 0.52 | ✅ (308 redirect) |
+
+CSV: `.perf/results-2026-07-05.csv`
+
+**Summary:** 18/18 passed. Slowest: `/` at **13.19 ms** median. No regressions above 50 ms.
+
+## Final — 2026-07-05
 (all pages < 50 ms: **yes**)
 
-No server-side HTML optimizations required for the 50 ms budget. All routes are SSG-pre-rendered; middleware adds ~46 kB but does not block static HTML delivery on localhost.
+No server-side HTML optimizations required for the 50 ms budget. All routes remain SSG-pre-rendered.
 
 **Separate from this gate:** Homepage First Load JS ~211 kB (client hydration). Track with Lighthouse/Web Vitals if end-user perceived speed becomes a concern.

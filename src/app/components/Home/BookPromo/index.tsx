@@ -1,9 +1,9 @@
 'use client'
 
-import Image from 'next/image'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { useTranslations } from 'next-intl'
+import ImageLightbox from '@/app/components/Common/ImageLightbox'
 import { bebasNeue } from '@/app/fonts'
 
 const AMAZON_BOOK_URL =
@@ -42,34 +42,25 @@ const BookPromo = () => {
 
         <div className='relative z-10 grid grid-cols-1 items-center gap-8 p-6 sm:p-8 md:gap-10 md:p-10 lg:grid-cols-[auto_minmax(0,1fr)] lg:gap-12 lg:p-12'>
           <div className='order-1 flex flex-col items-center lg:order-none lg:items-start'>
-            <a
-              href={AMAZON_BOOK_URL}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='group relative cursor-pointer rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-accent-cyan-dark'
-              aria-label={t('bookPromo.coverAria')}
+            <ImageLightbox
+              src='/images/new/book1.webp'
+              alt={t('bookPromo.coverAria')}
+              caption={t('bookPromo.title')}
+              fill
+              priority
+              className='relative aspect-[9/16] w-[min(52vw,12.5rem)] overflow-hidden rounded-2xl shadow-[0_28px_60px_-18px_rgba(0,0,0,0.55)] ring-1 ring-white/30 transition-shadow duration-300 hover:shadow-[0_32px_70px_-16px_rgba(0,0,0,0.6)] focus-visible:shadow-[0_32px_70px_-16px_rgba(0,0,0,0.6)] sm:w-48 md:w-52 lg:w-56'
+              imageClassName='object-cover transition duration-500 group-hover:scale-[1.03]'
+              sizes='(max-width: 640px) 52vw, (max-width: 1024px) 192px, 224px'
             >
-              <div className='relative aspect-[9/16] w-[min(52vw,12.5rem)] sm:w-48 md:w-52 lg:w-56'>
-                <div className='absolute inset-0 overflow-hidden rounded-2xl shadow-[0_28px_60px_-18px_rgba(0,0,0,0.55)] ring-1 ring-white/30 transition-shadow duration-300 group-hover:shadow-[0_32px_70px_-16px_rgba(0,0,0,0.6)] group-focus-visible:shadow-[0_32px_70px_-16px_rgba(0,0,0,0.6)]'>
-                  <Image
-                    src='/images/new/book1.webp'
-                    alt=''
-                    fill
-                    className='object-cover'
-                    sizes='(max-width: 640px) 52vw, (max-width: 1024px) 192px, 224px'
-                    priority
-                  />
-                </div>
-                <div
-                  className='pointer-events-none absolute inset-y-3 left-0 w-[3px] rounded-full bg-white/25'
-                  aria-hidden
-                />
-              </div>
               <div
-                className='mx-auto mt-4 h-2 w-[70%] rounded-full bg-black/25 blur-md'
+                className='pointer-events-none absolute inset-y-3 left-0 w-[3px] rounded-full bg-white/25'
                 aria-hidden
               />
-            </a>
+            </ImageLightbox>
+            <div
+              className='mx-auto mt-4 h-2 w-[70%] rounded-full bg-black/25 blur-md'
+              aria-hidden
+            />
           </div>
 
           <div className='order-2 text-center lg:order-none lg:text-left'>

@@ -1,11 +1,11 @@
 'use client'
 
-import Image from 'next/image'
 import { Link } from '@/i18n/routing'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { useTranslations } from 'next-intl'
 import { bebasNeue } from '@/app/fonts'
+import ImageLightbox from '@/app/components/Common/ImageLightbox'
 
 const PROMO_IMAGE = '/images/new/sommer-special-2026.webp'
 
@@ -44,23 +44,27 @@ const SummerSpecial = () => {
           <p className='mb-1 max-w-xl text-base text-text-secondary md:text-lg'>{t('description')}</p>
           <p className='mb-6 text-sm font-semibold text-accent-cyan-dark'>{t('validUntil')}</p>
 
-          <Link
-            href='/kontakt'
-            className='group block w-full max-w-[min(100%,24rem)] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-4 sm:max-w-sm md:max-w-md lg:max-w-lg'
-            aria-label={t('imageAlt')}
-          >
-            <div className='overflow-hidden rounded-sm shadow-[var(--shadow-card-lift)] ring-1 ring-black/10 transition duration-300 group-hover:-translate-y-0.5 group-hover:shadow-xl'>
-              <Image
-                src={PROMO_IMAGE}
-                alt={t('imageAlt')}
-                width={900}
-                height={1600}
-                className='h-auto w-full'
-                priority
-                sizes='(max-width: 640px) min(100vw - 2rem, 24rem), (max-width: 1024px) 28rem, 32rem'
-              />
-            </div>
-          </Link>
+          <ImageLightbox
+            src={PROMO_IMAGE}
+            alt={t('imageAlt')}
+            width={900}
+            height={1600}
+            caption={`${t('title')} · ${t('validUntil')}`}
+            className='w-full max-w-[min(100%,24rem)] overflow-hidden rounded-sm shadow-[var(--shadow-card-lift)] ring-1 ring-black/10 transition duration-300 hover:-translate-y-0.5 hover:shadow-xl sm:max-w-sm md:max-w-md lg:max-w-lg'
+            imageClassName='h-auto w-full'
+            sizes='(max-width: 640px) min(100vw - 2rem, 24rem), (max-width: 1024px) 28rem, 32rem'
+            footer={
+              <div className='mt-5 flex justify-center'>
+                <Link
+                  href='/kontakt'
+                  className='btn-accent inline-flex min-h-12 items-center justify-center gap-2 px-8'
+                >
+                  {t('cta')}
+                  <Icon icon='mdi:arrow-right' className='text-xl' aria-hidden />
+                </Link>
+              </div>
+            }
+          />
 
           <Link
             href='/kontakt'
