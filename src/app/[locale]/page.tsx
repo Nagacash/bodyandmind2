@@ -2,9 +2,11 @@ import React from 'react'
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import Hero from '@/app/components/Home/Hero'
+import SummerSpecial from '@/app/components/Home/SummerSpecial'
 import Aboutus from '@/app/components/Home/AboutUs'
 import UberMich from '@/app/components/Home/UberMich'
 import Flow from '@/app/components/Home/Flow'
+import Form from '@/app/components/Home/Form'
 import Recovery from '@/app/components/Home/Recovery'
 import Dedicated from '@/app/components/Home/Dedicated'
 import Digital from '@/app/components/Home/Digital'
@@ -351,9 +353,11 @@ export default async function Home({
   return (
     <main>
       <Hero />
+      <SummerSpecial />
       <Aboutus />
       <UberMich />
       <Flow />
+      <Form />
       <Recovery />
       <Dedicated />
       <Digital />

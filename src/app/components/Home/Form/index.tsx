@@ -7,15 +7,11 @@ import { Icon } from '@iconify/react'
 import { useTranslations } from 'next-intl'
 import { bebasNeue } from '@/app/fonts'
 
-const EFFECT_IMAGES = [
-  '/images/new/beach1.webp',
-  '/images/new/beach2.webp',
-  '/images/new/beach3.webp',
-] as const
-const EFFECT_ICONS = ['mdi:meditation', 'mdi:lightning-bolt', 'mdi:target'] as const
+const HERO_IMAGE = '/images/new/beach3.webp'
+const EFFECT_ICONS = ['mdi:dumbbell', 'mdi:human-handsup', 'mdi:lightning-bolt'] as const
 
-const Flow = () => {
-  const t = useTranslations('flow')
+const Form = () => {
+  const t = useTranslations('form')
 
   const intro = Object.values(t.raw('intro') as Record<string, string>)
   const effects = Object.values(
@@ -25,20 +21,42 @@ const Flow = () => {
     >
   ).map((effect, i) => ({
     ...effect,
-    imgSrc: EFFECT_IMAGES[i],
     icon: EFFECT_ICONS[i],
   }))
   const gains = Object.values(t.raw('gains') as Record<string, string>)
 
   return (
-    <section id='Flow' className='overflow-hidden bg-grey py-16 md:py-20 lg:py-24'>
+    <section id='Form' className='overflow-hidden bg-light py-16 md:py-20 lg:py-24'>
       <div className='container mx-auto max-w-7xl px-4'>
         <div className='grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16'>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className='relative order-2 lg:order-1'
+          >
+            <div className='relative aspect-[3/4] overflow-hidden rounded-3xl shadow-[var(--shadow-card-lift)] sm:aspect-[4/5] lg:max-h-[min(80vh,720px)] lg:aspect-[3/4]'>
+              <Image
+                src={HERO_IMAGE}
+                alt={t('heroImageAlt')}
+                fill
+                className='object-cover object-center'
+                sizes='(max-width: 1024px) 100vw, 50vw'
+              />
+              <div className='absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent' />
+              <span className='absolute bottom-4 left-4 rounded-lg bg-black/50 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-white backdrop-blur-sm'>
+                {t('heroImageCaption')}
+              </span>
+            </div>
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className='order-1 lg:order-2'
           >
             <p className='mb-4 text-sm font-bold uppercase tracking-widest text-accent-cyan md:text-base'>
               {t('eyebrow')}
@@ -60,28 +78,6 @@ const Flow = () => {
               {t('cta')}
               <Icon icon='mdi:arrow-right' className='text-xl' aria-hidden />
             </Link>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className='relative'
-          >
-            <div className='relative aspect-[3/4] overflow-hidden rounded-3xl shadow-[var(--shadow-card-lift)] sm:aspect-[4/5] lg:max-h-[min(80vh,720px)] lg:aspect-[3/4]'>
-              <Image
-                src='/images/new/beach1.webp'
-                alt={t('heroImageAlt')}
-                fill
-                className='object-cover object-center'
-                sizes='(max-width: 1024px) 100vw, 50vw'
-              />
-              <div className='absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent' />
-              <span className='absolute bottom-4 left-4 rounded-lg bg-black/50 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-white backdrop-blur-sm'>
-                {t('heroImageCaption')}
-              </span>
-            </div>
           </motion.div>
         </div>
 
@@ -114,35 +110,22 @@ const Flow = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className='group overflow-hidden rounded-3xl bg-white shadow-lg transition-shadow duration-300 hover:shadow-xl'
+                className='rounded-3xl bg-white p-6 shadow-lg transition-shadow duration-300 hover:shadow-xl md:p-8'
               >
-                <div className='relative h-48 overflow-hidden md:h-52'>
-                  <Image
-                    src={item.imgSrc}
-                    alt={item.title}
-                    fill
-                    className='object-cover object-center transition-[filter] duration-300 group-hover:brightness-[1.03]'
-                    sizes='(max-width: 768px) 100vw, 33vw'
-                  />
-                  <div className='absolute inset-0 bg-gradient-to-t from-black/50 to-transparent' />
-                  <span className='absolute bottom-3 left-3 text-xs font-semibold uppercase tracking-wide text-white/90'>
-                    {item.label}
-                  </span>
+                <div className='mb-4 flex items-start justify-between gap-4'>
+                  <div className='flex h-10 w-10 items-center justify-center rounded-xl bg-accent-cyan/10'>
+                    <Icon icon={item.icon} className='text-xl text-accent-cyan' aria-hidden />
+                  </div>
                   <span
-                    className={`absolute right-4 top-4 text-4xl font-bold text-white/30 ${bebasNeue.className}`}
+                    className={`text-3xl font-bold text-accent-cyan/25 ${bebasNeue.className}`}
                   >
                     {item.num}
                   </span>
                 </div>
-                <div className='p-6 md:p-8'>
-                  <div className='mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-accent-cyan/10'>
-                    <Icon icon={item.icon} className='text-xl text-accent-cyan' aria-hidden />
-                  </div>
-                  <h4 className={`mb-3 text-xl font-bold text-text-primary md:text-2xl ${bebasNeue.className}`}>
-                    {item.title}
-                  </h4>
-                  <p className='text-base leading-relaxed text-text-secondary'>{item.text}</p>
-                </div>
+                <h4 className={`mb-3 text-xl font-bold text-text-primary md:text-2xl ${bebasNeue.className}`}>
+                  {item.title}
+                </h4>
+                <p className='text-base leading-relaxed text-text-secondary'>{item.text}</p>
               </motion.article>
             ))}
           </div>
@@ -212,4 +195,4 @@ const Flow = () => {
   )
 }
 
-export default Flow
+export default Form

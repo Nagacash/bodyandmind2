@@ -30,7 +30,8 @@
         "1": { "label": "Leistungen" },
         "2": { "label": "Kontakt" },
         "3": { "label": "FLOW" },
-        "4": { "label": "Recovery" }
+        "4": { "label": "FORM" },
+        "5": { "label": "Recovery" }
       }
     },
     "2": {

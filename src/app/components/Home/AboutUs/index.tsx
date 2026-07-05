@@ -6,9 +6,8 @@ import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { bebasNeue } from '@/app/fonts'
 import BookPromo from '@/app/components/Home/BookPromo'
-import NatureTriptych from '@/app/components/Home/NatureTriptych'
 
-const PILLAR_HREFS = ['/#Flow', '/kontakt', '/#Recovery'] as const
+const PILLAR_HREFS = ['/#Flow', '/#Form', '/#Recovery'] as const
 const PILLAR_ICONS = ['mdi:boxing-glove', 'mdi:dumbbell', 'mdi:spa-outline'] as const
 
 const linkClassName =
@@ -72,8 +71,6 @@ const Aboutus = () => {
             {t('subtitle')}
           </motion.p>
 
-          <NatureTriptych />
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -90,7 +87,7 @@ const Aboutus = () => {
                   </Link>
                 ),
                 form: (chunks) => (
-                  <Link href='/kontakt' className={linkClassName}>
+                  <Link href='/#Form' className={linkClassName}>
                     {chunks}
                   </Link>
                 ),

@@ -8,6 +8,7 @@ import digital from './digital.json'
 import faq from './faq.json'
 import featured from './featured.json'
 import flow from './flow.json'
+import form from './form.json'
 import footer from './footer.json'
 import hero from './hero.json'
 import insta from './insta.json'
@@ -18,6 +19,7 @@ import manage from './manage.json'
 import nav from './nav.json'
 import presse from './presse.json'
 import recovery from './recovery.json'
+import summerSpecial from './summerSpecial.json'
 import team from './team.json'
 import testimonial from './testimonial.json'
 import uberMich from './uberMich.json'
@@ -28,6 +30,7 @@ export default {
   about,
   uberMich,
   flow,
+  form,
   recovery,
   dedicated,
   digital,
@@ -42,6 +45,7 @@ export default {
   join,
   insta,
   footer,
+  summerSpecial,
   kontakt,
   aboutMe,
   common,

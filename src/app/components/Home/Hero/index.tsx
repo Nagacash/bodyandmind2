@@ -207,9 +207,18 @@ const Hero = () => {
               initial={motionOff ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: motionOff ? 0.2 : 0.6, delay: motionOff ? 0 : 0.24, ease }}
-              className='relative z-10 mx-auto mb-6 max-w-xl text-base leading-relaxed text-text-secondary sm:text-lg md:mb-8 lg:mx-0'
+              className='relative z-10 mx-auto mb-4 max-w-xl text-base leading-relaxed text-text-secondary sm:text-lg lg:mx-0'
             >
               {t('subtitle')}
+            </motion.p>
+
+            <motion.p
+              initial={motionOff ? false : { opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: motionOff ? 0.2 : 0.6, delay: motionOff ? 0 : 0.28, ease }}
+              className='relative z-10 mx-auto mb-6 max-w-xl text-base leading-relaxed text-text-secondary sm:text-lg md:mb-8 lg:mx-0'
+            >
+              {t('subtitle2')}
             </motion.p>
 
             <motion.div

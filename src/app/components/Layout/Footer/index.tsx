@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl'
 
 const FOOTER_LINK_HREFS: string[][] = [
   ['/', '/#About', '/about-me', '/#Team', '/#FAQ', '/#Featured', '/#Presse', '/kontakt'],
-  ['/about-me', '/#Blog', '/kontakt', '/#Flow', '/#Recovery'],
+  ['/about-me', '/#Blog', '/kontakt', '/#Flow', '/#Form', '/#Recovery'],
   ['https://www.mesoskin-hamburg.com'],
 ]
 
