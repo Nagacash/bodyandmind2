@@ -191,10 +191,10 @@ const Footer = () => {
               <p className='text-white/50 text-xs mt-1 md:mt-2'>
                 {t('designedBy')}{' '}
                 <a
-                  href='https://www.nagacodex.cloud/'
+                  href='http://nagacodex.cloud/'
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='hover:text-accent-cyan transition-colors duration-300'
+                  className='font-medium text-white/70 hover:text-accent-cyan transition-colors duration-300'
                 >
                   {t('designer')}
                 </a>
