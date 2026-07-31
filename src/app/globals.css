@@ -139,7 +139,7 @@
   }
 
   .btn-accent {
-    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-sm bg-accent-cyan text-white text-base md:text-lg font-semibold tracking-tight py-3.5 px-7 md:px-9 shadow-sm shadow-accent-cyan/30 ring-1 ring-inset ring-white/10 hover:bg-accent-cyan-dark hover:shadow-md hover:shadow-accent-cyan/40 hover:-translate-y-px active:translate-y-0 active:scale-[0.98] transition duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2;
+    @apply inline-flex min-h-11 max-w-full cursor-pointer items-center justify-center gap-2 rounded-sm bg-accent-cyan text-white text-base md:text-lg font-semibold tracking-tight py-3.5 px-7 md:px-9 shadow-sm shadow-accent-cyan/30 ring-1 ring-inset ring-white/10 hover:bg-accent-cyan-dark hover:shadow-md hover:shadow-accent-cyan/40 hover:-translate-y-px active:translate-y-0 active:scale-[0.98] transition duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2;
   }
 
   /* Compact accent (nav, floating actions) */

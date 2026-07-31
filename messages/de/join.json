@@ -1,8 +1,26 @@
 {
-  "eyebrow": "Studio Hamburg",
-  "title": "Body & Mind Studio Harvestehude",
-  "description": "Unsere Räumlichkeiten befinden sich in einer wunderschönen Jugendstilvilla in Harvestehude. Hohe Decken, viele Fenster und französische Eichendielen schaffen eine angenehme Wohlfühlatmosphäre – ideal für Personal Training, Workshops und Seminare.",
-  "ctaPrompt": "Interesse an einer Zusammenarbeit oder einem Erstgespräch vor Ort?",
-  "ctaPrimary": "Erstgespräch vereinbaren",
+  "eyebrow": "Body & Mind Studio",
+  "title": "Privattraining in Hamburg Harvestehude",
+  "description": "Flow · Form · Recovery — 1:1 im geschützten Setting an der Rothenbaumchaussee. Alle Trainingsdetails, Mitgliedschaften und das Erstgespräch buchst du auf der Studio-Website.",
+  "pillars": {
+    "0": {
+      "name": "FLOW",
+      "summary": "Boxen & Kickboxen als mentales Ventil — Fokus und Stressabbau.",
+      "path": "/flow"
+    },
+    "1": {
+      "name": "FORM",
+      "summary": "Kraft, Stabilität und Athletik — individuell geplant.",
+      "path": "/form"
+    },
+    "2": {
+      "name": "Recovery",
+      "summary": "Regeneration für Körper und Nervensystem.",
+      "path": "/recovery"
+    }
+  },
+  "ctaPrompt": "Bereit für dein Training?",
+  "ctaPrimary": "Studio & Erstgespräch",
+  "ctaSecondary": "Mitgliedschaften",
   "address": "Rothenbaumchaussee 156 · 20149 Hamburg"
 }

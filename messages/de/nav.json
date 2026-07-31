@@ -1,15 +1,13 @@
 {
   "headerLinks": {
     "0": { "label": "Home", "href": "/#Hero" },
-    "1": { "label": "Angebot", "href": "/#SommerSpecial" },
-    "2": { "label": "Philosophie", "href": "/#About" },
-    "3": { "label": "Über mich", "href": "/#UberMich" },
-    "4": { "label": "Leistungen", "href": "/#Flow" },
-    "5": { "label": "Team", "href": "/#Team" },
-    "6": { "label": "FAQ", "href": "/#FAQ" },
-    "7": { "label": "Featured", "href": "/#Featured" },
-    "8": { "label": "Presse", "href": "/#Presse" },
-    "9": { "label": "Kontakt", "href": "/kontakt" }
+    "1": { "label": "Philosophie", "href": "/#About" },
+    "2": { "label": "Über mich", "href": "/#UberMich" },
+    "3": { "label": "Team", "href": "/#Team" },
+    "4": { "label": "FAQ", "href": "/#FAQ" },
+    "5": { "label": "Presse", "href": "/#Presse" },
+    "6": { "label": "Kontakt", "href": "/kontakt" },
+    "7": { "label": "Studio besuchen", "href": "https://bodynmind.netlify.app/", "external": true }
   },
   "mobileOnlyLinks": {
     "0": { "label": "Blog", "href": "/#Blog" },

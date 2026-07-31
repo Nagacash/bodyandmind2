@@ -17,9 +17,17 @@ function buildNavLinks(
   const links: HeaderItem[] = []
 
   for (const key of keys) {
-    const group = t.raw(key) as Record<string, { label: string; href: string }>
+    const group = t.raw(key) as Record<
+      string,
+      { label: string; href: string; external?: boolean }
+    >
     Object.values(group).forEach((item) => {
-      links.push({ label: item.label, href: item.href })
+      const external = item.external ?? item.href.startsWith('http')
+      links.push({
+        label: item.label,
+        href: item.href,
+        target: external ? '_blank' : undefined,
+      })
     })
   }
 

@@ -31,6 +31,9 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
 
   const handleClick = (e: React.MouseEvent) => {
     playAudio()
+    if (item.href.startsWith('http')) {
+      return
+    }
     const targetId = getNavHashTarget(item.href)
 
     if (targetId) {
@@ -61,6 +64,17 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
+      {item.href.startsWith('http') ? (
+        <a
+          href={item.href}
+          target='_blank'
+          rel='noopener noreferrer'
+          onClick={() => playAudio()}
+          className={`text-base md:text-lg flex items-center gap-1 hover:text-accent-cyan transition duration-300 font-semibold text-text-primary ${bebasNeue.className} relative group`}
+        >
+          <span className='relative'>{item.label}</span>
+        </a>
+      ) : (
       <Link
         href={item.href}
         target={item.target}
@@ -84,6 +98,7 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
           />
         )}
       </Link>
+      )}
 
       {/* Submenu */}
       {submenuOpen && item.submenu && (

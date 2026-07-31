@@ -28,6 +28,10 @@ const MobileHeaderLink: React.FC<{
 
   const handleClick = (e: React.MouseEvent) => {
     playAudio()
+    if (item.href.startsWith('http')) {
+      setNavbarOpen(false)
+      return
+    }
     const targetId = getNavHashTarget(item.href)
 
     if (targetId) {
@@ -62,6 +66,17 @@ const MobileHeaderLink: React.FC<{
   return (
     <div className='relative w-full mb-4'>
       <div className='flex items-center justify-between'>
+        {item.href.startsWith('http') ? (
+          <a
+            href={item.href}
+            target='_blank'
+            rel='noopener noreferrer'
+            onClick={handleClick}
+            className={`text-lg font-semibold flex items-center gap-2 transition-colors duration-300 text-text-primary hover:text-accent-cyan ${bebasNeue.className}`}
+          >
+            {item.label}
+          </a>
+        ) : (
         <Link
           href={item.href}
           target={item.target}
@@ -74,6 +89,7 @@ const MobileHeaderLink: React.FC<{
         >
           {item.label}
         </Link>
+        )}
         {item.submenu && (
           <button
             onClick={handleToggle}

@@ -1,7 +1,12 @@
 {
   "eyebrow": "Kontakt",
   "title": "Lassen Sie uns gemeinsam starten",
-  "subtitle": "Haben Sie Fragen oder möchten Sie einen Termin vereinbaren? Wir freuen uns auf Ihre Nachricht!",
+  "subtitle": "Vorträge, Mental Coaching, Presse oder allgemeine Anfragen — schreiben Sie mir hier. Für Privattraining, Mitgliedschaften und das Sommerangebot nutzen Sie bitte die Body & Mind Studio-Website.",
+  "studioHeading": "Body & Mind Studio",
+  "studioDescription": "Privattraining, Flow · Form · Recovery, Erstgespräch und Preise — direkt im Studio buchen:",
+  "studioCta": "Zur Studio-Website",
+  "personalHeading": "Natalie Zimmermann",
+  "personalDescription": "Speakerin, Mental Coach, Kooperationen und persönliche Nachrichten — über das Formular oder die Kontaktdaten unten.",
   "infoHeading": "Kontaktinformationen",
   "infoDescription": "Erreichen Sie uns über verschiedene Kanäle. Wir sind für Sie da!",
   "labels": {
@@ -13,15 +18,14 @@
   "followUs": "Folgen Sie uns",
   "social": {
     "0": "Facebook",
-    "1": "Instagram",
-    "2": "TikTok"
+    "1": "Instagram"
   },
   "locationImageAlt": "Body & Mind Studio Hamburg - Rothenbaumchaussee 156",
   "locationStudio": "Body & Mind Studio",
   "locationArea": "Harvestehude, Hamburg",
   "sponsorImageAlt": "Nationale Aufmerksamkeit im dreistelligen Millionenbereich – Medienreichweite und Sponsoring",
-  "formHeading": "Schreiben Sie uns",
-  "formDescription": "Füllen Sie das Formular aus und wir melden uns schnellstmöglich bei Ihnen zurück.",
+  "formHeading": "Schreiben Sie mir",
+  "formDescription": "Für Vorträge, Mental Coaching, Presse und persönliche Anfragen — ich melde mich schnellstmöglich bei Ihnen.",
   "fields": {
     "name": "Name",
     "email": "Email",

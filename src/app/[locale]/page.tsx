@@ -5,14 +5,7 @@ import Hero from '@/app/components/Home/Hero'
 import SummerSpecial from '@/app/components/Home/SummerSpecial'
 import Aboutus from '@/app/components/Home/AboutUs'
 import UberMich from '@/app/components/Home/UberMich'
-import Flow from '@/app/components/Home/Flow'
-import Form from '@/app/components/Home/Form'
-import Recovery from '@/app/components/Home/Recovery'
-import Dedicated from '@/app/components/Home/Dedicated'
-import Digital from '@/app/components/Home/Digital'
 import Team from '@/app/components/Home/Team'
-import Featured from '@/app/components/Home/Featured'
-import Manage from '@/app/components/Home/Manage'
 import FAQ from '@/app/components/Home/FAQ'
 import Testimonial from '@/app/components/Home/Testimonials'
 import Articles from '@/app/components/Home/Articles'
@@ -34,8 +27,8 @@ export async function generateMetadata({
       ? 'Natalie Zimmermann – Boxing World Champion, Speaker & Mental Coach in Hamburg'
       : 'Natalie Zimmermann – Box-Weltmeisterin, Speakerin & Mental Coach in Hamburg',
     description: isEn
-      ? 'Natalie Zimmermann – WIBF/WBF boxing world champion, speaker, mental coach, physical therapist & personal trainer in Hamburg-Harvestehude. Body & Mind Studio, Rothenbaumchaussee 156, 20149 Hamburg. Personal training, mental coaching, boxing, speaking & brand ambassador work—book your appointment today.'
-      : 'Natalie Zimmermann – WIBF/WBF-Box-Weltmeisterin, Speakerin, Mental Coach, Physiotherapeutin & Personal Trainerin in Hamburg-Harvestehude. Body & Mind Studio, Rothenbaumchaussee 156, 20149 Hamburg. Personal Training, Mental Coaching, Boxen, Vorträge & Markenbotschafterin – jetzt Termin vereinbaren.',
+      ? 'Natalie Zimmermann—WIBF/WBF boxing world champion, speaker, mental coach, physical therapist & personal trainer in Hamburg. Her story, press, and book. Private studio training at Body & Mind—book via the studio site.'
+      : 'Natalie Zimmermann – WIBF/WBF-Box-Weltmeisterin, Speakerin, Mental Coach, Physiotherapeutin & Personal Trainerin in Hamburg. Werdegang, Presse und Buch. Privatstudio Body & Mind – Training & Preise über die Studio-Website.',
     keywords: isEn
       ? [
           'Natalie Zimmermann',
@@ -93,8 +86,8 @@ export async function generateMetadata({
         ? 'Natalie Zimmermann – Boxing World Champion, Speaker & Mental Coach in Hamburg'
         : 'Natalie Zimmermann – Box-Weltmeisterin, Speakerin & Mental Coach in Hamburg',
       description: isEn
-        ? 'Professional boxing world champion, speaker, mental coach & personal trainer in Hamburg-Harvestehude. Body & Mind Studio – personal training, mental coaching, boxing, speaking.'
-        : 'Profibox-Weltmeisterin, Speakerin, Mental Coach & Personal Trainerin in Hamburg-Harvestehude. Body & Mind Studio – Personal Training, Mental Coaching, Boxen, Vorträge.',
+        ? 'Boxing world champion, speaker, mental coach & personal trainer in Hamburg. Personal brand, press, and studio link for private training.'
+        : 'Box-Weltmeisterin, Speakerin, Mental Coach & Personal Trainerin in Hamburg. Persönliche Marke, Presse und Link zum Privatstudio.',
       images: [socialShareImageMetadata],
     },
     twitter: {
@@ -166,7 +159,6 @@ export default async function Home({
     sameAs: [
       'https://www.facebook.com/natalie.zimmermann.94',
       'https://www.instagram.com/nataliezimmermann_ger/',
-      'https://tiktok.com/@nataliezimmermann',
     ],
   }
 
@@ -262,7 +254,6 @@ export default async function Home({
     sameAs: [
       'https://www.facebook.com/natalie.zimmermann.94',
       'https://www.instagram.com/nataliezimmermann_ger/',
-      'https://tiktok.com/@nataliezimmermann',
     ],
   }
 
@@ -355,19 +346,12 @@ export default async function Home({
       <SummerSpecial />
       <Aboutus />
       <UberMich />
-      <Flow />
-      <Form />
-      <Recovery />
-      <Dedicated />
-      <Digital />
+      <Join />
       <Team />
-      <Featured />
-      <Manage />
       <FAQ />
       <Testimonial />
       <Articles />
       <Presse />
-      <Join />
       <Insta />
       <script
         type='application/ld+json'

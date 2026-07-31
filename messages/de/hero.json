@@ -1,8 +1,8 @@
 {
   "badge": "Box-Weltmeisterin · Hamburg",
-  "title": "Gemeinsam für mehr Wohlbefinden und Leistungsfähigkeit",
-  "subtitle": "Im Body & Mind Studio stehst du im Mittelpunkt. Unser erfahrenes Team begleitet dich mit Herz, Kompetenz und persönlicher Betreuung auf deinem Weg zu mehr Gesundheit, Kraft und Lebensqualität.",
-  "subtitle2": "Gegründet wurde das Studio von Natalie Zimmermann – Profiboxerin, WIBF/WBF-Weltmeisterin, Mental Coach und Personal Trainerin. Gemeinsam sorgen wir dafür, dass du die Unterstützung erhältst, die zu dir passt.",
+  "title": "Stärke, die aus dir selbst wächst",
+  "subtitle": "Natalie Zimmermann — WIBF/WBF-Box-Weltmeisterin, Speakerin, Mental Coach, Physiotherapeutin und Personal Trainerin in Hamburg.",
+  "subtitle2": "Ich begleite Menschen, die körperlich und mental wachsen wollen — mit Erfahrung aus Spitzensport, Therapie und Coaching. Privattraining, Flow · Form · Recovery und Preise findest du im Body & Mind Studio.",
   "imageAlt": "Natalie Zimmermann – Box-Weltmeisterin, Physiotherapeutin und Mental Coach",
   "badgePhoto": "WIBF · WBF Weltmeisterin",
   "badgeYearsMobile": "22+ Jahre",
@@ -10,8 +10,9 @@
   "floatingCardTitle": "Weltmeisterin",
   "floatingCardYears": "22+",
   "floatingCardYearsLabel": "Jahre Expertise",
-  "ctaPrimary": "Erstgespräch vereinbaren",
+  "ctaPrimary": "Kontakt aufnehmen",
   "ctaSecondary": "Philosophie entdecken",
+  "ctaStudio": "Studio & Preise",
   "quickLinks": {
     "0": { "label": "Philosophie" },
     "1": { "label": "Mein Buch" },

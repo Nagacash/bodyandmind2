@@ -7,6 +7,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { useTranslations } from 'next-intl'
 import { bebasNeue } from '@/app/fonts'
+import { STUDIO_SITE_URL } from '@/app/data/site'
 
 const AMAZON_BOOK_URL =
   'https://www.amazon.de/-/en/Mens-Health-Womens-Erfolgsgeheimnisse-Box-Weltmeisterin/dp/3613509911'
@@ -225,21 +226,30 @@ const Hero = () => {
               initial={motionOff ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: motionOff ? 0.2 : 0.6, delay: motionOff ? 0 : 0.3, ease }}
-              className='mb-6 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start'
+              className='mb-6 grid w-full grid-cols-1 gap-3 sm:grid-cols-3 lg:max-w-none'
             >
               <Link
                 href='/kontakt'
-                className='btn-primary inline-flex w-full min-h-12 items-center justify-center gap-2 sm:w-auto'
+                className='btn-primary flex min-h-12 w-full items-center justify-center gap-2 px-4 py-3 text-center text-sm sm:text-base'
               >
-                <Icon icon='mdi:calendar-check' className='text-xl' aria-hidden />
-                {t('ctaPrimary')}
+                <Icon icon='mdi:calendar-check' className='shrink-0 text-xl' aria-hidden />
+                <span className='text-balance'>{t('ctaPrimary')}</span>
               </Link>
+              <a
+                href={STUDIO_SITE_URL}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='btn-accent flex min-h-12 w-full items-center justify-center gap-2 px-4 py-3 text-center text-sm sm:text-base'
+              >
+                <Icon icon='mdi:dumbbell' className='shrink-0 text-xl' aria-hidden />
+                <span className='text-balance'>{t('ctaStudio')}</span>
+              </a>
               <Link
                 href='/#About'
-                className='btn-secondary inline-flex w-full min-h-12 items-center justify-center gap-2 sm:w-auto'
+                className='btn-secondary flex min-h-12 w-full items-center justify-center gap-2 px-4 py-3 text-center text-sm sm:text-base'
               >
-                <Icon icon='mdi:heart-pulse' className='text-xl' aria-hidden />
-                {t('ctaSecondary')}
+                <Icon icon='mdi:heart-pulse' className='shrink-0 text-xl' aria-hidden />
+                <span className='text-balance'>{t('ctaSecondary')}</span>
               </Link>
             </motion.div>
 

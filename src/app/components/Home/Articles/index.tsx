@@ -140,55 +140,58 @@ const Articles = () => {
             {articles.map((item, i) => {
               const serviceIcon = getServiceIcon(item.heading)
               return (
-                <div key={i} className='px-2 md:px-4'>
-                  <div className='bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col group'>
-                    <div className='relative h-64 overflow-hidden'>
+                <div key={i} className='flex h-full px-2 md:px-4'>
+                  <div className='group flex h-full w-full flex-col overflow-hidden rounded-3xl bg-white shadow-lg transition-shadow duration-300 hover:shadow-xl'>
+                    <div className='relative h-64 shrink-0 overflow-hidden'>
                       <Image
                         src={item.imgSrc}
                         alt={item.heading}
                         fill
-                        className='object-cover group-hover:scale-110 transition-transform duration-500'
+                        className='object-cover transition-transform duration-500 group-hover:scale-110'
                         sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
                       />
                       <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent' />
 
-                      <div className='absolute top-4 right-4 w-14 h-14 bg-accent-cyan rounded-2xl flex items-center justify-center shadow-lg'>
-                        <Icon icon={serviceIcon} className='text-white text-2xl' />
+                      <div className='absolute top-4 right-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-accent-cyan shadow-lg'>
+                        <Icon icon={serviceIcon} className='text-2xl text-white' />
                       </div>
 
                       <div className='absolute bottom-4 left-4'>
-                        <span className='bg-white/90 backdrop-blur-sm text-text-primary px-3 py-1 rounded-full text-xs font-semibold'>
+                        <span className='rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-text-primary backdrop-blur-sm'>
                           {item.date}
                         </span>
                       </div>
                     </div>
 
-                    <div className='p-6 md:p-8 flex-grow flex flex-col'>
-                      <div className='mb-4'>
-                        <h3 className={`text-2xl md:text-3xl font-bold text-text-primary mb-2 ${bebasNeue.className}`}>
+                    <div className='flex flex-1 flex-col p-6 md:p-8'>
+                      <div className='mb-4 min-h-[4.25rem] shrink-0 md:min-h-[4.75rem]'>
+                        <h3
+                          className={`mb-2 text-2xl font-bold text-text-primary md:text-3xl ${bebasNeue.className}`}
+                        >
                           {item.heading}
                         </h3>
                         {item.heading2 && (
-                          <h4 className='text-lg md:text-xl font-semibold text-accent-cyan'>
+                          <h4 className='text-lg font-semibold text-accent-cyan md:text-xl'>
                             {item.heading2}
                           </h4>
                         )}
                       </div>
 
-                      <p className='text-text-secondary text-sm md:text-base leading-relaxed mb-6 flex-grow line-clamp-4'>
+                      <p className='mb-6 flex-1 text-sm leading-relaxed text-text-secondary md:text-base'>
                         {item.description}
                       </p>
 
                       <button
+                        type='button'
                         onClick={() => {
                           playAudio()
                           router.push('/kontakt')
                         }}
-                        className='btn-primary w-full inline-flex items-center justify-center gap-2'
+                        className='btn-primary mt-auto flex min-h-12 w-full shrink-0 items-center justify-center gap-2 px-4 py-3 text-sm sm:text-base'
                         aria-label={`${item.heading} - ${item.cta}`}
                       >
-                        <Icon icon='mdi:arrow-right' className='text-xl' />
-                        {item.cta}
+                        <Icon icon='mdi:arrow-right' className='shrink-0 text-xl' aria-hidden />
+                        <span className='text-balance'>{item.cta}</span>
                       </button>
                     </div>
                   </div>
@@ -199,6 +202,19 @@ const Articles = () => {
         </motion.div>
 
         <style jsx global>{`
+          #Blog .slick-track {
+            display: flex !important;
+            align-items: stretch !important;
+          }
+          #Blog .slick-slide {
+            height: auto !important;
+            display: flex !important;
+          }
+          #Blog .slick-slide > div {
+            display: flex !important;
+            width: 100%;
+            height: 100%;
+          }
           .slick-dots {
             bottom: -50px !important;
           }

@@ -1,8 +1,26 @@
 {
-  "eyebrow": "Hamburg studio",
-  "title": "Body & Mind Studio Harvestehude",
-  "description": "Our space is in a beautiful Art Nouveau villa in Harvestehude. High ceilings, large windows, and French oak floors create a welcoming atmosphere—ideal for personal training, workshops, and seminars.",
-  "ctaPrompt": "Interested in working together or an in-person consultation?",
-  "ctaPrimary": "Book a free consultation",
+  "eyebrow": "Body & Mind Studio",
+  "title": "Private training in Hamburg Harvestehude",
+  "description": "Flow · Form · Recovery—1:1 in a private setting on Rothenbaumchaussee. Full training details, memberships, and booking your consultation live on the studio website.",
+  "pillars": {
+    "0": {
+      "name": "FLOW",
+      "summary": "Boxing & kickboxing as a mental release—focus and stress relief.",
+      "path": "/flow"
+    },
+    "1": {
+      "name": "FORM",
+      "summary": "Strength, stability, and athletic performance—tailored to you.",
+      "path": "/form"
+    },
+    "2": {
+      "name": "Recovery",
+      "summary": "Regeneration for body and nervous system.",
+      "path": "/recovery"
+    }
+  },
+  "ctaPrompt": "Ready to train?",
+  "ctaPrimary": "Studio & consultation",
+  "ctaSecondary": "Memberships",
   "address": "Rothenbaumchaussee 156 · 20149 Hamburg"
 }

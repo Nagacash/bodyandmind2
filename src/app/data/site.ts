@@ -1,5 +1,9 @@
 export const SITE_URL = 'https://www.nataliezimmermann.de'
 
+/** Premium studio site — training, pricing, Erstgespräch (separate project; link only). */
+export const STUDIO_SITE_URL = 'https://bodynmind.netlify.app'
+export const STUDIO_PRICING_URL = `${STUDIO_SITE_URL}/mitgliedschaften`
+
 export const SOCIAL_SHARE_IMAGE = {
   path: '/images/og/social-share.jpg',
   width: 1200,

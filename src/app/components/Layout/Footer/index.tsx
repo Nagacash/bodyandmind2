@@ -5,10 +5,18 @@ import { Link } from '@/i18n/routing'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { useTranslations } from 'next-intl'
+import { STUDIO_PRICING_URL, STUDIO_SITE_URL } from '@/app/data/site'
 
 const FOOTER_LINK_HREFS: string[][] = [
-  ['/', '/#About', '/about-me', '/#Team', '/#FAQ', '/#Featured', '/#Presse', '/kontakt'],
-  ['/about-me', '/#Blog', '/kontakt', '/#Flow', '/#Form', '/#Recovery'],
+  ['/', '/#About', '/about-me', '/#Team', '/#FAQ', '/#Presse', '/kontakt'],
+  [
+    STUDIO_SITE_URL,
+    STUDIO_PRICING_URL,
+    '/kontakt',
+    '/about-me',
+    '/impressum',
+    '/datenschutz',
+  ],
   ['https://www.mesoskin-hamburg.com'],
 ]
 
@@ -16,10 +24,6 @@ const SOCIAL_LINKS = [
   {
     href: 'https://www.facebook.com/natalie.zimmermann.94',
     icon: '/images/footer/vec.svg',
-  },
-  {
-    href: 'https://tiktok.com/@nataliezimmermann',
-    icon: '/images/footer/tiktok.svg',
   },
   {
     href: 'https://www.instagram.com/nataliezimmermann_ger/',

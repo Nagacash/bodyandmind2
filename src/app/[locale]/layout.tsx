@@ -148,7 +148,6 @@ export default async function LocaleLayout({
     sameAs: [
       'https://www.facebook.com/natalie.zimmermann.94',
       'https://www.instagram.com/nataliezimmermann_ger/',
-      'https://tiktok.com/@nataliezimmermann',
     ],
   }
 

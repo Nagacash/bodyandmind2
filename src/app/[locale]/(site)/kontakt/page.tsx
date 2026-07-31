@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { Icon } from '@iconify/react'
 import { STUDIO_PHONE_DISPLAY, STUDIO_PHONE_E164, WHATSAPP_NUMBER_DISPLAY, WHATSAPP_URL } from '@/app/data/contact'
+import { STUDIO_SITE_URL } from '@/app/data/site'
 import { bebasNeue } from '@/app/fonts'
 
 const KontaktPage = () => {
@@ -58,11 +59,6 @@ const KontaktPage = () => {
         icon: 'mdi:instagram',
         href: 'https://www.instagram.com/nataliezimmermann_ger/',
         label: t('social.1'),
-      },
-      {
-        icon: 'mdi:tiktok',
-        href: 'https://tiktok.com/@nataliezimmermann',
-        label: t('social.2'),
       },
     ],
     [t],
@@ -126,6 +122,27 @@ const KontaktPage = () => {
             >
               {t('subtitle')}
             </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.35 }}
+              className="mx-auto mt-10 max-w-2xl rounded-2xl border border-accent-cyan/30 bg-white p-6 text-left shadow-sm md:p-8"
+            >
+              <h2 className={`mb-2 text-xl font-bold text-text-primary md:text-2xl ${bebasNeue.className}`}>
+                {t('studioHeading')}
+              </h2>
+              <p className="mb-4 text-base text-text-secondary">{t('studioDescription')}</p>
+              <a
+                href={STUDIO_SITE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-accent inline-flex min-h-11 items-center justify-center gap-2 px-6"
+              >
+                {t('studioCta')}
+                <Icon icon="mdi:open-in-new" className="text-lg" aria-hidden />
+              </a>
+            </motion.div>
           </motion.div>
         </div>
       </section>
