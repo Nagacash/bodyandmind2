@@ -20,6 +20,8 @@ const nextConfig = {
       { source: '/privacy', destination: '/datenschutz', permanent: true },
       { source: '/en/imprint', destination: '/en/impressum', permanent: true },
       { source: '/en/privacy', destination: '/en/datenschutz', permanent: true },
+      { source: '/de', destination: '/', permanent: true },
+      { source: '/de/:path*', destination: '/:path*', permanent: true },
     ]
   },
 }

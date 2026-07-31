@@ -5,6 +5,8 @@ export const routing = defineRouting({
   locales: ['de', 'en'],
   defaultLocale: 'de',
   localePrefix: 'as-needed',
+  /** Always serve German at `/` — do not auto-switch to `/en` from Accept-Language or cookies */
+  localeDetection: false,
 })
 
 export const locales = routing.locales
