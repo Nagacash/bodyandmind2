@@ -17,10 +17,10 @@ import kontakt from './kontakt.json'
 import legal from './legal.json'
 import manage from './manage.json'
 import nav from './nav.json'
+import pages from './pages.json'
 import presse from './presse.json'
 import recovery from './recovery.json'
 import summerSpecial from './summerSpecial.json'
-import team from './team.json'
 import testimonial from './testimonial.json'
 import uberMich from './uberMich.json'
 
@@ -35,7 +35,6 @@ export default {
   dedicated,
   digital,
   beliefs,
-  team,
   featured,
   manage,
   faq,
@@ -50,4 +49,5 @@ export default {
   aboutMe,
   common,
   legal,
+  pages,
 }

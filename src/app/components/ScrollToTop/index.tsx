@@ -2,10 +2,12 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { usePathname } from '@/i18n/routing'
 import { WHATSAPP_NUMBER_DISPLAY, WHATSAPP_URL } from '@/app/data/contact'
 import { Icon } from '@iconify/react'
 
 export default function ScrollToTop() {
+  const pathname = usePathname()
   const [isVisible, setIsVisible] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
 
@@ -17,10 +19,16 @@ export default function ScrollToTop() {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0)
+    setIsVisible(false)
+    setScrollProgress(0)
+  }, [pathname])
+
+  useEffect(() => {
     const toggleVisibility = () => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight
-      const progress = (scrollTop / scrollHeight) * 100
+      const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0
 
       setScrollProgress(progress)
 
@@ -31,7 +39,6 @@ export default function ScrollToTop() {
       }
     }
 
-    // Throttle scroll events for better performance
     let ticking = false
     const handleScroll = () => {
       if (!ticking) {
@@ -44,21 +51,19 @@ export default function ScrollToTop() {
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
-    toggleVisibility() // Initial check
+    toggleVisibility()
 
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [pathname])
 
   return (
     <>
-      {/* Scroll Progress Bar */}
       <div
         className='scroll-progress'
         style={{ width: `${scrollProgress}%` }}
         aria-hidden='true'
       />
 
-      {/* Scroll to Top Button & WhatsApp */}
       <AnimatePresence>
         {isVisible && (
           <motion.div
@@ -68,16 +73,12 @@ export default function ScrollToTop() {
             transition={{ duration: 0.3 }}
             className='fixed bottom-6 right-6 md:bottom-8 md:right-8 z-fixed flex flex-col gap-3'
           >
-            {/* WhatsApp Button */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href={WHATSAPP_URL}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='btn-accent-sm inline-flex items-center gap-2'
+                className='btn-brand-gradient inline-flex items-center gap-2'
                 aria-label={`WhatsApp Kontakt - ${WHATSAPP_NUMBER_DISPLAY}`}
               >
                 <Icon icon='mdi:whatsapp' className='text-xl' />
@@ -86,7 +87,6 @@ export default function ScrollToTop() {
               </Link>
             </motion.div>
 
-            {/* Scroll to Top Button */}
             <motion.button
               onClick={scrollToTop}
               aria-label='Scroll to top'

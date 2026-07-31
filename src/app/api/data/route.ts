@@ -194,10 +194,10 @@ const FooterLinksData: footerlinks[] = [
     section: 'Others',
     links: [
       { label: 'Über mich', href: '/about-me' },
-      { label: 'Leistungen', href: '/#Blog' },
+      { label: 'Leistungen', href: '/leistungen' },
       { label: 'Kontakt', href: '/kontakt' },
-      { label: 'FLOW', href: '/#Flow' },
-      { label: 'Recovery', href: '/#Recovery' },
+      { label: 'FLOW', href: '/flow' },
+      { label: 'Recovery', href: '/recovery' },
     ]
   },
   {

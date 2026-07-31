@@ -6,7 +6,6 @@ import { Link, useRouter } from '@/i18n/routing'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { useTranslations } from 'next-intl'
-import { bebasNeue } from '@/app/fonts'
 
 const ARTICLE_IMAGES = [
   '/images/dedicated/sab5.webp',
@@ -106,7 +105,7 @@ const Articles = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className='text-accent-cyan text-sm md:text-base font-bold mb-4 uppercase tracking-wider'
+            className='section-eyebrow'
           >
             {t('eyebrow')}
           </motion.p>
@@ -115,7 +114,7 @@ const Articles = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className={`text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 ${bebasNeue.className}`}
+            className={`text-4xl md:text-5xl lg:text-6xl font-normal text-text-primary mb-6 font-display`}
           >
             {t('title')}
           </motion.h2>
@@ -166,7 +165,7 @@ const Articles = () => {
                     <div className='flex flex-1 flex-col p-6 md:p-8'>
                       <div className='mb-4 min-h-[4.25rem] shrink-0 md:min-h-[4.75rem]'>
                         <h3
-                          className={`mb-2 text-2xl font-bold text-text-primary md:text-3xl ${bebasNeue.className}`}
+                          className={`mb-2 text-2xl font-semibold text-text-primary md:text-3xl`}
                         >
                           {item.heading}
                         </h3>
@@ -263,7 +262,7 @@ const Articles = () => {
             <div className='absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2' />
             <div className='relative z-10'>
               <Icon icon='mdi:handshake' className='text-5xl mb-4 mx-auto' />
-              <h3 className={`text-3xl md:text-4xl font-bold mb-4 ${bebasNeue.className}`}>
+              <h3 className={`text-3xl md:text-4xl font-semibold mb-4`}>
                 {t('bottomCta.title')}
               </h3>
               <p className='text-white/90 text-lg mb-6 max-w-2xl mx-auto'>

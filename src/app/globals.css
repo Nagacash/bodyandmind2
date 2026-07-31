@@ -8,9 +8,9 @@
 
   --shadow-cause-shadow: 0 4px 17px 0 rgba(20, 26, 31, 0.04);
   --shadow-linckedin: 0 19px 30px -6px rgba(20, 100, 140, 0.22);
-  --shadow-manage-shadow: 0 4px 8px 1px rgba(55, 190, 240, 0.12);
-  --shadow-testimonial: 0 5px 14px 0 rgba(30, 120, 150, 0.08);
-  --shadow-card-lift: 0 20px 50px -16px rgba(30, 155, 199, 0.18);
+  --shadow-manage-shadow: 0 4px 8px 1px rgba(56, 192, 240, 0.12);
+  --shadow-testimonial: 0 5px 14px 0 rgba(56, 192, 240, 0.08);
+  --shadow-card-lift: 0 20px 50px -16px rgba(56, 192, 240, 0.18);
 
   --transition-duration-100: 100ms;
   --transition-duration-150: 150ms;
@@ -66,22 +66,40 @@
   --z-index-preloader: 500;
   --z-index-999: 999;
 
-  /* Single primary brand accent (cyan); legacy primary/blue map here for consistency */
-  --color-primary: #37bef0;
-  --color-purple: #152833;
+  /* body & mind logo primaries (sampled from brand mark) */
+  --color-brand-blue: #38c0f0;
+  --color-brand-red: #e81840;
+  --color-brand-purple: #540c50;
+
+  --color-brand-blue-light: #e8f7fd;
+  --color-brand-blue-dark: #2a9fd4;
+  --color-brand-red-light: #fde8ee;
+  --color-brand-red-dark: #c91538;
+  --color-brand-purple-light: #f2e6f1;
+  --color-brand-purple-dark: #3d0839;
+
+  /* Primary accent = logo blue; legacy names map to brand tokens */
+  --color-primary: var(--color-brand-blue);
+  --color-purple: var(--color-brand-purple);
   --color-grey: #f1f5f8;
   --color-border: #d5dde5;
-  --color-darkmode: #0f2438;
-  --color-deep-slate: #1a4d6e;
+  --color-darkmode: #3d0839;
+  --color-deep-slate: var(--color-brand-purple);
   --color-white: #ffffff;
   --color-light: #ffffff;
-  --color-accent-cyan: #37bef0;
-  --color-accent-cyan-light: #e3f5fc;
-  --color-accent-cyan-dark: #1e9bc7;
-  --color-accent-blue: #37bef0;
+  --color-accent-cyan: var(--color-brand-blue);
+  --color-accent-cyan-light: var(--color-brand-blue-light);
+  --color-accent-cyan-dark: var(--color-brand-blue-dark);
+  --color-accent-blue: var(--color-brand-blue);
+  --color-accent-red: var(--color-brand-red);
+  --color-accent-purple: var(--color-brand-purple);
   --color-text-primary: #141a1f;
   --color-text-secondary: #3d4a5c;
   --color-text-muted: #5c6b7a;
+
+  --font-family-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-family-display: var(--font-bebas-neue), ui-sans-serif, system-ui, sans-serif;
+  --font-family-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 
   --text-80: 5rem;
   --text-65: 4.063rem;
@@ -107,6 +125,40 @@
   ::backdrop,
   ::file-selector-button {
     border-color: var(--color-gray-200, currentcolor);
+  }
+
+  body {
+    font-family: var(--font-family-sans);
+  }
+
+  .skip-link {
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+    z-index: var(--z-index-overlay);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-text-primary);
+    color: var(--color-white);
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transform: translateY(-150%);
+    transition: transform 150ms ease-out;
+  }
+
+  .skip-link:focus-visible {
+    transform: translateY(0);
+    outline: 2px solid var(--color-brand-blue);
+    outline-offset: 2px;
+  }
+
+  /* Display face for top-level headings; h3+ stay on body sans unless .font-display */
+  h1,
+  h2 {
+    font-family: var(--font-family-display);
+    font-weight: 400;
+    letter-spacing: 0.01em;
   }
 
   section {
@@ -145,6 +197,11 @@
   /* Compact accent (nav, floating actions) */
   .btn-accent-sm {
     @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-sm bg-accent-cyan py-2.5 px-5 text-sm font-semibold tracking-tight text-white shadow-sm shadow-accent-cyan/30 ring-1 ring-inset ring-white/10 transition duration-200 ease-out hover:bg-accent-cyan-dark hover:shadow-md hover:shadow-accent-cyan/40 hover:-translate-y-px active:translate-y-0 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2;
+  }
+
+  /* Logo tri-color (blue · red · purple) — WhatsApp & brand CTAs */
+  .btn-brand-gradient {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-sm bg-gradient-to-r from-brand-blue via-brand-red to-brand-purple py-2.5 px-5 text-sm font-semibold tracking-tight text-white shadow-sm shadow-brand-purple/25 ring-1 ring-inset ring-white/15 transition duration-200 ease-out hover:-translate-y-px hover:shadow-md hover:shadow-brand-red/30 hover:brightness-[1.04] active:translate-y-0 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 min-h-11;
   }
 
   /* White button on cyan/gradient panels */
@@ -193,12 +250,35 @@
     max-width: 65ch;
   }
 
+  /* Fight record / belt metadata (mono, uppercase) */
+  .font-telemetry {
+    font-family: var(--font-family-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Section kicker — matches hero belt telemetry */
+  .section-eyebrow {
+    font-family: var(--font-family-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    @apply mb-4 block text-[11px] font-medium text-brand-purple sm:text-xs md:text-sm;
+  }
+
+  .section-eyebrow--sub {
+    @apply mb-3 text-[10px] sm:text-[11px];
+  }
+
+  .section-eyebrow--on-dark {
+    @apply text-accent-cyan-light;
+  }
+
   h1 {
-    @apply text-text-primary text-6xl sm:text-80 font-bold sm:leading-24 leading-20 text-balance;
+    @apply text-text-primary text-6xl sm:text-80 font-normal sm:leading-24 leading-20 text-balance;
   }
 
   h2 {
-    @apply text-text-primary text-5xl lg:text-65 font-bold text-balance;
+    @apply text-text-primary text-5xl lg:text-65 font-normal text-balance;
   }
 
   h3 {
@@ -229,7 +309,7 @@
   /* Thin themed scrollbars */
   * {
     scrollbar-width: thin;
-    scrollbar-color: rgba(55, 190, 240, 0.35) transparent;
+    scrollbar-color: color-mix(in srgb, var(--color-brand-blue) 35%, transparent) transparent;
   }
 
   *::-webkit-scrollbar {
@@ -242,14 +322,14 @@
   }
 
   *::-webkit-scrollbar-thumb {
-    background-color: rgba(55, 190, 240, 0.35);
+    background-color: color-mix(in srgb, var(--color-brand-blue) 35%, transparent);
     border-radius: 999px;
     border: 2px solid transparent;
     background-clip: padding-box;
   }
 
   *::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(55, 190, 240, 0.55);
+    background-color: color-mix(in srgb, var(--color-brand-blue) 55%, transparent);
   }
 }
 
@@ -265,6 +345,39 @@
   opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   z-index: 1;
+}
+
+.hero-mesh::before {
+  content: '';
+  position: absolute;
+  inset: -40% -20%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.32;
+  background: conic-gradient(
+    from 200deg at 50% 50%,
+    rgba(56, 192, 240, 0.09),
+    rgba(232, 24, 64, 0.06),
+    rgba(84, 12, 80, 0.14),
+    rgba(56, 192, 240, 0.08)
+  );
+  filter: blur(48px);
+  animation: hero-mesh-drift 28s ease-in-out infinite alternate;
+}
+
+@keyframes hero-mesh-drift {
+  0% {
+    transform: translate3d(-2%, 0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(3%, -2%, 0) rotate(8deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-mesh::before {
+    animation: none;
+  }
 }
 
 html {
@@ -312,7 +425,12 @@ main {
   left: 0;
   width: 0%;
   height: 3px;
-  background: linear-gradient(to right, var(--color-accent-cyan), var(--color-accent-cyan-dark));
+  background: linear-gradient(
+    to right,
+    var(--color-brand-blue),
+    var(--color-brand-red),
+    var(--color-brand-purple)
+  );
   z-index: var(--z-index-progress);
   transition: width var(--transition-duration-100) var(--ease-out);
 }

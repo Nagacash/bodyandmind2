@@ -5,7 +5,6 @@ import { Link } from '@/i18n/routing'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { useTranslations } from 'next-intl'
-import { bebasNeue } from '@/app/fonts'
 
 const UberMich = () => {
   const t = useTranslations('uberMich')
@@ -28,11 +27,11 @@ const UberMich = () => {
           transition={{ duration: 0.6 }}
           className='mb-12 text-center md:mb-16'
         >
-          <p className='mb-4 text-sm font-bold uppercase tracking-widest text-accent-cyan md:text-base'>
+          <p className='section-eyebrow'>
             {t('eyebrow')}
           </p>
           <h2
-            className={`text-4xl font-bold text-text-primary md:text-5xl lg:text-6xl ${bebasNeue.className} text-balance`}
+            className={`text-4xl font-normal text-text-primary md:text-5xl lg:text-6xl font-display text-balance`}
           >
             {t('title')}
           </h2>
@@ -72,7 +71,7 @@ const UberMich = () => {
             </div>
 
             <div className='rounded-2xl border border-border bg-white p-6 shadow-sm'>
-              <p className='mb-4 text-xs font-bold uppercase tracking-widest text-text-muted'>
+              <p className='section-eyebrow section-eyebrow--sub text-text-muted'>
                 {t('qualificationsHeading')}
               </p>
               <ul className='flex flex-wrap gap-2'>
@@ -105,7 +104,7 @@ const UberMich = () => {
 
             <div className='mt-10 md:mt-12'>
               <h3
-                className={`mb-6 text-2xl font-bold text-text-primary md:text-3xl ${bebasNeue.className}`}
+                className={`mb-6 text-2xl font-semibold text-text-primary md:text-3xl`}
               >
                 {t('timelineHeading')}
               </h3>
@@ -116,10 +115,10 @@ const UberMich = () => {
                       className='absolute -left-[calc(0.75rem+1px)] top-1.5 flex h-3 w-3 rounded-full bg-accent-cyan ring-4 ring-grey md:-left-[calc(1rem+1px)]'
                       aria-hidden
                     />
-                    <p className='mb-1 text-xs font-bold uppercase tracking-widest text-accent-cyan tabular-nums'>
+                    <p className='font-telemetry mb-1 text-xs tabular-nums text-accent-cyan'>
                       {item.year}
                     </p>
-                    <p className={`mb-1 text-lg font-bold text-text-primary ${bebasNeue.className}`}>
+                    <p className='mb-1 text-lg font-semibold text-text-primary'>
                       {item.title}
                     </p>
                     <p className='text-sm leading-relaxed text-text-secondary md:text-base'>
@@ -155,7 +154,7 @@ const UberMich = () => {
                 <Icon icon='mdi:account-details-outline' className='text-xl' aria-hidden />
               </Link>
               <Link
-                href='/#Presse'
+                href='/presse'
                 className='btn-secondary w-full sm:w-auto inline-flex min-h-12 items-center justify-center gap-2'
               >
                 {t('ctaTertiary')}

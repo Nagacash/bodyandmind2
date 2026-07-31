@@ -3,7 +3,6 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { useTranslations } from 'next-intl'
-import { bebasNeue } from '@/app/fonts'
 import { STUDIO_SITE_URL } from '@/app/data/site'
 import ImageLightbox from '@/app/components/Common/ImageLightbox'
 
@@ -33,12 +32,12 @@ const SummerSpecial = () => {
           className='mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12'
         >
           <div className='order-2 text-center lg:order-1 lg:text-left'>
-            <p className='mb-2 text-sm font-bold uppercase tracking-widest text-accent-cyan'>
+            <p className='section-eyebrow mb-2'>
               {t('eyebrow')}
             </p>
             <h2
               id='summer-special-heading'
-              className={`mb-3 text-3xl font-bold text-text-primary md:text-4xl ${bebasNeue.className} text-balance`}
+              className={`mb-3 text-3xl font-normal text-text-primary md:text-4xl font-display text-balance`}
             >
               {t('title')}
             </h2>

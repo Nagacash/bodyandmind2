@@ -3,7 +3,7 @@ import React from 'react';
 const PrivacyPage = () => {
   return (
     <div className="container mx-auto p-8">
-      <h1 className="text-4xl font-bold mb-6">Datenschutzerklärung</h1>
+      <h1 className="text-4xl font-normal mb-6">Datenschutzerklärung</h1>
       <div className="prose lg:prose-xl">
         <p>Wir legen großen Wert auf den Schutz Ihrer Daten. Umfassende Informationen zum Datenschutz finden Sie in unserer ausführlichen Datenschutzerklärung.</p>
         <h2>1. Datenschutz auf einen Blick</h2>

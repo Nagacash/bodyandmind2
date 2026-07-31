@@ -4,7 +4,6 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { useTranslations } from 'next-intl'
 import ImageLightbox from '@/app/components/Common/ImageLightbox'
-import { bebasNeue } from '@/app/fonts'
 
 const AMAZON_BOOK_URL =
   'https://www.amazon.de/-/en/Mens-Health-Womens-Erfolgsgeheimnisse-Box-Weltmeisterin/dp/3613509911'
@@ -28,7 +27,7 @@ const BookPromo = () => {
     >
       <div className='book-promo relative overflow-hidden rounded-3xl bg-grain shadow-[var(--shadow-card-lift)] ring-1 ring-black/5'>
         <div
-          className='absolute inset-0 bg-gradient-to-br from-deep-slate via-[#1a5f7a] to-accent-cyan-dark'
+          className='absolute inset-0 bg-gradient-to-br from-deep-slate via-brand-red to-accent-cyan-dark'
           aria-hidden
         />
         <div
@@ -65,23 +64,23 @@ const BookPromo = () => {
 
           <div className='order-2 text-center lg:order-none lg:text-left'>
             <div className='mb-4 flex flex-wrap items-center justify-center gap-2 lg:justify-start'>
-              <span className='inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-sm'>
+              <span className='font-telemetry inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[10px] font-medium text-white backdrop-blur-sm sm:text-xs'>
                 <span className='h-1.5 w-1.5 rounded-full bg-emerald-400' aria-hidden />
                 {t('bookPromo.badgeNew')}
               </span>
-              <span className='inline-flex items-center gap-1 rounded-full border border-white/15 bg-black/15 px-3 py-1 text-xs font-semibold text-white/90'>
+              <span className='font-telemetry inline-flex items-center gap-1 rounded-full border border-white/15 bg-black/15 px-3 py-1 text-[10px] font-medium text-white/90 sm:text-xs'>
                 <Icon icon='mdi:trophy' className='text-sm text-amber-300' aria-hidden />
                 {t('bookPromo.badgeChampion')}
               </span>
             </div>
 
-            <p className='mb-2 text-sm font-semibold uppercase tracking-widest text-accent-cyan-light/90'>
+            <p className='section-eyebrow section-eyebrow--on-dark mb-2'>
               {t('bookPromo.eyebrow')}
             </p>
 
             <h3
               id='book-promo-heading'
-              className={`mb-3 text-3xl font-bold leading-[1.05] text-white sm:text-4xl lg:text-[2.75rem] ${bebasNeue.className} text-balance`}
+              className={`mb-3 text-3xl font-normal leading-[1.05] text-white sm:text-4xl lg:text-[2.75rem] font-display text-balance`}
             >
               {t('bookPromo.title')}
             </h3>

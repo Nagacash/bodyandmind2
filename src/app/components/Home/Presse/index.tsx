@@ -5,7 +5,6 @@ import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { useTranslations } from 'next-intl'
 import VideoGallery from './VideoGallery'
-import { bebasNeue } from '@/app/fonts'
 
 const PRESS_IMAGES = [
   '/images/articles/nat1.webp',
@@ -62,7 +61,7 @@ const Presse = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className='text-accent-cyan text-sm md:text-base font-bold mb-4 uppercase tracking-wider'
+            className='section-eyebrow'
           >
             {t('eyebrow')}
           </motion.p>
@@ -71,7 +70,7 @@ const Presse = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className={`text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 ${bebasNeue.className}`}
+            className={`text-4xl md:text-5xl lg:text-6xl font-normal text-text-primary mb-6 font-display`}
           >
             {t('title')}
           </motion.h2>
@@ -115,7 +114,7 @@ const Presse = () => {
             <div className='flex-shrink-0 w-12 h-12 bg-accent-cyan rounded-xl flex items-center justify-center'>
               <Icon icon='mdi:television' className='text-white text-2xl' />
             </div>
-            <h3 className={`text-3xl md:text-4xl font-bold text-text-primary ${bebasNeue.className}`}>
+            <h3 className={`text-3xl md:text-4xl font-semibold text-text-primary`}>
               {t('videosSectionTitle')}
             </h3>
           </div>
@@ -145,7 +144,7 @@ const Presse = () => {
             <div className='flex-shrink-0 w-12 h-12 bg-accent-cyan rounded-xl flex items-center justify-center'>
               <Icon icon='mdi:newspaper-variant' className='text-white text-2xl' />
             </div>
-            <h3 className={`text-3xl md:text-4xl font-bold text-text-primary ${bebasNeue.className}`}>
+            <h3 className={`text-3xl md:text-4xl font-semibold text-text-primary`}>
               {t('printSectionTitle')}
             </h3>
           </div>
@@ -214,7 +213,7 @@ const Presse = () => {
                   {t('featured.badge')}
                 </span>
               </div>
-              <h3 className={`text-3xl md:text-4xl font-bold text-white mb-4 ${bebasNeue.className}`}>
+              <h3 className={`text-3xl md:text-4xl font-semibold text-white mb-4`}>
                 {t('featured.title')}
               </h3>
               <p className='text-white/90 text-lg mb-6 max-w-2xl'>

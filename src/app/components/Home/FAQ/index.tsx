@@ -6,7 +6,6 @@ import { DisclosurePanel, DisclosureButton, Disclosure } from '@headlessui/react
 import { motion } from 'framer-motion'
 import { Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
-import { bebasNeue } from '@/app/fonts'
 
 interface FAQItem {
   id: number
@@ -92,7 +91,7 @@ const FAQ = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className='mb-4 text-sm font-semibold tracking-wide text-accent-cyan md:text-base'
+            className='section-eyebrow'
           >
             {t('eyebrow')}
           </motion.p>
@@ -101,7 +100,7 @@ const FAQ = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className={`text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 ${bebasNeue.className}`}
+            className={`text-4xl md:text-5xl lg:text-6xl font-normal text-text-primary mb-6 font-display`}
           >
             {t('title')}
           </motion.h2>
@@ -222,7 +221,7 @@ const FAQ = () => {
                       className='rounded-3xl border border-border bg-white p-8 shadow-[var(--shadow-card-lift)] md:p-10'
                       role='tabpanel'
                     >
-                      <h3 className={`mb-4 text-2xl font-bold text-text-primary md:text-3xl ${bebasNeue.className} text-pretty`}>
+                      <h3 className={`mb-4 text-2xl font-semibold text-text-primary md:text-3xl text-pretty`}>
                         {desktopActiveFaq.question}
                       </h3>
                       <p className='copy-prose text-base leading-relaxed text-text-secondary md:text-lg'>
@@ -344,7 +343,7 @@ const FAQ = () => {
             <div className='absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2' />
             <div className='relative z-10'>
               <Icon icon='mdi:message-question-outline' className='text-5xl mb-4 mx-auto' />
-              <h3 className={`text-3xl md:text-4xl font-bold mb-4 ${bebasNeue.className}`}>
+              <h3 className={`text-3xl md:text-4xl font-semibold mb-4`}>
                 {t('ctaTitle')}
               </h3>
               <p className='text-white/90 text-lg mb-6 max-w-2xl mx-auto'>

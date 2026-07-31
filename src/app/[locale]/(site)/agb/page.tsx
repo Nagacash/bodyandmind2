@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const AGBPage = () => {
   return (
     <div className="container mx-auto p-8">
-      <h1 className="text-4xl font-bold mb-6">Allgemeine Geschäftsbedingungen (AGB)</h1>
+      <h1 className="text-4xl font-normal mb-6">Allgemeine Geschäftsbedingungen (AGB)</h1>
       <div className="prose lg:prose-xl">
         <h2>1. Geltungsbereich</h2>
         <p>Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge, die über die Website www.nataliezimmermann.de zwischen Natalie Zimmermann (nachfolgend "Anbieter") und ihren Kunden (nachfolgend "Kunde") geschlossen werden.</p>

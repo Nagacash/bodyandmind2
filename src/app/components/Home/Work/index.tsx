@@ -8,7 +8,6 @@ import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { workdata } from '@/app/types/workdata'
 import WorkSkeleton from '../../Skeleton/Work'
-import { bebasNeue } from '@/app/fonts'
 
 const settings = {
   dots: false,
@@ -95,7 +94,7 @@ const Work = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className='text-accent-cyan text-sm md:text-base font-bold mb-4 uppercase tracking-wider'
+            className='section-eyebrow'
           >
             Unser Team
           </motion.p>
@@ -104,7 +103,7 @@ const Work = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className={`text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 ${bebasNeue.className}`}
+            className={`text-4xl md:text-5xl lg:text-6xl font-normal text-text-primary mb-6 font-display`}
           >
             Die Stärke des Teams
           </motion.h2>

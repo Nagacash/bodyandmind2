@@ -4,7 +4,6 @@ import { Link } from '@/i18n/routing'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { useTranslations } from 'next-intl'
-import { bebasNeue } from '@/app/fonts'
 
 const Beliefs = () => {
   const t = useTranslations('beliefs')
@@ -31,7 +30,7 @@ const Beliefs = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className='text-accent-cyan text-sm md:text-base font-bold mb-4 uppercase tracking-wider'
+            className='section-eyebrow'
           >
             {t('eyebrow')}
           </motion.p>
@@ -40,7 +39,7 @@ const Beliefs = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className={`text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 ${bebasNeue.className}`}
+            className={`text-4xl md:text-5xl lg:text-6xl font-normal text-text-primary mb-6 font-display`}
           >
             {t('title')}
           </motion.h2>
@@ -61,12 +60,12 @@ const Beliefs = () => {
                 <div className='w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-4'>
                   <Icon icon='mdi:spa-outline' className='text-white text-3xl' />
                 </div>
-                <p className='text-white/90 text-sm font-semibold uppercase tracking-wider mb-2'>
+                <p className='section-eyebrow section-eyebrow--on-dark mb-2'>
                   {t('massage.eyebrow')}
                 </p>
               </div>
 
-              <h3 className={`text-white mb-6 text-3xl md:text-4xl ${bebasNeue.className}`}>
+              <h3 className={`text-white mb-6 text-3xl md:text-4xl`}>
                 {t('massage.title')}
               </h3>
 
@@ -105,12 +104,12 @@ const Beliefs = () => {
                 <div className='w-16 h-16 bg-accent-cyan/20 rounded-2xl flex items-center justify-center mb-4'>
                   <Icon icon='mdi:boxing-glove' className='text-accent-cyan text-3xl' />
                 </div>
-                <p className='text-accent-cyan text-sm font-semibold uppercase tracking-wider mb-2'>
+                <p className='section-eyebrow section-eyebrow--sub text-accent-cyan'>
                   {t('kickboxing.eyebrow')}
                 </p>
               </div>
 
-              <h3 className={`text-text-primary mb-6 text-3xl md:text-4xl ${bebasNeue.className}`}>
+              <h3 className={`text-text-primary mb-6 text-3xl md:text-4xl`}>
                 {t('kickboxing.title')}
               </h3>
 

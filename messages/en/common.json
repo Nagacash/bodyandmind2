@@ -19,5 +19,6 @@
     "close": "Close",
     "expand": "Enlarge image",
     "dialogLabel": "Image preview"
-  }
+  },
+  "skipToContent": "Skip to content"
 }

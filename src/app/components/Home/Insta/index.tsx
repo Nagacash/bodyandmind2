@@ -17,7 +17,8 @@ const Insta = () => {
   const imageAlts = Object.values(t.raw('imageAlts') as Record<string, string>)
 
   return (
-    <section className='container mx-auto max-w-2xl pt-16 pb-16 px-4 sm:px-6 lg:max-w-7xl lg:px-8 mb-0'>
+    <section className='container mx-auto max-w-2xl px-4 pt-16 pb-16 sm:px-6 lg:max-w-7xl lg:px-8 mb-0'>
+      <p className='section-eyebrow text-center'>{t('eyebrow')}</p>
       <div className='grid grid-cols-1 gap-y-10 gap-x-16 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8'>
         {INSTA_IMAGES.map((src, i) => (
           <motion.div

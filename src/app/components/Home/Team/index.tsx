@@ -6,7 +6,6 @@ import { Link } from '@/i18n/routing'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { useTranslations } from 'next-intl'
-import { bebasNeue } from '@/app/fonts'
 
 const TEAM_IMAGES = [
   '/images/wework/coach1-team.webp',
@@ -72,7 +71,7 @@ function TeamMemberCard({
       </div>
       <div className='flex min-h-0 flex-col p-5 pt-4 sm:p-6'>
         <h3
-          className={`mb-3 text-center text-2xl font-bold text-text-primary lg:text-left ${bebasNeue.className}`}
+          className={`mb-3 text-center text-2xl font-semibold text-text-primary lg:text-left`}
         >
           {member.name}
         </h3>
@@ -153,11 +152,11 @@ const Team = () => {
           transition={{ duration: 0.5 }}
           className='mb-10 text-center md:mb-14'
         >
-          <p className='mb-4 text-sm font-bold uppercase tracking-widest text-accent-cyan md:text-base'>
+          <p className='section-eyebrow'>
             {t('eyebrow')}
           </p>
           <h2
-            className={`mb-5 text-4xl font-bold text-text-primary md:text-5xl lg:text-6xl ${bebasNeue.className} text-balance`}
+            className={`mb-5 text-4xl font-normal text-text-primary md:text-5xl lg:text-6xl font-display text-balance`}
           >
             {t('title')}
           </h2>
@@ -241,7 +240,7 @@ const Team = () => {
             <div className='relative z-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-8 md:grid-cols-4'>
               {stats.map((item) => (
                 <div key={item.label} className='min-w-0 px-1 text-center'>
-                  <p className={`mb-1 text-3xl font-bold tabular-nums sm:text-4xl md:text-5xl ${bebasNeue.className}`}>
+                  <p className={`mb-1 text-3xl font-normal tabular-nums sm:text-4xl md:text-5xl font-display`}>
                     {item.value}
                   </p>
                   <p className='text-xs leading-snug text-white/90 text-balance sm:text-sm md:text-base'>
@@ -268,7 +267,7 @@ const Team = () => {
             <Icon icon='mdi:arrow-right' className='text-xl' aria-hidden />
           </Link>
           <Link
-            href='/#UberMich'
+            href='/about-me'
             className='btn-secondary inline-flex min-h-12 cursor-pointer items-center justify-center gap-2'
           >
             {t('ctaSecondary')}

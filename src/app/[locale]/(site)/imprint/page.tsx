@@ -3,7 +3,7 @@ import React from 'react';
 const ImprintPage = () => {
   return (
     <div className="container mx-auto p-8">
-      <h1 className="text-4xl font-bold mb-6">Impressum</h1>
+      <h1 className="text-4xl font-normal mb-6">Impressum</h1>
       <div className="prose lg:prose-xl">
         <p>Angaben gemäß § 5 TMG</p>
         <p>

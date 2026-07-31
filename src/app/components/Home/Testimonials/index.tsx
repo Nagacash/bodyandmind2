@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
-import { bebasNeue } from '@/app/fonts'
 
 const TESTIMONIAL_IMAGES = [
   '/images/testimonial/user1.svg',
@@ -162,7 +161,7 @@ const Testimonial: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className='text-accent-cyan text-sm md:text-base font-bold mb-4 uppercase tracking-wider'
+            className='section-eyebrow'
           >
             {t('eyebrow')}
           </motion.p>
@@ -171,7 +170,7 @@ const Testimonial: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className={`text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 ${bebasNeue.className}`}
+            className={`text-4xl md:text-5xl lg:text-6xl font-normal text-text-primary mb-6 font-display`}
           >
             {t('title')}
           </motion.h2>

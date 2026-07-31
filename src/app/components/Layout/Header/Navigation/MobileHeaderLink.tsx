@@ -1,11 +1,9 @@
 'use client'
 import { useState } from 'react'
-import { Link, usePathname, useRouter } from '@/i18n/routing'
+import { Link, usePathname } from '@/i18n/routing'
 import { HeaderItem } from '@/app/types/menu'
-import { getNavHashTarget } from '@/app/data/nav'
 import { useActiveNavLink } from '@/app/hooks/useActiveNavLink'
 import { Icon } from '@iconify/react'
-import { bebasNeue } from '@/app/fonts'
 
 const MobileHeaderLink: React.FC<{
   item: HeaderItem
@@ -13,7 +11,6 @@ const MobileHeaderLink: React.FC<{
 }> = ({ item, setNavbarOpen }) => {
   const [submenuOpen, setSubmenuOpen] = useState(false)
   const path = usePathname()
-  const router = useRouter()
   const isActive = useActiveNavLink(item.href)
 
   const playAudio = () => {
@@ -26,39 +23,9 @@ const MobileHeaderLink: React.FC<{
     setSubmenuOpen(!submenuOpen)
   }
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = () => {
     playAudio()
-    if (item.href.startsWith('http')) {
-      setNavbarOpen(false)
-      return
-    }
-    const targetId = getNavHashTarget(item.href)
-
-    if (targetId) {
-      e.preventDefault()
-
-      setNavbarOpen(false)
-
-      setTimeout(() => {
-        const targetElement = document.getElementById(targetId)
-
-        if (targetElement) {
-          const headerOffset = 100
-          const elementPosition = targetElement.getBoundingClientRect().top
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset
-
-          window.history.replaceState(null, '', `/#${targetId}`)
-          window.dispatchEvent(new HashChangeEvent('hashchange'))
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth',
-          })
-        } else {
-          router.push(item.href)
-        }
-      }, 300)
-    } else if (!item.submenu) {
+    if (item.href.startsWith('http') || !item.submenu) {
       setNavbarOpen(false)
     }
   }
@@ -72,7 +39,7 @@ const MobileHeaderLink: React.FC<{
             target='_blank'
             rel='noopener noreferrer'
             onClick={handleClick}
-            className={`text-lg font-semibold flex items-center gap-2 transition-colors duration-300 text-text-primary hover:text-accent-cyan ${bebasNeue.className}`}
+            className='flex items-center gap-2 text-lg font-semibold tracking-tight text-text-primary transition-colors duration-300 hover:text-accent-cyan'
           >
             {item.label}
           </a>
@@ -81,11 +48,11 @@ const MobileHeaderLink: React.FC<{
           href={item.href}
           target={item.target}
           onClick={handleClick}
-          className={`text-lg font-semibold flex items-center gap-2 transition-colors duration-300 ${
+          className={`flex items-center gap-2 text-lg font-semibold tracking-tight transition-colors duration-300 ${
             isActive
               ? 'text-accent-cyan'
               : 'text-text-primary hover:text-accent-cyan'
-          } ${bebasNeue.className}`}
+          }`}
         >
           {item.label}
         </Link>

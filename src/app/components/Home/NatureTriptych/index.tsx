@@ -49,7 +49,7 @@ const NatureTriptych = () => {
               />
               <div className='absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent' />
               <figcaption className='absolute bottom-0 left-0 right-0 p-4 text-left'>
-                <span className='mb-1 block text-xs font-bold uppercase tracking-widest text-accent-cyan-light'>
+                <span className='section-eyebrow section-eyebrow--on-dark mb-1 block text-[10px] sm:text-[11px]'>
                   {item.label}
                 </span>
                 <span className='block text-sm font-medium text-white'>{item.caption}</span>

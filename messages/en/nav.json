@@ -1,19 +1,19 @@
 {
   "headerLinks": {
-    "0": { "label": "Home", "href": "/#Hero" },
-    "1": { "label": "Philosophy", "href": "/#About" },
-    "2": { "label": "About Me", "href": "/#UberMich" },
-    "3": { "label": "Team", "href": "/#Team" },
-    "4": { "label": "FAQ", "href": "/#FAQ" },
-    "5": { "label": "Press", "href": "/#Presse" },
-    "6": { "label": "Contact", "href": "/kontakt" },
-    "7": { "label": "Visit studio", "href": "https://bodynmind.netlify.app/", "external": true }
+    "0": { "label": "Home", "href": "/" },
+    "1": { "label": "Philosophy", "href": "/philosophie" },
+    "2": { "label": "About Me", "href": "/about-me" },
+    "3": { "label": "FAQ", "href": "/faq" },
+    "4": { "label": "Press", "href": "/presse" },
+    "5": { "label": "Contact", "href": "/kontakt" },
+    "6": { "label": "Visit studio", "href": "https://bodyandmind-eight.vercel.app/", "external": true }
   },
   "mobileOnlyLinks": {
-    "0": { "label": "Blog", "href": "/#Blog" },
-    "1": { "label": "Legal Notice", "href": "/impressum" },
-    "2": { "label": "Privacy Policy", "href": "/datenschutz" },
-    "3": { "label": "Terms & Conditions", "href": "/agb" }
+    "0": { "label": "Services", "href": "/leistungen" },
+    "1": { "label": "Studio", "href": "/studio" },
+    "2": { "label": "Legal Notice", "href": "/impressum" },
+    "3": { "label": "Privacy Policy", "href": "/datenschutz" },
+    "4": { "label": "Terms & Conditions", "href": "/agb" }
   },
   "whatsapp": "WhatsApp",
   "whatsappContact": "WhatsApp Contact",

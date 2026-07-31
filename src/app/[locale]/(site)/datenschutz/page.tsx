@@ -11,7 +11,7 @@ export default function DatenschutzPage() {
       <button type='button' onClick={() => router.back()} className='btn-back'>
         ← Zurück
       </button>
-      <h1 className='text-4xl font-bold mb-8'>Datenschutzerklärung</h1>
+      <h1 className='text-4xl font-normal mb-8'>Datenschutzerklärung</h1>
       <h3 className="text-xl font-semibold mt-4 mb-2">Allgemeine Hinweise</h3>
       <p className="mb-4">Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text aufgeführten Datenschutzerklärung.</p>
 

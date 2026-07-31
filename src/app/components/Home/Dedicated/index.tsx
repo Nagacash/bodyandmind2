@@ -5,7 +5,6 @@ import { Link } from '@/i18n/routing'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { useTranslations } from 'next-intl'
-import { bebasNeue } from '@/app/fonts'
 
 const STRENGTH_ICONS = ['mdi:fire', 'mdi:chess-knight', 'mdi:shield-check'] as const
 const GALLERY_IMAGES = [
@@ -36,11 +35,11 @@ const Dedicated = () => {
           transition={{ duration: 0.6 }}
           className='mb-12 text-center md:mb-16'
         >
-          <p className='mb-4 text-sm font-bold uppercase tracking-widest text-accent-cyan md:text-base'>
+          <p className='section-eyebrow'>
             {t('eyebrow')}
           </p>
           <h2
-            className={`text-4xl font-bold text-text-primary md:text-5xl lg:text-6xl ${bebasNeue.className} text-balance`}
+            className={`text-4xl font-normal text-text-primary md:text-5xl lg:text-6xl font-display text-balance`}
           >
             {t('title')}
           </h2>
@@ -100,7 +99,7 @@ const Dedicated = () => {
                     <Icon icon={item.icon} className='text-2xl' aria-hidden />
                   </span>
                   <div>
-                    <p className={`mb-1 text-lg font-bold text-text-primary ${bebasNeue.className}`}>
+                    <p className='mb-1 text-lg font-semibold text-text-primary'>
                       {item.title}
                     </p>
                     <p className='text-sm leading-relaxed text-text-secondary md:text-base'>
@@ -137,7 +136,7 @@ const Dedicated = () => {
                 <Icon icon='mdi:arrow-right' className='text-xl' aria-hidden />
               </Link>
               <Link
-                href='/#UberMich'
+                href='/about-me'
                 className='btn-secondary inline-flex min-h-12 items-center justify-center gap-2'
               >
                 {t('ctaSecondary')}

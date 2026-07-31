@@ -5,7 +5,6 @@ import { Link } from '@/i18n/routing'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { useTranslations } from 'next-intl'
-import { bebasNeue } from '@/app/fonts'
 
 const Digital = () => {
   const t = useTranslations('digital')
@@ -14,7 +13,7 @@ const Digital = () => {
   return (
     <section className='relative overflow-hidden bg-grey py-16 md:py-20 lg:py-24'>
       <div className='container mx-auto max-w-7xl px-4'>
-        <div className='relative overflow-hidden rounded-3xl bg-gradient-to-br from-deep-slate via-[#1a5f7a] to-accent-cyan-dark shadow-[var(--shadow-card-lift)] ring-1 ring-black/5'>
+        <div className='relative overflow-hidden rounded-3xl bg-gradient-to-br from-deep-slate via-brand-red to-accent-cyan-dark shadow-[var(--shadow-card-lift)] ring-1 ring-black/5'>
           <div className='pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-accent-cyan/20 blur-3xl' aria-hidden />
 
           <div className='relative z-10 grid grid-cols-1 items-center gap-8 p-6 sm:p-8 md:p-10 lg:grid-cols-2 lg:gap-12 lg:p-12'>
@@ -25,13 +24,13 @@ const Digital = () => {
               transition={{ duration: 0.6 }}
               className='text-center lg:text-left'
             >
-              <p className='mb-4 flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest text-accent-cyan-light md:text-base lg:justify-start'>
+              <p className='section-eyebrow section-eyebrow--on-dark flex items-center justify-center gap-2 lg:justify-start'>
                 <Icon icon='mdi:dumbbell' className='text-xl' aria-hidden />
                 {t('eyebrow')}
               </p>
 
               <h2
-                className={`mb-6 text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl ${bebasNeue.className} text-balance`}
+                className={`mb-6 text-3xl font-normal leading-tight text-white md:text-4xl lg:text-5xl font-display text-balance`}
               >
                 {titlePrefix}{' '}
                 <span className='text-accent-cyan-light'>{t('titleHighlight')}</span>
@@ -47,7 +46,7 @@ const Digital = () => {
                   <Icon icon='mdi:arrow-right' className='text-xl' aria-hidden />
                 </Link>
                 <Link
-                  href='/#Team'
+                  href='/about-me'
                   className='btn-outline-light inline-flex min-h-12 items-center justify-center gap-2'
                 >
                   {t('ctaSecondary')}

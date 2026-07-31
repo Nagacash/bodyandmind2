@@ -38,7 +38,7 @@ export default function AboutMePage() {
     <main className='container mx-auto max-w-5xl px-4 py-16 md:py-24 lg:py-32'>
       <article className='prose prose-lg lg:prose-xl max-w-none'>
         <header className='mb-12'>
-          <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold mb-6'>
+          <h1 className='text-4xl md:text-5xl lg:text-6xl font-normal mb-6'>
             {t('title')}
           </h1>
           <p className='text-lg md:text-xl text-text-secondary font-medium'>

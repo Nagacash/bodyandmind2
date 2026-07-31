@@ -1,6 +1,15 @@
 # German (default locale)
 http://127.0.0.1:3000/
+http://127.0.0.1:3000/philosophie
 http://127.0.0.1:3000/about-me
+http://127.0.0.1:3000/studio
+http://127.0.0.1:3000/leistungen
+http://127.0.0.1:3000/stimmen
+http://127.0.0.1:3000/faq
+http://127.0.0.1:3000/presse
+http://127.0.0.1:3000/flow
+http://127.0.0.1:3000/form
+http://127.0.0.1:3000/recovery
 http://127.0.0.1:3000/kontakt
 http://127.0.0.1:3000/datenschutz
 http://127.0.0.1:3000/impressum
@@ -10,7 +19,16 @@ http://127.0.0.1:3000/privacy
 http://127.0.0.1:3000/imprint
 # English locale
 http://127.0.0.1:3000/en
+http://127.0.0.1:3000/en/philosophie
 http://127.0.0.1:3000/en/about-me
+http://127.0.0.1:3000/en/studio
+http://127.0.0.1:3000/en/leistungen
+http://127.0.0.1:3000/en/stimmen
+http://127.0.0.1:3000/en/faq
+http://127.0.0.1:3000/en/presse
+http://127.0.0.1:3000/en/flow
+http://127.0.0.1:3000/en/form
+http://127.0.0.1:3000/en/recovery
 http://127.0.0.1:3000/en/kontakt
 http://127.0.0.1:3000/en/datenschutz
 http://127.0.0.1:3000/en/impressum

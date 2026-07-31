@@ -6,7 +6,7 @@
 |------|-------|-------|
 | Crawlability | **Pass** | robots.txt allows all; sitemap 6 URLs; imprint/privacy 301 → DE routes |
 | Indexation | **Pass** | Single canonical per page; /documentation noindex; no conflicting tags |
-| Page intent | **Warn** | /about-me + /#UberMich share biography intent (canonical split: /about-me for long-form) |
+| Page intent | **OK** | Biography on `/about-me`; legacy `/#UberMich` redirects via client hash map |
 | Titles & meta | **Pass** | Unique titles; kontakt title deduplicated; descriptions updated for 2024 titles |
 | Internal links | **Pass** | /about-me linked from footer + Über mich section; legal nav fixed |
 | Structured data | **Pass** | Organization, WebSite, Person, LocalBusiness, FAQPage, ContactPage present |

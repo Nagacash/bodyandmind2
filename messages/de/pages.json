@@ -1,0 +1,54 @@
+{
+  "philosophie": {
+    "title": "Philosophie – Körper, Geist & Leistung | Natalie Zimmermann",
+    "description": "Der Ansatz von Natalie Zimmermann: Flow, Form und Recovery – Box-Weltmeisterin, Mental Coach und Therapeutin in Hamburg."
+  },
+  "studio": {
+    "title": "Body & Mind Studio Hamburg | Training & Angebote",
+    "description": "Privatstudio in Hamburg-Harvestehude. Sommerangebote, Trainingssäulen und Buchung über Body & Mind."
+  },
+  "faq": {
+    "title": "FAQ – Personal Training & Coaching Hamburg",
+    "description": "Antworten zu Personal Training, Mental Coaching, Terminen, Standort und Preisen bei Body & Mind by Natalie Zimmermann."
+  },
+  "presse": {
+    "title": "Presse & Medien | Natalie Zimmermann",
+    "description": "Presseberichte, Interviews und Medien über Natalie Zimmermann – Box-Weltmeisterin und Speakerin in Hamburg."
+  },
+  "leistungen": {
+    "title": "Leistungen – Training, Coaching & Therapie",
+    "description": "Boxen, Kickboxen, Personal Training, Physiotherapie, Wingwave Mental Coaching, Lu Jong Yoga und Faszientraining in Hamburg."
+  },
+  "stimmen": {
+    "title": "Stimmen & Erfahrungen | Natalie Zimmermann",
+    "description": "Was Klientinnen und Klienten über Training und Coaching mit Natalie Zimmermann in Hamburg sagen."
+  },
+  "flow": {
+    "title": "Flow – Boxen & Kampfsport",
+    "description": "Professionelles Box- und Kickbox-Training – individuell auf Ihr Level abgestimmt im Body & Mind Hamburg."
+  },
+  "form": {
+    "title": "Form – Kraft & Personal Training",
+    "description": "Personal Training und Kraftarbeit mit Weltmeisterin und Therapeutin in Hamburg."
+  },
+  "recovery": {
+    "title": "Recovery – Therapie & Regeneration",
+    "description": "Physiotherapie, Manuelle Therapie, Faszientraining und regenerative Betreuung in Hamburg."
+  },
+  "hub": {
+    "eyebrow": "Kapitel",
+    "title": "Wählen Sie Ihr Thema",
+    "subtitle": "Jeder Bereich hat eine eigene Seite – ohne endloses Scrollen.",
+    "indexHint": "Kapitel wählen. Eigene Seite, fokussiert lesen.",
+    "links": {
+      "philosophie": "Philosophie",
+      "aboutMe": "Über mich",
+      "studio": "Studio & Angebote",
+      "leistungen": "Leistungen",
+      "stimmen": "Stimmen",
+      "faq": "FAQ",
+      "presse": "Presse & Social",
+      "kontakt": "Kontakt"
+    }
+  }
+}

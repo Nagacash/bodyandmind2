@@ -4,10 +4,10 @@ import { Link } from '@/i18n/routing'
 import { Icon } from '@iconify/react'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
-import { bebasNeue } from '@/app/fonts'
 import BookPromo from '@/app/components/Home/BookPromo'
+import { ROUTES } from '@/app/data/routes'
 
-const PILLAR_HREFS = ['/#Flow', '/#Form', '/#Recovery'] as const
+const PILLAR_HREFS = [ROUTES.flow, ROUTES.form, ROUTES.recovery] as const
 const PILLAR_ICONS = ['mdi:boxing-glove', 'mdi:dumbbell', 'mdi:spa-outline'] as const
 
 const linkClassName =
@@ -41,12 +41,21 @@ const Aboutus = () => {
           transition={{ duration: 0.6 }}
           className='mb-12 text-center md:mb-16'
         >
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.05 }}
+            className='section-eyebrow'
+          >
+            {t('eyebrow')}
+          </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className={`mb-6 text-4xl font-bold text-text-primary md:text-5xl lg:text-6xl ${bebasNeue.className} text-balance`}
+            className='mb-6 text-4xl font-normal text-text-primary md:text-5xl lg:text-6xl font-display text-balance'
           >
             {t('title')}
           </motion.h2>
@@ -56,7 +65,7 @@ const Aboutus = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className={`mb-2 text-2xl font-bold tracking-wide text-accent-cyan md:text-3xl ${bebasNeue.className}`}
+            className='mb-2 text-2xl font-normal tracking-wide text-accent-cyan md:text-3xl font-display'
           >
             {t('tagline')}
           </motion.p>
@@ -82,17 +91,17 @@ const Aboutus = () => {
             <p>
               {t.rich('paragraphs.1', {
                 flow: (chunks) => (
-                  <Link href='/#Flow' className={linkClassName}>
+                  <Link href={ROUTES.flow} className={linkClassName}>
                     {chunks}
                   </Link>
                 ),
                 form: (chunks) => (
-                  <Link href='/#Form' className={linkClassName}>
+                  <Link href={ROUTES.form} className={linkClassName}>
                     {chunks}
                   </Link>
                 ),
                 recovery: (chunks) => (
-                  <Link href='/#Recovery' className={linkClassName}>
+                  <Link href={ROUTES.recovery} className={linkClassName}>
                     {chunks}
                   </Link>
                 ),
@@ -135,7 +144,7 @@ const Aboutus = () => {
         >
           <div className='rounded-3xl bg-grey p-8 md:p-10'>
             <h3
-              className={`mb-4 text-2xl font-bold text-text-primary md:text-3xl ${bebasNeue.className}`}
+              className={`mb-4 text-2xl font-semibold text-text-primary md:text-3xl`}
             >
               {t('ctaTitle')}
             </h3>
@@ -147,7 +156,7 @@ const Aboutus = () => {
                 {t('ctaPrimary')}
                 <Icon icon='mdi:arrow-right' className='text-xl' />
               </Link>
-              <Link href='/#Flow' className='btn-secondary w-full sm:w-auto inline-flex items-center justify-center gap-2'>
+              <Link href={ROUTES.flow} className='btn-secondary w-full sm:w-auto inline-flex items-center justify-center gap-2'>
                 {t('ctaSecondary')}
                 <Icon icon='mdi:arrow-down' className='text-xl' />
               </Link>

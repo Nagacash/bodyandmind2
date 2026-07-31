@@ -6,7 +6,6 @@ import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { useTranslations } from 'next-intl'
 import ImageLightbox from '@/app/components/Common/ImageLightbox'
-import { bebasNeue } from '@/app/fonts'
 
 const EFFECT_IMAGES = [
   '/images/new/recovery1.webp',
@@ -71,11 +70,11 @@ const Recovery = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className='order-1 lg:order-2'
           >
-            <p className='mb-4 text-sm font-bold uppercase tracking-widest text-accent-cyan md:text-base'>
+            <p className='section-eyebrow'>
               {t('eyebrow')}
             </p>
             <h2
-              className={`mb-6 text-4xl font-bold text-text-primary md:text-5xl lg:text-6xl ${bebasNeue.className} text-balance`}
+              className={`mb-6 text-4xl font-normal text-text-primary md:text-5xl lg:text-6xl font-display text-balance`}
             >
               {t('title')}
             </h2>
@@ -102,11 +101,11 @@ const Recovery = () => {
           className='mt-20 md:mt-28'
         >
           <div className='mb-10 text-center md:mb-14'>
-            <p className='mb-3 text-sm font-bold uppercase tracking-widest text-accent-cyan'>
+            <p className='section-eyebrow section-eyebrow--sub'>
               {t('effectsSection.eyebrow')}
             </p>
             <h3
-              className={`mb-4 text-3xl font-bold text-text-primary md:text-4xl lg:text-5xl ${bebasNeue.className} text-balance`}
+              className={`mb-4 text-3xl font-semibold text-text-primary md:text-4xl lg:text-5xl text-balance`}
             >
               {t('effectsSection.title')}
             </h3>
@@ -138,7 +137,7 @@ const Recovery = () => {
                     {item.label}
                   </span>
                   <span
-                    className={`absolute right-4 top-4 text-4xl font-bold text-white/30 ${bebasNeue.className}`}
+                    className={`absolute right-4 top-4 text-4xl font-normal text-white/30 font-mono`}
                   >
                     {item.num}
                   </span>
@@ -147,7 +146,7 @@ const Recovery = () => {
                   <div className='mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-accent-cyan/10'>
                     <Icon icon={item.icon} className='text-xl text-accent-cyan' aria-hidden />
                   </div>
-                  <h4 className={`mb-3 text-xl font-bold text-text-primary md:text-2xl ${bebasNeue.className}`}>
+                  <h4 className={`mb-3 text-xl font-semibold text-text-primary md:text-2xl`}>
                     {item.title}
                   </h4>
                   <p className='text-base leading-relaxed text-text-secondary'>{item.text}</p>
@@ -165,11 +164,11 @@ const Recovery = () => {
           className='mt-20 md:mt-28'
         >
           <div className='mb-8 text-center md:mb-10'>
-            <p className='mb-3 text-sm font-bold uppercase tracking-widest text-accent-cyan'>
+            <p className='section-eyebrow section-eyebrow--sub'>
               {t('gainsSection.eyebrow')}
             </p>
             <h3
-              className={`text-3xl font-bold text-text-primary md:text-4xl ${bebasNeue.className}`}
+              className={`text-3xl font-semibold text-text-primary md:text-4xl`}
             >
               {t('gainsSection.title')}
             </h3>
@@ -199,11 +198,11 @@ const Recovery = () => {
           className='mt-20 md:mt-28'
         >
           <div className='mb-10 text-center md:mb-14'>
-            <p className='mb-3 text-sm font-bold uppercase tracking-widest text-accent-cyan'>
+            <p className='section-eyebrow section-eyebrow--sub'>
               {t('stepsSection.eyebrow')}
             </p>
             <h3
-              className={`mb-4 text-3xl font-bold text-text-primary md:text-4xl ${bebasNeue.className} text-balance`}
+              className={`mb-4 text-3xl font-semibold text-text-primary md:text-4xl text-balance`}
             >
               {t('stepsSection.title')}
             </h3>
@@ -223,11 +222,11 @@ const Recovery = () => {
                 className='relative rounded-3xl bg-grey p-6 md:p-8'
               >
                 <span
-                  className={`mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-accent-cyan text-xl font-bold text-white ${bebasNeue.className}`}
+                  className={`mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-accent-cyan font-mono text-xl font-semibold text-white`}
                 >
                   {step.num}
                 </span>
-                <h4 className={`mb-3 text-xl font-bold text-text-primary ${bebasNeue.className}`}>
+                <h4 className={`mb-3 text-xl font-semibold text-text-primary`}>
                   {step.title}
                 </h4>
                 <p className='text-base leading-relaxed text-text-secondary'>{step.text}</p>
@@ -238,7 +237,7 @@ const Recovery = () => {
           <p className='copy-prose mx-auto mt-10 max-w-3xl text-center text-sm leading-relaxed text-text-muted md:text-base'>
             {t.rich('disclaimer', {
               memberships: (chunks) => (
-                <Link href='/#services-section' className={linkClassName}>
+                <Link href='/leistungen' className={linkClassName}>
                   {chunks}
                 </Link>
               ),
@@ -257,7 +256,7 @@ const Recovery = () => {
             <div className='pointer-events-none absolute -left-16 -bottom-16 h-64 w-64 rounded-full bg-accent-cyan/20 blur-2xl' />
             <div className='relative z-10'>
               <h3
-                className={`mb-4 text-3xl font-bold text-white md:text-4xl lg:text-5xl ${bebasNeue.className} text-balance`}
+                className={`mb-4 text-3xl font-semibold text-white md:text-4xl lg:text-5xl text-balance`}
               >
                 {t('bottomCta.title')}
               </h3>

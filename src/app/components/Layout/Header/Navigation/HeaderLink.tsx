@@ -1,16 +1,13 @@
 'use client'
 import { useState } from 'react'
-import { Link, usePathname, useRouter } from '@/i18n/routing'
+import { Link, usePathname } from '@/i18n/routing'
 import { HeaderItem } from '@/app/types/menu'
-import { getNavHashTarget } from '@/app/data/nav'
 import { useActiveNavLink } from '@/app/hooks/useActiveNavLink'
 import { Icon } from '@iconify/react'
-import { bebasNeue } from '@/app/fonts'
 
 const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
   const [submenuOpen, setSubmenuOpen] = useState(false)
   const path = usePathname()
-  const router = useRouter()
   const isActive = useActiveNavLink(item.href)
 
   const playAudio = () => {
@@ -29,33 +26,8 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
     setSubmenuOpen(false)
   }
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = () => {
     playAudio()
-    if (item.href.startsWith('http')) {
-      return
-    }
-    const targetId = getNavHashTarget(item.href)
-
-    if (targetId) {
-      e.preventDefault()
-      const targetElement = document.getElementById(targetId)
-
-      if (targetElement) {
-        const headerOffset = 100
-        const elementPosition = targetElement.getBoundingClientRect().top
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset
-
-        window.history.replaceState(null, '', `/#${targetId}`)
-        window.dispatchEvent(new HashChangeEvent('hashchange'))
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth',
-        })
-      } else {
-        router.push(item.href)
-      }
-    }
   }
 
   return (
@@ -70,7 +42,7 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
           target='_blank'
           rel='noopener noreferrer'
           onClick={() => playAudio()}
-          className={`text-base md:text-lg flex items-center gap-1 hover:text-accent-cyan transition duration-300 font-semibold text-text-primary ${bebasNeue.className} relative group`}
+          className='group relative flex items-center gap-1 text-base font-semibold tracking-tight text-text-primary transition-colors duration-300 hover:text-accent-cyan md:text-lg'
         >
           <span className='relative'>{item.label}</span>
         </a>
@@ -79,9 +51,9 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
         href={item.href}
         target={item.target}
         onClick={handleClick}
-        className={`text-base md:text-lg flex items-center gap-1 hover:text-accent-cyan transition duration-300 font-semibold ${
-          isActive ? 'text-accent-cyan' : 'text-text-primary'
-        } ${bebasNeue.className} relative group`}
+        className={`group relative flex items-center gap-1 text-base font-semibold tracking-tight transition-colors duration-300 md:text-lg ${
+          isActive ? 'text-accent-cyan' : 'text-text-primary hover:text-accent-cyan'
+        }`}
       >
         <span className='relative'>
           {item.label}

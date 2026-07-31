@@ -1,0 +1,54 @@
+{
+  "philosophie": {
+    "title": "Philosophy – Body, Mind & Performance | Natalie Zimmermann",
+    "description": "Natalie Zimmermann’s approach: flow, form, and recovery—boxing world champion, mental coach, and therapist in Hamburg."
+  },
+  "studio": {
+    "title": "Body & Mind Studio Hamburg | Training & Offers",
+    "description": "Private studio training in Hamburg-Harvestehude. Summer offers, pillars of training, and how to book via Body & Mind."
+  },
+  "faq": {
+    "title": "FAQ – Personal Training & Coaching Hamburg",
+    "description": "Answers about personal training, mental coaching, appointments, location, and pricing at Body & Mind by Natalie Zimmermann."
+  },
+  "presse": {
+    "title": "Press & Media | Natalie Zimmermann",
+    "description": "Press coverage, interviews, and media about Natalie Zimmermann—boxing world champion and speaker in Hamburg."
+  },
+  "leistungen": {
+    "title": "Services – Training, Coaching & Therapy",
+    "description": "Boxing, kickboxing, personal training, physiotherapy, Wingwave mental coaching, Lu Jong yoga, and fascia work in Hamburg."
+  },
+  "stimmen": {
+    "title": "Testimonials | Natalie Zimmermann",
+    "description": "What clients say about training and coaching with Natalie Zimmermann in Hamburg."
+  },
+  "flow": {
+    "title": "Flow – Boxing & Combat Sports",
+    "description": "Professional boxing and kickboxing training tailored to your level at Body & Mind Hamburg."
+  },
+  "form": {
+    "title": "Form – Strength & Personal Training",
+    "description": "Personal training and strength work with a world-class athlete and therapist in Hamburg."
+  },
+  "recovery": {
+    "title": "Recovery – Therapy & Regeneration",
+    "description": "Physiotherapy, manual therapy, fascia training, and recovery-focused care in Hamburg."
+  },
+  "hub": {
+    "eyebrow": "Site map",
+    "title": "Choose your chapter",
+    "subtitle": "Each topic has its own page—no endless scrolling.",
+    "indexHint": "Select a chapter. Full-width pages, focused reading.",
+    "links": {
+      "philosophie": "Philosophy",
+      "aboutMe": "About me",
+      "studio": "Studio & offers",
+      "leistungen": "Services",
+      "stimmen": "Testimonials",
+      "faq": "FAQ",
+      "presse": "Press & social",
+      "kontakt": "Contact"
+    }
+  }
+}

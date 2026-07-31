@@ -7,7 +7,7 @@
 | G05 | Structured data | Person `award` only listed 2023 title | Medium | Low | Fix | **fixed** |
 | G06 | Answer-first | No BLUF on homepage / biography targets | High | Medium | Fix | **fixed** |
 | G07 | Titles | Kontakt title triple-stacked via template | Medium | Low | Fix | **fixed** |
-| G08 | Page intent | /about-me vs /#UberMich compete for biography query | Medium | Medium | Monitor | open |
+| G08 | Page intent | /about-me is canonical biography; home teaser removed | Medium | Medium | Resolved (multi-page) | closed |
 | G09 | Answer-first | Personal Training / Mental Coach queries partial on / | Medium | High | Backlog | open |
 | G10 | GEO citations | Service claims lack named outbound sources | Low | Medium | Backlog | open |
 | G11 | Titles | Hero H1 emotional, not keyword-aligned with title | Low | Low | Backlog | open |

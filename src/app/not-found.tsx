@@ -1,18 +1,16 @@
-import HeroSub from '@/app/components/SharedComponent/HeroSub'
 import NotFound from '@/app/components/NotFound'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: '404 Page | Venus ',
+  title: 'Seite nicht gefunden',
+  description: 'Die angeforderte Seite existiert nicht. Zurück zur Startseite von Natalie Zimmermann.',
+  robots: { index: false, follow: true },
 }
 
-const ErrorPage = () => {
+export default function NotFoundPage() {
   return (
-    <>
-      <HeroSub title='404' />
+    <main id='main-content' tabIndex={-1}>
       <NotFound />
-    </>
+    </main>
   )
 }
-
-export default ErrorPage

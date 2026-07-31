@@ -11,7 +11,7 @@ export default function ImpressumPage() {
       <button type='button' onClick={() => router.back()} className='btn-back'>
         ← Zurück
       </button>
-      <h1 className='text-4xl font-bold mb-8'>Impressum</h1>
+      <h1 className='text-4xl font-normal mb-8'>Impressum</h1>
       <p>Natalie Zimmermann</p>
       <p>Physiotherapeutin & Personal Fitness Trainerin | body&mind</p>
       <p>Rothenbaumchaussee 156</p>

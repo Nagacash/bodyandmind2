@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { useTranslations } from 'next-intl'
-import { bebasNeue } from '@/app/fonts'
 import { STUDIO_PRICING_URL, STUDIO_SITE_URL } from '@/app/data/site'
 
 const Join = () => {
@@ -24,11 +23,11 @@ const Join = () => {
           className='mx-auto max-w-5xl'
         >
           <div className='mx-auto max-w-3xl text-center'>
-            <p className='mb-4 text-sm font-bold uppercase tracking-widest text-accent-cyan md:text-base'>
+            <p className='section-eyebrow'>
               {t('eyebrow')}
             </p>
             <h2
-              className={`mb-6 text-4xl font-bold text-text-primary md:text-5xl ${bebasNeue.className} text-balance`}
+              className={`mb-6 text-4xl font-normal text-text-primary md:text-5xl font-display text-balance`}
             >
               {t('title')}
             </h2>
@@ -46,7 +45,7 @@ const Join = () => {
                 rel='noopener noreferrer'
                 className='group flex h-full min-h-[13.5rem] flex-col rounded-2xl border border-border bg-grey p-6 text-left transition duration-300 hover:border-accent-cyan/40 hover:bg-accent-cyan/5 md:min-h-[15rem]'
               >
-                <p className={`mb-3 shrink-0 text-xl font-bold text-text-primary ${bebasNeue.className}`}>
+                <p className={`mb-3 shrink-0 text-xl font-normal text-text-primary font-display`}>
                   {pillar.name}
                 </p>
                 <p className='min-h-[4.5rem] flex-1 text-sm leading-relaxed text-text-secondary md:min-h-[5.25rem]'>

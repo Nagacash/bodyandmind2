@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl'
 import { STUDIO_PRICING_URL, STUDIO_SITE_URL } from '@/app/data/site'
 
 const FOOTER_LINK_HREFS: string[][] = [
-  ['/', '/#About', '/about-me', '/#Team', '/#FAQ', '/#Presse', '/kontakt'],
+  ['/', '/philosophie', '/about-me', '/faq', '/presse', '/kontakt'],
   [
     STUDIO_SITE_URL,
     STUDIO_PRICING_URL,

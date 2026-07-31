@@ -2,15 +2,16 @@ import type { Metadata } from 'next'
 import '../globals.css'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import { manrope } from '@/app/fonts'
+import { jetbrainsMono, manrope, bebasNeue } from '@/app/fonts'
 import { NextIntlClientProvider } from 'next-intl'
-import { getMessages, setRequestLocale } from 'next-intl/server'
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { hasLocale } from 'next-intl'
 import { routing } from '@/i18n/routing'
 import Header from '@/app/components/Layout/Header'
 import Footer from '@/app/components/Layout/Footer'
 import ScrollToTop from '@/app/components/ScrollToTop'
+import LegacyHashRedirect from '@/app/components/LegacyHashRedirect'
 import BackgroundAmbience from '@/app/components/BackgroundAmbience'
 import Aoscompo from '@/utils/aos'
 import { SITE_URL, socialShareImageMetadata } from '@/app/data/site'
@@ -121,6 +122,7 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale)
   const messages = await getMessages()
+  const tCommon = await getTranslations({ locale, namespace: 'common' })
 
   const organizationLd = {
     '@context': 'https://schema.org',
@@ -162,7 +164,11 @@ export default async function LocaleLayout({
   }
 
   return (
-    <html lang={locale === 'en' ? 'en-US' : 'de-DE'} suppressHydrationWarning>
+    <html
+      lang={locale === 'en' ? 'en-US' : 'de-DE'}
+      className={`${manrope.variable} ${bebasNeue.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <meta name='theme-color' content='#37BEF0' />
         <meta name='geo.region' content='DE-HH' />
@@ -182,12 +188,18 @@ export default async function LocaleLayout({
       </head>
       <body className={`${manrope.className} flex flex-col min-h-screen`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
+          <a href='#main-content' className='skip-link'>
+            {tCommon('skipToContent')}
+          </a>
           <Aoscompo>
             <Header />
-            <div className='flex-grow'>{children}</div>
+            <div id='main-content' tabIndex={-1} className='flex-grow outline-none'>
+              {children}
+            </div>
             <Footer />
           </Aoscompo>
           <ScrollToTop />
+          <LegacyHashRedirect />
           <BackgroundAmbience />
         </NextIntlClientProvider>
       </body>

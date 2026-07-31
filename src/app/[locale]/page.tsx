@@ -2,16 +2,7 @@ import React from 'react'
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import Hero from '@/app/components/Home/Hero'
-import SummerSpecial from '@/app/components/Home/SummerSpecial'
-import Aboutus from '@/app/components/Home/AboutUs'
-import UberMich from '@/app/components/Home/UberMich'
-import Team from '@/app/components/Home/Team'
-import FAQ from '@/app/components/Home/FAQ'
-import Testimonial from '@/app/components/Home/Testimonials'
-import Articles from '@/app/components/Home/Articles'
-import Presse from '@/app/components/Home/Presse'
-import Join from '@/app/components/Home/Joinus'
-import Insta from '@/app/components/Home/Insta'
+import SectionHub from '@/app/components/Home/SectionHub'
 import { SITE_URL, socialShareImageMetadata } from '@/app/data/site'
 
 export async function generateMetadata({
@@ -257,76 +248,6 @@ export default async function Home({
     ],
   }
 
-  const faqLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'Wie kann man Natalie Zimmermann erreichen?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'Sie erreichen Natalie Zimmermann über das Kontaktformular auf nataliezimmermann.de, per E-Mail an info@nataliezimmermann.de oder telefonisch unter 040 / 53790578. Das Body & Mind Studio befindet sich in der Rothenbaumchaussee 156, 20149 Hamburg.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Was kostet eine Stunde Personal Training in Hamburg bei Natalie Zimmermann?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'Die Kosten für eine Stunde Personal Training bei Body & Mind by Natalie Zimmermann variieren je nach individuellen Bedürfnissen, Trainingsumfang und Zielen. Für ein maßgeschneidertes Angebot kontaktieren Sie uns bitte direkt.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Wie verläuft die Terminvergabe?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'Nehmen Sie Kontakt über das Kontaktformular oder telefonisch unter 040 / 53790578 auf und vereinbaren Sie flexibel Ihren Wunschtermin. Wir passen uns Ihrem Zeitplan an.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Wo findet das Training statt?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'Das Training findet im Body & Mind Studio in Hamburg-Harvestehude statt – einer Jugendstilvilla in der Rothenbaumchaussee 156, 20149 Hamburg. Zusätzlich bieten wir Online-Coaching und Online-Training an.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Welche Trainingsarten bietet Natalie Zimmermann an?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'Wir bieten Boxen, Kickboxen, Personal Training, Mental Coaching (u. a. Wingwave), Massagen, Physiotherapie, Manuelle Therapie, Faszientraining und Lu Jong Yoga. Jedes Training wird individuell angepasst.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Muss ich Vorkenntnisse für Boxen oder Personal Training haben?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'Nein, Vorkenntnisse sind nicht erforderlich. Das Training wird an Ihr individuelles Fitnesslevel angepasst – sowohl für Anfänger als auch für Fortgeschrittene.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Bietet Natalie Zimmermann Wingwave Coaching in Hamburg an?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'Ja. Natalie Zimmermann ist Mental Coach mit Schwerpunkt Wingwave und bietet Wingwave Coaching im Body & Mind Studio in Hamburg-Harvestehude an (Rothenbaumchaussee 156, 20149 Hamburg). Wingwave ist eine neurobiologisch fundierte Methode zur schnellen Lösung emotionaler Blockaden und Stress — kombiniert mit Personal Training und Physiotherapie. Kontakt: info@nataliezimmermann.de oder 040 / 53790578.',
-        },
-      },
-    ],
-  }
-
   const breadcrumbLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -343,34 +264,17 @@ export default async function Home({
   return (
     <main>
       <Hero />
-      <SummerSpecial />
-      <Aboutus />
-      <UberMich />
-      <Join />
-      <Team />
-      <FAQ />
-      <Testimonial />
-      <Articles />
-      <Presse />
-      <Insta />
+      <SectionHub />
       <script
         type='application/ld+json'
-        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
       />
       <script
         type='application/ld+json'
-        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessLd) }}
       />
       <script
         type='application/ld+json'
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
-      />
-      <script
-        type='application/ld+json'
-        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
     </main>

@@ -15,10 +15,9 @@
         "0": { "label": "Home" },
         "1": { "label": "Philosophy" },
         "2": { "label": "About Me" },
-        "3": { "label": "Team" },
-        "4": { "label": "FAQ" },
-        "5": { "label": "Press" },
-        "6": { "label": "Contact" }
+        "3": { "label": "FAQ" },
+        "4": { "label": "Press" },
+        "5": { "label": "Contact" }
       }
     },
     "1": {

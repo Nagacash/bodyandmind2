@@ -6,7 +6,6 @@ import { useTranslations } from 'next-intl'
 import { Icon } from '@iconify/react'
 import { STUDIO_PHONE_DISPLAY, STUDIO_PHONE_E164, WHATSAPP_NUMBER_DISPLAY, WHATSAPP_URL } from '@/app/data/contact'
 import { STUDIO_SITE_URL } from '@/app/data/site'
-import { bebasNeue } from '@/app/fonts'
 
 const KontaktPage = () => {
   const t = useTranslations('kontakt')
@@ -102,7 +101,7 @@ const KontaktPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-accent-cyan text-sm md:text-base font-bold mb-4 uppercase tracking-wider"
+              className="section-eyebrow"
             >
               {t('eyebrow')}
             </motion.p>
@@ -110,7 +109,7 @@ const KontaktPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className={`text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 ${bebasNeue.className}`}
+              className={`text-4xl md:text-5xl lg:text-6xl font-normal text-text-primary mb-6 font-display`}
             >
               {t('title')}
             </motion.h1>
@@ -129,7 +128,7 @@ const KontaktPage = () => {
               transition={{ duration: 0.6, delay: 0.35 }}
               className="mx-auto mt-10 max-w-2xl rounded-2xl border border-accent-cyan/30 bg-white p-6 text-left shadow-sm md:p-8"
             >
-              <h2 className={`mb-2 text-xl font-bold text-text-primary md:text-2xl ${bebasNeue.className}`}>
+              <h2 className='mb-2 text-xl font-semibold text-text-primary md:text-2xl'>
                 {t('studioHeading')}
               </h2>
               <p className="mb-4 text-base text-text-secondary">{t('studioDescription')}</p>
@@ -158,7 +157,7 @@ const KontaktPage = () => {
               className="space-y-8"
             >
               <div>
-                <h2 className={`text-3xl md:text-4xl font-bold text-text-primary mb-6 ${bebasNeue.className}`}>
+                <h2 className='mb-6 text-3xl font-semibold text-text-primary md:text-4xl'>
                   {t('infoHeading')}
                 </h2>
                 <p className="text-text-secondary mb-8 text-lg">
@@ -201,7 +200,7 @@ const KontaktPage = () => {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="pt-8 border-t border-border"
               >
-                <h3 className={`text-2xl font-bold text-text-primary mb-4 ${bebasNeue.className}`}>
+                <h3 className={`text-2xl font-semibold text-text-primary mb-4`}>
                   {t('followUs')}
                 </h3>
                 <div className="flex gap-4">
@@ -254,7 +253,7 @@ const KontaktPage = () => {
               className="lg:sticky lg:top-24 h-fit"
             >
               <div className="bg-grey rounded-3xl p-8 md:p-10 shadow-xl">
-                <h2 className={`text-3xl md:text-4xl font-bold text-text-primary mb-2 ${bebasNeue.className}`}>
+                <h2 className='mb-2 text-3xl font-semibold text-text-primary md:text-4xl'>
                   {t('formHeading')}
                 </h2>
                 <p className="text-text-secondary mb-8">

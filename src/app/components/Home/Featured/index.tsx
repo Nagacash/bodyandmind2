@@ -4,7 +4,6 @@ import { useCallback, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
-import { bebasNeue } from '@/app/fonts'
 import { Icon } from '@iconify/react'
 
 const FEATURED_IMAGES = [
@@ -72,7 +71,7 @@ const Featured = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className='mb-4 text-sm font-semibold tracking-wide text-accent-cyan md:text-base'
+            className='section-eyebrow'
           >
             {t('eyebrow')}
           </motion.p>
@@ -81,7 +80,7 @@ const Featured = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className={`mb-6 text-4xl font-bold text-text-primary md:text-5xl lg:text-6xl ${bebasNeue.className} text-balance`}
+            className={`mb-6 text-4xl font-normal text-text-primary md:text-5xl lg:text-6xl font-display text-balance`}
           >
             {t('title')}
           </motion.h2>

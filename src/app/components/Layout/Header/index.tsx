@@ -100,7 +100,7 @@ const Header: React.FC = () => {
               href={WHATSAPP_URL}
               target='_blank'
               rel='noopener noreferrer'
-              className='btn-accent-sm hidden lg:flex'
+              className='btn-brand-gradient hidden lg:flex'
               aria-label={t('aria.whatsappContact')}
             >
               <Icon icon='mdi:whatsapp' className='text-xl' aria-hidden='true' />
@@ -172,7 +172,7 @@ const Header: React.FC = () => {
             href={WHATSAPP_URL}
             target='_blank'
             rel='noopener noreferrer'
-            className='btn-accent-sm mt-6 flex w-full justify-center'
+            className='btn-brand-gradient mt-6 flex w-full justify-center'
             onClick={() => setNavbarOpen(false)}
           >
             <Icon icon='mdi:whatsapp' className='text-xl' />
