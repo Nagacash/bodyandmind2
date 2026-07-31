@@ -6,7 +6,7 @@
     "3": { "label": "FAQ", "href": "/faq" },
     "4": { "label": "Presse", "href": "/presse" },
     "5": { "label": "Kontakt", "href": "/kontakt" },
-    "6": { "label": "Studio besuchen", "href": "https://bodyandmind-eight.vercel.app/", "external": true }
+    "6": { "label": "Studio besuchen", "href": "https://www.bodyandmindhamburg.com/", "external": true }
   },
   "mobileOnlyLinks": {
     "0": { "label": "Leistungen", "href": "/leistungen" },

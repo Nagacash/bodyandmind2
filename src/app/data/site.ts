@@ -1,7 +1,7 @@
 export const SITE_URL = 'https://www.nataliezimmermann.de'
 
 /** Premium studio site — training, pricing, Erstgespräch (separate project; link only). */
-export const STUDIO_SITE_URL = 'https://bodyandmind-eight.vercel.app'
+export const STUDIO_SITE_URL = 'https://www.bodyandmindhamburg.com'
 export const STUDIO_PRICING_URL = `${STUDIO_SITE_URL}/mitgliedschaften`
 
 export const SOCIAL_SHARE_IMAGE = {
