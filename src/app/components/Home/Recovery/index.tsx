@@ -37,7 +37,7 @@ const Recovery = () => {
     'font-semibold text-accent-cyan underline-offset-2 transition-colors duration-200 hover:text-accent-cyan-dark hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2'
 
   return (
-    <section id='Recovery' className='overflow-hidden bg-light py-16 md:py-20 lg:py-24'>
+    <section id='Recovery' className='page-section-top overflow-hidden bg-light pb-16 md:pb-20 lg:pb-24'>
       <div className='container mx-auto max-w-7xl px-4'>
         <div className='grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16'>
           <motion.div
@@ -252,21 +252,21 @@ const Recovery = () => {
           transition={{ duration: 0.6 }}
           className='mt-16 md:mt-24'
         >
-          <div className='relative overflow-hidden rounded-3xl bg-gradient-to-br from-deep-slate to-text-primary p-8 text-center shadow-xl md:p-12 lg:p-16'>
-            <div className='pointer-events-none absolute -left-16 -bottom-16 h-64 w-64 rounded-full bg-accent-cyan/20 blur-2xl' />
-            <div className='relative z-10'>
-              <h3
-                className={`mb-4 text-3xl font-semibold text-white md:text-4xl lg:text-5xl text-balance`}
-              >
-                {t('bottomCta.title')}
-              </h3>
-              <p className='copy-prose mx-auto mb-8 max-w-2xl text-base text-white/85 md:text-lg'>
-                {t('bottomCta.description')}
-              </p>
-              <Link href='/kontakt' className='btn-accent inline-flex items-center gap-2'>
-                {t('cta')}
-                <Icon icon='mdi:arrow-right' className='text-xl' aria-hidden />
-              </Link>
+          <div className='section-cta-brand text-center'>
+            <div className='section-cta-brand-inner'>
+              <div className='section-cta-brand-glow' aria-hidden />
+              <div className='relative z-10'>
+                <h3 className='mb-4 font-display text-3xl font-normal text-white md:text-4xl lg:text-5xl text-balance'>
+                  {t('bottomCta.title')}
+                </h3>
+                <p className='copy-prose mx-auto mb-8 max-w-2xl text-base text-white/90 md:text-lg'>
+                  {t('bottomCta.description')}
+                </p>
+                <Link href='/kontakt' className='btn-brand-gradient inline-flex min-h-12 items-center justify-center gap-2'>
+                  {t('cta')}
+                  <Icon icon='mdi:arrow-right' className='text-xl' aria-hidden />
+                </Link>
+              </div>
             </div>
           </div>
         </motion.div>

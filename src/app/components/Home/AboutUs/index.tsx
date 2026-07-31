@@ -27,7 +27,7 @@ const Aboutus = () => {
   return (
     <section
       id='About'
-      className='relative -mt-px overflow-hidden bg-gradient-to-b from-accent-cyan-light/25 via-light to-light pt-20 pb-16 md:-mt-1 md:pt-24 md:pb-20 lg:pt-28 lg:pb-24'
+      className='page-section-top relative -mt-px overflow-hidden bg-gradient-to-b from-accent-cyan-light/25 via-light to-light pb-16 md:-mt-1 md:pb-20 lg:pb-24'
     >
       <div
         className='pointer-events-none absolute inset-x-0 top-0 h-36 bg-[radial-gradient(ellipse_100%_90%_at_50%_0%,rgba(55,190,240,0.1),transparent_72%)] md:h-44'

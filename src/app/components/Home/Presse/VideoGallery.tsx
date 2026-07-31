@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { useTranslations } from 'next-intl'
 
@@ -12,23 +12,9 @@ const VIDEO_SRCS = [
   'https://www.youtube-nocookie.com/embed/sFCfVHTVoy4?rel=0',
 ] as const
 
-const variants = {
-  enter: (direction: number) => ({
-    x: direction > 0 ? 1000 : -1000,
-    opacity: 0,
-  }),
-  center: {
-    x: 0,
-    opacity: 1,
-  },
-  exit: (direction: number) => ({
-    x: direction < 0 ? 1000 : -1000,
-    opacity: 0,
-  }),
-}
-
 const VideoGallery: React.FC = () => {
   const t = useTranslations('presse')
+  const reduceMotion = useReducedMotion()
 
   const videos = Object.values(
     t.raw('videoGallery.videos') as Record<string, { title: string }>
@@ -67,20 +53,35 @@ const VideoGallery: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyPress)
   }, [])
 
+  const slideVariants = reduceMotion
+    ? {
+        enter: { opacity: 0 },
+        center: { opacity: 1 },
+        exit: { opacity: 0 },
+      }
+    : {
+        enter: (d: number) => ({ x: d > 0 ? 48 : -48, opacity: 0 }),
+        center: { x: 0, opacity: 1 },
+        exit: (d: number) => ({ x: d < 0 ? 48 : -48, opacity: 0 }),
+      }
+
+  const navBtnClass =
+    'absolute top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-sm border border-border/60 bg-white/95 text-text-primary shadow-[var(--shadow-md)] backdrop-blur-sm transition-[background-color,box-shadow,transform] duration-200 hover:bg-white hover:shadow-[var(--shadow-lg)] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 active:scale-[0.97]'
+
   return (
-    <div className='relative w-full max-w-5xl mx-auto'>
-      <div className='relative w-full overflow-hidden rounded-2xl shadow-2xl bg-black'>
+    <div className='relative mx-auto w-full max-w-5xl'>
+      <div className='relative w-full overflow-hidden rounded-2xl border border-border bg-black shadow-[var(--shadow-card-lift)]'>
         <AnimatePresence initial={false} custom={direction} mode='wait'>
           <motion.div
             key={page}
             custom={direction}
-            variants={variants}
+            variants={slideVariants}
             initial='enter'
             animate='center'
             exit='exit'
             transition={{
-              x: { type: 'spring', stiffness: 300, damping: 30 },
-              opacity: { duration: 0.2 },
+              x: { type: 'spring', stiffness: 320, damping: 32 },
+              opacity: { duration: reduceMotion ? 0.12 : 0.22 },
             }}
             className='aspect-video w-full'
           >
@@ -91,7 +92,7 @@ const VideoGallery: React.FC = () => {
               allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
               referrerPolicy='strict-origin-when-cross-origin'
               allowFullScreen
-              className='w-full h-full'
+              className='h-full w-full'
               loading='lazy'
             />
           </motion.div>
@@ -103,7 +104,7 @@ const VideoGallery: React.FC = () => {
             playAudio()
             paginate(-1)
           }}
-          className='absolute left-4 top-1/2 z-10 -translate-y-1/2 cursor-pointer rounded-sm border border-border/50 bg-white/95 p-3 text-text-primary shadow-md shadow-black/10 backdrop-blur-sm transition duration-200 hover:bg-white hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 active:scale-[0.97]'
+          className={`left-3 sm:left-4 ${navBtnClass}`}
           aria-label={t('videoGallery.prevVideo')}
         >
           <Icon icon='mdi:chevron-left' className='text-2xl' aria-hidden />
@@ -114,19 +115,19 @@ const VideoGallery: React.FC = () => {
             playAudio()
             paginate(1)
           }}
-          className='absolute right-4 top-1/2 z-10 -translate-y-1/2 cursor-pointer rounded-sm border border-border/50 bg-white/95 p-3 text-text-primary shadow-md shadow-black/10 backdrop-blur-sm transition duration-200 hover:bg-white hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 active:scale-[0.97]'
+          className={`right-3 sm:right-4 ${navBtnClass}`}
           aria-label={t('videoGallery.nextVideo')}
         >
           <Icon icon='mdi:chevron-right' className='text-2xl' aria-hidden />
         </button>
 
-        <div className='absolute bottom-4 left-1/2 z-10 -translate-x-1/2 rounded-xl bg-black/75 px-4 py-2 text-sm font-semibold text-white shadow-lg backdrop-blur-sm'>
+        <div className='absolute bottom-4 left-1/2 z-10 -translate-x-1/2 rounded-lg bg-black/80 px-3 py-1.5 font-telemetry text-xs tabular-nums text-white backdrop-blur-sm'>
           {videoIndex + 1} / {videos.length}
         </div>
       </div>
 
-      <div className='mt-6 overflow-x-auto pb-4'>
-        <div className='flex gap-4 justify-center'>
+      <div className='mt-6 overflow-x-auto pb-2'>
+        <div className='flex justify-center gap-3'>
           {videos.map((video, index) => (
             <button
               type='button'
@@ -136,23 +137,24 @@ const VideoGallery: React.FC = () => {
                 const dir = index > videoIndex ? 1 : -1
                 setPage([index, dir])
               }}
-              className={`flex-shrink-0 w-24 h-16 cursor-pointer rounded-sm overflow-hidden border-2 transition duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 ${
+              className={`h-16 w-24 shrink-0 cursor-pointer overflow-hidden rounded-sm border-2 transition-[border-color,opacity,transform] duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 ${
                 index === videoIndex
-                  ? 'border-accent-cyan scale-110 shadow-lg'
-                  : 'border-transparent hover:border-accent-cyan/50 hover:scale-105 opacity-70 hover:opacity-100'
+                  ? 'scale-105 border-accent-cyan opacity-100 shadow-[var(--shadow-md)]'
+                  : 'border-transparent opacity-70 hover:border-accent-cyan/40 hover:opacity-100'
               }`}
               aria-label={`Video ${index + 1}: ${video.title}`}
+              aria-current={index === videoIndex ? 'true' : undefined}
             >
-              <div className='w-full h-full bg-gradient-to-br from-accent-cyan to-accent-cyan-dark flex items-center justify-center'>
-                <Icon icon='mdi:play' className='text-white text-2xl' />
+              <div className='flex h-full w-full items-center justify-center bg-gradient-to-br from-brand-blue via-brand-red to-brand-purple'>
+                <Icon icon='mdi:play' className='text-2xl text-white' aria-hidden />
               </div>
             </button>
           ))}
         </div>
       </div>
 
-      <p className='text-center text-text-secondary text-xs mt-4 flex items-center justify-center gap-2'>
-        <Icon icon='mdi:keyboard' className='text-accent-cyan' />
+      <p className='mt-4 flex items-center justify-center gap-2 text-center text-xs text-text-secondary'>
+        <Icon icon='mdi:keyboard' className='text-accent-cyan' aria-hidden />
         {t('videoGallery.keyboardHint')}
       </p>
     </div>

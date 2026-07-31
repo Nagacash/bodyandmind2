@@ -1,8 +1,4 @@
 import type { Metadata } from 'next'
-import '../globals.css'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import { jetbrainsMono, manrope, bebasNeue } from '@/app/fonts'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
@@ -13,6 +9,7 @@ import Footer from '@/app/components/Layout/Footer'
 import ScrollToTop from '@/app/components/ScrollToTop'
 import LegacyHashRedirect from '@/app/components/LegacyHashRedirect'
 import BackgroundAmbience from '@/app/components/BackgroundAmbience'
+import { SetDocumentLang } from '@/app/components/SetDocumentLang'
 import Aoscompo from '@/utils/aos'
 import { SITE_URL, socialShareImageMetadata } from '@/app/data/site'
 
@@ -73,7 +70,7 @@ export async function generateMetadata({
         : 'Natalie Zimmermann – Body & Mind Hamburg',
       title: isEn
         ? 'Natalie Zimmermann – Boxing World Champion, Speaker & Mental Coach in Hamburg'
-        : 'Natalie Zimmermann – Box-Weltmeisterin, Speakerin & Mental Coach in Hamburg',
+        : 'Natalie Zimmermann – Box-Weltmeisterin, Speakerin & Mental Coach Hamburg',
       description: isEn
         ? 'Professional boxing world champion, speaker, mental coach & personal trainer in Hamburg. Body & Mind Studio in Harvestehude.'
         : 'Profibox-Weltmeisterin, Speakerin, Mental Coach & Personal Trainerin in Hamburg. Body & Mind Studio in Harvestehude.',
@@ -104,6 +101,12 @@ export async function generateMetadata({
       apple: [{ url: '/apple-icon.png', type: 'image/png', sizes: '180x180' }],
     },
     manifest: '/manifest.webmanifest',
+    other: {
+      'geo.region': 'DE-HH',
+      'geo.placename': 'Hamburg, Harvestehude',
+      'geo.position': '53.578612;9.987175',
+      ICBM: '53.578612, 9.987175',
+    },
   }
 }
 
@@ -164,45 +167,31 @@ export default async function LocaleLayout({
   }
 
   return (
-    <html
-      lang={locale === 'en' ? 'en-US' : 'de-DE'}
-      className={`${manrope.variable} ${bebasNeue.variable} ${jetbrainsMono.variable}`}
-      suppressHydrationWarning
-    >
-      <head>
-        <meta name='theme-color' content='#37BEF0' />
-        <meta name='geo.region' content='DE-HH' />
-        <meta name='geo.placename' content='Hamburg, Harvestehude' />
-        <meta name='geo.position' content='53.578612;9.987175' />
-        <meta name='ICBM' content='53.578612, 9.987175' />
-        <script
-          type='application/ld+json'
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
-        />
-        <script
-          type='application/ld+json'
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
-        />
-      </head>
-      <body className={`${manrope.className} flex flex-col min-h-screen`}>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <a href='#main-content' className='skip-link'>
-            {tCommon('skipToContent')}
-          </a>
-          <Aoscompo>
-            <Header />
-            <div id='main-content' tabIndex={-1} className='flex-grow outline-none'>
-              {children}
-            </div>
-            <Footer />
-          </Aoscompo>
-          <ScrollToTop />
-          <LegacyHashRedirect />
-          <BackgroundAmbience />
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <>
+      <SetDocumentLang locale={locale} />
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
+      />
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
+      />
+      <NextIntlClientProvider locale={locale} messages={messages}>
+        <a href='#main-content' className='skip-link'>
+          {tCommon('skipToContent')}
+        </a>
+        <Aoscompo>
+          <Header />
+          <div id='main-content' tabIndex={-1} className='flex-grow outline-none'>
+            {children}
+          </div>
+          <Footer />
+        </Aoscompo>
+        <ScrollToTop />
+        <LegacyHashRedirect />
+        <BackgroundAmbience />
+      </NextIntlClientProvider>
+    </>
   )
 }

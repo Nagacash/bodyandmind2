@@ -68,7 +68,7 @@ const Hero = () => {
             initial={motionOff ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: motionOff ? 0.2 : 0.75, ease }}
-            className='order-1 w-full min-w-0 lg:order-2 lg:w-1/2'
+            className='order-2 w-full min-w-0 lg:order-2 lg:w-1/2'
           >
             <div className='group relative mx-auto w-full max-w-[min(100%,28rem)] max-lg:mb-2 lg:max-w-none'>
               <div
@@ -132,7 +132,7 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          <div className='relative z-20 order-2 w-full min-w-0 text-center lg:order-1 lg:w-1/2 lg:text-left'>
+          <div className='relative z-20 order-1 w-full min-w-0 text-center lg:order-1 lg:w-1/2 lg:text-left'>
             <motion.div
               initial={motionOff ? false : { opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}

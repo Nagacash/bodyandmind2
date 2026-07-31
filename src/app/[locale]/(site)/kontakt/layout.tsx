@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import React from 'react'
-
-const SITE_URL = 'https://www.nataliezimmermann.de'
+import { SITE_URL } from '@/app/data/site'
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: 'Kontakt – Body & Mind Studio Hamburg',
   description:
     'Kontaktieren Sie Natalie Zimmermann – Body & Mind Studio Hamburg, Rothenbaumchaussee 156, 20149 Hamburg. Telefon 040 / 53790578, E-Mail info@nataliezimmermann.de. Personal Training, Mental Coaching, Physiotherapie & Boxen in Hamburg-Harvestehude.',

@@ -88,7 +88,7 @@ const Articles = () => {
   }))
 
   return (
-    <section id='Blog' className='relative bg-light overflow-hidden py-16 md:py-20 lg:py-24'>
+    <section id='Blog' className='page-section-top relative overflow-hidden bg-light pb-16 md:pb-20 lg:pb-24'>
       <div className='absolute top-0 right-0 w-1/3 h-1/3 bg-accent-cyan/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2' />
       <div className='absolute bottom-0 left-0 w-1/3 h-1/3 bg-accent-cyan/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2' />
 
@@ -114,7 +114,7 @@ const Articles = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className={`text-4xl md:text-5xl lg:text-6xl font-normal text-text-primary mb-6 font-display`}
+            className={`mb-6 text-[clamp(1.875rem,5.5vw+0.75rem,3.75rem)] font-normal text-text-primary font-display leading-[0.98]`}
           >
             {t('title')}
           </motion.h2>
@@ -134,6 +134,7 @@ const Articles = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
+          className='-mx-2 overflow-hidden sm:mx-0'
         >
           <Slider {...settings}>
             {articles.map((item, i) => {
@@ -258,20 +259,22 @@ const Articles = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
           className='mt-16 md:mt-20 text-center'
         >
-          <div className='bg-gradient-to-br from-accent-cyan to-accent-cyan-dark rounded-3xl p-8 md:p-12 text-white relative overflow-hidden'>
-            <div className='absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2' />
-            <div className='relative z-10'>
-              <Icon icon='mdi:handshake' className='text-5xl mb-4 mx-auto' />
-              <h3 className={`text-3xl md:text-4xl font-semibold mb-4`}>
-                {t('bottomCta.title')}
-              </h3>
-              <p className='text-white/90 text-lg mb-6 max-w-2xl mx-auto'>
-                {t('bottomCta.description')}
-              </p>
-              <Link href='/kontakt' className='btn-solid-light'>
-                {t('bottomCta.button')}
-                <Icon icon='mdi:arrow-right' className='text-xl' />
-              </Link>
+          <div className='section-cta-brand text-center'>
+            <div className='section-cta-brand-inner'>
+              <div className='section-cta-brand-glow' aria-hidden />
+              <div className='relative z-10'>
+                <Icon icon='mdi:handshake' className='mx-auto mb-4 text-5xl text-white' aria-hidden />
+                <h3 className='mb-4 font-display text-3xl font-normal text-white md:text-4xl text-balance'>
+                  {t('bottomCta.title')}
+                </h3>
+                <p className='mx-auto mb-6 max-w-2xl text-lg text-white/90 text-pretty'>
+                  {t('bottomCta.description')}
+                </p>
+                <Link href='/kontakt' className='btn-brand-gradient inline-flex min-h-12 items-center justify-center gap-2'>
+                  {t('bottomCta.button')}
+                  <Icon icon='mdi:arrow-right' className='text-xl' aria-hidden />
+                </Link>
+              </div>
             </div>
           </div>
         </motion.div>

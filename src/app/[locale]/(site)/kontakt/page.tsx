@@ -89,7 +89,7 @@ const KontaktPage = () => {
 
   return (
     <div className="min-h-screen bg-light">
-      <section className="relative bg-gradient-to-br from-accent-cyan/10 via-light to-accent-cyan-light/10 py-16 md:py-24 lg:py-32">
+      <section className="page-section-top relative bg-gradient-to-br from-accent-cyan/10 via-light to-accent-cyan-light/10 pb-12 md:pb-16">
         <div className="container mx-auto max-w-7xl px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

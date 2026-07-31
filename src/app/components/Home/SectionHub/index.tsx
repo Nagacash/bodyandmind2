@@ -48,7 +48,7 @@ const SectionHub = () => {
             <p className='section-eyebrow'>{t('eyebrow')}</p>
             <h2
               id='section-hub-title'
-              className='mb-4 text-4xl font-normal leading-[0.95] tracking-tight text-text-primary md:text-5xl lg:text-6xl font-display text-balance'
+              className='mb-4 text-[clamp(1.875rem,5.5vw+0.75rem,3.75rem)] font-normal leading-[0.95] tracking-tight text-text-primary md:text-5xl lg:text-6xl font-display text-balance'
             >
               {t('title')}
             </h2>

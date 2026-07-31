@@ -12,6 +12,7 @@ export async function generateMetadata({
   const isEn = locale === 'en'
 
   return {
+    metadataBase: new URL(SITE_URL),
     title: t('meta.title'),
     description: t('meta.description'),
     alternates: {
@@ -30,10 +31,10 @@ export async function generateMetadata({
       description: t('meta.ogDescription'),
       images: [
         {
-          url: '/images/aboutus/NatalieZimmermann3.webp',
+          url: '/images/new/beach3.webp',
           width: 1200,
           height: 630,
-          alt: 'Natalie Zimmermann – Profibox-Weltmeisterin & Mental Coach',
+          alt: 'Natalie Zimmermann – Profibox-Weltmeisterin & Mental Coach in Hamburg',
         },
       ],
     },
@@ -41,7 +42,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: t('meta.twitterTitle'),
       description: t('meta.twitterDescription'),
-      images: ['/images/aboutus/NatalieZimmermann3.webp'],
+      images: ['/images/new/beach3.webp'],
     },
   }
 }

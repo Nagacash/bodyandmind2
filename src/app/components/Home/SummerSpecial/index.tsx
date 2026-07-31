@@ -16,7 +16,7 @@ const SummerSpecial = () => {
     <section
       id='SommerSpecial'
       aria-labelledby='summer-special-heading'
-      className='relative z-20 overflow-hidden border-y border-accent-cyan/20 bg-gradient-to-b from-accent-cyan-light/50 via-white to-accent-cyan-light/30 py-10 md:py-14 lg:py-16'
+      className='page-section-top relative z-20 overflow-hidden border-b border-accent-cyan/20 bg-gradient-to-b from-accent-cyan-light/50 via-white to-accent-cyan-light/30 pb-10 md:pb-14 lg:pb-16'
     >
       <div
         className='pointer-events-none absolute inset-x-0 top-0 h-32 bg-[radial-gradient(ellipse_80%_100%_at_50%_0%,rgba(55,190,240,0.12),transparent)]'

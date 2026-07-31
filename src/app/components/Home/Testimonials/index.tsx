@@ -139,7 +139,7 @@ const Testimonial: React.FC = () => {
 
   return (
     <section
-      className='relative bg-gradient-to-br from-accent-cyan/5 via-light to-accent-cyan-light/5 overflow-hidden py-16 md:py-20 lg:py-24'
+      className='page-section-top relative overflow-hidden bg-gradient-to-br from-accent-cyan/5 via-light to-accent-cyan-light/5 pb-16 md:pb-20 lg:pb-24'
       id='testimonial-section'
     >
       <div
@@ -170,7 +170,7 @@ const Testimonial: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className={`text-4xl md:text-5xl lg:text-6xl font-normal text-text-primary mb-6 font-display`}
+            className={`mb-6 text-[clamp(1.875rem,5.5vw+0.75rem,3.75rem)] font-normal leading-[0.98] text-text-primary font-display`}
           >
             {t('title')}
           </motion.h2>
@@ -212,7 +212,7 @@ const Testimonial: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className='testimonial-slider pb-12'
+          className='testimonial-slider -mx-2 overflow-hidden pb-12 sm:mx-0'
         >
           <Slider {...settings}>
             {testimonals.map((items, i) => (

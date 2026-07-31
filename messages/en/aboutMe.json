@@ -10,6 +10,8 @@
     "breadcrumbCurrent": "About Me"
   },
   "title": "About Natalie Zimmermann – Boxing World Champion, Mental Coach & Personal Trainer in Hamburg",
+  "eyebrow": "Biography",
+  "backHome": "Back to home",
   "intro": {
     "0": "Natalie Zimmermann is a WIBF and WBF boxing world champion, physical therapist, personal trainer, mental coach, and speaker in Hamburg-Harvestehude—head of the Body & Mind Studio at Rothenbaumchaussee 156.",
     "1": "Professional boxing world champion (WIBF 2023/2024, WBF 2024), physical therapist, personal trainer, mental coach, and speaker—from Hamburg-Harvestehude to clients across Germany."
@@ -36,6 +38,9 @@
     "1": "Whether personal training, mental coaching, boxing, or speaking—I want to inspire people to leave their comfort zone, release their blocks, and bring out their best."
   },
   "servicesHeading": "Services at the Body & Mind Studio Hamburg",
+  "servicesCta": "View all services",
+  "philosophyCta": "Philosophy",
+  "recordLabel": "WIBF / WBF · Hamburg-Harvestehude",
   "services": {
     "0": "Personal training in Hamburg—individually planned for every fitness level.",
     "1": "Mental coaching & Wingwave—more focus, less stress, clear goals.",

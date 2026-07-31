@@ -145,7 +145,7 @@ const Header: React.FC = () => {
 
       <div
         ref={mobileMenuRef}
-        className={`lg:hidden fixed top-0 right-0 h-full w-full max-w-sm bg-light shadow-2xl transform transition-transform duration-300 ease-in-out z-modal ${
+        className={`lg:hidden fixed top-0 right-0 flex h-[100dvh] w-full max-w-sm flex-col bg-light shadow-2xl transform transition-transform duration-300 ease-in-out z-modal pt-[env(safe-area-inset-top,0px)] ${
           navbarOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -163,7 +163,7 @@ const Header: React.FC = () => {
           </div>
         </div>
 
-        <nav className='flex flex-col p-6 overflow-y-auto h-[calc(100vh-80px)]'>
+        <nav className='flex min-h-0 flex-1 flex-col overflow-y-auto p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))]'>
           {mobileHeaderData.map((item: HeaderItem, index: Key | null | undefined) => (
             <MobileHeaderLink key={index} item={item} setNavbarOpen={setNavbarOpen} />
           ))}

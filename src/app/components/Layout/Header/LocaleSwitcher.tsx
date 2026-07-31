@@ -7,7 +7,7 @@ import type { Locale } from '@/i18n/routing'
 const locales: Locale[] = ['de', 'en']
 
 function localeButtonClass(active: boolean) {
-  return `inline-flex h-9 min-w-[2.75rem] items-center justify-center rounded-sm px-3 text-center text-xs font-bold uppercase tracking-wide transition-colors duration-200 cursor-pointer ${
+  return `inline-flex min-h-11 min-w-[2.75rem] items-center justify-center rounded-sm px-3 text-center text-xs font-bold uppercase tracking-wide transition-colors duration-200 cursor-pointer ${
     active
       ? 'bg-accent-cyan text-white shadow-sm'
       : 'text-text-secondary hover:text-accent-cyan'

@@ -31,15 +31,15 @@ const MobileHeaderLink: React.FC<{
   }
 
   return (
-    <div className='relative w-full mb-4'>
-      <div className='flex items-center justify-between'>
+    <div className='relative mb-2 w-full border-b border-border/60 pb-2 last:mb-0 last:border-0'>
+      <div className='flex min-h-11 items-center justify-between'>
         {item.href.startsWith('http') ? (
           <a
             href={item.href}
             target='_blank'
             rel='noopener noreferrer'
             onClick={handleClick}
-            className='flex items-center gap-2 text-lg font-semibold tracking-tight text-text-primary transition-colors duration-300 hover:text-accent-cyan'
+            className='flex min-h-11 flex-1 items-center gap-2 py-2 text-lg font-semibold tracking-tight text-text-primary transition-colors duration-300 hover:text-accent-cyan'
           >
             {item.label}
           </a>
@@ -48,7 +48,7 @@ const MobileHeaderLink: React.FC<{
           href={item.href}
           target={item.target}
           onClick={handleClick}
-          className={`flex items-center gap-2 text-lg font-semibold tracking-tight transition-colors duration-300 ${
+          className={`flex min-h-11 flex-1 items-center gap-2 py-2 text-lg font-semibold tracking-tight transition-colors duration-300 ${
             isActive
               ? 'text-accent-cyan'
               : 'text-text-primary hover:text-accent-cyan'
@@ -60,7 +60,7 @@ const MobileHeaderLink: React.FC<{
         {item.submenu && (
           <button
             onClick={handleToggle}
-            className='p-2 rounded-lg hover:bg-grey transition-colors duration-200'
+            className='btn-icon-surface min-h-11 min-w-11 rounded-lg hover:bg-grey'
             aria-label='Toggle submenu'
           >
             <Icon

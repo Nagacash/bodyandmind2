@@ -14,6 +14,7 @@ export async function generateMetadata({
   const isEn = locale === 'en'
 
   return {
+    metadataBase: new URL(SITE_URL),
     title: isEn
       ? 'Natalie Zimmermann – Boxing World Champion, Speaker & Mental Coach in Hamburg'
       : 'Natalie Zimmermann – Box-Weltmeisterin, Speakerin & Mental Coach in Hamburg',

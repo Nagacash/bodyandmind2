@@ -204,6 +204,33 @@
     @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-sm bg-gradient-to-r from-brand-blue via-brand-red to-brand-purple py-2.5 px-5 text-sm font-semibold tracking-tight text-white shadow-sm shadow-brand-purple/25 ring-1 ring-inset ring-white/15 transition duration-200 ease-out hover:-translate-y-px hover:shadow-md hover:shadow-brand-red/30 hover:brightness-[1.04] active:translate-y-0 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 min-h-11;
   }
 
+  /* Fixed header clearance on standalone section pages */
+  .page-section-top {
+    @apply scroll-mt-[100px] pt-[calc(4.25rem+env(safe-area-inset-top,0px)+2.5rem)] md:pt-[calc(4.25rem+env(safe-area-inset-top,0px)+3.5rem)];
+  }
+
+  /* Tri-color frame + dark inner panel (featured / bottom CTAs) */
+  .section-cta-brand {
+    @apply relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-blue via-brand-red to-brand-purple p-[2px] shadow-[var(--shadow-card-lift)];
+  }
+
+  .section-cta-brand-inner {
+    @apply relative overflow-hidden rounded-[calc(1.875rem-2px)] bg-text-primary px-8 py-10 md:px-12 md:py-12 lg:py-16;
+  }
+
+  .section-cta-brand-glow {
+    @apply pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-brand-blue/20 blur-2xl;
+  }
+
+  /* Horizontal chip row on narrow viewports */
+  .mobile-chip-scroll {
+    @apply -mx-4 flex gap-2 overflow-x-auto overscroll-x-contain px-4 pb-1 [scrollbar-width:thin] snap-x snap-mandatory sm:mx-0 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0;
+  }
+
+  .mobile-chip-scroll > * {
+    @apply snap-start;
+  }
+
   /* White button on cyan/gradient panels */
   .btn-solid-light {
     @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-sm bg-white px-7 py-3.5 text-base font-semibold tracking-tight text-accent-cyan shadow-sm shadow-black/10 ring-1 ring-inset ring-black/5 transition duration-200 ease-out hover:-translate-y-px hover:bg-white/95 hover:shadow-md active:translate-y-0 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-accent-cyan md:px-9 md:text-lg;
@@ -219,9 +246,9 @@
     @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-sm border-2 border-accent-cyan bg-transparent px-8 py-3.5 text-sm font-bold tracking-tight text-accent-cyan shadow-sm transition duration-200 ease-out hover:-translate-y-px hover:bg-accent-cyan hover:text-white hover:shadow-md active:translate-y-0 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2;
   }
 
-  /* Ghost icon / nav control */
+  /* Ghost icon / nav control — 44px minimum touch target */
   .btn-icon-surface {
-    @apply inline-flex cursor-pointer items-center justify-center rounded-sm text-text-primary transition-colors duration-200 hover:bg-grey focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2;
+    @apply inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-sm text-text-primary transition-colors duration-200 hover:bg-grey focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2;
   }
 
   /* Secondary icon button (social, etc.) */
@@ -231,7 +258,7 @@
 
   /* Filter / chip toggle */
   .btn-chip {
-    @apply cursor-pointer rounded-sm border border-border/80 px-4 py-2 text-sm font-semibold transition duration-200;
+    @apply min-h-11 shrink-0 cursor-pointer rounded-sm border border-border/80 px-4 py-2.5 text-sm font-semibold transition duration-200;
   }
   .btn-chip-active {
     @apply border-accent-cyan bg-accent-cyan text-white shadow-sm shadow-accent-cyan/25;
@@ -278,11 +305,11 @@
   }
 
   h2 {
-    @apply text-text-primary text-5xl lg:text-65 font-normal text-balance;
+    @apply text-text-primary text-4xl sm:text-5xl lg:text-65 font-normal text-balance;
   }
 
   h3 {
-    @apply text-text-primary text-4xl lg:text-6xl font-semibold text-balance;
+    @apply text-text-primary text-2xl sm:text-4xl lg:text-6xl font-semibold text-balance;
   }
 
   h4 {
@@ -297,9 +324,9 @@
     @apply text-text-primary text-xl text-pretty;
   }
 
-  /* Form fields — focus ring only on keyboard navigation */
+  /* Form fields — 16px+ avoids iOS focus zoom */
   .input-field {
-    @apply w-full bg-white border-2 border-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted transition-[border-color,box-shadow] duration-300 focus:outline-none focus-visible:border-accent-cyan focus-visible:ring-2 focus-visible:ring-accent-cyan/20;
+    @apply w-full bg-white border-2 border-border rounded-xl px-4 py-3 text-base text-text-primary placeholder:text-text-muted transition-[border-color,box-shadow] duration-300 focus:outline-none focus-visible:border-accent-cyan focus-visible:ring-2 focus-visible:ring-accent-cyan/20;
   }
 
   p {
@@ -382,18 +409,18 @@
 
 html {
   overflow-x: hidden;
-  scroll-padding-top: 4.5rem;
+  scroll-padding-top: calc(4.25rem + env(safe-area-inset-top, 0px));
 }
 
 @media (min-width: 768px) {
   html {
-    scroll-padding-top: 5rem;
+    scroll-padding-top: calc(5rem + env(safe-area-inset-top, 0px));
   }
 }
 
 @media (min-width: 1024px) {
   html {
-    scroll-padding-top: 6rem;
+    scroll-padding-top: calc(6rem + env(safe-area-inset-top, 0px));
   }
 }
 
@@ -530,6 +557,16 @@ main {
 
 .will-change-transform-opacity {
   will-change: transform, opacity;
+}
+
+@media (max-width: 1024px) {
+  #Blog .slick-list {
+    overflow: hidden;
+    padding-bottom: 2.5rem;
+  }
+  #Blog .slick-dots {
+    bottom: 0;
+  }
 }
 
 /* Testimonials carousel (react-slick) – scoped to section id */

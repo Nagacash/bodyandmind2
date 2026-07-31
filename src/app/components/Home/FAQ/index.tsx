@@ -74,7 +74,7 @@ const FAQ = () => {
   return (
     <section
       id='FAQ'
-      className='relative py-16 md:py-20 lg:py-24 bg-gradient-to-br from-accent-cyan/10 via-light to-accent-cyan-light/10 overflow-hidden'
+      className='page-section-top relative overflow-hidden bg-gradient-to-br from-accent-cyan/10 via-light to-accent-cyan-light/10 pb-16 md:pb-20 lg:pb-24'
     >
       <div className='absolute inset-0 bg-[url("/images/faq/swirl.webp")] bg-no-repeat bg-right-bottom opacity-10 -z-0' />
 
@@ -100,7 +100,7 @@ const FAQ = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className={`text-4xl md:text-5xl lg:text-6xl font-normal text-text-primary mb-6 font-display`}
+            className={`text-[clamp(1.875rem,5.5vw+0.75rem,3.75rem)] font-normal text-text-primary mb-6 font-display leading-[0.98]`}
           >
             {t('title')}
           </motion.h2>
@@ -133,12 +133,12 @@ const FAQ = () => {
                 placeholder={t('searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className='input-field rounded-2xl py-4 pl-12 pr-4 text-lg'
+                className='input-field rounded-2xl py-3.5 pl-12 pr-4 text-base md:py-4 md:text-lg'
               />
             </div>
 
             {categories.length > 0 && (
-              <div className='flex flex-wrap justify-center gap-3'>
+              <div className='mobile-chip-scroll justify-start sm:justify-center'>
                 <button
                   type='button'
                   onClick={() => setSelectedCategory(null)}
@@ -339,20 +339,22 @@ const FAQ = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
           className='mt-12 md:mt-16 text-center'
         >
-          <div className='bg-gradient-to-br from-accent-cyan to-accent-cyan-dark rounded-3xl p-8 md:p-12 text-white relative overflow-hidden'>
-            <div className='absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2' />
-            <div className='relative z-10'>
-              <Icon icon='mdi:message-question-outline' className='text-5xl mb-4 mx-auto' />
-              <h3 className={`text-3xl md:text-4xl font-semibold mb-4`}>
-                {t('ctaTitle')}
-              </h3>
-              <p className='text-white/90 text-lg mb-6 max-w-2xl mx-auto'>
-                {t('ctaDescription')}
-              </p>
-              <Link href='/kontakt' className='btn-solid-light'>
-                {t('ctaButton')}
-                <Icon icon='mdi:arrow-right' className='text-xl' />
-              </Link>
+          <div className='section-cta-brand text-center'>
+            <div className='section-cta-brand-inner'>
+              <div className='section-cta-brand-glow' aria-hidden />
+              <div className='relative z-10'>
+                <Icon icon='mdi:message-question-outline' className='mx-auto mb-4 text-5xl text-white' aria-hidden />
+                <h3 className='mb-4 font-display text-3xl font-normal text-white md:text-4xl text-balance'>
+                  {t('ctaTitle')}
+                </h3>
+                <p className='mx-auto mb-6 max-w-2xl text-lg text-white/90 text-pretty'>
+                  {t('ctaDescription')}
+                </p>
+                <Link href='/kontakt' className='btn-brand-gradient inline-flex min-h-12 items-center justify-center gap-2'>
+                  {t('ctaButton')}
+                  <Icon icon='mdi:arrow-right' className='text-xl' aria-hidden />
+                </Link>
+              </div>
             </div>
           </div>
         </motion.div>

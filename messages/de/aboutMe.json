@@ -10,6 +10,8 @@
     "breadcrumbCurrent": "Über Mich"
   },
   "title": "Über Natalie Zimmermann – Box-Weltmeisterin, Mental Coach & Personal Trainerin in Hamburg",
+  "eyebrow": "Biografie",
+  "backHome": "Zur Startseite",
   "intro": {
     "0": "Natalie Zimmermann ist WIBF- und WBF-Box-Weltmeisterin, Physiotherapeutin, Personal Trainerin, Mental Coach und Speakerin in Hamburg-Harvestehude — Leiterin des Body & Mind Studios an der Rothenbaumchaussee 156.",
     "1": "Profibox-Weltmeisterin (WIBF 2023/2024, WBF 2024), Physiotherapeutin, Personal Trainerin, Mental Coach und Speakerin — aus Hamburg-Harvestehude für ganz Deutschland."
@@ -36,6 +38,9 @@
     "1": "Ob Personal Training, Mental Coaching, Boxen oder Vorträge – ich möchte Menschen inspirieren, ihre Komfortzone zu verlassen, ihre Blockaden aufzulösen und das Beste aus sich herauszuholen."
   },
   "servicesHeading": "Leistungen im Body & Mind Studio Hamburg",
+  "servicesCta": "Alle Leistungen ansehen",
+  "philosophyCta": "Philosophie",
+  "recordLabel": "WIBF / WBF · Hamburg-Harvestehude",
   "services": {
     "0": "Personal Training in Hamburg – individuell geplant, für jedes Fitnesslevel.",
     "1": "Mental Coaching & Wingwave – mehr Fokus, weniger Stress, klare Ziele.",
