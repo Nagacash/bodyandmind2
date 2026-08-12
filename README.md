@@ -30,6 +30,26 @@ Full-stack web platform for Body & Mind Hamburg — a premium physiotherapy and 
 
 ---
 
+## Built for
+
+**body & mind — Natalie Zimmermann, Hamburg.** A premium private training and recovery studio offering one-to-one boxing and kickboxing coaching, physiotherapy, and mental performance work. The studio's clients book privately and train in closed sessions, so the site had to read as a serious clinical practice rather than a gym — calm, precise, and trustworthy at first glance.
+
+### The brief
+
+Replace an inquiry process that ran on phone calls and loose messages with a platform that carries a client from first contact through to ongoing rehabilitation:
+
+- A first-visit flow where a client can pinpoint where it hurts before they ever walk in, so the first session starts with information rather than intake questions
+- Real-time booking for privattraining and Erstgespräch slots, with confirmation handled end to end
+- Session-by-session progress records, held securely, so recovery is visible over weeks rather than remembered session to session
+- German and English throughout, for an international client base in Hamburg
+- Performance and polish as a brand statement — the site is the studio's shopfront
+
+### Delivered by Naga Codex
+
+Full scope: product architecture, interface design, front-end build, booking and scheduling flows, the rehabilitation tracking layer, the bilingual content system, image pipeline and performance work, and production deployment. Roughly two and a half months from brief to live.
+
+---
+
 ## Tech stack
 
 | Layer | Choice |
@@ -44,25 +64,6 @@ Full-stack web platform for Body & Mind Hamburg — a premium physiotherapy and 
 | Notifications | react-hot-toast |
 | Image optimisation | sharp + custom WebP pipeline |
 | Deployment | Vercel |
-
----
-
-## Run locally
-
-**Prerequisites:** Node.js 20+, pnpm
-
-```bash
-git clone https://github.com/Nagacash/bodyandmind2.git
-cd bodyandmind2
-pnpm install
-pnpm dev   # → http://localhost:3000
-```
-
-```bash
-pnpm build          # production build
-pnpm start          # serve production build
-pnpm images:webp    # convert images to WebP
-```
 
 ---
 
@@ -82,6 +83,8 @@ scripts/            Image conversion utilities
 ## Built by
 
 **[Naga Codex](https://nagacodex.cloud)** — Maurice Holda. Lead architect, design & front-end development. 2.5-month build from brief to production.
+
+Interested in something similar? → [nagacodex.cloud](https://nagacodex.cloud)
 
 ---
 
